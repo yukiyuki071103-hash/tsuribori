@@ -129,6 +129,8 @@ details summary{font-weight:700;font-size:13px;cursor:pointer;color:var(--muted)
 .upd span{flex:1;line-height:1.5}.upd button{font:inherit;font-size:13px;border:0;border-radius:10px;padding:8px 10px;background:#ffd447;color:#3a2600;font-weight:700;white-space:nowrap}.upd button.x{background:transparent;color:#fff;padding:6px}
 .rk{display:flex;flex-direction:column;gap:8px}.rk .ttabs{margin:0}.rk-last{background:#fff8e1;border:1px solid #f2d27a;border-radius:12px;padding:8px 10px;font-size:13px;font-weight:700;display:flex;flex-direction:column;gap:6px}
 .rk-list{display:flex;flex-direction:column;gap:4px}.rk-row{display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:10px;background:#f2f6f9;font-size:14px}
+.rk-mine{margin:8px 0 4px;padding:8px 10px;border-radius:10px;background:#fff6d6;font-weight:bold;font-size:14px;text-align:center}
+.rk-gap{text-align:center;color:#8a90a8;line-height:1;margin:2px 0}
 .rk-row b{width:42px;text-align:center}.rk-row span{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.rk-row i{font-style:normal;font-weight:700}
 .rk-row.me{background:#ffe9a8;box-shadow:inset 0 0 0 2px #f2b400}.rk-sel{font:inherit;font-size:16px;padding:8px;border-radius:10px;border:1.5px solid #c9d3dc}
 .acct{display:flex;flex-direction:column;gap:8px}.acct .sell{width:100%;white-space:normal;line-height:1.5}
@@ -436,6 +438,18 @@ s042,UFOマンボウ,特別,uchu,7,200,400,7000,11000,200,r,px:ufomanbo
 s043,迷子の宇宙飛行士,特別,uchu,7,160,190,7000,11000,210,m,px:uchuhikoushi
 s044,銀河クジラ,特別,uchu,8,2000,3000,20000,30000,260,w,px:gingakujira
 s045,彗星竜,特別,uchu,8,1500,2500,20000,30000,200,e,px:suiseiryu
+s046,花の妖精,特別,seirei,8,15,25,30000,45000,330,m,px:yousei_hana
+s047,森の妖精,特別,seirei,8,15,25,30000,45000,120,m,px:yousei_mori
+s048,水の妖精,特別,seirei,8,15,25,30000,45000,205,m,px:yousei_mizu
+s049,炎の妖精,特別,seirei,8,15,25,30000,45000,15,m,px:yousei_honoo
+s050,風の妖精,特別,seirei,8,15,25,30000,45000,165,m,px:yousei_kaze
+s051,雪の妖精,特別,seirei,8,15,25,30000,45000,210,m,px:yousei_yuki
+s052,月の妖精,特別,seirei,8,15,25,30000,45000,260,m,px:yousei_tsuki
+s053,太陽の妖精,特別,seirei,8,15,25,30000,45000,45,m,px:yousei_taiyou
+s054,雷の妖精,特別,seirei,8,15,25,30000,45000,55,m,px:yousei_kaminari
+s055,夜の妖精,特別,seirei,8,15,25,30000,45000,235,m,px:yousei_yoru
+s056,虹の妖精,特別,seirei,8,15,25,30000,45000,300,m,px:yousei_niji
+s057,精霊女王,特別,seirei,9,25,35,100000,150000,50,m,px:seirei_joou
 </script>
 <script>
 // ステージ: id, 名前, グループ, 開放Lv, ticket(チケット制), 背景画像(空ならコードで描く), 景色の種類, 空と水の色
@@ -452,7 +466,8 @@ const STAGES=[
  {id:'funeoki',name:'船上（沖）',g:'海',lv:70,bg:'',deco:'boat',sky:['#f4bd80','#fde6c4'],water:['#1f70b3','#061a45']},
  {id:'tenku',name:'天空',g:'特別',lv:50,ticket:true,bg:'',deco:'sky',sky:['#c9b6ff','#fff3fb'],water:['#a6c8ff','#5a6fd6']},
  {id:'kodai',name:'古代',g:'特別',lv:50,ticket:true,bg:'',deco:'ancient',sky:['#e8a87c','#f8dcb8'],water:['#3d8a7a','#0f3a33']},
- {id:'uchu',name:'宇宙',g:'特別',lv:80,ticket:true,bg:'',deco:'space',sky:['#05030f','#2a1a5a'],water:['#1c1250','#04020c']}
+ {id:'uchu',name:'宇宙',g:'特別',lv:80,ticket:true,bg:'',deco:'space',sky:['#05030f','#2a1a5a'],water:['#1c1250','#04020c']},
+ {id:'seirei',name:'精霊の丘',g:'特別',lv:100,ticket:true,bg:'',deco:'spirit',sky:['#2a1d5c','#f4b4d4'],water:['#4ac0b0','#0e2e44']}
 ];
 const GROUPS=['川','海','湖','特別'];
 const TICKET_STAGE_LV=90; // チケット制ステージの経験値の基準Lv
@@ -471,11 +486,13 @@ const RODS=[
 const SPECIAL_RODS={
  tenku:{id:'sky',name:'スカイロッド',short:'スカイ',zone:.35,color:'#7ec8ff'},
  kodai:{id:'ancient',name:'エンシェントロッド',short:'古代',zone:.35,color:'#8a6a3a'},
- uchu:{id:'cosmo',name:'コスモロッド',short:'コスモ',zone:.3,color:'#b48aff'}
+ uchu:{id:'cosmo',name:'コスモロッド',short:'コスモ',zone:.3,color:'#b48aff'},
+ seirei:{id:'spirit',name:'精霊の杖',short:'精霊',zone:.28,color:'#6fe0b0'}
 };
 // 特殊ステージのレア度の出やすさ（★6・★7・★8）手前・中・奥
 const SPECIAL_W=[[74,25,1],[70,28,2],[64,32,4]]; // 全体で★6約72%・★7約27%・★8約1.6%
-const SPECIAL_WS={uchu:[[42,52,6],[36,56,8],[28,60,12]]}; // 宇宙：★7中心・★8約8%
+const SPECIAL_WS={uchu:[[42,52,6],[36,56,8],[28,60,12]],seirei:[[0,0,95,5],[0,0,92,8],[0,0,88,12]]}; // 精霊の丘：★8ばかり・★9(女王)は約8%
+ // 宇宙：★7中心・★8約8%
 // エサ: 1個で1投。特殊ステージでは使わない
 const BAITS=[
  {id:'G',name:'餌G',boost:1.05,price:30},
@@ -501,9 +518,9 @@ const OKI_W=[50,30,13,5,2]; // 置き竿で★1〜5が出る割合（上限よ�
 const OKI_NEW=1;            // 未発見の魚のかかりやすさ（倍）。1=補正なし
 const OKI_XP=1/3;           // 経験値は通常の釣りの何倍か
 // お知らせ（アップデートのたびに上に足す。NEWS_VER を変えるとメニューに NEW が付く）
-const NEWS_VER='2026-11-15r';
+const NEWS_VER='2026-11-15s';
 const NEWS=[
- {d:'2026/11/15',t:['🎵 BGMの着せ替え！ 夜の海・和の調べ・南国リゾート・レトロゲーム・夕焼けローファイ（各20,000G・ショップの「着せ替え」で試聴できます）','🔓 限界突破：Lv79→80とLv99→100には条件があります（レベル表示の🔒をタップで確認）。突破すると称号「限界を超えし者」','🌌 新ステージ「宇宙」！ Lv80から。新しい魚12種、★7・★8がたくさん。流れ星に気をつけて。宇宙専用のBGMつき','水槽のライトを明るく。虹のライトは光の筋ごとに色が変わるように','フレンド機能！ コードで申請・承認。フレンドの水槽・部屋に遊びに行けて、1日1回エサやりも（メニュー →「フレンド」）','魚籠に「絞り込み」（★・釣った場所・ロック・今日釣った魚・名前）。全部選ぶ／最大以外を選ぶは表示中の魚だけ','図鑑に「絞り込み」と、釣り場ごとの開閉・達成率（小川 12/20 など）','釣り人の部屋とアバター！ 釣り場の「🏠 部屋」で着替え・模様替え。魚拓やはく製を飾ったり、水槽も置けます','アップデートがあると画面の上にお知らせが出るように','ランキング：釣った数・魚の大きさを通算／週間／日間で（メニュー →「ランキング」・ログインした人が参加）。週間の釣った数で10位までは報酬あり','アカウント：Googleでログインするとクラウドに自動セーブ（メニュー →「アカウント」）。プレイヤー名も決められます','ナイスアワセ：浮きが水中に消えた瞬間にアワセると、ゲージが多めの状態からスタート（くわしくは遊び方）','前アタリ：アタリの前に浮きがピクッと動くように','水槽の設備ボーナス：背景・砂・ライト・飾りで見物料アップ（最大+60%）','釣りゲージの着せ替え（9種類）。ショップの「着せ替え」で','釣り上げの進み具合をゲージのすぐ上に','水槽の見物料：水槽の魚がゴールドを稼ぐように（今日の人気者は2倍・エサやりで+50%）','ショップがタブ分けに（道具・券・着せ替え・水槽）。着せ替えと水槽の買い物はショップで','着せ替えには持っているものだけ表示','称号ページが「レベル称号・実績称号・イベント称号」のタブに','天空・古代で釣った魚の魚拓は金の額縁に','釣れたときの音と演出が★ごとに変わるように（★5以上はキラキラ・後光）','宝箱は「チャリーン！」',
+ {d:'2026/11/15',t:['🧚 新ステージ「精霊の丘」！ Lv100から。妖精11種（★8）と、初の★9「精霊女王」。幻影と精霊の風に気をつけて。専用BGMつき','🎵 BGMの着せ替え！ 夜の海・和の調べ・南国リゾート・レトロゲーム・夕焼けローファイ（各20,000G・ショップの「着せ替え」で試聴できます）','🔓 限界突破：Lv79→80とLv99→100には条件があります（レベル表示の🔒をタップで確認）。突破すると称号「限界を超えし者」','🌌 新ステージ「宇宙」！ Lv80から。新しい魚12種、★7・★8がたくさん。流れ星に気をつけて。宇宙専用のBGMつき','水槽のライトを明るく。虹のライトは光の筋ごとに色が変わるように','フレンド機能！ コードで申請・承認。フレンドの水槽・部屋に遊びに行けて、1日1回エサやりも（メニュー →「フレンド」）','魚籠に「絞り込み」（★・釣った場所・ロック・今日釣った魚・名前）。全部選ぶ／最大以外を選ぶは表示中の魚だけ','図鑑に「絞り込み」と、釣り場ごとの開閉・達成率（小川 12/20 など）','釣り人の部屋とアバター！ 釣り場の「🏠 部屋」で着替え・模様替え。魚拓やはく製を飾ったり、水槽も置けます','アップデートがあると画面の上にお知らせが出るように','ランキング：釣った数・魚の大きさを通算／週間／日間で（メニュー →「ランキング」・ログインした人が参加）。週間の釣った数で10位までは報酬あり','アカウント：Googleでログインするとクラウドに自動セーブ（メニュー →「アカウント」）。プレイヤー名も決められます','ナイスアワセ：浮きが水中に消えた瞬間にアワセると、ゲージが多めの状態からスタート（くわしくは遊び方）','前アタリ：アタリの前に浮きがピクッと動くように','水槽の設備ボーナス：背景・砂・ライト・飾りで見物料アップ（最大+60%）','釣りゲージの着せ替え（9種類）。ショップの「着せ替え」で','釣り上げの進み具合をゲージのすぐ上に','水槽の見物料：水槽の魚がゴールドを稼ぐように（今日の人気者は2倍・エサやりで+50%）','ショップがタブ分けに（道具・券・着せ替え・水槽）。着せ替えと水槽の買い物はショップで','着せ替えには持っているものだけ表示','称号ページが「レベル称号・実績称号・イベント称号」のタブに','天空・古代で釣った魚の魚拓は金の額縁に','釣れたときの音と演出が★ごとに変わるように（★5以上はキラキラ・後光）','宝箱は「チャリーン！」',
   '天空・古代に専用のBGM（いつもの曲と釣り上げ中の曲）','★7・★8が暴れだすと、釣り上げ中の曲が少し速く・高くなるように']},
  {d:'2026/11/15',t:['新しい魚21種（シャチ・イッカク・マッコウクジラ・クロコダイル・オニイトマキエイなど）','メニューができました（置き竿・ミッション・図鑑・着せ替え・称号・魚拓・セーブコード・設定・お知らせ）','魚拓ギャラリー：釣った魚を魚拓にして飾れる（12枚まで）','デイリーミッション：毎日3つ・報酬はランダム・1日1回チェンジ','置き竿：4種類。時間がたつと魚がかかる（経験値は1/3）','キャストのメーターが「真ん中が奥」に','BGM・効果音の音量を調整できるように','買う・売るは2回タップで決定に','釣り画面の文字にふち取り']},
  {d:'2026/11/14',t:['レベル称号（Lv10ごと）と報酬のウキ・竿','釣り上げ中の演出：ウキが近づく・竿が揺れる・水しぶき','魚影はゲージ80%で正体が分かるように','左右の合図はゲージの下に','宝箱が全部の釣り場に・宝箱は抵抗しない','キャストのキャンセル・魚のロック','新しい魚17種（ハコフグ〜ザトウクジラ）']}
@@ -513,7 +530,8 @@ const GYO_MAX=12; // 魚拓を飾れる枚数
 const TICKETS=[
  {stage:'tenku',name:'天空(スカイ)ステージ専用チケット',price:30000,lv:50,casts:10},
  {stage:'kodai',name:'古代(エンシェント)ステージ専用チケット',price:30000,lv:50,casts:10},
- {stage:'uchu',name:'宇宙(コスモ)ステージ専用チケット',price:80000,lv:80,casts:10}
+ {stage:'uchu',name:'宇宙(コスモ)ステージ専用チケット',price:80000,lv:80,casts:10},
+ {stage:'seirei',name:'精霊の丘(スピリット)ステージ専用チケット',price:150000,lv:100,casts:10}
 ];
 </script>
 <script>
@@ -525,6 +543,33 @@ const TICKETS=[
 const PX={
  base:{o:'#261e30',e:'#ffffff',k:'#141418',n:'d'},
  tpl:{
+  fairy:{rows:[
+   "..........................",
+   ".........oooooooo.........",
+   "....OOOOoHHHhHHHHoOOOO....",
+   "...OWWWWHHhhHHHHHHWWWWO...",
+   "..OWwwwHHhHHHHHHHHHwwwWO..",
+   ".OWwwwwHHHHHHHHHHHHwwwwWO.",
+   ".OWwvwwHHsHHsHHsHHHwwvwWO.",
+   "OWwwwvwHHssssssssHHwvwwwWO",
+   "OWwwwwvJHskessskeHJvwwwwWO",
+   "OWwwwwwJHskssssksHJwwwwwWO",
+   "OWwwwwwJHqssssssqHJwwwwwWO",
+   ".OWwwwwJwsssxxssswJwwwwWO.",
+   ".OWwwwwJwwsssssswwJwwwwWO.",
+   "..OWwwwJwWOossoOWwHwwwWO..",
+   "...OWwwwwwWlddDWwwwwwWO...",
+   "...OWwwwwwsllllswwwwwWO...",
+   "..OWwwvwwslddddDswwvwwWO..",
+   "...OWwwvslddddddDsvwwWO...",
+   "...OWWwwlddddddddDwwWWO...",
+   "....OOWWlddddddddDWWOO....",
+   "......olDDDDDDDDDDDo......",
+   ".......oooosoosoooo.......",
+   "..........osooso..........",
+   ".........oDDooDDo.........",
+   "..........oo..oo..........",
+  ]},
   astro:{rows:[
    "........oooooo........",
    "......oowwwwwwoo......",
@@ -3521,6 +3566,18 @@ const PX={
   ]},
  },
  fish:{
+  yousei_hana:{name:'花の妖精',tpl:'fairy',pal:{s:'#ffe2cc',x:'#e88a8a',q:'#ffb0b0',H:'#ff7ab4',h:'#ffc0dc',J:'#d04a88',d:'#ffb0d4',D:'#e070a8',l:'#ffe0ee',w:'#ffd0ecb0',W:'#ffe8f6d0',v:'#ff9ad0',O:'#c87aa8',a:'#ff4a6a',b:'#ffe04a',c:'#5ac85a'},add:["               aa", "              abba", "              abba", "               aa", "               c", "", "", "", "", "", "", "", "", "", "", "", "", "", "         a     a", "            a", "", "", "", "", ""]},
+  yousei_mori:{name:'森の妖精',tpl:'fairy',pal:{s:'#ffe2cc',x:'#e88a8a',q:'#ffb0b0',H:'#4a9a3a',h:'#8ad06a',J:'#2a6a26',d:'#7ac85a',D:'#4a9a3a',l:'#c8f0a0',w:'#c8f0a0b0',W:'#e8ffd0d0',v:'#7ac85a',O:'#6a9a5a',a:'#2a7a2a',b:'#9ae07a'},add:["         ab ab  ab", "        abba bb abb", "       a  b     b", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]},
+  yousei_mizu:{name:'水の妖精',tpl:'fairy',pal:{s:'#ffe2cc',x:'#e88a8a',q:'#ffb0b0',H:'#3a98e0',h:'#a8e0ff',J:'#1a68b0',d:'#7acaff',D:'#3a98e0',l:'#d8f4ff',w:'#b8ecffb0',W:'#e0f8ffd0',v:'#6ac0f0',O:'#5a98c8',a:'#2a8ae8',b:'#ffffff'},add:["             a", "            aba", "            aaa", "", "", "", "", "", "", "", "", "", "", "", "       a          a", "", "", "               b", "          b", "", "", "", "", "", ""]},
+  yousei_honoo:{name:'炎の妖精',tpl:'fairy',pal:{s:'#ffe2cc',x:'#e88a8a',q:'#ffb0b0',H:'#ff5a2a',h:'#ffc04a',J:'#c02a1a',d:'#ff8a3a',D:'#d84a1a',l:'#ffd08a',w:'#ffc890b0',W:'#ffe8c0d0',v:'#ff8a4a',O:'#d07a4a',a:'#ffe04a',b:'#ff9a2a',c:'#ff3a1a'},add:["        a  b  a b  a", "        ba ab bab ab", "        cbbcbbcbbcbb", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]},
+  yousei_kaze:{name:'風の妖精',tpl:'fairy',pal:{s:'#ffe2cc',x:'#e88a8a',q:'#ffb0b0',H:'#4ad0b0',h:'#b0fff0',J:'#2a9a84',d:'#b8f4e0',D:'#6ad0b8',l:'#ffffff',w:'#e0fff4b0',W:'#ffffffd0',v:'#8ae0c8',O:'#7ab8a8',a:'#ffffff',b:'#7ad8c0'},add:["                  aa", "                 aba", "                aba", "               aba", "               b", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "     a              a", "      a            a", "", "", "", ""]},
+  yousei_yuki:{name:'雪の妖精',tpl:'fairy',pal:{s:'#ffe2cc',x:'#e88a8a',q:'#ffb0b0',H:'#e8f0ff',h:'#ffffff',J:'#a8b8d8',d:'#cfe8ff',D:'#98b8e0',l:'#ffffff',w:'#ffffffa0',W:'#ffffffe0',v:'#cfe8ff',O:'#98a8c8',a:'#5ab8ff',b:'#ffffff'},add:["              a a a", "               aba", "              abbba", "               aba", "              a a a", "", "", "", "", "", "", "", "", "", "", "", "", "         a      a", "", "             a", "", "", "", "", ""]},
+  yousei_tsuki:{name:'月の妖精',tpl:'fairy',pal:{s:'#ffe2cc',x:'#e88a8a',q:'#ffb0b0',H:'#a890e8',h:'#e0d4ff',J:'#7058b8',d:'#7a6ad0',D:'#4a3a98',l:'#b8a8f0',w:'#d8c8ffb0',W:'#f0e8ffd0',v:'#a890e8',O:'#8a7ac0',a:'#ffe27a',b:'#fff4c0'},add:["               aa", "              a  b", "              a", "              a", "               aa", "", "", "", "", "", "", "", "", "", "", "", "", "          a", "               a", "", "", "", "", "", ""]},
+  yousei_taiyou:{name:'太陽の妖精',tpl:'fairy',pal:{s:'#ffe2cc',x:'#e88a8a',q:'#ffb0b0',H:'#ffb82a',h:'#fff0a0',J:'#d08a1a',d:'#ffe070',D:'#f0b030',l:'#fff8d0',w:'#fff0a0b0',W:'#fffbe0d0',v:'#ffd04a',O:'#d0a04a',a:'#ff7a1a',b:'#ffe04a'},add:["      a     b     a", "        a  bab  a", "      b           b", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]},
+  yousei_kaminari:{name:'雷の妖精',tpl:'fairy',pal:{s:'#ffe2cc',x:'#e88a8a',q:'#ffb0b0',H:'#ffe03a',h:'#fff8b0',J:'#c0a01a',d:'#6a4ac8',D:'#46309a',l:'#9a7ae8',w:'#f8f4a0b0',W:'#fffbd0d0',v:'#e0d04a',O:'#b0a04a',a:'#ffe03a',b:'#ffffff'},add:["                 aa", "                 a", "                aa", "                ab", "               aa", "               a", "", "", "", "", "", "", "", "", "", "", "           a", "            a a", "             a", "", "", "", "", "", ""]},
+  yousei_yoru:{name:'夜の妖精',tpl:'fairy',pal:{s:'#f4dcd0',x:'#e88a8a',q:'#ffb0b0',H:'#2a3470',h:'#5a6ab8',J:'#141a40',d:'#1e2a5a',D:'#0e1430',l:'#3a4a8a',w:'#8090d0a0',W:'#b0c0ffd0',v:'#5a6ab8',O:'#5a6aa8',a:'#fff6a0',b:'#ffffff'},add:["                a", "               aba", "              aabaa", "               a a", "", "", "", "", "     a", "", "", "", "                    a", "", "", "", "         a    b", "", "            a", "                a", "", "", "", "", ""]},
+  yousei_niji:{name:'虹の妖精',tpl:'fairy',pal:{s:'#ffe2cc',x:'#e88a8a',q:'#ffb0b0',H:'#ff8ac8',h:'#ffffff',J:'#c04a9a',d:'#ffffff',D:'#e0d0f0',l:'#ffffff',w:'#ffe0f0b0',W:'#ffffffd0',v:'#ffffff',O:'#b090c8',r:'#ff5a5ac0',y:'#ffd84ac0',g:'#5ad05ac0',b:'#4aa8ffc0',p:'#a87affc0',R:'#ff5a5a',Y:'#ffd84a',G:'#5ad05a',B:'#4aa8ff',Q:'#a87aff'},add:["           RRRRR", "          RYYYYYR", "         RYG   GYR", "", "    rrr            rrr", "   yyyy            yyyy", "   y yy            yy y", "  yyy y            y yyy", "  gggg              gggg", "  ggggg            ggggg", "  ggggg            ggggg", "   bbbb b        b bbbb", "   bbbb bb      bb bbbb", "    bbb b        b bbb", "     rrrrr      rrrrr", "     yyyyy      yyyyy", "    gg gg    Q   gg gg", "     bb    B    B  bb", "      pp G    G   pp", "            Y    Y", "", "", "", "", ""]},
+  seirei_joou:{name:'精霊女王',tpl:'fairy',pal:{s:'#ffe2cc',x:'#e88a8a',q:'#ffb0b0',H:'#fff4d0',h:'#ffffff',J:'#e0c890',d:'#ffffff',D:'#e8d8b0',l:'#fffaf0',w:'#ffe890b0',W:'#fff4c0e0',v:'#ffd04a',O:'#c8a040',a:'#ffc81a',b:'#ff4a8a',c:'#6af0ff'},add:["         a  a  a  a", "          aabaacaa", "          aaaaaaaa", "                     c", "  b", "", "", "", "", "", "", "", "     c", "    cac", "     a", "     a    aaaaaa       c", "     a", "     a", "     a", "", "        aaaaaaaaaaa", "", "", "", ""]},
   hoshikurage:{name:'ホシクラゲ',tpl:'clione',pal:{b:'#dfe4ff',f:'#ffe27a',r:'#8ad8ff'}},
   moonfugu:{name:'ムーンフグ',tpl:'fugu_m',pal:{d:'#bdb8a0',b:'#f0ecd6',h:'#fffef2',m:'#e2dcc2',l:'#fffbe8',f:'#d2ccb2',g:'#9e9884',p:'#a8a28c'}},
   inseki:{name:'隕石ガニ',tpl:'kani',pal:{d:'#2a2624',b:'#56504a',h:'#857c72',f:'#e8682a',g:'#3a3430'}},
@@ -5394,6 +5451,7 @@ const PX={
         <li><b>セーブコードでバックアップ</b>しておくと安心です。</li>
         <li><b>釣り人の部屋</b>：釣り場の右上「🏠 部屋」で、自分の部屋へ。下のボタン「👕 着替え」でアバターを着替え、「模様替え」で家具・魚拓（6枚まで）・はく製を置けます。水槽は今の大きさで置かれ、タップすると水槽へ。壁紙・床・家具はショップの「部屋」、服や帽子はショップの「着せ替え」で。アバターはランキングと釣果画面にも出ます。</li>
         <li><b>宇宙ステージ</b>：Lv80から。チケット80,000G（10投）。★7がたくさん、★8もよく出る最難関。ときどき「☄ 流れ星！」でゲージの魚影が見えにくくなります。全種類釣ると称号「宇宙の覇者」。</li>
+        <li><b>精霊の丘</b>：Lv100から。チケット150,000G（10投）。妖精はすべて★8、ごくまれに★9の「精霊女王」。ニセの魚影が出る「✨幻影」（光っているのが本物）と、バーが流される「🍃精霊の風」に注意。全種類釣ると称号「精霊の友」。</li>
         <li><b>限界突破</b>：Lv79とLv99で経験値が満タンになると止まります（🔒）。条件を満たすと次のレベルへ。Lv79→80は「天空と古代の図鑑をコンプリート」、Lv99→100は「宇宙の図鑑をコンプリート」。止まっている間の経験値も1レベル分まではためておけます。レベル表示の🔒をタップすると条件を確認できます。</li>
         <li><b>BGMの着せ替え</b>：ショップの「着せ替え」で曲を買えます（▶で試聴）。選んだ曲は通常の釣り場・水槽・部屋で流れます。特殊ステージは専用の曲のままです。</li>
         <li><b>フレンド</b>：メニューの「フレンド」で、自分のフレンドコードを教えあって申請・承認するとフレンドに（ランキングの「＋」からも申請できます）。フレンドの水槽や部屋に遊びに行けて、水槽には1日1回エサやりができます（相手の見物料が1時間+20%、自分にはお礼の50G）。自分の図鑑にいない魚は影で見えます。</li>
@@ -5459,15 +5517,15 @@ function img(src){if(!src)return null;if(pxKey(src))return pxSprite(pxKey(src));
 // ---------- レア度ごとの難しさ ----------
 //            ★1   ★2   ★3   ★4   ★5   ★6   ★7
 //            ★1   ★2   ★3   ★4   ★5   ★6   ★7   ★8
-const BITE  =[2.0, 1.8, 1.2, 1.0, .8,  .65, .55, .5 ]; // アタリの猶予(秒)
-const ZMUL  =[1.0, 1.0, .88, .82, .76, .7,  .66, .64]; // バーの長さの倍率（★8はエンドコンテンツ）
-const SPD   =[.22, .28, .5,  .62, .65, .72, .78, .8 ]; // 魚の速さ
-const RANGE =[.22, .26, .36, .4,  .44, .46, .47, .47]; // 魚が動く幅(中心からの片側)
-const DASH  =[0,   0,   .3,  .35, .45, .55, .6,  .6 ]; // 急に逃げる確率
-const TUG   =[0,   0,   0,   .5,  .8,  .9,  1.0, 1.1]; // 反対に引く力
-const GAIN  =[.12, .11, .073,.06, .05, .043,.04, .037]; // 釣りゲージの上がり方(少ないほど時間がかかる) ※2026-11-14 前の1/3に
-const LOSS  =[.03, .033,.047,.053,.05, .05, .047,.043]; // バーから外れた時の減り方 ※同じく前の1/3に緩和
-const XPR   =[4,6,9,14,22,35,70,150];
+const BITE  =[2.0, 1.8, 1.2, 1.0, .8,  .65, .55, .5, .45]; // アタリの猶予(秒)
+const ZMUL  =[1.0, 1.0, .88, .82, .76, .7,  .66, .64, .6]; // バーの長さの倍率（★8はエンドコンテンツ）
+const SPD   =[.22, .28, .5,  .62, .65, .72, .78, .8, .86]; // 魚の速さ
+const RANGE =[.22, .26, .36, .4,  .44, .46, .47, .47, .48]; // 魚が動く幅(中心からの片側)
+const DASH  =[0,   0,   .3,  .35, .45, .55, .6,  .6, .66]; // 急に逃げる確率
+const TUG   =[0,   0,   0,   .5,  .8,  .9,  1.0, 1.1, 1.25]; // 反対に引く力
+const GAIN  =[.12, .11, .073,.06, .05, .043,.04, .037,.034]; // 釣りゲージの上がり方(少ないほど時間がかかる) ※2026-11-14 前の1/3に
+const LOSS  =[.03, .033,.047,.053,.05, .05, .047,.043,.046]; // バーから外れた時の減り方 ※同じく前の1/3に緩和
+const XPR   =[4,6,9,14,22,35,70,150,320];
 // キャスト位置ごとのレア度の出やすさ（手前・中・奥）
 // さらにステージの開放Lvで、低レベルは低レア寄り・高レベルは高レア寄りに補正
 const STAGE_LOW =[1.4,1.2,1,.6,.3,.15,.02,0];
@@ -5583,6 +5641,8 @@ const B2=(()=>{
  const YU_C=['F','F','Em','Am','Dm','Dm','G','G','F','F','Em','Am','Dm','G','C','C'];
  const YU_F=['Am','Am','F','F','C','C','G','G','Am','Am','F','F','C','G','Am','Am'];
  const KOTO={Am:'A3 E4 A4 B4 C5 - E4 -',F:'F3 C4 F4 A4 B4 - C4 -',E:'E3 B3 E4 F4 A4 - B3 -'};
+ const SPI_C=['E','E','C#m','C#m','A','B','E','E','A','A','F#m','B','G#m','C#m','A','B'];
+ const SPI_F=['C#m','C#m','A','B','C#m','C#m','A','G#','F#m','G#m','A','B','C#m','A','B','G#'];
  const SG={
  skyCalm:{bpm:72,rv:{len:3.2,dec:2.2,wet:.55},echo:{steps:3,fb:.35},
   tracks:[
@@ -5773,7 +5833,32 @@ const B2=(()=>{
    {n:gen(YU_F,4,['a0',null,'a1','a2',null,'a1',null,'a2']),w:'sine',v:.03,a:.003,sus:.3,rel:.08,echo:.2,leg:.6},
    {n:gen(YU_F,1,[0,'-',12,0,'-',7,12,'-']),w:'triangle',v:.15,a:.005,sus:.8,rel:.04,leg:.8}],
   drums:['k.hsk.ho','k.hskkhs','k.hsk.ho','k.hskkhs','k.hsk.ho','k.hskkhs','k.hsk.ho','k.hss.ss',
-         'k.hsk.ho','k.hskkhs','k.hsk.ho','k.hskkhs','k.hsk.ho','k.hskkhs','kshskshs','k.s.T.T.']}
+         'k.hsk.ho','k.hskkhs','k.hsk.ho','k.hskkhs','k.hsk.ho','k.hskkhs','kshskshs','k.s.T.T.']},
+ spiritCalm:{bpm:66,rv:{len:4,dec:2.2,wet:.6},echo:{steps:3,fb:.42},
+  tracks:[
+   {n:P(['B4 - - - E5 - G#5 -','F#5 - - - E5 - - -','C#5 - - - E5 - G#5 -','B5 - - - G#5 - - -',
+         'A5 - - - C#6 - B5 A5','F#5 - - - D#5 - B4 -','E5 - - - G#5 - B5 -','E6 - - - - - . .',
+         'C#6 - - - B5 - A5 -','E5 - - - A5 - C#6 -','C#6 - - - A5 - F#5 -','D#6 - - - B5 - F#5 -',
+         'D#6 - - - B5 - G#5 -','E6 - - - C#6 - G#5 -','A5 - - - B5 - C#6 -','B5 - - - - - . .']),
+    w:'sine',v:.075,a:.1,sus:.85,rel:.45,vib:1,echo:.4,rv:.6,leg:.95},
+   {n:gen(SPI_C,3,['a0','a1','a2','a3','a4','a3','a2','a1']),w:'triangle',v:.035,a:.002,sus:.08,rel:.7,echo:.25,rv:.5,leg:.95},
+   {n:gen(SPI_C,5,[null,null,'a2',null,null,'a4',null,null]),w:'sine',v:.02,a:.002,sus:.1,rel:.5,echo:.6,rv:.7,leg:.5,oct:12},
+   {pad:SPI_C,oct:4,w:'triangle',v:.016,a:1,sus:.95,rel:.9,rv:.85,dual:1},
+   {n:gen(SPI_C,2,[0,'-','-','-','-','-','-','-']),w:'sine',v:.12,a:.25,sus:.9,rel:.6,rv:.3}],
+  drums:['c.......','........','....c...','........','c.......','........','....c...','c.c.c...',
+         'c.......','........','....c...','........','c.......','........','....c...','c...c.c.']},
+ spiritFight:{bpm:148,rv:{len:2.4,dec:2.4,wet:.35},echo:{steps:3,fb:.25},
+  tracks:[
+   {n:P(['C#5 - E5 - G#5 - C#6 -','B5 - G#5 - E5 - G#5 -','A5 - - - C#6 - E6 -','D#6 - - - B5 - F#5 -',
+         'E6 - - - C#6 - G#5 -','B5 - - - G#5 - E5 -','C#6 - B5 - A5 - E5 -','G#5 - - - C6 - D#6 -',
+         'C#6 - - - A5 - F#5 -','D#6 - - - B5 - G#5 -','E6 - - - C#6 - A5 -','F#6 - - - D#6 - B5 -',
+         'G#6 - - - E6 - C#6 -','E6 - - - C#6 - A5 -','D#6 - - - F#6 - B6 -','C7 - - - G#6 - D#6 -']),
+    w:'p25',v:.036,a:.005,sus:.7,rel:.08,vib:1,echo:.2,rv:.3,leg:.9},
+   {n:gen(SPI_F,4,['a0','a1','a2','a3','a4','a3','a2','a1']),w:'triangle',v:.03,a:.002,sus:.1,rel:.25,echo:.3,rv:.35,leg:.9},
+   {pad:SPI_F,oct:4,w:'triangle',v:.012,a:.08,sus:.8,rel:.3,rv:.5,dual:1},
+   {n:gen(SPI_F,1,[0,12,0,12,7,12,0,12]),w:'triangle',v:.13,a:.005,sus:.8,rel:.04,leg:.8}],
+  drums:['K.hsk.hc','k.hsk.hs','k.hsk.hc','k.hskkhs','k.hsk.hc','k.hsk.hs','k.hsk.hc','k.s.cTcT',
+         'K.hsk.hc','k.hsk.hs','k.hsk.hc','k.hskkhs','k.hsk.hc','k.hsk.hs','KhshKhsh','cscsTTTT']}
  };
  let NOISE=null,WAVES=null,IR={},bus=null,cur=null,step=0,next=0,timer=null,DRY,ECHO,ECHOD,RVIN;
  const rage=()=>ph==='fight'&&F&&F.stage2; // ★7〜8の暴れ中は少し速く・高く
@@ -5824,6 +5909,7 @@ const B2=(()=>{
    case 't':boom(t,180,90,.28,.4,.3);noise(t,.03,.08,'lowpass',1200);break;
    case 'T':boom(t,95,40,.6,.75,.35);noise(t,.04,.15,'lowpass',900);break;
    case 'w':{const s=AC.createBufferSource();s.buffer=NOISE;const f=AC.createBiquadFilter();f.type='bandpass';f.Q.value=6;f.frequency.setValueAtTime(7000,t);f.frequency.exponentialRampToValueAtTime(500,t+1.6);const g=AC.createGain();g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(.16,t+.15);g.gain.exponentialRampToValueAtTime(.0001,t+1.8);s.connect(f);f.connect(g);g.connect(DRY);const r=AC.createGain();r.gain.value=.6;g.connect(r);r.connect(RVIN);s.start(t);s.stop(t+1.85)}break;
+   case 'c':[1975.5,2637,3951].forEach((f,i)=>{const o=AC.createOscillator(),g=AC.createGain();o.type='sine';o.frequency.value=f;g.gain.setValueAtTime(.045/(i+1),t);g.gain.exponentialRampToValueAtTime(.0001,t+1.2/(i+1));o.connect(g);g.connect(DRY);const r=AC.createGain();r.gain.value=.6;g.connect(r);r.connect(RVIN);o.start(t);o.stop(t+1.25)});break;
    case 'q':boom(t,120,50,.16,.32);break;
    case 'b':boom(t,420,330,.1,.3,.15);break;
    case 'B':boom(t,250,190,.16,.38,.15);break;
@@ -5882,7 +5968,7 @@ function bgmSet(name){
 }
 // 天空・古代は専用の曲（水槽はいつもの「のんびり」）
 let bgmPrevId=null;
-const bgmWant=()=>{if(bgmPrevId)return bgmPrevId;const sp=S.stage==='tenku'?'sky':S.stage==='uchu'?'space':S.stage==='kodai'?'old':'',my=bgmSetNow().id;if(aqMode||rmMode||visitMode)return bgmSongOf(my,false);if(ph==='fight')return sp?sp+'Fight':bgmSongOf(my,true);return sp?sp+'Calm':bgmSongOf(my,false)};
+const bgmWant=()=>{if(bgmPrevId)return bgmPrevId;const sp=S.stage==='tenku'?'sky':S.stage==='uchu'?'space':S.stage==='seirei'?'spirit':S.stage==='kodai'?'old':'',my=bgmSetNow().id;if(aqMode||rmMode||visitMode)return bgmSongOf(my,false);if(ph==='fight')return sp?sp+'Fight':bgmSongOf(my,true);return sp?sp+'Calm':bgmSongOf(my,false)};
 function bgmPrevStop(){if(!bgmPrevId)return;bgmPrevId=null;bgmSet(bgmWant());document.querySelectorAll('[data-bgmp]').forEach(b=>b.setAttribute('aria-pressed','false'))}
 let audioOk=false;
 addEventListener('pointerdown',()=>{if(!audioOk&&audioReady()){audioOk=true;bgmSet(bgmWant())}},true);
@@ -5957,6 +6043,11 @@ const CF=(()=>{
    [0,3].forEach(i=>{chord(e+i*s,['D4','F#4','A4','D5','F#5','A5'],i?1.4:.2,{w:'p25',v:.035,rv:.5});kick(e+i*s);crash(e+i*s,.18)});
    N(e+3*s,nn('D3'),1.4,{w:'triangle',v:.18});
    sparkle(e+.5,'D8:1 A7:1 F#7:1 D7:1 A7:1 F#7:1 D7:1 A6:1 D8:4',.055);return e-t+2},
+  j7(t){const e=J.big(t,4,1.3),s=.09;
+   [0,3,6].forEach(i=>{chord(e+i*s,['E4','G#4','B4','E5','G#5','B5'],i===6?2:.2,{w:'p25',v:.035,rv:.5});kick(e+i*s);crash(e+i*s,.18)});
+   chord(e+6*s,['E5','G#5','B5','E6'],2.6,{w:'sine',v:.045,rv:.85});
+   N(e+6*s,nn('E2'),2.2,{w:'triangle',v:.18});
+   sparkle(e+.6,'E8:1 B7:1 G#7:1 E7:1 B7:1 G#7:1 E7:1 B6:1 E8:1 B7:1 G#7:1 E8:4',.055);return e-t+2.8},
   chest(t){seq(t,.05,'G6:1 C7:1 E7:2',{w:'p12',v:.05});bell(t+.15,nn('E7'),.09);
    for(let i=0;i<9;i++)N(t+.3+i*.08+Math.random()*.03,nn('C7')+Math.floor(Math.random()*12),.06,{w:'sine',v:.04,rv:.6});
    nz(t+.15,.8,.04,'highpass',8000,.5);return 1.4},
@@ -5964,7 +6055,7 @@ const CF=(()=>{
  };
  // ---- 見た目 ----
  let cur=null,t0=0,parts=[],near=[],raf=0,last=0,fc=null,fx=null;
- const tierOf=f=>f.shape==='b'?'c':f.rar<=2?1:f.rar<=4?2:f.rar===5?3:f.rar===6?4:f.rar===7?5:6;
+ const tierOf=f=>f.shape==='b'?'c':f.rar<=2?1:f.rar<=4?2:f.rar===5?3:f.rar===6?4:f.rar===7?5:f.rar===8?6:7;
  function star4(c,x,y,r){c.beginPath();for(let i=0;i<8;i++){const a=i*Math.PI/4,rr=i%2?r*.28:r;c.lineTo(x+Math.cos(a)*rr,y+Math.sin(a)*rr)}c.closePath();c.fill()}
  function rays(c,x,y,t,n,rot,rainbow,alpha){
   c.save();c.translate(x,y);c.rotate(t*rot);
@@ -5979,16 +6070,17 @@ const CF=(()=>{
   if(!cur)return;const dt=Math.min(.05,(now-last)/1000);last=now;const t=now/1000-t0,tier=cur.tier;
   const W=fx.width/devicePixelRatio,H=fx.height/devicePixelRatio,rc=$('#rcv').getContext('2d'),X=200,Y=90;
   rc.clearRect(0,0,400,180);
-  if(tier===4||tier===5||tier===6){
+  if(tier===4||tier===5||tier>=6){
    if(tier===4)rays(rc,X,Y,t,12,.25,false,.55);
    if(tier===5)rays(rc,X,Y,t,14,.3,true,.55);
-   if(tier===6){rays(rc,X,Y,t,16,.35,true,.6);rays(rc,X,Y,t,10,-.22,false,.35)}
+   if(tier>=6){rays(rc,X,Y,t,16,.35,true,.6);rays(rc,X,Y,t,10,-.22,false,.35)}
+   if(tier===7){rays(rc,X,Y,t,28,.12,true,.5);const hg=rc.createRadialGradient(X,Y,20,X,Y,190);hg.addColorStop(0,'rgba(255,240,180,.55)');hg.addColorStop(.6,'rgba(255,200,240,.18)');hg.addColorStop(1,'rgba(255,255,255,0)');rc.fillStyle=hg;rc.fillRect(X-200,Y-200,400,400)}
    rc.save();rc.globalCompositeOperation='destination-in';const m=rc.createRadialGradient(X,Y,40,X,Y,180);m.addColorStop(0,'#000');m.addColorStop(.75,'rgba(0,0,0,.6)');m.addColorStop(1,'rgba(0,0,0,0)');
    rc.fillStyle=m;rc.fillRect(0,0,400,180);rc.restore()}
   if(tier!==1&&tier!==2){const g=rc.createRadialGradient(X,Y,10,X,Y,130),c0=tier==='c'?'255,215,80':'255,250,220';g.addColorStop(0,`rgba(${c0},${tier==='c'?.55:.75})`);g.addColorStop(1,`rgba(${c0},0)`);rc.fillStyle=g;rc.fillRect(0,0,400,180)}
   drawFish(rc,X,Y,cur.len,cur.f,false,false);
   if(tier!==1){
-   const rb=tier===5||tier===6;
+   const rb=tier===5||tier>=6;
    if(near.length<(tier==='c'?10:tier===2?8:14)&&Math.random()<.3)near.push({x:X+(Math.random()-.5)*320,y:Y+(Math.random()-.5)*150,life:0,max:.8+Math.random()*.8,s:4+Math.random()*6,h:rb?Math.random()*360:48});
    near=near.filter(p=>(p.life+=dt)<p.max);
    near.forEach(p=>{const k=Math.sin(p.life/p.max*Math.PI);rc.fillStyle=rb?`hsla(${p.h},100%,75%,${k})`:`rgba(255,${tier===2?255:230},${tier===2?255:140},${k})`;star4(rc,p.x,p.y,p.s*k)});
@@ -6009,16 +6101,16 @@ const CF=(()=>{
   if(!fx){fx=document.createElement('canvas');fx.id='rfx';$('#result').appendChild(fx);fc=fx.getContext('2d')}
   const tier=tierOf(f);cur={f,len,tier};t0=performance.now()/1000;parts=[];near=[];
   const card=$('#result .card');card.classList.remove('fx3','fx5','fxShake');void card.offsetWidth;
-  if(tier===3||tier===4)card.classList.add('fx3');if(tier===5||tier===6)card.classList.add('fx5');if(tier===6)card.classList.add('fxShake');
-  $('#rstar').classList.toggle('rb',tier===5||tier===6);
+  if(tier===3||tier===4)card.classList.add('fx3');if(tier===5||tier>=6)card.classList.add('fx5');if(tier>=6)card.classList.add('fxShake');
+  $('#rstar').classList.toggle('rb',tier===5||tier>=6);
   requestAnimationFrame(()=>{if(!cur)return;sizeFx();const W=fx.width/devicePixelRatio,H=fx.height/devicePixelRatio,cx=W/2,cy=H/2;
-   if(tier===5||tier===6)parts.push({k:'flash',life:tier===6?.6:.4,max:tier===6?.6:.4});
-   if(tier===6)for(let i=0;i<70;i++){const a=Math.random()*7,s=150+Math.random()*350;parts.push({k:'burst',x:cx,y:cy,vx:Math.cos(a)*s,vy:Math.sin(a)*s,life:1.2+Math.random(),size:5+Math.random()*6,hue:45,g:120})}
+   if(tier===5||tier>=6)parts.push({k:'flash',life:tier>=6?.6:.4,max:tier>=6?.6:.4});
+   if(tier>=6)for(let i=0;i<(tier===7?120:70);i++){const a=Math.random()*7,s=150+Math.random()*350;parts.push({k:'burst',x:cx,y:cy,vx:Math.cos(a)*s,vy:Math.sin(a)*s,life:1.2+Math.random(),size:5+Math.random()*6,hue:45,g:120})}
    if(tier==='c')for(let i=0;i<26;i++){const a=-Math.PI/2+(Math.random()-.5)*2.2,s=250+Math.random()*300;parts.push({k:'coin',x:cx,y:cy,vx:Math.cos(a)*s,vy:Math.sin(a)*s,life:0,max:2.2,size:7+Math.random()*4,g:700,rot:Math.random()*6})}
    last=performance.now();cancelAnimationFrame(raf);raf=requestAnimationFrame(loop)});
   // 音
   if(S.snd&&audioReady()){try{prep();const t=AC.currentTime+.05;
-   const j=tier==='c'?'chest':['','j1','j1','j2','j2','j3','j4','j5','j6'][f.rar];
+   const j=tier==='c'?'chest':['','j1','j1','j2','j2','j3','j4','j5','j6','j7'][f.rar];
    let l=J[j](t);if(isNew)l+=J.kiran(t+l-.2)*.6;bgmDuck(l)}catch(e){}}
   return tier!=='c'&&f.rar>=7?1.5:.5; // 閉じられるまでの秒数
  }
@@ -6107,6 +6199,7 @@ const UKIS=[
    if(on){c.strokeStyle='rgba(255,240,140,.7)';c.lineWidth=1.5;c.stroke()}}},
  {id:'kaseki',name:'化石',ach:'old',d:c=>{UKI_BASE(c,'#d9c9a3','#efe4c8','#8a7454');c.strokeStyle='#7a6244';c.lineWidth=2.2;c.beginPath();for(let a=0;a<12;a+=.2){const r=1.2+a*1.25;const x=Math.cos(a)*r,y=-22+Math.sin(a)*r*.85;a?c.lineTo(x,y):c.moveTo(x,y)}c.stroke();
    c.lineWidth=1;for(let a=3;a<12;a+=.7){const r=1.2+a*1.25;c.beginPath();c.moveTo(Math.cos(a)*r*.82,-22+Math.sin(a)*r*.7);c.lineTo(Math.cos(a)*r,-22+Math.sin(a)*r*.85);c.stroke()}}},
+ {id:'watage',name:'綿毛',ach:'spirit',d:c=>{UKI_BASE(c,'#9ad06a','#ffffff','#6a9a3a');c.strokeStyle='rgba(255,255,255,.95)';c.lineWidth=2;c.beginPath();c.moveTo(0,-20);c.lineTo(0,-36);c.stroke();c.fillStyle='#fff';for(let i=0;i<14;i++){const a=i/14*Math.PI*2,r=13+Math.sin(clock*2+i)*1;c.beginPath();c.moveTo(0,-46);c.lineTo(Math.cos(a)*r,-46+Math.sin(a)*r);c.stroke();c.beginPath();c.arc(Math.cos(a)*(r+1),-46+Math.sin(a)*(r+1),2.4,0,7);c.fill()}}},
  {id:'dosei',name:'土星',ach:'space',d:c=>{UKI_BASE(c,'#d8b46a','#fff4d0','#9a7a3a');c.fillStyle='rgba(120,70,30,.35)';c.fillRect(-20,-18,40,4);c.strokeStyle='rgba(255,230,180,.95)';c.lineWidth=3;c.beginPath();c.ellipse(0,-14,34,8,-.25,0,7);c.stroke()}},
  {id:'kohaku',name:'古代の琥珀',price:50000,d:c=>{const g=c.createRadialGradient(-6,-22,3,0,-14,26);g.addColorStop(0,'#ffd27a');g.addColorStop(1,'#b35a0e');UKI_BASE(c,g,g,'#8a6a3a');c.strokeStyle='rgba(70,35,10,.8)';c.lineWidth=1.6;c.beginPath();c.arc(2,-14,8,0,Math.PI*1.6);c.stroke();c.beginPath();c.arc(2,-14,4,0,Math.PI*1.4);c.stroke();c.fillStyle='rgba(255,255,255,.55)';c.beginPath();c.ellipse(-10,-26,6,3.5,-.6,0,7);c.fill()}}
 ];
@@ -6125,6 +6218,7 @@ const SKINS=[
  {id:'sky',name:'天空',price:50000,col:()=>'#f4f6ff',guide:'#c9b6ff',fx:'sky'},
  {id:'tennoniji',name:'天の虹',ach:'sky',col:t=>'hsl('+Math.round((t*360+clock*70)%360)+' 90% 72%)',guide:'#ffffff',glow:'#ffffff',fx:'stars'},
  {id:'hone',name:'骨',ach:'old',col:t=>{const k=(t*12)%1;return k<.18||k>.88?'#c9b894':'#f2ead6'},band:'#8a7454',guide:'#5a4a3a'},
+ {id:'hane',name:'妖精の羽',ach:'spirit',col:t=>'hsl('+Math.round((t*220+clock*50)%360)+' 85% 80%)',guide:'#ffffff',glow:'#ffd0f0',fx:'stars'},
  {id:'ginga',name:'銀河',ach:'space',col:t=>'hsl('+Math.round(240+60*Math.sin(t*6+clock*1.5))+' 80% '+Math.round(45+20*Math.sin(t*14+clock*3))+'%)',guide:'#fff6c8',glow:'#c8a8ff',fx:'stars'},
  {id:'ancient',name:'古代',price:50000,col:t=>Math.floor(t*14)%2?'#e8dcc0':'#d2c4a2',guide:'#6b4a2a',fx:'ancient'},
  {id:'wakaba',name:'若葉',lv:20,col:t=>'hsl(100 55% '+Math.round(40+18*t)+'%)',guide:'#2e6a2a',fx:'wakaba'},
@@ -6176,6 +6270,7 @@ const ACH=[
  {id:'sky',name:'天空の覇者',desc:'天空の魚をすべて釣った',uki:'raiun',skin:'tennoniji',ok:()=>dexAll('tenku')},
  {id:'old',name:'古代の覇者',desc:'古代の魚をすべて釣った',uki:'kaseki',skin:'hone',ok:()=>dexAll('kodai')},
  {id:'genkai',name:'限界を超えし者',desc:'Lv80の壁を越えた',ok:()=>S.lv>=80},
+ {id:'spirit',name:'精霊の友',desc:'精霊の丘の妖精をすべて釣った',uki:'watage',skin:'hane',avName:'花冠・羽衣',ok:()=>dexAll('seirei')},
  {id:'space',name:'宇宙の覇者',desc:'宇宙の魚をすべて釣った',uki:'dosei',skin:'ginga',avName:'宇宙服・ヘルメット',ok:()=>dexAll('uchu')},
  {id:'phantom',name:'幻を釣りし者',desc:'★8を釣った',ok:()=>FISH.some(f=>f.rar>=8&&S.dex[f.id])}
 ];
@@ -6214,7 +6309,7 @@ const W=360,H=400,HOR=150,TIP={x:196,y:206};
 const ROD_BASE={x:330,y:430};
 let ph='idle',pt=0,clock=0,hold=false,resultLock=0,msgT=0;
 // アワセ：消し込み（アタリ時間の30〜65%）で押すと「ナイスアワセ」→ゲージが上乗せされた状態から始まる（低い★ほど多い）
-const NICE_FROM=.3,NICE_TO=.65,NICE_BONUS=[.25,.25,.2,.2,.15,.15,.1,.1];
+const NICE_FROM=.3,NICE_TO=.65,NICE_BONUS=[.25,.25,.2,.2,.15,.15,.1,.1,.1];
 let preT=[],preDone=0,hookNice=false,biteRing=false;
 let meter=0,meterDir=1,dist=.5,flt={x:180,y:260},cur=null,size=0,sizeT=0,eLv=1,waitT=2,F=null,usedBaitMin=0;
 const ripples=[];
@@ -6308,6 +6403,12 @@ function startFight(){
 }
 let curRodAtCast=RODS[0];
 function updateFight(dt){
+  if(S.stage==='seirei'){ // 精霊の丘：幻影（ニセの魚影）と精霊の風（バーが流される）が交互に
+    if(F.gmT===undefined)F.gmT=rnd(3,4.5);if(!(F.phOn>0)&&!(F.wdOn>0))F.gmT-=dt;
+    if(F.gmT<=0){if(Math.random()<.5){F.phOn=2.4;F.ph=[0,1].map(()=>({x:rnd(.1,.9),tx:rnd(.1,.9),t:0}))}else{F.wdOn=1.7;F.wdDir=Math.random()<.5?-1:1}F.gmT=rnd(3.5,6)}
+    if(F.phOn>0){F.phOn-=dt;F.ph.forEach(q=>{q.t-=dt;if(q.t<=0){q.tx=rnd(.06,.94);q.t=rnd(.5,1.2)}const d=q.tx-q.x;q.x+=Math.sign(d)*Math.min(Math.abs(d),F.spd*.45*dt)})}
+    if(F.wdOn>0){F.wdOn-=dt;F.v+=F.wdDir*(F.rar>=9?1.8:1.5)*dt}
+  }
   if(S.stage==='uchu'){if(F.metT===undefined)F.metT=rnd(3,5);F.metT-=dt;if(F.metT<=0){F.metOn=.9;F.metT=rnd(4,7)}if(F.metOn>0)F.metOn-=dt} // 宇宙の流星群：ときどき魚影が見えにくくなる
   F.time+=dt;F.tt-=dt;
   if(F.warn>0){F.warn-=dt;if(F.warn<=0){F.tx=F.warnTx;F.ts=F.rar>=5?2.8:2.2;F.tt=rnd(1,2)/Math.max(.5,F.spd)}}
@@ -6351,7 +6452,7 @@ function updateFight(dt){
   if(F.tugOn>0&&Math.random()<dt*6)ripple(F.bx,F.by);
   if(F.stage2){F.rage-=dt;F.shake=Math.max(F.shake,.45)}
   if(F.prog>=1||(F.stage2&&F.rage<=0)){
-    if(F.two&&!F.stage2){F.stage2=true;F.rage=F.rageMax=S.stage==='uchu'?(F.rar>=8?12:F.rar>=7?10:5):isSpecial()?(F.rar>=8?10:F.rar>=7?8:4):(F.rar>=8?8:6);F.prog=.45;F.spd*=1.3;F.tugT=Math.min(F.tugT,.6);F.dash=Math.min(.6,F.dash+.1);F.shake=1;sfx.tug();F.rageShow=1.4}
+    if(F.two&&!F.stage2){F.stage2=true;F.rage=F.rageMax=S.stage==='seirei'?(F.rar>=9?14:12):S.stage==='uchu'?(F.rar>=8?12:F.rar>=7?10:5):isSpecial()?(F.rar>=8?10:F.rar>=7?8:4):(F.rar>=8?8:6);F.prog=.45;F.spd*=1.3;F.tugT=Math.min(F.tugT,.6);F.dash=Math.min(.6,F.dash+.1);F.shake=1;sfx.tug();F.rageShow=1.4}
     else win();
   }else if(F.prog<=0)lose('逃げられた…');
 }
@@ -6442,7 +6543,7 @@ function drawBg(){
   const st=ST[S.stage],im=img(st.bg);
   if(im){const r=Math.max(W/im.naturalWidth,H/im.naturalHeight),w=im.naturalWidth*r,h=im.naturalHeight*r;cx.drawImage(im,(W-w)/2,(H-h)/2,w,h);return}
   let g=cx.createLinearGradient(0,0,0,HOR);g.addColorStop(0,st.sky[0]);g.addColorStop(1,st.sky[1]);cx.fillStyle=g;cx.fillRect(0,0,W,HOR);
-  if(st.deco!=='space'){cx.fillStyle=st.id==='funeoki'||st.id==='kakou'?'#ffb366':'#fff7c9';cx.beginPath();cx.arc(st.id==='funeoki'?250:290,st.id==='funeoki'?HOR-26:72,st.id==='funeoki'?30:20,0,7);cx.fill()}
+  if(st.deco!=='space'&&st.deco!=='spirit'){cx.fillStyle=st.id==='funeoki'||st.id==='kakou'?'#ffb366':'#fff7c9';cx.beginPath();cx.arc(st.id==='funeoki'?250:290,st.id==='funeoki'?HOR-26:72,st.id==='funeoki'?30:20,0,7);cx.fill()}
   const hills=(col,amp,base,ph)=>{cx.fillStyle=col;cx.beginPath();cx.moveTo(0,HOR);for(let x=0;x<=W;x+=8)cx.lineTo(x,HOR-base-amp*Math.sin(x*.018+ph)-amp*.5*Math.sin(x*.047+ph*2));cx.lineTo(W,HOR);cx.fill()};
   const tree=(x,y,s)=>{cx.fillStyle='#3f7a52';cx.beginPath();cx.moveTo(x,y-28*s);cx.lineTo(x+9*s,y);cx.lineTo(x-9*s,y);cx.fill()};
   switch(st.deco){
@@ -6453,6 +6554,15 @@ function drawBg(){
     case'city':hills('rgba(80,90,110,.3)',3,6,1);cx.fillStyle='rgba(70,80,100,.45)';for(let i=0;i<10;i++){const h=10+(i*37%25);cx.fillRect(170+i*18,HOR-h,13,h)}break;
     case'boat':cx.fillStyle='rgba(40,60,90,.35)';cx.fillRect(40,HOR-9,30,6);cx.fillRect(52,HOR-18,4,9);break;
     case'mist':hills('#a7a3c9',14,18,2);cx.fillStyle='rgba(255,255,255,.45)';cx.fillRect(0,HOR-30,W,26);break;
+    case'spirit':{cx.fillStyle='rgba(255,250,230,.9)';cx.beginPath();cx.arc(286,46,13,0,7);cx.fill();cx.fillStyle=st.sky[0];cx.beginPath();cx.arc(292,42,12,0,7);cx.fill();
+      for(let i=0;i<30;i++){const sx=(i*89)%W,sy=(i*41)%(HOR*.55);cx.fillStyle=`rgba(255,255,255,${.3+.5*Math.abs(Math.sin(clock*1.3+i))})`;cx.fillRect(sx,sy,1.5,1.5)}
+      hills('#4a3a7a',10,22,1);hills('#2e5a5a',7,8,3);
+      const tx=78,ty=HOR-14;cx.fillStyle='#2a2040';cx.fillRect(tx-4,ty-34,8,36);cx.beginPath();cx.moveTo(tx-12,ty+2);cx.lineTo(tx-4,ty-10);cx.lineTo(tx+4,ty-10);cx.lineTo(tx+12,ty+2);cx.fill();
+      const gl=cx.createRadialGradient(tx,ty-50,6,tx,ty-50,70);gl.addColorStop(0,'rgba(140,255,210,.55)');gl.addColorStop(1,'rgba(140,255,210,0)');cx.fillStyle=gl;cx.fillRect(tx-80,ty-120,160,140);
+      [[0,-52,30],[-24,-40,20],[24,-42,22],[-12,-66,18],[14,-64,18]].forEach(([dx,dy,r])=>{cx.fillStyle='#3a8a7a';cx.beginPath();cx.arc(tx+dx,ty+dy,r,0,7);cx.fill()});
+      [[0,-52,22],[-22,-42,13],[22,-44,14]].forEach(([dx,dy,r])=>{cx.fillStyle='rgba(150,255,210,.35)';cx.beginPath();cx.arc(tx+dx-4,ty+dy-4,r,0,7);cx.fill()});
+      for(let i=0;i<22;i++){const ph=(clock*.12+i*.137)%1,ox=(i*67)%W+Math.sin(clock*1.5+i)*8,oy=HOR-ph*HOR*.9,a=Math.sin(ph*Math.PI);cx.fillStyle=`hsla(${(150+i*23)%360},90%,78%,${a*.9})`;cx.beginPath();cx.arc(ox,oy,i%4?1.6:2.6,0,7);cx.fill()}
+      break}
     case'space':{for(let i=0;i<60;i++){const sx=(i*97)%W,sy=(i*53)%(HOR-4),k=.35+.65*Math.abs(Math.sin(clock*1.5+i));cx.fillStyle=`rgba(255,255,240,${k})`;cx.fillRect(sx,sy,i%7?1.5:2.5,i%7?1.5:2.5)}
       const ng=cx.createRadialGradient(90,60,4,90,60,80);ng.addColorStop(0,'rgba(200,120,255,.35)');ng.addColorStop(1,'rgba(200,120,255,0)');cx.fillStyle=ng;cx.fillRect(0,0,W,HOR);
       cx.fillStyle='#d9a868';cx.beginPath();cx.arc(270,62,22,0,7);cx.fill();cx.fillStyle='rgba(120,70,30,.35)';cx.fillRect(248,56,44,5);cx.strokeStyle='rgba(255,230,180,.85)';cx.lineWidth=3;cx.beginPath();cx.ellipse(270,62,40,9,-.25,0,7);cx.stroke();
@@ -6571,7 +6681,13 @@ const SK=[
   track:(c,x,y,w,h)=>{c.fillStyle='rgba(180,160,255,.18)';rr(c,x,y,w,h,6);c.fill()},
   bar:(c,x,y,w,h,inz)=>{c.save();c.shadowColor='#c8a8ff';c.shadowBlur=inz?14:6;const g=c.createLinearGradient(x,0,x+w,0);g.addColorStop(0,inz?'#a8c8ff':'#7a98d8');g.addColorStop(1,inz?'#e0b0ff':'#a880d8');c.fillStyle=g;rr(c,x,y,w,h,6);c.fill();c.restore()},
   prog:(c,x,y,w,h,p)=>{c.fillStyle='rgba(255,255,255,.25)';rr(c,x,y,w,h,6);c.fill();const g=c.createLinearGradient(x,0,x+w,0);g.addColorStop(0,'#6a5aff');g.addColorStop(.5,'#c87aff');g.addColorStop(1,'#ffd0f0');c.fillStyle=g;rr(c,x,y,w*p,h,6);c.fill()}});
- const ids=['base','wood','wagara','sweets','yozora','neon','gold','tenku','kodai','uchu'],price=[0,2000,5000,8000,15000,25000,40000,50000,50000,50000],need=['','','','','','','','tenku','kodai','uchu'];
+ SK.push({name:'精霊の丘',price:'特別',note:'光の粒がふわふわ舞う、夜明け前の丘',glow:'#9affd0cc',
+  panel:(c,x,y,w,h,t)=>{const g=c.createLinearGradient(0,y,0,y+h);g.addColorStop(0,'#2a1d5c');g.addColorStop(1,'#1a5a5a');c.fillStyle=g;rr(c,x,y,w,h,12);c.fill();c.save();rr(c,x,y,w,h,12);c.clip();
+   for(let i=0;i<14;i++){const ph=(t*.15+i*.071)%1,ox=x+((i*53)%w),oy=y+h-ph*h,a=Math.sin(ph*Math.PI);c.fillStyle=`hsla(${(150+i*25)%360},90%,78%,${a})`;c.beginPath();c.arc(ox,oy,i%3?1.4:2.2,0,7);c.fill()}c.restore()},
+  track:(c,x,y,w,h)=>{c.fillStyle='rgba(160,255,220,.16)';rr(c,x,y,w,h,6);c.fill()},
+  bar:(c,x,y,w,h,inz)=>{c.save();c.shadowColor='#9affd0';c.shadowBlur=inz?14:6;const g=c.createLinearGradient(x,0,x+w,0);g.addColorStop(0,inz?'#9affd0':'#6ac8a8');g.addColorStop(1,inz?'#ffc8ec':'#d090c0');c.fillStyle=g;rr(c,x,y,w,h,6);c.fill();c.restore()},
+  prog:(c,x,y,w,h,p)=>{c.fillStyle='rgba(255,255,255,.25)';rr(c,x,y,w,h,6);c.fill();const g=c.createLinearGradient(x,0,x+w,0);g.addColorStop(0,'#ff9ad8');g.addColorStop(.5,'#9affd0');g.addColorStop(1,'#fff0a0');c.fillStyle=g;rr(c,x,y,w*p,h,6);c.fill()}});
+ const ids=['base','wood','wagara','sweets','yozora','neon','gold','tenku','kodai','uchu','seirei'],price=[0,2000,5000,8000,15000,25000,40000,50000,50000,50000,50000],need=['','','','','','','','tenku','kodai','uchu','seirei'];
  return SK.map((g,i)=>Object.assign(g,{id:ids[i],price:price[i],need:need[i]}));
 })();
 $('#hLv').onclick=()=>{const t=gateBlock();if(t)msg('🔒 Lv上限！ 限界突破の条件：'+t.txt,true,3)};
@@ -6595,6 +6711,9 @@ function drawGauge(){
   if(ra<1){cx.globalAlpha=(1-ra)*mk;drawFish(cx,fxp,y+h/2,24,MYSTERY,fl,true);cx.globalAlpha=1}
   if(ra>0){cx.globalAlpha=ra*mk;drawFish(cx,fxp,y+h/2,26,cur,fl,true);cx.globalAlpha=1;
     if(ra<1){const g=cx.createRadialGradient(fxp,y+h/2,2,fxp,y+h/2,34);g.addColorStop(0,'rgba(255,255,255,'+(.8*(1-ra))+')');g.addColorStop(1,'rgba(255,255,255,0)');cx.fillStyle=g;cx.beginPath();cx.arc(fxp,y+h/2,34,0,7);cx.fill()}}
+  if(F.phOn>0){const fa=Math.min(1,(2.4-F.phOn)/.3,F.phOn/.3);F.ph.forEach(q=>{const qx=x+q.x*w;cx.globalAlpha=fa;if(ra<1)drawFish(cx,qx,y+h/2,24,MYSTERY,q.tx<q.x,true);if(ra>0){cx.globalAlpha=fa*ra;drawFish(cx,qx,y+h/2,26,cur,q.tx<q.x,true)}cx.globalAlpha=fa;cx.fillStyle='#ff6b8a';cx.beginPath();cx.arc(qx,y+h/2,3,0,7);cx.fill()});cx.globalAlpha=1;
+    if(Math.sin(clock*9)>-.2){cx.fillStyle='#fffbe0';const sx=fxp+9,sy=y+2;cx.beginPath();cx.moveTo(sx,sy-5);cx.lineTo(sx+1.5,sy-1.5);cx.lineTo(sx+5,sy);cx.lineTo(sx+1.5,sy+1.5);cx.lineTo(sx,sy+5);cx.lineTo(sx-1.5,sy+1.5);cx.lineTo(sx-5,sy);cx.lineTo(sx-1.5,sy-1.5);cx.fill()}}
+  if(F.wdOn>0){cx.save();cx.beginPath();cx.rect(x,y-30,w,h+34);cx.clip();cx.strokeStyle='rgba(200,255,230,.7)';cx.lineWidth=2;for(let i=0;i<7;i++){const ph=((clock*1.6+i*.143)%1),lx=F.wdDir>0?x-40+ph*(w+80):x+w+40-ph*(w+80),ly=y-18+(i*13)%(h+20);cx.beginPath();cx.moveTo(lx,ly);cx.lineTo(lx-F.wdDir*26,ly+2);cx.stroke();cx.fillStyle='#7ad890';cx.beginPath();cx.ellipse(lx,ly,3,1.6,F.wdDir*.5,0,7);cx.fill()}cx.restore()}
   if(G.glow)cx.restore();
   cx.globalAlpha=F.metOn>0?.15:1;cx.fillStyle='#ff6b8a';cx.beginPath();cx.arc(x+F.fx*w,y+h/2,3,0,7);cx.fill();cx.globalAlpha=1;
   if(F.metOn>0){const p=1-F.metOn/.9,mx=x+w+20-p*(w+80),my=y-6+p*30,g=cx.createLinearGradient(mx,my,mx+70,my-18);g.addColorStop(0,'rgba(255,255,255,.95)');g.addColorStop(.3,'rgba(190,220,255,.6)');g.addColorStop(1,'rgba(190,220,255,0)');cx.strokeStyle=g;cx.lineWidth=5;cx.beginPath();cx.moveTo(mx,my);cx.lineTo(mx+70,my-18);cx.stroke();cx.fillStyle='rgba(255,255,255,.35)';cx.fillRect(x,y,w,h)}
@@ -6605,6 +6724,8 @@ function drawGauge(){
     // ゲージの端で矢印が点滅
     if(bl){cx.fillStyle='rgba(255,77,77,.9)';const ax=L?x+4:x+w-4,d=L?-1:1;for(let k=0;k<2;k++){const o=k*11*d;cx.beginPath();cx.moveTo(ax+o+d*8,y+h/2);cx.lineTo(ax+o-d*4,y+2);cx.lineTo(ax+o-d*4,y+h-2);cx.fill()}}
   }else if(F.metOn>0){cx.fillStyle='#bfe6ff';cx.font='bold 17px sans-serif';oText('☄ 流れ星！',W/2,y+45)}
+  else if(F.phOn>0){cx.fillStyle='#ffe8ff';cx.font='bold 17px sans-serif';oText('✨ 幻影！ 光っているのが本物',W/2,y+45)}
+  else if(F.wdOn>0){cx.fillStyle='#b8ffd8';cx.font='bold 17px sans-serif';oText(F.wdDir>0?'🍃 精霊の風 ▶▶':'◀◀ 精霊の風 🍃',W/2,y+45)}
   else if(F.niceShow>0){cx.fillStyle='#ffe23a';cx.font='bold 17px sans-serif';oText('ナイスアワセ！ ゲージ+'+Math.round(F.niceB*100)+'%',W/2,y+45)}
   else if(F.rageShow>0){cx.fillStyle=bl?'#ff5a5a':'#ffd447';cx.font='bold 17px sans-serif';oText('暴れだした！',W/2,y+45)}
   else if(F.tugShow>0){cx.fillStyle='#ffb04a';cx.font='bold 17px sans-serif';oText('グイッ！',W/2,y+45)}
@@ -6681,7 +6802,8 @@ const AQ_BG=[
  {id:'deep',name:'深海',price:50000,cols:['#0a1838','#071028','#03060f'],sand:['#2a2a38','#3a3a4a','#1a1a24'],glow:1},
  {id:'sky',name:'天空',price:100000,need:'tenku',cols:['#c9b6ff','#e8d8ff','#fff0fb'],sand:['#ffffff','#f4eeff','#e0d6f4'],stars:1,cloud:1},
  {id:'ancient',name:'古代',price:100000,need:'kodai',cols:['#e8b07c','#5a9a84','#14403a'],sand:['#c8a46a','#dcbc84','#a4844e'],ray:'rgba(255,220,160,.08)'},
- {id:'space',name:'宇宙',price:100000,need:'uchu',cols:['#05030f','#1c1250','#2a1a5a'],sand:['#4a4458','#5e5870','#2e2a3a'],stars:1,glow:1}
+ {id:'space',name:'宇宙',price:100000,need:'uchu',cols:['#05030f','#1c1250','#2a1a5a'],sand:['#4a4458','#5e5870','#2e2a3a'],stars:1,glow:1},
+ {id:'spirit',name:'精霊の丘',price:100000,need:'seirei',cols:['#3a2a6a','#2a6a7a','#0e2a3a'],sand:['#8ad0a0','#a8e8b8','#5aa880'],stars:1,glow:1}
 ];
 const AQ_SAND=[{id:'std',name:'背景に合わせる',price:0},{id:'white',name:'白い砂',price:2000,c:['#efe8da','#fbf6ec','#d4ccbc']},{id:'black',name:'黒い砂',price:2000,c:['#3a3634','#4c4844','#262422']}];
 const AQ_LIGHT=[{id:'none',name:'なし',price:0},{id:'blue',name:'青いライト',price:5000,c:'120,200,255'},{id:'pink',name:'ピンクのライト',price:5000,c:'255,140,210'},{id:'rainbow',name:'虹のライト',price:20000}];
@@ -6712,7 +6834,7 @@ const aqTank=()=>TANKS[aqT().size]||TANKS[0];
 const AQ_RATE=8,AQ_CAPH=12,AQ_FEED_CD=4*3600e3,AQ_FEED_LEN=3600e3;
 function aqPop(){const T=aqT(),k=dayKey();if(T.pop.d!==k||(!T.pop.id&&Object.keys(S.dex).length)||(T.pop.id&&!S.dex[T.pop.id])){const ids=Object.keys(S.dex).filter(id=>FISH.some(f=>f.id===id));T.pop={d:k,id:ids.length?ids[Math.floor(Math.random()*ids.length)]:''};save()}return T.pop.id}
 // 設備ボーナス：使っている背景・砂・ライトと、置いている飾り（合計は最大+60%）
-const AQ_EQ={bg:{sea:5,lake:5,deep:10,sky:15,ancient:15},sand:{white:3,black:3},light:{blue:5,pink:5,rainbow:10},
+const AQ_EQ={bg:{sea:5,lake:5,deep:10,sky:15,ancient:15,space:15,spirit:15},sand:{white:3,black:3},light:{blue:5,pink:5,rainbow:10},
  deco:{ishi:1,mizukusa:1,ryuboku:2,sango:3,iwaba:3,takara:4,diver:5,chinbotsu:7,oshiro:7,vent:10,ukishima:10,fossil:10},max:60};
 function aqEquip(){const T=aqT(),b=AQ_EQ.bg[T.bg]|0,sa=AQ_EQ.sand[T.sand]|0,l=AQ_EQ.light[T.light]|0,d=T.deco.reduce((a,x)=>a+(AQ_EQ.deco[x.k]|0),0);
   return{bg:b,sand:sa,light:l,deco:d,total:Math.min(AQ_EQ.max,b+sa+l+d)}}
@@ -7582,39 +7704,63 @@ function rkRoll(){rkNorm();const wk=rkWeek(),dk=rkDay();
   if(S.rk.d.k!==dk)S.rk.d={k:dk,n:0,best:{}}}
 // 自分で釣った1匹を記録（置き竿は数えない）
 function rkCatch(id,size){rkRoll();S.rk.n++;[S.rk.w,S.rk.d].forEach(p=>{p.n++;if(!(p.best[id]>=size))p.best[id]=size})}
+// 期間ごとの検索用キー（w.n20261109 など）：上位だけをサーバーで並べて取る
+const rkKey=k=>String(k||'').replace(/-/g,'');
+const rkPer=p=>p&&p.k?Object.assign({},p,{['n'+rkKey(p.k)]:p.n|0,['b'+rkKey(p.k)]:p.best||{}}):p;
 function rkDoc(){rkRoll();const best={};Object.entries(S.dex).forEach(([id,d])=>{if(d.best)best[id]=d.best});
-  return{name:S.pname||'名無しの釣り人',av:S.av,at:Date.now(),n:S.rk.n,best,w:S.rk.w,wp:S.rk.wp||null,d:S.rk.d}}
-const RK={docs:null,at:0,tab:'n',per:'w',fish:'',claim:null};
-async function rkFetch(force){
-  if(!CL.user||!CL.mods)return null;if(!force&&RK.docs&&Date.now()-RK.at<60e3)return RK.docs;
-  const {fs}=CL.mods;try{const q=await fs.getDocs(fs.collection(CL.db,'ranks'));RK.docs=q.docs.map(x=>Object.assign({uid:x.id},x.data()));RK.at=Date.now();RK.err=''}
-  catch(e){RK.err='ランキングが読めませんでした（電波を確認してね）'}
-  rkCalcClaim();return RK.docs;
-}
+  return{name:S.pname||'名無しの釣り人',av:S.av,at:Date.now(),n:S.rk.n,best,w:rkPer(S.rk.w),wp:rkPer(S.rk.wp)||null,d:rkPer(S.rk.d)}}
+const RK={tab:'n',per:'w',fish:'',claim:null,cache:{},err:'',cl:null};
+const rkGet=(o,path)=>path.split('.').reduce((a,k)=>a&&a[k],o);
+function rkField(tab,per,fish){const K=per==='w'?rkKey(rkWeek()):per==='d'?rkKey(rkDay()):'';
+  return per==='a'?(tab==='n'?'n':'best.'+fish):per+'.'+(tab==='n'?'n'+K:'b'+K+'.'+fish)}
 // 期間ごとの値（その期間のデータがない人は0）
 function rkVal(doc,tab,per,fish){
   let p=null;if(per==='a')p=doc;else if(per==='w'){const k=rkWeek();p=doc.w&&doc.w.k===k?doc.w:null}else{const k=rkDay();p=doc.d&&doc.d.k===k?doc.d:null}
   if(!p)return 0;return tab==='n'?(p.n|0):((p.best||{})[fish]||0);
 }
 function rkRank(rows){let last=null,r=0;rows.forEach((x,i)=>{if(x.v!==last){r=i+1;last=x.v}x.r=r});return rows}
-// 先週の「釣った数」の結果と報酬
-function rkCalcClaim(){
-  RK.claim=null;if(!RK.docs||!CL.user)return;const lw=rkLastWeek();
-  const rows=RK.docs.map(d=>{const p=d.w&&d.w.k===lw?d.w:d.wp&&d.wp.k===lw?d.wp:null;return{uid:d.uid,name:d.name,v:p?(p.n|0):0}}).filter(x=>x.v>=RK_MIN).sort((a,b)=>b.v-a.v);
-  rkRank(rows);const me=rows.find(x=>x.uid===CL.user.uid);
-  RK.last={lw,rows,me};if(me&&me.r<=RK_REWARD.length&&S.rkClaim!==lw)RK.claim={lw,r:me.r,g:RK_REWARD[me.r-1],v:me.v};
+const rkCount=async(fs,col,f,v)=>(await fs.getCountFromServer(fs.query(col,fs.where(f,'>',v)))).data().count;
+// 上位10人＋自分の順位（全員分は読まない）
+async function rkQuery(force){
+  if(!CL.user||!CL.mods)return null;const f=rkField(RK.tab,RK.per,RK.fish),ck=f,c=RK.cache[ck];
+  if(!force&&c&&Date.now()-c.at<60e3)return c;
+  const {fs}=CL.mods,col=fs.collection(CL.db,'ranks');
+  try{
+    const q=await fs.getDocs(fs.query(col,fs.orderBy(f,'desc'),fs.limit(10)));
+    const rows=rkRank(q.docs.map(x=>{const d=x.data();return{uid:x.id,av:d.av,name:d.name||'名無しの釣り人',v:+rkGet(d,f)||0}}).filter(x=>x.v>0));
+    const mv=rkVal(rkDoc(),RK.tab,RK.per,RK.fish);let mr=0,tot=await rkCount(fs,col,f,0);
+    if(mv>0){mr=(await rkCount(fs,col,f,mv))+1;tot=Math.max(tot,mr)}
+    const me=rows.find(x=>x.uid===CL.user.uid);if(me&&mv>0){me.v=Math.max(me.v,mv)}
+    RK.err='';return RK.cache[ck]={at:Date.now(),rows,mv,mr,tot};
+  }catch(e){RK.err='ランキングが読めませんでした（電波を確認してね）';return null}
+}
+// 先週の「釣った数」の結果と報酬（上位だけ読む）
+async function rkFetch(force){
+  if(!CL.user||!CL.mods)return null;if(!force&&RK.cl&&Date.now()-RK.cl.at<5*60e3)return RK.cl;
+  const {fs}=CL.mods,col=fs.collection(CL.db,'ranks'),lw=rkLastWeek(),K=rkKey(lw),fa='w.n'+K,fb='wp.n'+K;
+  try{
+    const [qa,qb]=await Promise.all([fa,fb].map(f=>fs.getDocs(fs.query(col,fs.orderBy(f,'desc'),fs.limit(10)))));
+    const m={};[[qa,fa],[qb,fb]].forEach(([q,f])=>q.docs.forEach(x=>{const d=x.data(),v=+rkGet(d,f)||0;if(!m[x.id]||m[x.id].v<v)m[x.id]={uid:x.id,name:d.name,v}}));
+    const rows=rkRank(Object.values(m).filter(x=>x.v>=RK_MIN).sort((a,b)=>b.v-a.v));
+    const p=S.rk&&(S.rk.w&&S.rk.w.k===lw?S.rk.w:S.rk.wp&&S.rk.wp.k===lw?S.rk.wp:null),mv=p?p.n|0:0;
+    let me=null;if(mv>=RK_MIN){const [a1,a2]=await Promise.all([rkCount(fs,col,fa,mv),rkCount(fs,col,fb,mv)]);me={r:a1+a2+1,v:mv}}
+    RK.cl={at:Date.now()};RK.last={lw,rows,me};RK.claim=null;
+    if(me&&me.r<=RK_REWARD.length&&S.rkClaim!==lw)RK.claim={lw,r:me.r,g:RK_REWARD[me.r-1],v:me.v};
+  }catch(e){RK.err='ランキングが読めませんでした（電波を確認してね）'}
+  return RK.cl;
 }
 function rkClaim(){
   const c=RK.claim;if(!c||S.rkClaim===c.lw)return;S.rkClaim=c.lw;S.gold+=c.g;if(c.r===1)S.kingN=(S.kingN|0)+1;
   if(c.r===1&&!S.title)S.title='e:king';RK.claim=null;save();renderAll();renderRank();beep(1320,.08,'square',.04);
   msg('🏆 先週'+c.r+'位の報酬 '+yen(c.g)+(c.r===1?'・称号「今週の釣り王」':'')+'！',true,2.6);
 }
+let rkGen=0;
 async function renderRank(){
-  const box=$('#rankBox');if(!box)return;box.replaceChildren();
+  const box=$('#rankBox');if(!box)return;const gen=++rkGen;box.replaceChildren();
   if(!CL.user){box.append(el('div','small','ランキングは、メニューの「アカウント」でGoogleにログインすると参加・表示できます。'));
     const b=el('button','chip','👤 アカウントへ');b.type='button';b.onclick=()=>tab('acct');box.append(b);return}
-  box.append(el('div','small','読み込み中…'));await rkFetch();box.replaceChildren();
-  if(RK.err)box.append(el('div','acct-warn',RK.err));if(!RK.docs)return;
+  box.append(el('div','small','読み込み中…'));await rkFetch();if(gen!==rkGen)return;box.replaceChildren();
+  if(RK.err)box.append(el('div','acct-warn',RK.err));
   // 先週の結果と報酬
   const L=RK.last,lb=el('div','rk-last');
   if(RK.claim){lb.append(el('div',null,'🏆 先週の「釣った数」'+RK.claim.r+'位（'+RK.claim.v+'匹）！'));const b=el('button','sell','報酬 '+yen(RK.claim.g)+(RK.claim.r===1?'＋称号「今週の釣り王」':'')+' を受け取る');b.type='button';b.onclick=rkClaim;lb.append(b)}
@@ -7629,15 +7775,18 @@ async function renderRank(){
     if(!S.dex[RK.fish])RK.fish=mine[0].id;const sl=document.createElement('select');sl.className='rk-sel';
     mine.forEach(f=>{const o=document.createElement('option');o.value=f.id;o.textContent='★'+f.rar+' '+f.name;if(f.id===RK.fish)o.selected=true;sl.append(o)});
     sl.onchange=()=>{RK.fish=sl.value;renderRank()};box.append(sl)}
-  const rows=rkRank(RK.docs.map(d=>({uid:d.uid,av:d.av,name:d.name||'名無しの釣り人',v:rkVal(d,RK.tab,RK.per,RK.fish)})).filter(x=>x.v>0).sort((a,b)=>b.v-a.v));
-  const unit=RK.tab==='n'?'匹':'cm',list=el('div','rk-list');
+  const lo=el('div','small','読み込み中…');box.append(lo);RK.err='';const R=await rkQuery();if(gen!==rkGen)return;lo.remove();
+  if(!R){if(RK.err)box.append(el('div','acct-warn',RK.err));const rf=el('button','chip','↻ 更新');rf.type='button';rf.onclick=()=>{RK.cache={};renderRank()};box.append(rf);return}
+  const unit=RK.tab==='n'?'匹':'cm',rows=R.rows,list=el('div','rk-list'),fv=v=>(RK.tab==='n'?v.toLocaleString():v)+unit;
+  box.append(el('div','rk-mine',R.mr?'あなたは '+R.mr+'位（'+R.tot+'人中）・'+fv(R.mv):'あなたの記録はまだありません'+(R.tot?'（'+R.tot+'人参加中）':'')));
   if(!rows.length)list.append(el('div','small',RK.per==='d'?'今日の記録はまだありません':RK.per==='w'?'今週の記録はまだありません':'記録はまだありません'));
-  rows.slice(0,20).forEach(x=>{const it=el('div','rk-row'+(x.uid===CL.user.uid?' me':''));it.append(el('b',null,x.r<=3?['🥇','🥈','🥉'][x.r-1]:x.r+'位'),avHead(x.av,26),el('span',null,x.name));
-    if(x.uid!==CL.user.uid&&!FR.ids.has(x.uid)){const ad=el('button','chip rk-add',S.frOut[x.uid]!==undefined?'申請中':'＋');ad.type='button';ad.disabled=S.frOut[x.uid]!==undefined;confirmTap(ad,()=>frRequest(x.uid,x.name),'申請する？');it.append(ad)}
-    it.append(el('i',null,(RK.tab==='n'?x.v.toLocaleString():x.v)+unit));list.append(it)});
-  const me=rows.find(x=>x.uid===CL.user.uid);if(me&&me.r>20){const it=el('div','rk-row me');it.append(el('b',null,me.r+'位'),avHead(me.av,26),el('span',null,me.name),el('i',null,me.v+unit));list.append(it)}
+  const row=(x,me)=>{const it=el('div','rk-row'+(me?' me':''));it.append(el('b',null,x.r<=3?['🥇','🥈','🥉'][x.r-1]:x.r+'位'),avHead(x.av,26),el('span',null,x.name));
+    if(!me&&!FR.ids.has(x.uid)){const ad=el('button','chip rk-add',S.frOut[x.uid]!==undefined?'申請中':'＋');ad.type='button';ad.disabled=S.frOut[x.uid]!==undefined;confirmTap(ad,()=>frRequest(x.uid,x.name),'申請する？');it.append(ad)}
+    it.append(el('i',null,fv(x.v)));return it};
+  rows.forEach(x=>list.append(row(x,x.uid===CL.user.uid)));
+  if(R.mr&&!rows.some(x=>x.uid===CL.user.uid)){list.append(el('div','rk-gap','⋮'));list.append(row({r:R.mr,av:S.av,name:S.pname||'名無しの釣り人',v:R.mv},true))}
   box.append(list);
-  const rf=el('button','chip','↻ 更新');rf.type='button';rf.onclick=()=>{RK.at=0;renderRank()};box.append(rf);
+  const rf=el('button','chip','↻ 更新');rf.type='button';rf.onclick=()=>{RK.cache={};RK.cl=null;renderRank()};box.append(rf);
 }
 
 // ---------- 新しい版のお知らせ（公開中のファイルの NEWS_VER と比べる）----------
@@ -7666,8 +7815,8 @@ const AV_CLOTH=['#e8493c','#ff9a3c','#f2c84b','#5bbf6a','#3f8fd8','#2c4a8a','#8a
 const AV_PARTS={
  hair:[['short','ショート'],['long','ロング'],['twin','ツイン'],['spiky','ツンツン'],['bozu','ぼうず']],
  eye:[['dot','てん目'],['smile','にっこり'],['round','まる目'],['cool','キリッ']],
- hat:[['none','なし'],['cap','キャップ'],['straw','麦わら'],['knit','ニット帽'],['bucket','バケハ'],['hachi','ハチマキ'],['helmet','ヘルメット']],
- top:[['tee','Tシャツ'],['vest','釣りベスト'],['hoodie','パーカー'],['happi','法被'],['space','宇宙服']],
+ hat:[['none','なし'],['cap','キャップ'],['straw','麦わら'],['knit','ニット帽'],['bucket','バケハ'],['hachi','ハチマキ'],['helmet','ヘルメット'],['hanakan','花冠']],
+ top:[['tee','Tシャツ'],['vest','釣りベスト'],['hoodie','パーカー'],['happi','法被'],['space','宇宙服'],['hagoromo','羽衣']],
  bottom:[['pants','ズボン'],['shorts','短パン'],['wader','胴長']],
  item:[['rod','竿'],['net','たも網'],['cooler','クーラー'],['none','なし']]
 };
@@ -7699,6 +7848,7 @@ function drawAvatar(c,a,ox,oy,U,pose){
  if(a.top==='vest'){P(X+4,12,3,6,tc);P(X+9,12,3,6,tc);P(X+4,14,2,2,tcD);P(X+10,14,2,2,tcD);P(X+5,16,1,1,'#ffd447')}
  if(a.top==='happi'){P(X+6,12,1,6,'#fff');P(X+9,12,1,6,'#fff');P(X+7,15,2,1,'#fff')}
  if(a.top==='hoodie'){P(X+7,12,2,3,tcD);P(X+6,15,4,2,tcD)}
+ if(a.top==='hagoromo'){P(X+4,12,8,6,'#fbf4ff');P(X+4,17,8,1,'#e0c8f0');P(X+7,12,2,6,'#f0d8ff');P(X+2,13,2,5,'rgba(255,210,245,.7)');P(X+12,13,2,5,'rgba(255,210,245,.7)');P(X+5,15,6,1,'#ffd04a')}
  if(a.top==='space'){P(X+4,12,8,6,'#f4f6fa');P(X+4,17,8,1,'#c8d0dc');P(X+6,13,2,2,'#e8493c');P(X+9,14,2,1,'#3f8fd8');P(X+7,16,2,1,'#ffd447')}
  if(a.bottom==='wader'){P(X+4,15,8,3,bc);P(X+5,12,1,3,bc);P(X+10,12,1,3,bc)}
  else P(X+4,17,8,1,bcD);
@@ -7727,6 +7877,7 @@ function drawAvatar(c,a,ox,oy,U,pose){
  if(a.hat==='straw'){P(X+4,0,8,4,'#e8c870');P(X+0,4,16,1,'#d9b45a');P(X+0,5,16,1,'#c9a04a');P(X+4,3,8,1,hat)}
  if(a.hat==='knit'){P(X+3,1,10,5,hat);P(X+3,4,10,1,'#fff');P(X+3,5,10,1,hD);P(X+7,0,2,1,'#fff')}
  if(a.hat==='bucket'){P(X+4,1,8,4,hat);P(X+2,5,12,1,hD);P(X+3,4,10,1,hD)}
+ if(a.hat==='hanakan'){P(X+3,3,10,1,'#5ab84a');[[3,'#ff7ab4'],[6,'#ffe04a'],[9,'#ff9ad0'],[11,'#a8d8ff']].forEach(([d,cl])=>P(X+d,2,2,2,cl))}
  if(a.hat==='helmet'){c.fillStyle='rgba(200,230,255,.35)';c.fillRect(ox+(X+2)*U,oy+0*U,12*U,12*U);P(X+2,0,12,1,'#ffffff');P(X+2,0,1,12,'#ffffff');P(X+13,0,1,12,'#ffffff');P(X+2,11,12,1,'#c8d0dc');P(X+4,2,2,1,'rgba(255,255,255,.9)');P(X+4,3,1,2,'rgba(255,255,255,.9)')}
  if(a.hat==='hachi'){P(X+3,5,10,1,'#fff');P(X+7,5,2,1,'#e8493c');P(X+13,5,2,1,'#fff');P(X+14,6,1,1,'#fff')}
  // 持ち物
@@ -7743,7 +7894,7 @@ const AV_SHOP=[['hat','cap','キャップ',300],['hat','hachi','ハチマキ',50
  ['item','net','たも網',1000],['item','cooler','クーラー',1500]];
 const AV_FREE={hat:['none'],top:['tee'],bottom:['pants'],item:['rod','none'],hair:'*',eye:'*'};
 const avDefault=()=>({skin:0,hair:'short',hc:1,eye:'dot',hat:'none',hatc:4,top:'tee',topc:4,bottom:'pants',botc:5,item:'rod'});
-const AV_ACH={'hat:helmet':'space','top:space':'space'}; // 実績のごほうび
+const AV_ACH={'hat:helmet':'space','top:space':'space','hat:hanakan':'spirit','top:hagoromo':'spirit'}; // 実績のごほうび
 const avHave=(part,v)=>(AV_ACH[part+':'+v]?achHave(AV_ACH[part+':'+v]):false)||AV_FREE[part]==='*'||(AV_FREE[part]||[]).includes(v)||!!S.avOwn[part+':'+v];
 function avNorm(){
   const d=avDefault();if(!S.av||typeof S.av!=='object')S.av=d;else Object.keys(d).forEach(k=>{if(S.av[k]===undefined)S.av[k]=d[k]});
@@ -7820,12 +7971,13 @@ function rmWallDraw(c,t){
   const wx=40,wy=70,ww=86,wh=76;c.fillStyle='#f4efe6';rmRR(c,wx-6,wy-6,ww+12,wh+12,6);c.fill();
   c.save();rmRR(c,wx,wy,ww,wh,3);c.clip();
   const sky={morning:['#9fd6ff','#ffe9c8'],day:['#7cc6ff','#d8f0ff'],dusk:['#f08a5d','#ffd29a'],night:['#0b1640','#2a2a6e']}[S.tod]||['#7cc6ff','#d8f0ff'];
-  const st=ST[rvRoom().win]||ST.teibo,grp=st.id==='uchu'?'space':st.id==='tenku'?'sky':st.id==='kodai'?'old':st.group==='川'?'river':st.group==='湖'?'lake':'sea';
+  const st=ST[rvRoom().win]||ST.teibo,grp=st.id==='seirei'?'spirit':st.id==='uchu'?'space':st.id==='tenku'?'sky':st.id==='kodai'?'old':st.group==='川'?'river':st.group==='湖'?'lake':'sea';
   const g=c.createLinearGradient(0,wy,0,wy+wh);g.addColorStop(0,grp==='sky'?'#b9a8ff':sky[0]);g.addColorStop(1,grp==='sky'?'#ffd9f0':sky[1]);c.fillStyle=g;c.fillRect(wx,wy,ww,wh);
   if(grp==='sea'){c.fillStyle='#2e86c1';c.fillRect(wx,wy+46,ww,30);c.fillStyle='#ddd';c.fillRect(wx+56,wy+22,6,26);c.fillStyle='#e74c3c';c.fillRect(wx+56,wy+20,6,5)}
   if(grp==='river'){c.fillStyle='#6cbf6a';c.fillRect(wx,wy+42,ww,34);c.fillStyle='#5fb0e0';c.beginPath();c.moveTo(wx+32,wy+76);c.quadraticCurveTo(wx+42,wy+56,wx+64,wy+42);c.lineTo(wx+76,wy+42);c.quadraticCurveTo(wx+56,wy+58,wx+54,wy+76);c.fill()}
   if(grp==='lake'){c.fillStyle='#7a9a8a';c.beginPath();c.moveTo(wx,wy+44);c.lineTo(wx+28,wy+22);c.lineTo(wx+56,wy+44);c.fill();c.fillStyle='#4f9fd0';c.fillRect(wx,wy+44,ww,32)}
   if(grp==='sky'){c.fillStyle='rgba(255,255,255,.9)';[[wx+22,wy+44],[wx+58,wy+26],[wx+64,wy+60]].forEach(([x,y])=>{c.beginPath();c.arc(x,y,9,0,7);c.arc(x+9,y-3,10,0,7);c.arc(x+18,y,8,0,7);c.fill()})}
+  if(grp==='spirit'){const g2=c.createLinearGradient(0,wy,0,wy+wh);g2.addColorStop(0,'#2a1d5c');g2.addColorStop(1,'#f4b4d4');c.fillStyle=g2;c.fillRect(wx,wy,ww,wh);c.fillStyle='#2e5a5a';c.beginPath();c.ellipse(wx+ww*.35,wy+wh+6,ww*.6,22,0,0,7);c.fill();c.fillStyle='#3a8a7a';c.beginPath();c.arc(wx+28,wy+wh-30,14,0,7);c.fill();c.fillStyle='#2a2040';c.fillRect(wx+26,wy+wh-20,4,14);for(let i=0;i<10;i++){const ph=(t*.2+i*.1)%1;c.globalAlpha=Math.sin(ph*Math.PI);c.fillStyle=`hsl(${(150+i*30)%360},90%,78%)`;c.beginPath();c.arc(wx+(i*23)%ww,wy+wh-ph*wh,1.8,0,7);c.fill()}c.globalAlpha=1}
   if(grp==='space'){c.fillStyle='#0a0620';c.fillRect(wx,wy,ww,wh);for(let i=0;i<16;i++){c.globalAlpha=.4+.6*Math.abs(Math.sin(t*2+i));c.fillStyle='#fff';c.fillRect(wx+(i*29)%ww,wy+(i*17)%wh,1.5,1.5)}c.globalAlpha=1;c.fillStyle='#d9a868';c.beginPath();c.arc(wx+58,wy+30,10,0,7);c.fill();c.strokeStyle='rgba(255,230,180,.85)';c.lineWidth=2;c.beginPath();c.ellipse(wx+58,wy+30,18,4,-.25,0,7);c.stroke()}
   if(grp==='old'){c.fillStyle='#6a6050';c.fillRect(wx+10,wy+30,14,46);c.fillRect(wx+56,wy+36,12,40);c.fillRect(wx+6,wy+26,22,6);c.fillStyle='#2a5a7a';c.fillRect(wx,wy+62,ww,14)}
   if(S.tod==='night'){c.fillStyle='#fffbe6';c.beginPath();c.arc(wx+64,wy+16,7,0,7);c.fill();for(let i=0;i<12;i++){c.globalAlpha=.4+.6*Math.abs(Math.sin(t*2+i));c.fillRect(wx+(i*29)%ww,wy+(i*17)%36,1.5,1.5)}c.globalAlpha=1}
@@ -7982,7 +8134,7 @@ function renderBkFilter(){
   if(bkActive()){const c=el('button','chip','解除');c.type='button';c.onclick=()=>{BKF.rar.clear();BKF.st='';BKF.lk='all';BKF.q='';BKF.today=false;renderBkFilter();renderBucket()};top.append(c)}
   box.append(top);if(!BKF.open)return;
   const p=el('div','flt');const re=all=>{if(all!==false)renderBkFilter();renderBucket()};
-  fltChips(p,[1,2,3,4,5,6,7,8].map(n=>[n,'★'+n]),v=>BKF.rar.has(v),v=>{BKF.rar.has(v)?BKF.rar.delete(v):BKF.rar.add(v);re()});
+  fltChips(p,[1,2,3,4,5,6,7,8,9].map(n=>[n,'★'+n]),v=>BKF.rar.has(v),v=>{BKF.rar.has(v)?BKF.rar.delete(v):BKF.rar.add(v);re()});
   const sts=STAGES.filter(s=>S.bucket.some(b=>b.st===s.id));if(sts.length){const sl=document.createElement('select');sl.className='rk-sel';const o0=document.createElement('option');o0.value='';o0.textContent='釣った場所：すべて';sl.append(o0);
     sts.forEach(s=>{const o=document.createElement('option');o.value=s.id;o.textContent=s.name;if(BKF.st===s.id)o.selected=true;sl.append(o)});sl.onchange=()=>{BKF.st=sl.value;re()};p.append(sl)}
   fltChips(p,[['all','ロック：すべて'],['on','🔒 ロック中'],['off','ロック以外']],v=>BKF.lk===v,v=>{BKF.lk=v;re()});
@@ -8000,7 +8152,7 @@ function renderDexFilter(){
   box.append(top);if(!DXF.open)return;
   const p=el('div','flt');const re=all=>{dexDrawn='';if(all!==false)renderDexFilter();renderDex()};
   fltChips(p,[['all','すべて'],['got','見つけた'],['not','まだ']],v=>DXF.got===v,v=>{DXF.got=v;re()});
-  fltChips(p,[1,2,3,4,5,6,7,8].map(n=>[n,'★'+n]),v=>DXF.rar.has(v),v=>{DXF.rar.has(v)?DXF.rar.delete(v):DXF.rar.add(v);re()});
+  fltChips(p,[1,2,3,4,5,6,7,8,9].map(n=>[n,'★'+n]),v=>DXF.rar.has(v),v=>{DXF.rar.has(v)?DXF.rar.delete(v):DXF.rar.add(v);re()});
   fltSearch(p,DXF,re);box.append(p);
 }
 
