@@ -115,6 +115,10 @@ details summary{font-weight:700;font-size:13px;cursor:pointer;color:var(--muted)
 .aqm{margin:8px 0 4px;padding:8px 10px;border-radius:12px;background:#fff8e1;border:1px solid #f2d27a;font-size:13px;line-height:1.7}
 .aqm .row{align-items:center;justify-content:space-between;flex-wrap:nowrap;gap:8px}
 .aqm b{color:#b5650a}
+.rk{display:flex;flex-direction:column;gap:8px}.rk .ttabs{margin:0}.rk-last{background:#fff8e1;border:1px solid #f2d27a;border-radius:12px;padding:8px 10px;font-size:13px;font-weight:700;display:flex;flex-direction:column;gap:6px}
+.rk-list{display:flex;flex-direction:column;gap:4px}.rk-row{display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:10px;background:#f2f6f9;font-size:14px}
+.rk-row b{width:42px;text-align:center}.rk-row span{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.rk-row i{font-style:normal;font-weight:700}
+.rk-row.me{background:#ffe9a8;box-shadow:inset 0 0 0 2px #f2b400}.rk-sel{font:inherit;font-size:16px;padding:8px;border-radius:10px;border:1.5px solid #c9d3dc}
 .acct{display:flex;flex-direction:column;gap:8px}.acct .sell{width:100%;white-space:normal;line-height:1.5}
 .acct-warn{color:#b3261e;font-size:13px;font-weight:700;line-height:1.6}.acct-ok{color:#1b7a3d;font-size:13px;font-weight:700}.acct-q{font-weight:700;font-size:14px}
 .gyog{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
@@ -470,9 +474,9 @@ const OKI_W=[50,30,13,5,2]; // 置き竿で★1〜5が出る割合（上限よ�
 const OKI_NEW=1;            // 未発見の魚のかかりやすさ（倍）。1=補正なし
 const OKI_XP=1/3;           // 経験値は通常の釣りの何倍か
 // お知らせ（アップデートのたびに上に足す。NEWS_VER を変えるとメニューに NEW が付く）
-const NEWS_VER='2026-11-15k';
+const NEWS_VER='2026-11-15l';
 const NEWS=[
- {d:'2026/11/15',t:['アカウント：Googleでログインするとクラウドに自動セーブ（メニュー →「アカウント」）。プレイヤー名も決められます','ナイスアワセ：浮きが水中に消えた瞬間にアワセると、ゲージが多めの状態からスタート（くわしくは遊び方）','前アタリ：アタリの前に浮きがピクッと動くように','水槽の設備ボーナス：背景・砂・ライト・飾りで見物料アップ（最大+60%）','釣りゲージの着せ替え（9種類）。ショップの「着せ替え」で','釣り上げの進み具合をゲージのすぐ上に','水槽の見物料：水槽の魚がゴールドを稼ぐように（今日の人気者は2倍・エサやりで+50%）','ショップがタブ分けに（道具・券・着せ替え・水槽）。着せ替えと水槽の買い物はショップで','着せ替えには持っているものだけ表示','称号ページが「レベル称号・実績称号・イベント称号」のタブに','天空・古代で釣った魚の魚拓は金の額縁に','釣れたときの音と演出が★ごとに変わるように（★5以上はキラキラ・後光）','宝箱は「チャリーン！」',
+ {d:'2026/11/15',t:['ランキング：釣った数・魚の大きさを通算／週間／日間で（メニュー →「ランキング」・ログインした人が参加）。週間の釣った数で10位までは報酬あり','アカウント：Googleでログインするとクラウドに自動セーブ（メニュー →「アカウント」）。プレイヤー名も決められます','ナイスアワセ：浮きが水中に消えた瞬間にアワセると、ゲージが多めの状態からスタート（くわしくは遊び方）','前アタリ：アタリの前に浮きがピクッと動くように','水槽の設備ボーナス：背景・砂・ライト・飾りで見物料アップ（最大+60%）','釣りゲージの着せ替え（9種類）。ショップの「着せ替え」で','釣り上げの進み具合をゲージのすぐ上に','水槽の見物料：水槽の魚がゴールドを稼ぐように（今日の人気者は2倍・エサやりで+50%）','ショップがタブ分けに（道具・券・着せ替え・水槽）。着せ替えと水槽の買い物はショップで','着せ替えには持っているものだけ表示','称号ページが「レベル称号・実績称号・イベント称号」のタブに','天空・古代で釣った魚の魚拓は金の額縁に','釣れたときの音と演出が★ごとに変わるように（★5以上はキラキラ・後光）','宝箱は「チャリーン！」',
   '天空・古代に専用のBGM（いつもの曲と釣り上げ中の曲）','★7・★8が暴れだすと、釣り上げ中の曲が少し速く・高くなるように']},
  {d:'2026/11/15',t:['新しい魚21種（シャチ・イッカク・マッコウクジラ・クロコダイル・オニイトマキエイなど）','メニューができました（置き竿・ミッション・図鑑・着せ替え・称号・魚拓・セーブコード・設定・お知らせ）','魚拓ギャラリー：釣った魚を魚拓にして飾れる（12枚まで）','デイリーミッション：毎日3つ・報酬はランダム・1日1回チェンジ','置き竿：4種類。時間がたつと魚がかかる（経験値は1/3）','キャストのメーターが「真ん中が奥」に','BGM・効果音の音量を調整できるように','買う・売るは2回タップで決定に','釣り画面の文字にふち取り']},
  {d:'2026/11/14',t:['レベル称号（Lv10ごと）と報酬のウキ・竿','釣り上げ中の演出：ウキが近づく・竿が揺れる・水しぶき','魚影はゲージ80%で正体が分かるように','左右の合図はゲージの下に','宝箱が全部の釣り場に・宝箱は抵抗しない','キャストのキャンセル・魚のロック','新しい魚17種（ハコフグ〜ザトウクジラ）']}
@@ -5202,6 +5206,9 @@ const PX={
     <div><h3>データ</h3><button class="sell" id="reset" type="button" style="background:#c8402a">データを消す</button>
       <div class="small" style="margin-top:4px">消す前に「セーブコード」でバックアップしておくと安心です。</div></div>
   </section>
+  <section class="panel" id="p-rank" hidden>
+    <div><h3>🏆 ランキング</h3><div id="rankBox" class="rk"></div></div>
+  </section>
   <section class="panel" id="p-acct" hidden>
     <div><h3>プレイヤー名</h3>
       <div class="small" style="margin-bottom:6px">釣果画面とLINEのセーブ文に出ます（10文字まで・同じ名前OK・いつでも変えられます）。</div>
@@ -5288,6 +5295,7 @@ const PX={
         <li>データはこのブラウザに自動で保存されます。閉じても消えません。</li>
         <li>ただし、<b>ブラウザのデータを消す・シークレットモード・別のアプリや端末で開く</b>と、データは引き継がれません。</li>
         <li><b>セーブコードでバックアップ</b>しておくと安心です。</li>
+        <li><b>ランキング</b>：ログインしている人どうしで「釣った数」と「魚の大きさ」（自分の図鑑にある魚だけ）を通算・週間・日間で競います。週間の釣った数で10位まで（その週に10匹以上）は、翌週にランキングのページで報酬を受け取れます。1位は称号「今週の釣り王」も。置き竿の分は数えません。</li>
         <li><b>アカウント</b>：メニューの「アカウント」で<b>Googleでログイン</b>すると、データがクラウドに自動で保存され、別のスマホでも同じデータで遊べます（ログインしなくても遊べます）。LINEの中のブラウザではログインできないので、SafariやChromeで開いてね。</li>
       </ul>
       <ol>
@@ -5378,7 +5386,7 @@ const MAXLV=100;
 
 // ---------- セーブ ----------
 const KEY='honobono-tsuribori-v3';
-const fresh=()=>({gold:0,xp:0,lv:1,stage:'ogawa',rod:'base',rodInv:{},bait:'',baitInv:{},tickets:{},tCasts:{},dex:{},bucket:[],snd:true,group:'川',uki:'base',ukiOwn:{base:1},skin:'none',skinOwn:{none:1},pname:'',cloudOn:false,cloudUid:'',syncT:0,gauge:'base',gaugeOwn:{base:1},tod:'day',todOwn:{morning:1,day:1},okiInv:{},oki:null,gyo:[],sfxVol:70,bgmVol:70,tank:freshTank()});
+const fresh=()=>({gold:0,xp:0,lv:1,stage:'ogawa',rod:'base',rodInv:{},bait:'',baitInv:{},tickets:{},tCasts:{},dex:{},bucket:[],snd:true,group:'川',uki:'base',ukiOwn:{base:1},skin:'none',skinOwn:{none:1},pname:'',rk:null,rkClaim:'',kingN:0,cloudOn:false,cloudUid:'',syncT:0,gauge:'base',gaugeOwn:{base:1},tod:'day',todOwn:{morning:1,day:1},okiInv:{},oki:null,gyo:[],sfxVol:70,bgmVol:70,tank:freshTank()});
 function freshTank(){return{size:0,bg:'river',bgOwn:{river:1},sand:'std',sandOwn:{std:1},light:'none',lightOwn:{none:1},deco:[],decoOwn:{},fish:[],bank:0,payT:Date.now(),feedT:0,pop:{d:'',id:''}}}
 function aqNorm(){const t=Object.assign(freshTank(),S.tank&&typeof S.tank==='object'?S.tank:{});['bgOwn','sandOwn','lightOwn','decoOwn'].forEach(k=>{if(!t[k]||typeof t[k]!=='object')t[k]=freshTank()[k]});if(!Array.isArray(t.deco))t.deco=[];if(!Array.isArray(t.fish))t.fish=[];t.size=clamp(t.size|0,0,3);
   if(typeof t.bank!=='number'||!(t.bank>=0))t.bank=0;if(typeof t.payT!=='number')t.payT=Date.now();if(typeof t.feedT!=='number')t.feedT=0;if(!t.pop||typeof t.pop!=='object')t.pop={d:'',id:''};S.tank=t}
@@ -5398,6 +5406,7 @@ if(!Array.isArray(S.gyo))S.gyo=[];if(typeof S.sfxVol!=='number')S.sfxVol=70;if(t
 if(!Array.isArray(S.bucket))S.bucket=[];
 S.uid=S.uid|0;S.bucket.forEach(b=>{if(!b.u)b.u=++S.uid});
 aqNorm();S.tank.fish.forEach(b=>{if(!b.u)b.u=++S.uid});
+setTimeout(()=>{try{rkNorm()}catch(e){}},0);
 const sel=new Set(); // 売るために選んだ魚の番号
 const tkOf=id=>TICKETS.find(x=>x.stage===id);const tkTotal=()=>Object.values(S.tickets).reduce((a,b)=>a+(b|0),0);
 const save0=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
@@ -5893,12 +5902,14 @@ const ACH=[
  {id:'old',name:'古代の覇者',desc:'古代の魚をすべて釣った',uki:'kaseki',skin:'hone',ok:()=>dexAll('kodai')},
  {id:'phantom',name:'幻を釣りし者',desc:'★8を釣った',ok:()=>FISH.some(f=>f.rar>=8&&S.dex[f.id])}
 ];
-const EVENT_TITLES=[]; // イベントの称号はここに足す
+const EVENT_TITLES=[ // イベントの称号はここに足す
+ {id:'king',get name(){return '今週の釣り王'+((S.kingN|0)>1?'×'+S.kingN:'')},desc:'週間ランキング「釣った数」で1位',ok:()=>(S.kingN|0)>0}
+];
 const achHave=id=>{const a=ACH.find(x=>x.id===id);return !!(a&&a.ok())};
 const achIds=()=>ACH.filter(a=>a.ok()).map(a=>a.id);
 const achReward=a=>[a.uki?'ウキ「'+UKIS.find(u=>u.id===a.uki).name+'」':'',a.skin?'竿「'+SKINS.find(k=>k.id===a.skin).name+'」':''].filter(Boolean).join('・');
 let achGot=[];
-const titleNow=()=>{if(typeof S.title==='string'){const a=ACH.find(x=>'a:'+x.id===S.title);return a&&a.ok()?a:null}const t=TITLES.find(x=>x.lv===S.title);return t&&S.lv>=t.lv?t:null};
+const titleNow=()=>{if(typeof S.title==='string'){const a=ACH.find(x=>'a:'+x.id===S.title)||EVENT_TITLES.find(x=>'e:'+x.id===S.title);return a&&a.ok()?a:null}const t=TITLES.find(x=>x.lv===S.title);return t&&S.lv>=t.lv?t:null};
 const rewardName=t=>t.uki?'ウキ「'+UKIS.find(u=>u.id===t.uki).name+'」':'竿「'+SKINS.find(k=>k.id===t.skin).name+'」';
 const ukiHave=u=>!!S.ukiOwn[u.id]||(u.lv&&S.lv>=u.lv)||(!!u.ach&&achHave(u.ach));
 const skinHave=k=>!!S.skinOwn[k.id]||(k.lv&&S.lv>=k.lv)||(!!k.ach&&achHave(k.ach));
@@ -6079,6 +6090,7 @@ function win(){
   if(F&&F.bx){flt.x=F.bx;flt.y=F.by;splash(F.bx,F.by,cur.rar,1,6+cur.rar*cur.rar*2)}
   hold=false;F=null;showHit(false);msg('',true);
   if(up){const g=TITLES.filter(t=>t.lv>lv0&&t.lv<=S.lv);if(g.length)S.title=g[g.length-1].lv}lvBefore=lv0;
+  rkCatch(cur.id,size);
   achGot=ACH.filter(a=>a.ok()&&!ach0.includes(a.id));if(achGot.length)S.title='a:'+achGot[achGot.length-1].id;
   misEv('catch',{f:cur,size,st:S.stage,zone:zoneOf(dist),rec,isNew});
   save();showResult(cur,size,price,isNew,rec,gain,up);setPhase('result');resultLock=CF.start(cur,Math.min(330,140+sizeT*170),isNew||rec);
@@ -6908,7 +6920,8 @@ function renderTitle(){
     const b=el('button','chip',!own?'未入手':on?'使用中':'付ける');b.type='button';b.disabled=!own||on;b.onclick=()=>{set();save();renderAll()};d.append(l,b);tl.append(d)};
   if(titleTab==='lv')TITLES.forEach(t=>{const own=S.lv>=t.lv;row(own,own&&S.title===t.lv,t.name,'Lv'+t.lv+'・報酬：'+rewardName(t),()=>{S.title=t.lv})});
   else if(titleTab==='ach')ACH.forEach(a=>{const own=a.ok();row(own,own&&S.title==='a:'+a.id,a.name,a.desc+(a.uki||a.skin?'・報酬：'+achReward(a):''),()=>{S.title='a:'+a.id})});
-  else if(!EVENT_TITLES.length)tl.append(el('div','small','まだありません。イベントの時期にここに追加されます。'));
+  else if(EVENT_TITLES.length)EVENT_TITLES.forEach(a=>{const own=a.ok();row(own,own&&S.title==='e:'+a.id,a.name,a.desc,()=>{S.title='e:'+a.id})});
+  else tl.append(el('div','small','まだありません。イベントの時期にここに追加されます。'));
 }
 const todPrev=t=>{const[c,x]=cvs(44,30);const g=x.createLinearGradient(0,0,0,30);g.addColorStop(0,t.sw[0]);g.addColorStop(.55,t.sw[0]);g.addColorStop(.56,t.sw[1]);g.addColorStop(1,t.sw[1]);x.fillStyle=g;x.beginPath();x.roundRect?x.roundRect(0,0,44,30,6):x.rect(0,0,44,30);x.fill();x.fillStyle=t.id==='night'?'#fffbe6':t.id==='dusk'?'#ffcf7a':'#fff7c9';x.beginPath();x.arc(32,9,5,0,7);x.fill();return c};
 const ukiPrev=u=>{const[c,x]=cvs(44,48);x.fillStyle='#2f86ad';x.beginPath();x.roundRect?x.roundRect(0,30,44,18,5):x.rect(0,30,44,18);x.fill();x.save();x.translate(22,33);x.scale(.4,.4);u.d(x);x.restore();return c};
@@ -6975,12 +6988,12 @@ function renderShopOki(){const ob=$('#shopOki');ob.replaceChildren();
   OKIZAO.forEach(g=>ob.append(shopRow(g.name,g.min+'分で'+g.n+'匹・★1〜'+g.max+'（所持 '+(S.okiInv[g.id]|0)+'枚）',[buyBtn('買う',g.price,true,()=>{S.okiInv[g.id]=(S.okiInv[g.id]|0)+1})])))}
 function renderAll(){if(!curBait())S.bait='';renderSide();renderSpots();renderBag();renderDex();renderShop();renderShopOki();renderOki();renderMis();renderSpotStat();renderGyo();renderNews();renderSet();menuBadges();if(!$('#p-menu').hidden)renderMenu();renderCos();renderTitle();renderAq();if(typeof refreshCode==='function')refreshCode()}
 // タブ：下の4つ（MAIN）と、メニューの中のページ（SUB）
-const MAIN=['spot','bag','shop','menu'],SUB=['oki','mis','dex','cos','title','gyo','code','set','news','help','acct'];
+const MAIN=['spot','bag','shop','menu'],SUB=['oki','mis','dex','cos','title','gyo','code','set','news','help','acct','rank'];
 function tab(k){
   [...MAIN,...SUB].forEach(j=>{const p=$('#p-'+j);if(p)p.hidden=j!==k});
   const m=MAIN.includes(k)?k:'menu';MAIN.forEach(j=>$('#t-'+j).setAttribute('aria-selected',String(j===m)));
   if(k==='code')refreshCode();if(k==='news'&&S.newsSeen!==NEWS_VER){S.newsSeen=NEWS_VER;save()}
-  if(k==='acct'){renderAcct();if(!inLineApp())clLoad().catch(()=>{})}if(k==='oki')renderOki();if(k==='mis')renderMis();if(k==='gyo')renderGyo();if(k==='menu')renderMenu();menuBadges();
+  if(k==='acct'){renderAcct();if(!inLineApp())clLoad().catch(()=>{})}if(k==='rank'){renderRank();if(!inLineApp())clLoad().then(()=>renderRank()).catch(()=>{})}if(k==='oki')renderOki();if(k==='mis')renderMis();if(k==='gyo')renderGyo();if(k==='menu')renderMenu();menuBadges();
   if(SUB.includes(k))$('#p-'+k).scrollIntoView({behavior:'smooth',block:'nearest'});
 }
 MAIN.forEach(k=>$('#t-'+k).onclick=()=>tab(k));
@@ -6992,7 +7005,7 @@ SUB.forEach(k=>{const p=$('#p-'+k),b=el('button','backb','← メニュー');b.t
 const misClaimable=()=>!!S.mis&&(S.mis.list.some(m=>m.done&&!m.got)||(S.mis.list.every(m=>m.got)&&!S.mis.bonus.got));
 const okiReady=()=>!!S.oki&&okiLeft()<=0;
 const newsNew=()=>S.newsSeen!==NEWS_VER;
-function menuBadges(){const t=$('#t-menu'),n=okiReady()||misClaimable()||newsNew();t.replaceChildren('メニュー');if(n)t.append(el('span','dot','!'))}
+function menuBadges(){const t=$('#t-menu'),n=okiReady()||misClaimable()||newsNew()||(typeof RK!=='undefined'&&!!RK.claim)||(typeof CL!=='undefined'&&!!CL.pending);t.replaceChildren('メニュー');if(n)t.append(el('span','dot','!'))}
 function renderMenu(){
   const box=$('#tiles');if(!box)return;box.replaceChildren();misEnsure();
   const left=okiLeft(),mDone=S.mis.list.filter(m=>m.got).length,tn=titleNow(),got=Object.keys(S.dex).length;
@@ -7007,6 +7020,7 @@ function renderMenu(){
    ['set','⚙','設定','音量・データ'],
    ['news','📢','お知らせ',NEWS[0].d,newsNew()?'NEW':0],
    ['help','❓','遊び方',''],
+   ['rank','🏆','ランキング',typeof CL!=='undefined'&&CL.user?(typeof RK!=='undefined'&&RK.claim?'報酬あり！':'みんなと競う'):'ログインで参加',typeof RK!=='undefined'&&!!RK.claim],
    ['acct','👤','アカウント',typeof CL!=='undefined'&&CL.user?'☁ ログイン中':(S.pname||'名前・ログイン'),typeof CL!=='undefined'&&!!CL.pending]
   ];
   T.forEach(([k,ic,name,sub,dot])=>{const b=el('button','tile');b.type='button';b.append(el('i',null,ic),el('span',null,name),el('small',null,sub||' '));
@@ -7092,6 +7106,7 @@ $('#bakLater').onclick=()=>{S.bakSnooze=Date.now();save();$('#bak').hidden=true}
 // 釣り上げのあとに、ときどきバックアップをすすめる
 function maybeAskBackup(reason){
   const now=Date.now();S.bakN=(S.bakN|0)+1;
+  if(typeof CL!=='undefined'&&CL.user&&!CL.pending)return; // ログイン中はクラウドに自動保存されるので出さない
   if(now-(S.lastBak||0)<20*60e3)return;          // 20分以内にバックアップ済み
   if(now-(S.bakSnooze||0)<15*60e3)return;        // 「あとで」から15分は出さない
   if(!(reason||S.bakN>=30))return;               // レベルアップ・★6以上・30匹ごと
@@ -7140,12 +7155,13 @@ function clAdopt(c,t){
 }
 async function clPush(){
   if(!CL.user||CL.pending||S.cloudUid!==CL.user.uid)return;
-  const {fs}=CL.mods;S.syncT=Date.now();S.cloudOn=true;save0();
-  try{await fs.setDoc(fs.doc(CL.db,'saves',CL.user.uid),{data:JSON.stringify(S),t:S.syncT,name:S.pname||'',lv:S.lv});CL.lastT=S.syncT;CL.err=''}
-  catch(e){CL.err='クラウドに保存できませんでした（電波を確認してね）'}
+  const {fs}=CL.mods;S.syncT=Date.now();S.cloudOn=true;S.cDirty=0;save0();
+  try{await fs.setDoc(fs.doc(CL.db,'saves',CL.user.uid),{data:JSON.stringify(S),t:S.syncT,name:S.pname||'',lv:S.lv});
+    fs.setDoc(fs.doc(CL.db,'ranks',CL.user.uid),rkDoc()).catch(()=>{});CL.lastT=S.syncT;CL.err=''}
+  catch(e){CL.err='クラウドに保存できませんでした（電波を確認してね）';S.cDirty=1;save0()}
   if(!$('#p-acct').hidden)renderAcct();
 }
-function clQueue(){if(!CL.user||CL.pending)return;clearTimeout(CL.timer);CL.timer=setTimeout(clPush,2500)}
+function clQueue(){if(!CL.user||CL.pending)return;if(!S.cDirty){S.cDirty=1;save0()}clearTimeout(CL.timer);CL.timer=setTimeout(clPush,2500)}
 async function clAfterLogin(){
   const {fs}=CL.mods,u=CL.user;let snap;
   try{snap=await fs.getDoc(fs.doc(CL.db,'saves',u.uid))}catch(e){CL.err='クラウドが読めませんでした（電波を確認してね）';renderAcct();return}
@@ -7154,17 +7170,17 @@ async function clAfterLogin(){
   if(!c){S.cloudUid=u.uid;clPush();return}
   const fresh0=S.lv<=1&&!Object.keys(S.dex).length&&(S.gold|0)<500;
   if(S.cloudUid===u.uid){ // この端末でいつも使っているアカウント
-    if((d.t|0)>(S.syncT|0)+1500)clAdopt(c,d.t);else{CL.lastT=d.t;if((S.syncT|0)>(d.t|0))clPush()}
+    if(S.cDirty||(S.syncT|0)>=(d.t|0)){CL.lastT=d.t;if(S.cDirty)clPush()}else if((d.t|0)>(S.syncT|0)+1500)clAdopt(c,d.t);else CL.lastT=d.t
   }else if(fresh0)clAdopt(c,d.t);
   else{CL.pending={c,t:d.t};tab('acct')} // どちらを使うか選んでもらう
-  renderAcct();
+  renderAcct();rkFetch().then(()=>menuBadges&&menuBadges()).catch(()=>{});
 }
 function nameNudge(){tab('acct');setTimeout(()=>{const i=$('#acctName');if(i)i.focus()},300);msg('プレイヤー名を決めよう！',true,2)}
 function applyData(j){
   S=Object.assign(fresh(),j);if(!ST[S.stage])S.stage='ogawa';aqNorm();if(!S.okiInv||typeof S.okiInv!=='object')S.okiInv={};if(!Array.isArray(S.gyo))S.gyo=[];
   if(typeof S.sfxVol!=='number')S.sfxVol=70;if(typeof S.bgmVol!=='number')S.bgmVol=70;AQ.fish={};if(!Array.isArray(S.bucket))S.bucket=[];
   ['ukiOwn','skinOwn','todOwn','gaugeOwn'].forEach(k=>{if(!S[k]||typeof S[k]!=='object')S[k]=fresh()[k]});if(typeof S.gauge!=='string')S.gauge='base';
-  S.uid=S.uid|0;S.bucket.forEach(x=>{if(!x.u)x.u=++S.uid});sel.clear();dexDrawn='';setSnd();
+  S.uid=S.uid|0;S.bucket.forEach(x=>{if(!x.u)x.u=++S.uid});sel.clear();dexDrawn='';setSnd();rkNorm();
 }
 function renderAcct(){
   const box=$('#acctBox');if(!box)return;box.replaceChildren();
@@ -7204,6 +7220,78 @@ function saveName(){
 }
 document.addEventListener('visibilitychange',()=>{if(document.hidden&&CL.user&&CL.timer){clearTimeout(CL.timer);CL.timer=0;clPush()}});
 if(S.cloudOn)setTimeout(()=>{clLoad().catch(()=>{})},1200);
+
+// ---------- ランキング（ログインした人どうし・Firestore の ranks/{uid}）----------
+// 期間は日本時間。週は月曜0時から。
+const RK_REWARD=[30000,15000,10000,5000,5000,5000,5000,5000,5000,5000],RK_MIN=10; // 週間「釣った数」の報酬（1〜10位）・10匹以上が対象
+const jst=t=>new Date((t||Date.now())+9*3600e3);
+const rkDay=t=>jst(t).toISOString().slice(0,10);
+const rkWeek=t=>{const d=jst(t),w=(d.getUTCDay()+6)%7;return new Date(d.getTime()-w*86400e3).toISOString().slice(0,10)};
+const rkLastWeek=()=>rkWeek(Date.now()-7*86400e3);
+function rkNorm(){
+  if(!S.rk||typeof S.rk!=='object')S.rk={n:Object.values(S.dex).reduce((a,d)=>a+(d.n|0),0),w:null,wp:null,d:null};
+  ['w','d'].forEach(k=>{const v=S.rk[k];if(!v||typeof v!=='object'||!v.best)S.rk[k]={k:'',n:0,best:{}}});
+}
+function rkRoll(){rkNorm();const wk=rkWeek(),dk=rkDay();
+  if(S.rk.w.k!==wk){if(S.rk.w.k)S.rk.wp=S.rk.w;S.rk.w={k:wk,n:0,best:{}}}
+  if(S.rk.d.k!==dk)S.rk.d={k:dk,n:0,best:{}}}
+// 自分で釣った1匹を記録（置き竿は数えない）
+function rkCatch(id,size){rkRoll();S.rk.n++;[S.rk.w,S.rk.d].forEach(p=>{p.n++;if(!(p.best[id]>=size))p.best[id]=size})}
+function rkDoc(){rkRoll();const best={};Object.entries(S.dex).forEach(([id,d])=>{if(d.best)best[id]=d.best});
+  return{name:S.pname||'名無しの釣り人',at:Date.now(),n:S.rk.n,best,w:S.rk.w,wp:S.rk.wp||null,d:S.rk.d}}
+const RK={docs:null,at:0,tab:'n',per:'w',fish:'',claim:null};
+async function rkFetch(force){
+  if(!CL.user||!CL.mods)return null;if(!force&&RK.docs&&Date.now()-RK.at<60e3)return RK.docs;
+  const {fs}=CL.mods;try{const q=await fs.getDocs(fs.collection(CL.db,'ranks'));RK.docs=q.docs.map(x=>Object.assign({uid:x.id},x.data()));RK.at=Date.now();RK.err=''}
+  catch(e){RK.err='ランキングが読めませんでした（電波を確認してね）'}
+  rkCalcClaim();return RK.docs;
+}
+// 期間ごとの値（その期間のデータがない人は0）
+function rkVal(doc,tab,per,fish){
+  let p=null;if(per==='a')p=doc;else if(per==='w'){const k=rkWeek();p=doc.w&&doc.w.k===k?doc.w:null}else{const k=rkDay();p=doc.d&&doc.d.k===k?doc.d:null}
+  if(!p)return 0;return tab==='n'?(p.n|0):((p.best||{})[fish]||0);
+}
+function rkRank(rows){let last=null,r=0;rows.forEach((x,i)=>{if(x.v!==last){r=i+1;last=x.v}x.r=r});return rows}
+// 先週の「釣った数」の結果と報酬
+function rkCalcClaim(){
+  RK.claim=null;if(!RK.docs||!CL.user)return;const lw=rkLastWeek();
+  const rows=RK.docs.map(d=>{const p=d.w&&d.w.k===lw?d.w:d.wp&&d.wp.k===lw?d.wp:null;return{uid:d.uid,name:d.name,v:p?(p.n|0):0}}).filter(x=>x.v>=RK_MIN).sort((a,b)=>b.v-a.v);
+  rkRank(rows);const me=rows.find(x=>x.uid===CL.user.uid);
+  RK.last={lw,rows,me};if(me&&me.r<=RK_REWARD.length&&S.rkClaim!==lw)RK.claim={lw,r:me.r,g:RK_REWARD[me.r-1],v:me.v};
+}
+function rkClaim(){
+  const c=RK.claim;if(!c||S.rkClaim===c.lw)return;S.rkClaim=c.lw;S.gold+=c.g;if(c.r===1)S.kingN=(S.kingN|0)+1;
+  if(c.r===1&&!S.title)S.title='e:king';RK.claim=null;save();renderAll();renderRank();beep(1320,.08,'square',.04);
+  msg('🏆 先週'+c.r+'位の報酬 '+yen(c.g)+(c.r===1?'・称号「今週の釣り王」':'')+'！',true,2.6);
+}
+async function renderRank(){
+  const box=$('#rankBox');if(!box)return;box.replaceChildren();
+  if(!CL.user){box.append(el('div','small','ランキングは、メニューの「アカウント」でGoogleにログインすると参加・表示できます。'));
+    const b=el('button','chip','👤 アカウントへ');b.type='button';b.onclick=()=>tab('acct');box.append(b);return}
+  box.append(el('div','small','読み込み中…'));await rkFetch();box.replaceChildren();
+  if(RK.err)box.append(el('div','acct-warn',RK.err));if(!RK.docs)return;
+  // 先週の結果と報酬
+  const L=RK.last,lb=el('div','rk-last');
+  if(RK.claim){lb.append(el('div',null,'🏆 先週の「釣った数」'+RK.claim.r+'位（'+RK.claim.v+'匹）！'));const b=el('button','sell','報酬 '+yen(RK.claim.g)+(RK.claim.r===1?'＋称号「今週の釣り王」':'')+' を受け取る');b.type='button';b.onclick=rkClaim;lb.append(b)}
+  else if(L&&L.me)lb.append(el('div',null,'先週の結果：'+L.me.r+'位（'+L.me.v+'匹）'+(S.rkClaim===L.lw&&L.me.r<=RK_REWARD.length?'・受け取り済み':'')));
+  else lb.append(el('div','small','週間の「釣った数」で10位までに報酬（1位 30,000G＋称号／2位 15,000G／3位 10,000G／4〜10位 5,000G）。その週に'+RK_MIN+'匹以上釣った人が対象。翌週にここで受け取れます。'));
+  box.append(lb);
+  // タブ
+  const tb=el('div','row ttabs');[['n','釣った数'],['s','魚の大きさ']].forEach(([k,n])=>{const b=el('button','chip',n);b.type='button';b.setAttribute('aria-pressed',String(RK.tab===k));b.onclick=()=>{RK.tab=k;renderRank()};tb.append(b)});box.append(tb);
+  const pb=el('div','row ttabs');[['a','通算'],['w','週間'],['d','日間']].forEach(([k,n])=>{const b=el('button','chip',n);b.type='button';b.setAttribute('aria-pressed',String(RK.per===k));b.onclick=()=>{RK.per=k;renderRank()};pb.append(b)});box.append(pb);
+  // 魚えらび（自分の図鑑にある魚だけ＝ネタバレなし）
+  if(RK.tab==='s'){const mine=FISH.filter(f=>S.dex[f.id]);if(!mine.length){box.append(el('div','small','図鑑に魚がふえると選べます'));return}
+    if(!S.dex[RK.fish])RK.fish=mine[0].id;const sl=document.createElement('select');sl.className='rk-sel';
+    mine.forEach(f=>{const o=document.createElement('option');o.value=f.id;o.textContent='★'+f.rar+' '+f.name;if(f.id===RK.fish)o.selected=true;sl.append(o)});
+    sl.onchange=()=>{RK.fish=sl.value;renderRank()};box.append(sl)}
+  const rows=rkRank(RK.docs.map(d=>({uid:d.uid,name:d.name||'名無しの釣り人',v:rkVal(d,RK.tab,RK.per,RK.fish)})).filter(x=>x.v>0).sort((a,b)=>b.v-a.v));
+  const unit=RK.tab==='n'?'匹':'cm',list=el('div','rk-list');
+  if(!rows.length)list.append(el('div','small',RK.per==='d'?'今日の記録はまだありません':RK.per==='w'?'今週の記録はまだありません':'記録はまだありません'));
+  rows.slice(0,20).forEach(x=>{const it=el('div','rk-row'+(x.uid===CL.user.uid?' me':''));it.append(el('b',null,x.r<=3?['🥇','🥈','🥉'][x.r-1]:x.r+'位'),el('span',null,x.name),el('i',null,(RK.tab==='n'?x.v.toLocaleString():x.v)+unit));list.append(it)});
+  const me=rows.find(x=>x.uid===CL.user.uid);if(me&&me.r>20){const it=el('div','rk-row me');it.append(el('b',null,me.r+'位'),el('span',null,me.name),el('i',null,me.v+unit));list.append(it)}
+  box.append(list);
+  const rf=el('button','chip','↻ 更新');rf.type='button';rf.onclick=()=>{RK.at=0;renderRank()};box.append(rf);
+}
 
 // 背景・魚の画像を先に読み込む
 STAGES.forEach(s=>img(s.bg));FISH.forEach(f=>img(f.img));
