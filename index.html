@@ -6484,16 +6484,23 @@ let aqMode=false,aqEdit=false,aqSel=-1,aqDrag=null;
 const AQ={cv:null,fish:{},food:[]};
 function aqSpriteSize(f){const s=pxSprite(pxKey(f.img));return s?[Math.min(s.width,170),s.height]:[24,10]}
 const aqBottom=f=>'chxb'.includes(f.shape);
+// 水槽の魚：ドット絵は元の大きさ（または整数倍）でくっきり描く。縦長の人魚などが小さくぼやけないように
+function aqSprite(c,a,x,y){
+  const pk=pxKey(a.f.img),im=pk&&pxSprite(pk);
+  if(!im){drawFish(c,x,y,24*a.k,a.f,a.flip,false);return}
+  const k=a.w/im.width,w=a.w,h=im.height*k;c.save();c.translate(Math.round(x),Math.round(y));c.scale(a.flip?-1:1,1);c.imageSmoothingEnabled=k<1;
+  c.drawImage(im,Math.round(-w/2),Math.round(-h/2),Math.round(w),Math.round(h));c.restore();
+}
 function aqActor(e){
   let a=AQ.fish[e.u];if(a)return a;
   const f=FISH.find(x=>x.id===e.id);if(!f)return null;
   let [w,h]=aqSpriteSize(f);const bot=aqBottom(f),k=e.size>=300&&w*2<=170?2:1;w*=k;h*=k;
-  a=AQ.fish[e.u]={f,w,h,k,bot,x:rnd(w/2,AQW-w/2),y:bot?AQFLOOR-h/2:rnd(24+h/2,AQFLOOR-h/2-4),tx:0,ty:0,t:0,flip:Math.random()<.5,sp:bot?4+Math.random()*3:9+Math.random()*9};
+  a=AQ.fish[e.u]={f,w,h,k,bot,x:rnd(w/2,AQW-w/2),y:bot?AQFLOOR-h/2:rnd(24+h/2,AQFLOOR-h/2-4),tx:0,ty:0,t:0,flip:Math.random()<.5,sp:f.shape==='b'?0:bot?4+Math.random()*3:9+Math.random()*9}; // 宝箱・玉手箱は動かない
   return a;
 }
 function aqUpdate(dt){
   const list=aqT().fish;
-  list.forEach(e=>{const a=aqActor(e);if(!a)return;
+  list.forEach(e=>{const a=aqActor(e);if(!a)return;if(!a.sp)return; // 宝箱などは置物
     let tx=a.tx,ty=a.ty,sp=a.sp;
     const food=!a.bot&&AQ.food.length?AQ.food.reduce((b,p)=>Math.hypot(p.x-a.x,p.y-a.y)<Math.hypot(b.x-a.x,b.y-a.y)?p:b):null;
     if(food){tx=food.x;ty=food.y;sp=a.sp*2.2;if(Math.hypot(food.x-a.x-(a.flip?-1:1)*a.w*.3,food.y-a.y)<6)food.eat=1}
@@ -6540,7 +6547,7 @@ function aqRender(dt){
   AQ.food.forEach(p=>R1(c,p.x,p.y,2,2,'#c8803a'));
   // 魚
   aqUpdate(dt);
-  T.fish.slice().sort((a,b)=>(AQ.fish[a.u]?AQ.fish[a.u].y:0)-(AQ.fish[b.u]?AQ.fish[b.u].y:0)).forEach(e=>{const a=AQ.fish[e.u];if(!a)return;drawFish(c,a.x,a.y+(a.bot?0:Math.sin(clock*2+e.u)*1),24*a.k,a.f,a.flip,false)});
+  T.fish.slice().sort((a,b)=>(AQ.fish[a.u]?AQ.fish[a.u].y:0)-(AQ.fish[b.u]?AQ.fish[b.u].y:0)).forEach(e=>{const a=AQ.fish[e.u];if(!a)return;aqSprite(c,a,a.x,a.y+(a.bot?0:Math.sin(clock*2+e.u)*1))});
   // 時間帯
   const tod=TODS.find(x=>x.id===S.tod);
   if(tod&&tod.mul){c.save();c.globalCompositeOperation='multiply';c.fillStyle=tod.mul;c.fillRect(0,0,AQW,AQH);c.restore()}
