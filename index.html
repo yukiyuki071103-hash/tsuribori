@@ -115,6 +115,8 @@ details summary{font-weight:700;font-size:13px;cursor:pointer;color:var(--muted)
 .aqm{margin:8px 0 4px;padding:8px 10px;border-radius:12px;background:#fff8e1;border:1px solid #f2d27a;font-size:13px;line-height:1.7}
 .aqm .row{align-items:center;justify-content:space-between;flex-wrap:nowrap;gap:8px}
 .aqm b{color:#b5650a}
+.acct{display:flex;flex-direction:column;gap:8px}.acct .sell{width:100%;white-space:normal;line-height:1.5}
+.acct-warn{color:#b3261e;font-size:13px;font-weight:700;line-height:1.6}.acct-ok{color:#1b7a3d;font-size:13px;font-weight:700}.acct-q{font-weight:700;font-size:14px}
 .gyog{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
 .gyof.gold{border-color:#d4a017;box-shadow:inset 0 0 0 2px #fff3b0,0 0 0 1px #8a6508,0 0 12px rgba(255,210,80,.7),0 3px 8px rgba(0,0,0,.25)}
 .gyof{border:7px solid #6b4a2a;border-radius:4px;box-shadow:inset 0 0 0 2px #c9a46a,0 3px 8px rgba(0,0,0,.25);background:#f1e6cf;padding:0;cursor:pointer}
@@ -468,9 +470,9 @@ const OKI_W=[50,30,13,5,2]; // 置き竿で★1〜5が出る割合（上限よ�
 const OKI_NEW=1;            // 未発見の魚のかかりやすさ（倍）。1=補正なし
 const OKI_XP=1/3;           // 経験値は通常の釣りの何倍か
 // お知らせ（アップデートのたびに上に足す。NEWS_VER を変えるとメニューに NEW が付く）
-const NEWS_VER='2026-11-15j';
+const NEWS_VER='2026-11-15k';
 const NEWS=[
- {d:'2026/11/15',t:['ナイスアワセ：浮きが水中に消えた瞬間にアワセると、ゲージが多めの状態からスタート（くわしくは遊び方）','前アタリ：アタリの前に浮きがピクッと動くように','水槽の設備ボーナス：背景・砂・ライト・飾りで見物料アップ（最大+60%）','釣りゲージの着せ替え（9種類）。ショップの「着せ替え」で','釣り上げの進み具合をゲージのすぐ上に','水槽の見物料：水槽の魚がゴールドを稼ぐように（今日の人気者は2倍・エサやりで+50%）','ショップがタブ分けに（道具・券・着せ替え・水槽）。着せ替えと水槽の買い物はショップで','着せ替えには持っているものだけ表示','称号ページが「レベル称号・実績称号・イベント称号」のタブに','天空・古代で釣った魚の魚拓は金の額縁に','釣れたときの音と演出が★ごとに変わるように（★5以上はキラキラ・後光）','宝箱は「チャリーン！」',
+ {d:'2026/11/15',t:['アカウント：Googleでログインするとクラウドに自動セーブ（メニュー →「アカウント」）。プレイヤー名も決められます','ナイスアワセ：浮きが水中に消えた瞬間にアワセると、ゲージが多めの状態からスタート（くわしくは遊び方）','前アタリ：アタリの前に浮きがピクッと動くように','水槽の設備ボーナス：背景・砂・ライト・飾りで見物料アップ（最大+60%）','釣りゲージの着せ替え（9種類）。ショップの「着せ替え」で','釣り上げの進み具合をゲージのすぐ上に','水槽の見物料：水槽の魚がゴールドを稼ぐように（今日の人気者は2倍・エサやりで+50%）','ショップがタブ分けに（道具・券・着せ替え・水槽）。着せ替えと水槽の買い物はショップで','着せ替えには持っているものだけ表示','称号ページが「レベル称号・実績称号・イベント称号」のタブに','天空・古代で釣った魚の魚拓は金の額縁に','釣れたときの音と演出が★ごとに変わるように（★5以上はキラキラ・後光）','宝箱は「チャリーン！」',
   '天空・古代に専用のBGM（いつもの曲と釣り上げ中の曲）','★7・★8が暴れだすと、釣り上げ中の曲が少し速く・高くなるように']},
  {d:'2026/11/15',t:['新しい魚21種（シャチ・イッカク・マッコウクジラ・クロコダイル・オニイトマキエイなど）','メニューができました（置き竿・ミッション・図鑑・着せ替え・称号・魚拓・セーブコード・設定・お知らせ）','魚拓ギャラリー：釣った魚を魚拓にして飾れる（12枚まで）','デイリーミッション：毎日3つ・報酬はランダム・1日1回チェンジ','置き竿：4種類。時間がたつと魚がかかる（経験値は1/3）','キャストのメーターが「真ん中が奥」に','BGM・効果音の音量を調整できるように','買う・売るは2回タップで決定に','釣り画面の文字にふち取り']},
  {d:'2026/11/14',t:['レベル称号（Lv10ごと）と報酬のウキ・竿','釣り上げ中の演出：ウキが近づく・竿が揺れる・水しぶき','魚影はゲージ80%で正体が分かるように','左右の合図はゲージの下に','宝箱が全部の釣り場に・宝箱は抵抗しない','キャストのキャンセル・魚のロック','新しい魚17種（ハコフグ〜ザトウクジラ）']}
@@ -5200,6 +5202,13 @@ const PX={
     <div><h3>データ</h3><button class="sell" id="reset" type="button" style="background:#c8402a">データを消す</button>
       <div class="small" style="margin-top:4px">消す前に「セーブコード」でバックアップしておくと安心です。</div></div>
   </section>
+  <section class="panel" id="p-acct" hidden>
+    <div><h3>プレイヤー名</h3>
+      <div class="small" style="margin-bottom:6px">釣果画面とLINEのセーブ文に出ます（10文字まで・同じ名前OK・いつでも変えられます）。</div>
+      <div class="row" style="flex-wrap:nowrap;gap:6px"><input id="acctName" maxlength="20" placeholder="なまえ" style="flex:1;min-width:0;font:inherit;font-size:16px;padding:9px 10px;border-radius:10px;border:1.5px solid #c9d3dc"><button class="chip" id="acctNameBtn" type="button">決定</button></div>
+    </div>
+    <div><h3>アカウント（クラウドセーブ）</h3><div id="acctBox" class="acct"></div></div>
+  </section>
   <section class="panel" id="p-news" hidden>
     <div><h3>お知らせ（アップデート情報）</h3><div class="news" id="newsList"></div></div>
   </section>
@@ -5279,6 +5288,7 @@ const PX={
         <li>データはこのブラウザに自動で保存されます。閉じても消えません。</li>
         <li>ただし、<b>ブラウザのデータを消す・シークレットモード・別のアプリや端末で開く</b>と、データは引き継がれません。</li>
         <li><b>セーブコードでバックアップ</b>しておくと安心です。</li>
+        <li><b>アカウント</b>：メニューの「アカウント」で<b>Googleでログイン</b>すると、データがクラウドに自動で保存され、別のスマホでも同じデータで遊べます（ログインしなくても遊べます）。LINEの中のブラウザではログインできないので、SafariやChromeで開いてね。</li>
       </ul>
       <ol>
         <li>「メニュー」→「セーブコード」→「<b>LINEで送る</b>」を押す。</li>
@@ -5368,7 +5378,7 @@ const MAXLV=100;
 
 // ---------- セーブ ----------
 const KEY='honobono-tsuribori-v3';
-const fresh=()=>({gold:0,xp:0,lv:1,stage:'ogawa',rod:'base',rodInv:{},bait:'',baitInv:{},tickets:{},tCasts:{},dex:{},bucket:[],snd:true,group:'川',uki:'base',ukiOwn:{base:1},skin:'none',skinOwn:{none:1},gauge:'base',gaugeOwn:{base:1},tod:'day',todOwn:{morning:1,day:1},okiInv:{},oki:null,gyo:[],sfxVol:70,bgmVol:70,tank:freshTank()});
+const fresh=()=>({gold:0,xp:0,lv:1,stage:'ogawa',rod:'base',rodInv:{},bait:'',baitInv:{},tickets:{},tCasts:{},dex:{},bucket:[],snd:true,group:'川',uki:'base',ukiOwn:{base:1},skin:'none',skinOwn:{none:1},pname:'',cloudOn:false,cloudUid:'',syncT:0,gauge:'base',gaugeOwn:{base:1},tod:'day',todOwn:{morning:1,day:1},okiInv:{},oki:null,gyo:[],sfxVol:70,bgmVol:70,tank:freshTank()});
 function freshTank(){return{size:0,bg:'river',bgOwn:{river:1},sand:'std',sandOwn:{std:1},light:'none',lightOwn:{none:1},deco:[],decoOwn:{},fish:[],bank:0,payT:Date.now(),feedT:0,pop:{d:'',id:''}}}
 function aqNorm(){const t=Object.assign(freshTank(),S.tank&&typeof S.tank==='object'?S.tank:{});['bgOwn','sandOwn','lightOwn','decoOwn'].forEach(k=>{if(!t[k]||typeof t[k]!=='object')t[k]=freshTank()[k]});if(!Array.isArray(t.deco))t.deco=[];if(!Array.isArray(t.fish))t.fish=[];t.size=clamp(t.size|0,0,3);
   if(typeof t.bank!=='number'||!(t.bank>=0))t.bank=0;if(typeof t.payT!=='number')t.payT=Date.now();if(typeof t.feedT!=='number')t.feedT=0;if(!t.pop||typeof t.pop!=='object')t.pop={d:'',id:''};S.tank=t}
@@ -5390,7 +5400,8 @@ S.uid=S.uid|0;S.bucket.forEach(b=>{if(!b.u)b.u=++S.uid});
 aqNorm();S.tank.fish.forEach(b=>{if(!b.u)b.u=++S.uid});
 const sel=new Set(); // 売るために選んだ魚の番号
 const tkOf=id=>TICKETS.find(x=>x.stage===id);const tkTotal=()=>Object.values(S.tickets).reduce((a,b)=>a+(b|0),0);
-const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
+const save0=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
+const save=()=>{save0();if(typeof clQueue==='function')clQueue()}; // ログイン中はクラウドにも（少しまとめて）保存
 const curRod=()=>RODS.find(r=>r.id===S.rod)||RODS[0];
 const curBait=()=>BAITS.find(b=>b.id===S.bait&&(S.baitInv[b.id]|0)>0)||null;
 
@@ -6089,7 +6100,7 @@ function showResult(f,s,price,isNew,rec,gain,up){
   $('#rsub').textContent=sub;
   const c=$('#rcv').getContext('2d');c.clearRect(0,0,400,180);
   drawFish(c,200,90,Math.min(330,140+sizeT*170),f,false,false);
-  const tn=titleNow();$('#rtitle').hidden=!tn;$('#rtitle').textContent=tn?'〔'+tn.name+'〕の釣果':'';
+  const tn=titleNow();$('#rtitle').hidden=!tn&&!S.pname;$('#rtitle').textContent=(S.pname||'')+(tn?'〔'+tn.name+'〕':'')+'の釣果';
   setLockBtn();setGyoBtn();$('#result').classList.add('on');
 }
 function closeResult(){CF.stop();$('#result').classList.remove('on');setPhase('idle');afterCatch();if(misToast){msg(misToast,true,2.6);misToast=''}}
@@ -6964,15 +6975,16 @@ function renderShopOki(){const ob=$('#shopOki');ob.replaceChildren();
   OKIZAO.forEach(g=>ob.append(shopRow(g.name,g.min+'分で'+g.n+'匹・★1〜'+g.max+'（所持 '+(S.okiInv[g.id]|0)+'枚）',[buyBtn('買う',g.price,true,()=>{S.okiInv[g.id]=(S.okiInv[g.id]|0)+1})])))}
 function renderAll(){if(!curBait())S.bait='';renderSide();renderSpots();renderBag();renderDex();renderShop();renderShopOki();renderOki();renderMis();renderSpotStat();renderGyo();renderNews();renderSet();menuBadges();if(!$('#p-menu').hidden)renderMenu();renderCos();renderTitle();renderAq();if(typeof refreshCode==='function')refreshCode()}
 // タブ：下の4つ（MAIN）と、メニューの中のページ（SUB）
-const MAIN=['spot','bag','shop','menu'],SUB=['oki','mis','dex','cos','title','gyo','code','set','news','help'];
+const MAIN=['spot','bag','shop','menu'],SUB=['oki','mis','dex','cos','title','gyo','code','set','news','help','acct'];
 function tab(k){
   [...MAIN,...SUB].forEach(j=>{const p=$('#p-'+j);if(p)p.hidden=j!==k});
   const m=MAIN.includes(k)?k:'menu';MAIN.forEach(j=>$('#t-'+j).setAttribute('aria-selected',String(j===m)));
   if(k==='code')refreshCode();if(k==='news'&&S.newsSeen!==NEWS_VER){S.newsSeen=NEWS_VER;save()}
-  if(k==='oki')renderOki();if(k==='mis')renderMis();if(k==='gyo')renderGyo();if(k==='menu')renderMenu();menuBadges();
+  if(k==='acct'){renderAcct();if(!inLineApp())clLoad().catch(()=>{})}if(k==='oki')renderOki();if(k==='mis')renderMis();if(k==='gyo')renderGyo();if(k==='menu')renderMenu();menuBadges();
   if(SUB.includes(k))$('#p-'+k).scrollIntoView({behavior:'smooth',block:'nearest'});
 }
 MAIN.forEach(k=>$('#t-'+k).onclick=()=>tab(k));
+$('#acctNameBtn').onclick=saveName;$('#acctName').onkeydown=e=>{if(e.key==='Enter')saveName()};
 $('#cosToShop').onclick=()=>{shopTab='cos';renderCos();tab('shop')};
 $('#aqToShop').onclick=()=>{shopTab='aq';renderCos();tab('shop')};
 SUB.forEach(k=>{const p=$('#p-'+k),b=el('button','backb','← メニュー');b.type='button';b.onclick=()=>tab('menu');p.prepend(b)});
@@ -6994,7 +7006,8 @@ function renderMenu(){
    ['code','💾','セーブコード','バックアップ'],
    ['set','⚙','設定','音量・データ'],
    ['news','📢','お知らせ',NEWS[0].d,newsNew()?'NEW':0],
-   ['help','❓','遊び方','']
+   ['help','❓','遊び方',''],
+   ['acct','👤','アカウント',typeof CL!=='undefined'&&CL.user?'☁ ログイン中':(S.pname||'名前・ログイン'),typeof CL!=='undefined'&&!!CL.pending]
   ];
   T.forEach(([k,ic,name,sub,dot])=>{const b=el('button','tile');b.type='button';b.append(el('i',null,ic),el('span',null,name),el('small',null,sub||' '));
     if(dot)b.append(el('span','dot',dot===true?'!':dot));b.onclick=()=>tab(k);box.append(b)});
@@ -7067,7 +7080,7 @@ let codeNow='';
 async function refreshCode(){
   codeNow=await makeCode();$('#cOut').value=codeNow;
   const d=new Date(),ds=(d.getMonth()+1)+'/'+d.getDate()+' '+d.getHours()+':'+String(d.getMinutes()).padStart(2,'0');
-  const tn=titleNow(),text='【ほのぼの釣り堀 セーブコード】Lv'+S.lv+(tn?'〔'+tn.name+'〕':'')+'・'+ds+'\n戻すとき：ゲームの「メニュー」→「セーブコード」→この文章をまるごと貼り付け→「読み込む」\n'+codeNow;
+  const tn=titleNow(),text='【ほのぼの釣り堀 セーブコード】'+(S.pname?S.pname+' ':'')+'Lv'+S.lv+(tn?'〔'+tn.name+'〕':'')+'・'+ds+'\n戻すとき：ゲームの「メニュー」→「セーブコード」→この文章をまるごと貼り付け→「読み込む」\n'+codeNow;
   const href='https://line.me/R/share?text='+encodeURIComponent(text);
   $('#cLine').href=href;$('#bakLine').href=href;
 }
@@ -7101,6 +7114,96 @@ $('#cLoad').onclick=async()=>{
   S.uid=S.uid|0;S.bucket.forEach(x=>{if(!x.u)x.u=++S.uid});sel.clear();
   save();dexDrawn='';setSnd();renderAll();$('#cIn').value='';out.textContent='読み込みました！';msg('セーブコードを読み込みました',true,2);
 };
+
+// ---------- アカウント（Firebase：Googleでログイン → クラウドに自動セーブ）----------
+const FB_CFG={apiKey:"AIzaSyAoZRrpsrSxs7DHCLR-gf6gbsvfmFCtASw",authDomain:"honobono-tsuribori.firebaseapp.com",projectId:"honobono-tsuribori",
+  storageBucket:"honobono-tsuribori.firebasestorage.app",messagingSenderId:"900348541922",appId:"1:900348541922:web:e1e0b3e59dafb7bcf4d7bb"};
+const FB_VER='10.12.2';
+const CL={mods:null,loading:null,fail:'',user:null,pending:null,timer:0,lastT:0,err:''};
+const inLineApp=()=>/\bLine\//i.test(navigator.userAgent);
+function clLoad(){
+  if(CL.mods)return Promise.resolve(CL.mods);if(CL.loading)return CL.loading;
+  const base='https://www.gstatic.com/firebasejs/'+FB_VER+'/';
+  CL.loading=Promise.all([import(base+'firebase-app.js'),import(base+'firebase-auth.js'),import(base+'firebase-firestore.js')]).then(([a,au,fs])=>{
+    const app=a.initializeApp(FB_CFG);CL.auth=au.getAuth(app);CL.db=fs.getFirestore(app);CL.mods={au,fs};
+    au.onAuthStateChanged(CL.auth,u=>{CL.user=u;if(u)clAfterLogin();else{CL.pending=null}renderAcct();renderMenu&&renderMenu()});
+    renderAcct();return CL.mods;
+  }).catch(e=>{CL.fail='この場所ではログインできません。ゲームのURL（GitHub版）をSafariやChromeで開いてね。';CL.loading=null;renderAcct();throw e});
+  return CL.loading;
+}
+const clSum=d=>'Lv'+(d.lv|0)+'・'+yen(d.gold|0)+'・図鑑'+Object.keys(d.dex||{}).length+'種';
+const clTime=t=>{if(!t)return '';const d=new Date(t);return (d.getMonth()+1)+'/'+d.getDate()+' '+d.getHours()+':'+String(d.getMinutes()).padStart(2,'0')};
+// クラウドのデータを、この端末に読み込む
+function clAdopt(c,t){
+  if(busy()){setTimeout(()=>clAdopt(c,t),2000);return}
+  applyData(c);S.cloudUid=CL.user.uid;S.syncT=t;S.cloudOn=true;save0();CL.lastT=t;renderAll();msg('☁ クラウドのデータで遊びます',true,2);
+}
+async function clPush(){
+  if(!CL.user||CL.pending||S.cloudUid!==CL.user.uid)return;
+  const {fs}=CL.mods;S.syncT=Date.now();S.cloudOn=true;save0();
+  try{await fs.setDoc(fs.doc(CL.db,'saves',CL.user.uid),{data:JSON.stringify(S),t:S.syncT,name:S.pname||'',lv:S.lv});CL.lastT=S.syncT;CL.err=''}
+  catch(e){CL.err='クラウドに保存できませんでした（電波を確認してね）'}
+  if(!$('#p-acct').hidden)renderAcct();
+}
+function clQueue(){if(!CL.user||CL.pending)return;clearTimeout(CL.timer);CL.timer=setTimeout(clPush,2500)}
+async function clAfterLogin(){
+  const {fs}=CL.mods,u=CL.user;let snap;
+  try{snap=await fs.getDoc(fs.doc(CL.db,'saves',u.uid))}catch(e){CL.err='クラウドが読めませんでした（電波を確認してね）';renderAcct();return}
+  if(!snap.exists()){S.cloudUid=u.uid;await clPush();msg('☁ クラウドセーブを始めました',true,2);if(!S.pname)nameNudge();return}
+  const d=snap.data();let c;try{c=JSON.parse(d.data)}catch(e){c=null}
+  if(!c){S.cloudUid=u.uid;clPush();return}
+  const fresh0=S.lv<=1&&!Object.keys(S.dex).length&&(S.gold|0)<500;
+  if(S.cloudUid===u.uid){ // この端末でいつも使っているアカウント
+    if((d.t|0)>(S.syncT|0)+1500)clAdopt(c,d.t);else{CL.lastT=d.t;if((S.syncT|0)>(d.t|0))clPush()}
+  }else if(fresh0)clAdopt(c,d.t);
+  else{CL.pending={c,t:d.t};tab('acct')} // どちらを使うか選んでもらう
+  renderAcct();
+}
+function nameNudge(){tab('acct');setTimeout(()=>{const i=$('#acctName');if(i)i.focus()},300);msg('プレイヤー名を決めよう！',true,2)}
+function applyData(j){
+  S=Object.assign(fresh(),j);if(!ST[S.stage])S.stage='ogawa';aqNorm();if(!S.okiInv||typeof S.okiInv!=='object')S.okiInv={};if(!Array.isArray(S.gyo))S.gyo=[];
+  if(typeof S.sfxVol!=='number')S.sfxVol=70;if(typeof S.bgmVol!=='number')S.bgmVol=70;AQ.fish={};if(!Array.isArray(S.bucket))S.bucket=[];
+  ['ukiOwn','skinOwn','todOwn','gaugeOwn'].forEach(k=>{if(!S[k]||typeof S[k]!=='object')S[k]=fresh()[k]});if(typeof S.gauge!=='string')S.gauge='base';
+  S.uid=S.uid|0;S.bucket.forEach(x=>{if(!x.u)x.u=++S.uid});sel.clear();dexDrawn='';setSnd();
+}
+function renderAcct(){
+  const box=$('#acctBox');if(!box)return;box.replaceChildren();
+  const ni=$('#acctName');if(ni&&document.activeElement!==ni)ni.value=S.pname||'';
+  const p=(t,c)=>{const d=el('div',c||'small',t);box.append(d);return d};
+  if(inLineApp()){p('⚠ LINEの中のブラウザでは、Googleログインができません。右下の「…」→「ブラウザで開く」でSafariやChromeで開いてね。','acct-warn');return}
+  if(CL.fail){p(CL.fail,'acct-warn');return}
+  if(!CL.mods){p('準備中…');return}
+  if(CL.pending){
+    const {c,t}=CL.pending;p('このアカウントには、クラウドにデータがあります。どちらで遊ぶ？','acct-q');
+    const b1=el('button','sell','☁ クラウドのデータ（'+clSum(c)+'・'+clTime(t)+'）');b1.type='button';
+    confirmTap(b1,()=>{const q=CL.pending;CL.pending=null;clAdopt(q.c,q.t)},'もう一度押すと、この端末のデータは消えます');
+    const b2=el('button','sell','📱 この端末のデータ（'+clSum(S)+'）をクラウドへ');b2.type='button';
+    confirmTap(b2,()=>{CL.pending=null;S.cloudUid=CL.user.uid;clPush();msg('☁ この端末のデータをクラウドに保存しました',true,2)},'もう一度押すと、クラウドのデータは消えます');
+    box.append(b1,b2);p('迷ったら、セーブコードでバックアップしてから選ぶと安心です。');return;
+  }
+  if(CL.user){
+    p('✅ Googleでログイン中。釣ったり買ったりすると、自動でクラウドに保存されます。','acct-ok');
+    if(CL.lastT)p('最後にクラウドに保存：'+clTime(CL.lastT));
+    if(CL.err)p(CL.err,'acct-warn');
+    const b=el('button','chip','ログアウト');b.type='button';
+    confirmTap(b,()=>{clPush().finally(()=>CL.mods.au.signOut(CL.auth));S.cloudOn=false;save0();msg('ログアウトしました（データはこの端末にも残っています）',true,2)},'もう一度でログアウト');
+    box.append(b);return;
+  }
+  p('Googleでログインすると、データがクラウドに自動で保存されて、別のスマホでも続きから遊べます。ログインしなくても、今まで通り遊べます。');
+  const b=el('button','sell','Googleでログイン');b.type='button';b.style.background='#4285f4';
+  b.onclick=()=>{const {au}=CL.mods;au.signInWithPopup(CL.auth,new au.GoogleAuthProvider()).catch(e=>{
+    const c=e&&e.code||'';if(c.includes('popup-closed')||c.includes('cancelled'))return;
+    msg(c.includes('popup-blocked')?'もう一度押してね':c.includes('unauthorized-domain')?'このURLではログインできません':'ログインできませんでした',true,2.2)})};
+  box.append(b);
+  if(CL.err)p(CL.err,'acct-warn');
+}
+function saveName(){
+  const v=Array.from(($('#acctName').value||'').trim()).slice(0,10).join('');
+  if(!v){msg('名前を入れてね',true,1.4);return}
+  S.pname=v;save();renderAll();msg('「'+v+'」にしました',true,1.6);
+}
+document.addEventListener('visibilitychange',()=>{if(document.hidden&&CL.user&&CL.timer){clearTimeout(CL.timer);CL.timer=0;clPush()}});
+if(S.cloudOn)setTimeout(()=>{clLoad().catch(()=>{})},1200);
 
 // 背景・魚の画像を先に読み込む
 STAGES.forEach(s=>img(s.bg));FISH.forEach(f=>img(f.img));
