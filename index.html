@@ -10,6 +10,10 @@
 @media (prefers-color-scheme:dark){:root{--bg:#0a1a23;--panel:#12293a;--fg:#e3f1f6;--muted:#8fb0bf;--line:#22445b;--chip:#0f2230;color-scheme:dark}}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--f-b);font-size:15px;line-height:1.5;padding:8px max(10px,env(safe-area-inset-left)) 28px;-webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none}
+/* iPhoneで長押ししたときの虫眼鏡・文字選択・メニューを出さない（入力欄は除く） */
+body{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+input,textarea,select{-webkit-user-select:text;user-select:text;-webkit-touch-callout:default}
+#act,#stage,#cv{touch-action:manipulation}
 #app{max-width:480px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
 button{font:inherit;color:inherit;cursor:pointer}
 #stage{position:relative;border-radius:18px;overflow:hidden;background:#0e4a73;touch-action:none;box-shadow:0 4px 14px rgba(0,0,0,.15)}
@@ -6178,6 +6182,8 @@ $('#stage').addEventListener('pointermove',e=>{if(aqMode)aqMove(e);if(rmMode)rmM
 $('#act').addEventListener('pointerdown',onDown);
 $('#stage').addEventListener('pointerdown',onDown);
 addEventListener('pointerup',onUp);addEventListener('pointercancel',onUp);
+// iPhone：長押しで虫眼鏡や選択が出ないように（釣りボタンと画面だけ）
+['#act','#cv'].forEach(q=>{const n=$(q);if(!n)return;n.addEventListener('touchstart',e=>{if(e.touches.length===1)e.preventDefault()},{passive:false});n.addEventListener('contextmenu',e=>e.preventDefault())});
 addEventListener('keydown',e=>{if(e.code==='Space'&&!e.repeat){e.preventDefault();onDown(e)}});
 addEventListener('keyup',e=>{if(e.code==='Space')onUp()});
 
