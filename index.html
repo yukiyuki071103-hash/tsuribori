@@ -93,7 +93,10 @@ nav button[aria-selected="true"]{background:var(--water);color:#fff;border-color
 .lkb[aria-pressed="true"]{background:#ffd45c;border-color:#e0a800;color:#3a2a00}
 .aqb{position:absolute;right:8px;top:46px;border:0;border-radius:10px;background:rgba(40,60,75,.78);color:#fff;font-weight:700;font-size:12.5px;padding:5px 9px}
 #aqInfo{position:absolute;left:10px;right:10px;bottom:10px;background:rgba(10,30,45,.85);color:#fff;border-radius:10px;padding:6px 10px;font-size:13px;font-weight:700;white-space:pre-line;pointer-events:none;text-align:center}
-#stage.aqon .side{display:none}
+#stage.aqon .side,#stage.rmon .side{display:none}
+.aqb.rmb{top:80px}#stage.rmon .aqb.rmb{top:46px}
+#rtitle:not([hidden]){display:flex;align-items:center;justify-content:center;gap:6px}.avhead{border-radius:6px;background:#dff0ff;flex:none}
+.avsw{display:flex;flex-wrap:wrap;gap:6px}.avsw button{width:26px;height:26px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1.5px #c9d3dc;padding:0}.avsw button[aria-pressed="true"]{box-shadow:0 0 0 3px #ff8a3d}
 details summary{font-weight:700;font-size:13px;cursor:pointer;color:var(--muted)}
 .dex{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:6px}
 .dc{border:1px solid var(--line);border-radius:10px;padding:4px;background:var(--chip);display:flex;flex-direction:column;align-items:center;font-size:11px;text-align:center}
@@ -115,6 +118,8 @@ details summary{font-weight:700;font-size:13px;cursor:pointer;color:var(--muted)
 .aqm{margin:8px 0 4px;padding:8px 10px;border-radius:12px;background:#fff8e1;border:1px solid #f2d27a;font-size:13px;line-height:1.7}
 .aqm .row{align-items:center;justify-content:space-between;flex-wrap:nowrap;gap:8px}
 .aqm b{color:#b5650a}
+.upd{position:fixed;left:8px;right:8px;top:calc(8px + env(safe-area-inset-top));z-index:50;display:flex;align-items:center;gap:8px;padding:10px 12px;border-radius:14px;background:#1d2340;color:#fff;font-size:13px;font-weight:700;box-shadow:0 4px 14px rgba(0,0,0,.3)}
+.upd span{flex:1;line-height:1.5}.upd button{font:inherit;font-size:13px;border:0;border-radius:10px;padding:8px 10px;background:#ffd447;color:#3a2600;font-weight:700;white-space:nowrap}.upd button.x{background:transparent;color:#fff;padding:6px}
 .rk{display:flex;flex-direction:column;gap:8px}.rk .ttabs{margin:0}.rk-last{background:#fff8e1;border:1px solid #f2d27a;border-radius:12px;padding:8px 10px;font-size:13px;font-weight:700;display:flex;flex-direction:column;gap:6px}
 .rk-list{display:flex;flex-direction:column;gap:4px}.rk-row{display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:10px;background:#f2f6f9;font-size:14px}
 .rk-row b{width:42px;text-align:center}.rk-row span{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.rk-row i{font-style:normal;font-weight:700}
@@ -474,9 +479,9 @@ const OKI_W=[50,30,13,5,2]; // 置き竿で★1〜5が出る割合（上限よ�
 const OKI_NEW=1;            // 未発見の魚のかかりやすさ（倍）。1=補正なし
 const OKI_XP=1/3;           // 経験値は通常の釣りの何倍か
 // お知らせ（アップデートのたびに上に足す。NEWS_VER を変えるとメニューに NEW が付く）
-const NEWS_VER='2026-11-15l';
+const NEWS_VER='2026-11-15m';
 const NEWS=[
- {d:'2026/11/15',t:['ランキング：釣った数・魚の大きさを通算／週間／日間で（メニュー →「ランキング」・ログインした人が参加）。週間の釣った数で10位までは報酬あり','アカウント：Googleでログインするとクラウドに自動セーブ（メニュー →「アカウント」）。プレイヤー名も決められます','ナイスアワセ：浮きが水中に消えた瞬間にアワセると、ゲージが多めの状態からスタート（くわしくは遊び方）','前アタリ：アタリの前に浮きがピクッと動くように','水槽の設備ボーナス：背景・砂・ライト・飾りで見物料アップ（最大+60%）','釣りゲージの着せ替え（9種類）。ショップの「着せ替え」で','釣り上げの進み具合をゲージのすぐ上に','水槽の見物料：水槽の魚がゴールドを稼ぐように（今日の人気者は2倍・エサやりで+50%）','ショップがタブ分けに（道具・券・着せ替え・水槽）。着せ替えと水槽の買い物はショップで','着せ替えには持っているものだけ表示','称号ページが「レベル称号・実績称号・イベント称号」のタブに','天空・古代で釣った魚の魚拓は金の額縁に','釣れたときの音と演出が★ごとに変わるように（★5以上はキラキラ・後光）','宝箱は「チャリーン！」',
+ {d:'2026/11/15',t:['釣り人の部屋とアバター！ 釣り場の「🏠 部屋」で着替え・模様替え。魚拓やはく製を飾ったり、水槽も置けます','アップデートがあると画面の上にお知らせが出るように','ランキング：釣った数・魚の大きさを通算／週間／日間で（メニュー →「ランキング」・ログインした人が参加）。週間の釣った数で10位までは報酬あり','アカウント：Googleでログインするとクラウドに自動セーブ（メニュー →「アカウント」）。プレイヤー名も決められます','ナイスアワセ：浮きが水中に消えた瞬間にアワセると、ゲージが多めの状態からスタート（くわしくは遊び方）','前アタリ：アタリの前に浮きがピクッと動くように','水槽の設備ボーナス：背景・砂・ライト・飾りで見物料アップ（最大+60%）','釣りゲージの着せ替え（9種類）。ショップの「着せ替え」で','釣り上げの進み具合をゲージのすぐ上に','水槽の見物料：水槽の魚がゴールドを稼ぐように（今日の人気者は2倍・エサやりで+50%）','ショップがタブ分けに（道具・券・着せ替え・水槽）。着せ替えと水槽の買い物はショップで','着せ替えには持っているものだけ表示','称号ページが「レベル称号・実績称号・イベント称号」のタブに','天空・古代で釣った魚の魚拓は金の額縁に','釣れたときの音と演出が★ごとに変わるように（★5以上はキラキラ・後光）','宝箱は「チャリーン！」',
   '天空・古代に専用のBGM（いつもの曲と釣り上げ中の曲）','★7・★8が暴れだすと、釣り上げ中の曲が少し速く・高くなるように']},
  {d:'2026/11/15',t:['新しい魚21種（シャチ・イッカク・マッコウクジラ・クロコダイル・オニイトマキエイなど）','メニューができました（置き竿・ミッション・図鑑・着せ替え・称号・魚拓・セーブコード・設定・お知らせ）','魚拓ギャラリー：釣った魚を魚拓にして飾れる（12枚まで）','デイリーミッション：毎日3つ・報酬はランダム・1日1回チェンジ','置き竿：4種類。時間がたつと魚がかかる（経験値は1/3）','キャストのメーターが「真ん中が奥」に','BGM・効果音の音量を調整できるように','買う・売るは2回タップで決定に','釣り画面の文字にふち取り']},
  {d:'2026/11/14',t:['レベル称号（Lv10ごと）と報酬のウキ・竿','釣り上げ中の演出：ウキが近づく・竿が揺れる・水しぶき','魚影はゲージ80%で正体が分かるように','左右の合図はゲージの下に','宝箱が全部の釣り場に・宝箱は抵抗しない','キャストのキャンセル・魚のロック','新しい魚17種（ハコフグ〜ザトウクジラ）']}
@@ -5150,6 +5155,7 @@ const PX={
     <div id="msg"></div>
     <div id="hit"><span>ヒット!!</span></div>
     <button type="button" class="aqb" id="aqBtn">🐟 水槽</button>
+    <button type="button" class="aqb rmb" id="rmBtn">🏠 部屋</button>
     <button type="button" class="cnb" id="cancelBtn" hidden>✕ やめる</button>
     <div id="aqInfo" hidden></div>
     <div id="result" role="dialog" aria-label="釣果">
@@ -5167,6 +5173,20 @@ const PX={
   </div>
   <div class="bak" id="bak" hidden><span id="bakMsg">バックアップしておく？</span><a class="line" id="bakLine" href="#" target="_blank" rel="noopener">LINEで送る</a><button type="button" id="bakLater">あとで</button></div>
   <button id="act" type="button">キャスト</button>
+  <section class="panel" id="p-rm" hidden>
+    <div class="row" style="justify-content:space-between;align-items:center;flex-wrap:nowrap"><b style="font-size:13.5px">🏠 わたしの部屋</b><button class="chip" id="rmEditBtn" type="button" style="white-space:nowrap;flex:none">模様替え</button></div>
+    <div class="small">水槽をタップすると水槽へ、釣り人をタップするとあいさつします。</div>
+    <div id="rmEditBox" hidden>
+      <div class="row" id="rmSelBox" style="align-items:center;margin:6px 0"></div>
+      <h3>家具 <span id="rmCount"></span></h3><div class="row" id="rmOwn"></div>
+      <h3>魚拓を飾る <span id="rmGyoCount"></span></h3><div class="row" id="rmGyo"></div>
+      <h3>壁紙</h3><div class="row" id="rmWall"></div>
+      <h3>床</h3><div class="row" id="rmFloor"></div>
+      <h3>窓の外（行ったことのある釣り場）</h3><div class="row" id="rmWin"></div>
+    </div>
+    <div><h3>👕 着替え</h3><div id="rmAv"></div></div>
+    <button class="chip" id="rmToShop" type="button">🛒 部屋のお店へ（壁紙・床・家具・はく製）</button>
+  </section>
   <section class="panel" id="p-aq" hidden>
     <div class="row" style="justify-content:space-between;align-items:center;flex-wrap:nowrap"><b id="aqHead" style="font-size:13.5px"></b><button class="chip" id="aqEditBtn" type="button" style="white-space:nowrap;flex:none">模様替え</button></div>
     <div id="aqMoney" class="aqm"></div>
@@ -5242,13 +5262,19 @@ const PX={
     <div data-st="tk"><h3>置き竿の券（メニューの「置き竿」で置く）</h3><div class="list" id="shopOki"></div></div>
     <div data-st="cos"><div class="small">買うとすぐに付きます。付け替えはメニューの「着せ替え」で。性能は変わりません。</div></div>
     <div data-st="cos"><h3>時間帯（全ステージと水槽に反映）</h3><div class="list" id="shopTod"></div></div>
+    <div data-st="cos"><h3>アバターの服・帽子・持ち物</h3><div class="list" id="shopAv"></div></div>
     <div data-st="cos"><h3>ウキ</h3><div class="list" id="shopUki"></div></div>
     <div data-st="cos"><h3>竿の見た目</h3><div class="list" id="shopSkin"></div></div>
     <div data-st="cos"><h3>釣りゲージ</h3><div class="list" id="shopGauge"></div></div>
     <div data-st="aq"><div class="list" id="aqShop"></div></div>
+    <div data-st="room"><h3>壁紙</h3><div class="list" id="shopRoomWall"></div></div>
+    <div data-st="room"><h3>床</h3><div class="list" id="shopRoomFloor"></div></div>
+    <div data-st="room"><h3>家具（模様替えで置く・家具は15個まで）</h3><div class="list" id="shopRoomFurn"></div></div>
+    <div data-st="room"><h3>はく製（図鑑の魚から作る）</h3><div class="list" id="shopRoomHk"></div></div>
   </section>
   <section class="panel" id="p-cos" hidden>
     <div class="small">持っている着せ替えです（性能は変わりません）。<button class="chip" id="cosToShop" type="button" style="margin-left:6px">🛒 ショップで探す</button></div>
+    <div class="small">アバターの着替えは、釣り場の「🏠 部屋」でできます。</div>
     <div><h3>時間帯</h3><div class="list" id="cosTod"></div></div>
     <div><h3>ウキ</h3><div class="list" id="cosUki"></div></div>
     <div><h3>竿の見た目</h3><div class="list" id="cosRod"></div></div>
@@ -5295,6 +5321,7 @@ const PX={
         <li>データはこのブラウザに自動で保存されます。閉じても消えません。</li>
         <li>ただし、<b>ブラウザのデータを消す・シークレットモード・別のアプリや端末で開く</b>と、データは引き継がれません。</li>
         <li><b>セーブコードでバックアップ</b>しておくと安心です。</li>
+        <li><b>釣り人の部屋</b>：釣り場の右上「🏠 部屋」で、自分の部屋へ。下のボタン「👕 着替え」でアバターを着替え、「模様替え」で家具・魚拓（6枚まで）・はく製を置けます。水槽は今の大きさで置かれ、タップすると水槽へ。壁紙・床・家具はショップの「部屋」、服や帽子はショップの「着せ替え」で。アバターはランキングと釣果画面にも出ます。</li>
         <li><b>ランキング</b>：ログインしている人どうしで「釣った数」と「魚の大きさ」（自分の図鑑にある魚だけ）を通算・週間・日間で競います。週間の釣った数で10位まで（その週に10匹以上）は、翌週にランキングのページで報酬を受け取れます。1位は称号「今週の釣り王」も。置き竿の分は数えません。</li>
         <li><b>アカウント</b>：メニューの「アカウント」で<b>Googleでログイン</b>すると、データがクラウドに自動で保存され、別のスマホでも同じデータで遊べます（ログインしなくても遊べます）。LINEの中のブラウザではログインできないので、SafariやChromeで開いてね。</li>
       </ul>
@@ -5386,7 +5413,7 @@ const MAXLV=100;
 
 // ---------- セーブ ----------
 const KEY='honobono-tsuribori-v3';
-const fresh=()=>({gold:0,xp:0,lv:1,stage:'ogawa',rod:'base',rodInv:{},bait:'',baitInv:{},tickets:{},tCasts:{},dex:{},bucket:[],snd:true,group:'川',uki:'base',ukiOwn:{base:1},skin:'none',skinOwn:{none:1},pname:'',rk:null,rkClaim:'',kingN:0,cloudOn:false,cloudUid:'',syncT:0,gauge:'base',gaugeOwn:{base:1},tod:'day',todOwn:{morning:1,day:1},okiInv:{},oki:null,gyo:[],sfxVol:70,bgmVol:70,tank:freshTank()});
+const fresh=()=>({gold:0,xp:0,lv:1,stage:'ogawa',rod:'base',rodInv:{},bait:'',baitInv:{},tickets:{},tCasts:{},dex:{},bucket:[],snd:true,group:'川',uki:'base',ukiOwn:{base:1},skin:'none',skinOwn:{none:1},pname:'',av:null,avOwn:{},room:null,rk:null,rkClaim:'',kingN:0,cloudOn:false,cloudUid:'',syncT:0,gauge:'base',gaugeOwn:{base:1},tod:'day',todOwn:{morning:1,day:1},okiInv:{},oki:null,gyo:[],sfxVol:70,bgmVol:70,tank:freshTank()});
 function freshTank(){return{size:0,bg:'river',bgOwn:{river:1},sand:'std',sandOwn:{std:1},light:'none',lightOwn:{none:1},deco:[],decoOwn:{},fish:[],bank:0,payT:Date.now(),feedT:0,pop:{d:'',id:''}}}
 function aqNorm(){const t=Object.assign(freshTank(),S.tank&&typeof S.tank==='object'?S.tank:{});['bgOwn','sandOwn','lightOwn','decoOwn'].forEach(k=>{if(!t[k]||typeof t[k]!=='object')t[k]=freshTank()[k]});if(!Array.isArray(t.deco))t.deco=[];if(!Array.isArray(t.fish))t.fish=[];t.size=clamp(t.size|0,0,3);
   if(typeof t.bank!=='number'||!(t.bank>=0))t.bank=0;if(typeof t.payT!=='number')t.payT=Date.now();if(typeof t.feedT!=='number')t.feedT=0;if(!t.pop||typeof t.pop!=='object')t.pop={d:'',id:''};S.tank=t}
@@ -5610,7 +5637,7 @@ function bgmSet(name){
   BGM.step=0;BGM.next=AC.currentTime+.08;BGM.timer=setInterval(bgmTick,60);bgmTick();
 }
 // 天空・古代は専用の曲（水槽はいつもの「のんびり」）
-const bgmWant=()=>{const sp=S.stage==='tenku'?'sky':S.stage==='kodai'?'old':'';if(aqMode)return 'calm';if(ph==='fight')return sp?sp+'Fight':'excite';return sp?sp+'Calm':'calm'};
+const bgmWant=()=>{const sp=S.stage==='tenku'?'sky':S.stage==='kodai'?'old':'';if(aqMode||rmMode)return 'calm';if(ph==='fight')return sp?sp+'Fight':'excite';return sp?sp+'Calm':'calm'};
 let audioOk=false;
 addEventListener('pointerdown',()=>{if(!audioOk&&audioReady()){audioOk=true;bgmSet(bgmWant())}},true);
 document.addEventListener('visibilitychange',()=>{if(document.hidden){bgmSet(null);try{AC&&AC.suspend()}catch(e){}}else if(audioOk){try{AC&&AC.resume()}catch(e){}bgmSet(bgmWant())}});
@@ -5962,7 +5989,7 @@ function showHit(on){const h=$('#hit');if(!on){h.className='';return}
   const c=ECOL[eLv-1];h.className='on'+(c==='rainbow'?' rb':'');h.firstChild.style.color=c==='rainbow'?'':c;}
 function setPhase(p){ph=p;pt=0;const b=$('#act');if(audioOk)bgmSet(bgmWant());
   b.textContent={idle:'キャスト',meter:'止める',cast:'……',wait:'アタリを待つ…',bite:'アワセ！',fight:'おして浮かせる',result:'つぎへ'}[p];b.classList.remove('hold');
-  $('#cancelBtn').hidden=aqMode||!(p==='meter'||p==='cast'||p==='wait')}
+  $('#cancelBtn').hidden=aqMode||rmMode||!(p==='meter'||p==='cast'||p==='wait')}
 const ripple=(x,y,s)=>ripples.push({x,y,r:2,a:.9,s:s||1});
 const floatAt=d=>({x:178+(d-.5)*20,y:332-d*140});
 const scaleAt=y=>clamp((y-HOR)/(H-HOR),.12,1);
@@ -5993,17 +6020,17 @@ function expectLv(r,floor){
 
 function startMeter(){
   const st=ST[S.stage];
-  if(st.ticket&&(S.tCasts[st.id]|0)<=0){
-    const tk=tkOf(st.id);
-    if((S.tickets[st.id]|0)>0){S.tickets[st.id]--;S.tCasts[st.id]=tk.casts;save();renderAll();msg('チケットを1枚使った（'+tk.casts+'投）',true,1.6)}
-    else{msg(st.name+'のチケットがありません（ショップで買えます）',true,2);return}
-  }
+  // チケットは「あるか」だけ確認。実際に使うのは投げたとき（メーター中にやめても減らない）
+  if(st.ticket&&(S.tCasts[st.id]|0)<=0&&(S.tickets[st.id]|0)<=0){msg(st.name+'のチケットがありません（ショップで買えます）',true,2);return}
   meter=Math.random();meterDir=1;msg('',true);setPhase('meter');
 }
 function doCast(){
   dist=meter;
   const st=ST[S.stage];
-  if(st.ticket)S.tCasts[st.id]--;
+  if(st.ticket){
+    if((S.tCasts[st.id]|0)<=0){const tk=tkOf(st.id);S.tickets[st.id]--;S.tCasts[st.id]=tk.casts;msg('チケットを1枚使った（'+tk.casts+'投）',true,1.6)}
+    S.tCasts[st.id]--;
+  }
   cur=pickFish();
   // 消費（竿・エサ）
   misEvCast={rod:!isSpecial()&&S.rod!=='base',bait:!isSpecial()&&!!curBait()};
@@ -6112,7 +6139,7 @@ function showResult(f,s,price,isNew,rec,gain,up){
   $('#rsub').textContent=sub;
   const c=$('#rcv').getContext('2d');c.clearRect(0,0,400,180);
   drawFish(c,200,90,Math.min(330,140+sizeT*170),f,false,false);
-  const tn=titleNow();$('#rtitle').hidden=!tn&&!S.pname;$('#rtitle').textContent=(S.pname||'')+(tn?'〔'+tn.name+'〕':'')+'の釣果';
+  const tn=titleNow();$('#rtitle').hidden=false;$('#rtitle').replaceChildren(avHead(S.av,22),el('span',null,(S.pname||'あなた')+(tn?'〔'+tn.name+'〕':'')+'の釣果'));
   setLockBtn();setGyoBtn();$('#result').classList.add('on');
 }
 function closeResult(){CF.stop();$('#result').classList.remove('on');setPhase('idle');afterCatch();if(misToast){msg(misToast,true,2.6);misToast=''}}
@@ -6136,6 +6163,7 @@ function onDown(e){
   if(e&&e.target&&e.target.closest&&e.target.closest('.side,.aqb,.cnb,.lkb'))return;
   if(e&&e.preventDefault)e.preventDefault();
   if(AC&&AC.state==='suspended')AC.resume();
+  if(rmMode){if(e&&(e.code==='Space'||(e.target&&e.target.id==='act'))){const a=$('#rmAv');if(a)a.scrollIntoView({behavior:'smooth',block:'center'})}else rmDown(e);return}
   if(aqMode){if(e&&(e.code==='Space'||(e.target&&e.target.id==='act')))aqFeed();else aqDown(e);return}
   if(ph==='idle')startMeter();
   else if(ph==='meter'){curRodAtCast=castRod();doCast()}
@@ -6145,8 +6173,8 @@ function onDown(e){
   else if(ph==='result'&&resultLock<=0)closeResult();
   if(ph==='fight')$('#act').classList.add('hold');
 }
-function onUp(){hold=false;$('#act').classList.remove('hold');aqUp()}
-$('#stage').addEventListener('pointermove',e=>{if(aqMode)aqMove(e)});
+function onUp(){hold=false;$('#act').classList.remove('hold');aqUp();rmUp()}
+$('#stage').addEventListener('pointermove',e=>{if(aqMode)aqMove(e);if(rmMode)rmMove(e)});
 $('#act').addEventListener('pointerdown',onDown);
 $('#stage').addEventListener('pointerdown',onDown);
 addEventListener('pointerup',onUp);addEventListener('pointercancel',onUp);
@@ -6313,6 +6341,7 @@ function drawGauge(){
   else{cx.fillStyle='#fff';cx.font='11px sans-serif';oText(F.stage2?'暴れに耐えろ！ あと'+Math.max(0,F.rage).toFixed(1)+'秒':'魚に合わせてボタンを押し続けよう',W/2,y+43)}
 }
 function render(dt){
+  if(rmMode){rmDraw(dt);return}
   if(aqMode){aqDraw(dt);return}
   cx.save();
   if(F&&F.shake>0){const a=F.stage2?4:2;cx.translate(rnd(-a,a)*F.shake,rnd(-a,a)*F.shake)}
@@ -6476,7 +6505,8 @@ function aqFeed(){
   if(T.feedT>now)T.feedT=0; // 時計の巻き戻し対策
   if(now-T.feedT>=AQ_FEED_CD){aqAccrue();T.feedT=now;save();aqMoneyUI();msg('🍤 ボーナス！ 1時間+50%',true,2.2)}
 }
-function aqDraw(dt){
+function aqDraw(dt){aqRender(dt);cx.save();cx.imageSmoothingEnabled=false;cx.drawImage(AQ.cv,0,0,W,H);cx.restore()}
+function aqRender(dt){
   if(!AQ.cv){AQ.cv=document.createElement('canvas');AQ.cv.width=AQW;AQ.cv.height=AQH}
   const c=AQ.cv.getContext('2d'),T=aqT(),bg=aqBg();c.imageSmoothingEnabled=false;c.clearRect(0,0,AQW,AQH);
   // 背景（ドット絵らしく段々に）
@@ -6512,7 +6542,6 @@ function aqDraw(dt){
     [[30,26],[86,30],[140,24]].forEach(([x,w])=>{c.beginPath();c.moveTo(x,0);c.lineTo(x+w,0);c.lineTo(x+w+18,AQH);c.lineTo(x-18,AQH);c.fill()});c.restore()}
   // 枠
   R1(c,0,0,AQW,1,'rgba(255,255,255,.35)');
-  cx.save();cx.imageSmoothingEnabled=false;cx.drawImage(AQ.cv,0,0,W,H);cx.restore();
 }
 // ---- 操作 ----
 function aqPos(e){const r=$('#cv').getBoundingClientRect();return[(e.clientX-r.left)/r.width*AQW,(e.clientY-r.top)/r.height*AQH]}
@@ -6536,7 +6565,7 @@ function aqToggle(){
   if(!aqMode&&busy()){msg('釣りの最中は水槽を見られないよ',true,1.5);return}
   aqMode=!aqMode;aqEdit=false;if(audioOk)setTimeout(()=>bgmSet(bgmWant()));aqSel=-1;$('#aqInfo').hidden=true;
   $('#stage').classList.toggle('aqon',aqMode);$('#p-aq').hidden=!aqMode;
-  aqBtnLabel();
+  aqBtnLabel();rmBtnLabel();
   $('#act').textContent=aqMode?'エサやり':'キャスト';msg('',true);
   if(aqMode)$('#p-aq').scrollIntoView({behavior:'smooth',block:'nearest'});
   renderSide();renderAq();
@@ -6817,7 +6846,7 @@ function el(tag,cls,txt){const e=document.createElement(tag);if(cls)e.className=
 function busy(){return ph!=='idle'&&ph!=='result'}
 function renderSide(){
   const st=ST[S.stage],rod=curRod(),b=curBait();
-  $('#hStage').textContent=aqMode?'わたしの水槽':st.name;$('#hLv').textContent='Lv'+S.lv;$('#hGold').textContent=yen(S.gold);$('#hTk').textContent='券 '+tkTotal();
+  $('#hStage').textContent=aqMode?'わたしの水槽':rmMode?'わたしの部屋':st.name;$('#hLv').textContent='Lv'+S.lv;$('#hGold').textContent=yen(S.gold);$('#hTk').textContent='券 '+tkTotal();
   $('#xpbar').style.width=(S.lv>=MAXLV?100:Math.min(100,S.xp/need(S.lv)*100))+'%';
   $('#sRodN').textContent=st.ticket?SPECIAL_RODS[st.id].short:rod.id==='base'?'基本 ∞':'残'+(S.rodInv[rod.id]|0);
   $('#sBaitN').textContent=st.ticket?'固定':b?b.id+'×'+S.baitInv[b.id]:'なし';
@@ -6951,8 +6980,9 @@ function renderCos(){
     if(lock){const b=r.querySelector('button');b.disabled=true;r.querySelector('span span').append(el('div','small',ST[g.need].name+'で1匹釣ると買える'))}sg.append(r)});empty(sg);
   // ショップのタブ
   const tt=$('#shopTabs');tt.replaceChildren();
-  [['tool','道具'],['tk','券'],['cos','着せ替え'],['aq','水槽']].forEach(([k,n])=>{const b=el('button','chip',n);b.type='button';b.setAttribute('aria-pressed',String(shopTab===k));b.onclick=()=>{shopTab=k;renderCos()};tt.append(b)});
+  [['tool','道具'],['tk','券'],['cos','着せ替え'],['aq','水槽'],['room','部屋']].forEach(([k,n])=>{const b=el('button','chip',n);b.type='button';b.setAttribute('aria-pressed',String(shopTab===k));b.onclick=()=>{shopTab=k;renderCos()};tt.append(b)});
   document.querySelectorAll('#p-shop [data-st]').forEach(d=>d.hidden=d.dataset.st!==shopTab);
+  if(typeof renderRmShop==='function')renderRmShop();
 }
 
 let dexDrawn='',lockMode=false,bkSort='dex';const bkOpen=new Set();
@@ -6986,7 +7016,7 @@ function renderShop(){
 }
 function renderShopOki(){const ob=$('#shopOki');ob.replaceChildren();
   OKIZAO.forEach(g=>ob.append(shopRow(g.name,g.min+'分で'+g.n+'匹・★1〜'+g.max+'（所持 '+(S.okiInv[g.id]|0)+'枚）',[buyBtn('買う',g.price,true,()=>{S.okiInv[g.id]=(S.okiInv[g.id]|0)+1})])))}
-function renderAll(){if(!curBait())S.bait='';renderSide();renderSpots();renderBag();renderDex();renderShop();renderShopOki();renderOki();renderMis();renderSpotStat();renderGyo();renderNews();renderSet();menuBadges();if(!$('#p-menu').hidden)renderMenu();renderCos();renderTitle();renderAq();if(typeof refreshCode==='function')refreshCode()}
+function renderAll(){if(!curBait())S.bait='';renderSide();renderSpots();renderBag();renderDex();renderShop();renderShopOki();renderOki();renderMis();renderSpotStat();renderGyo();renderNews();renderSet();menuBadges();if(!$('#p-menu').hidden)renderMenu();renderCos();renderTitle();renderAq();if(typeof renderRm==='function'&&rmMode)renderRm();if(typeof refreshCode==='function')refreshCode()}
 // タブ：下の4つ（MAIN）と、メニューの中のページ（SUB）
 const MAIN=['spot','bag','shop','menu'],SUB=['oki','mis','dex','cos','title','gyo','code','set','news','help','acct','rank'];
 function tab(k){
@@ -7043,7 +7073,8 @@ $('#sfxVol').addEventListener('change',()=>beep(880,.1,'triangle'));
 $('#bgmVol').addEventListener('input',e=>{S.bgmVol=+e.target.value;$('#bgmVolN').textContent=S.bgmVol;save();try{if(BGM.g)BGM.g.gain.setTargetAtTime(bgmK(),AC.currentTime,.05)}catch(_){}});
 const goBag=()=>{tab('bag');$('#p-bag').scrollIntoView({behavior:'smooth'})};
 $('#sRod').onclick=goBag;$('#sBait').onclick=goBag;$('#sTk').onclick=()=>{tab('shop');$('#p-shop').scrollIntoView({behavior:'smooth'})};
-$('#aqBtn').onclick=aqToggle;
+$('#aqBtn').onclick=aqToggle;$('#rmBtn').onclick=rmToggle;$('#rmEditBtn').onclick=()=>{rmEdit=!rmEdit;rmSel=-1;renderRm()};
+$('#rmToShop').onclick=()=>{shopTab='room';renderCos();tab('shop')};
 $('#aqEditBtn').onclick=()=>{aqEdit=!aqEdit;aqSel=-1;renderAq()};
 $('#aqIn').onclick=aqAddFromBucket;
 confirmTap($('#sellall'),()=>{
@@ -7180,7 +7211,7 @@ function applyData(j){
   S=Object.assign(fresh(),j);if(!ST[S.stage])S.stage='ogawa';aqNorm();if(!S.okiInv||typeof S.okiInv!=='object')S.okiInv={};if(!Array.isArray(S.gyo))S.gyo=[];
   if(typeof S.sfxVol!=='number')S.sfxVol=70;if(typeof S.bgmVol!=='number')S.bgmVol=70;AQ.fish={};if(!Array.isArray(S.bucket))S.bucket=[];
   ['ukiOwn','skinOwn','todOwn','gaugeOwn'].forEach(k=>{if(!S[k]||typeof S[k]!=='object')S[k]=fresh()[k]});if(typeof S.gauge!=='string')S.gauge='base';
-  S.uid=S.uid|0;S.bucket.forEach(x=>{if(!x.u)x.u=++S.uid});sel.clear();dexDrawn='';setSnd();rkNorm();
+  S.uid=S.uid|0;S.bucket.forEach(x=>{if(!x.u)x.u=++S.uid});sel.clear();dexDrawn='';setSnd();rkNorm();rmNorm();
 }
 function renderAcct(){
   const box=$('#acctBox');if(!box)return;box.replaceChildren();
@@ -7238,7 +7269,7 @@ function rkRoll(){rkNorm();const wk=rkWeek(),dk=rkDay();
 // 自分で釣った1匹を記録（置き竿は数えない）
 function rkCatch(id,size){rkRoll();S.rk.n++;[S.rk.w,S.rk.d].forEach(p=>{p.n++;if(!(p.best[id]>=size))p.best[id]=size})}
 function rkDoc(){rkRoll();const best={};Object.entries(S.dex).forEach(([id,d])=>{if(d.best)best[id]=d.best});
-  return{name:S.pname||'名無しの釣り人',at:Date.now(),n:S.rk.n,best,w:S.rk.w,wp:S.rk.wp||null,d:S.rk.d}}
+  return{name:S.pname||'名無しの釣り人',av:S.av,at:Date.now(),n:S.rk.n,best,w:S.rk.w,wp:S.rk.wp||null,d:S.rk.d}}
 const RK={docs:null,at:0,tab:'n',per:'w',fish:'',claim:null};
 async function rkFetch(force){
   if(!CL.user||!CL.mods)return null;if(!force&&RK.docs&&Date.now()-RK.at<60e3)return RK.docs;
@@ -7284,15 +7315,327 @@ async function renderRank(){
     if(!S.dex[RK.fish])RK.fish=mine[0].id;const sl=document.createElement('select');sl.className='rk-sel';
     mine.forEach(f=>{const o=document.createElement('option');o.value=f.id;o.textContent='★'+f.rar+' '+f.name;if(f.id===RK.fish)o.selected=true;sl.append(o)});
     sl.onchange=()=>{RK.fish=sl.value;renderRank()};box.append(sl)}
-  const rows=rkRank(RK.docs.map(d=>({uid:d.uid,name:d.name||'名無しの釣り人',v:rkVal(d,RK.tab,RK.per,RK.fish)})).filter(x=>x.v>0).sort((a,b)=>b.v-a.v));
+  const rows=rkRank(RK.docs.map(d=>({uid:d.uid,av:d.av,name:d.name||'名無しの釣り人',v:rkVal(d,RK.tab,RK.per,RK.fish)})).filter(x=>x.v>0).sort((a,b)=>b.v-a.v));
   const unit=RK.tab==='n'?'匹':'cm',list=el('div','rk-list');
   if(!rows.length)list.append(el('div','small',RK.per==='d'?'今日の記録はまだありません':RK.per==='w'?'今週の記録はまだありません':'記録はまだありません'));
-  rows.slice(0,20).forEach(x=>{const it=el('div','rk-row'+(x.uid===CL.user.uid?' me':''));it.append(el('b',null,x.r<=3?['🥇','🥈','🥉'][x.r-1]:x.r+'位'),el('span',null,x.name),el('i',null,(RK.tab==='n'?x.v.toLocaleString():x.v)+unit));list.append(it)});
-  const me=rows.find(x=>x.uid===CL.user.uid);if(me&&me.r>20){const it=el('div','rk-row me');it.append(el('b',null,me.r+'位'),el('span',null,me.name),el('i',null,me.v+unit));list.append(it)}
+  rows.slice(0,20).forEach(x=>{const it=el('div','rk-row'+(x.uid===CL.user.uid?' me':''));it.append(el('b',null,x.r<=3?['🥇','🥈','🥉'][x.r-1]:x.r+'位'),avHead(x.av,26),el('span',null,x.name),el('i',null,(RK.tab==='n'?x.v.toLocaleString():x.v)+unit));list.append(it)});
+  const me=rows.find(x=>x.uid===CL.user.uid);if(me&&me.r>20){const it=el('div','rk-row me');it.append(el('b',null,me.r+'位'),avHead(me.av,26),el('span',null,me.name),el('i',null,me.v+unit));list.append(it)}
   box.append(list);
   const rf=el('button','chip','↻ 更新');rf.type='button';rf.onclick=()=>{RK.at=0;renderRank()};box.append(rf);
 }
 
+// ---------- 新しい版のお知らせ（公開中のファイルの NEWS_VER と比べる）----------
+const UPD={shown:false,last:0};
+async function updCheck(){
+  if(UPD.shown||!/^https?:$/.test(location.protocol)||/claude\.(ai|site)|claudeusercontent/.test(location.hostname))return;
+  if(Date.now()-UPD.last<10*60e3)return;UPD.last=Date.now();
+  try{const r=await fetch(location.pathname+'?vc='+Date.now(),{cache:'no-store'});if(!r.ok)return;
+    const m=(await r.text()).match(/const NEWS_VER='([^']+)'/);if(m&&m[1]!==NEWS_VER)updShow(m[1])}catch(e){}
+}
+function updShow(v){
+  UPD.shown=true;const bar=el('div','upd');bar.append(el('span',null,'🔄 アップデートがあります。ブラウザの更新をしてください。'));
+  const b=el('button',null,'今すぐ更新');b.type='button';
+  b.onclick=()=>{if(busy()){msg('釣りが終わってから押してね',true,1.6);return}save0();location.replace(location.pathname+'?v='+encodeURIComponent(v))};
+  const x=el('button','x','✕');x.type='button';x.onclick=()=>bar.remove();
+  bar.append(b,x);document.body.append(bar);
+}
+setTimeout(updCheck,4000);
+document.addEventListener('visibilitychange',()=>{if(!document.hidden)updCheck()});
+
+// ================= アバター・釣り人の部屋 =================
+// ---- アバター（20×24マスのドット絵）----
+const AV_SKIN=['#ffe0c4','#f5c7a0','#d99a6c','#9b6a45'];
+const AV_HAIR=['#2b2420','#6b4423','#c98b3d','#f2d36b','#e8e8ee','#e36f8f','#4f7fd8','#5aa86a'];
+const AV_CLOTH=['#e8493c','#ff9a3c','#f2c84b','#5bbf6a','#3f8fd8','#2c4a8a','#8a5ad8','#f2f2f2','#3a3a3a','#8a6a4a'];
+const AV_PARTS={
+ hair:[['short','ショート'],['long','ロング'],['twin','ツイン'],['spiky','ツンツン'],['bozu','ぼうず']],
+ eye:[['dot','てん目'],['smile','にっこり'],['round','まる目'],['cool','キリッ']],
+ hat:[['none','なし'],['cap','キャップ'],['straw','麦わら'],['knit','ニット帽'],['bucket','バケハ'],['hachi','ハチマキ']],
+ top:[['tee','Tシャツ'],['vest','釣りベスト'],['hoodie','パーカー'],['happi','法被']],
+ bottom:[['pants','ズボン'],['shorts','短パン'],['wader','胴長']],
+ item:[['rod','竿'],['net','たも網'],['cooler','クーラー'],['none','なし']]
+};
+const avShade=(h,k)=>{const n=parseInt(h.slice(1),16);let r=n>>16,g=n>>8&255,b=n&255;const f=v=>Math.max(0,Math.min(255,Math.round(v*k)));return '#'+((f(r)<<16)|(f(g)<<8)|f(b)).toString(16).padStart(6,'0')};
+function drawAvatar(c,a,ox,oy,U,pose){
+ // pose: {step:0/1, sit:false, look:0}
+ pose=pose||{};const P=(x,y,w,h,col)=>{c.fillStyle=col;c.fillRect(ox+x*U,oy+y*U,w*U,h*U)};
+ const sk=AV_SKIN[a.skin],skD=avShade(sk,.82),hc=AV_HAIR[a.hc],hcD=avShade(hc,.75),tc=AV_CLOTH[a.topc],tcD=avShade(tc,.78),bc=AV_CLOTH[a.botc],bcD=avShade(bc,.75),hat=AV_CLOTH[a.hatc];
+ const X=2; // 左に2マスの余白（持ち物用に右を広く）
+ const sit=pose.sit,st=pose.step|0;
+ // パーカーのフード（頭のうしろ）
+ if(a.top==='hoodie')P(X+2,9,12,3,tcD);
+ // 長い髪（頭のうしろ）
+ if(a.hair==='long')P(X+2,5,12,9,hcD);
+ if(a.hair==='twin'){P(X+0,6,2,4,hc);P(X+14,6,2,4,hc);P(X+0,9,2,1,hcD);P(X+14,9,2,1,hcD)}
+ // 足
+ const ly=sit?19:18;
+ if(sit){P(X+4,19,8,2,a.bottom==='shorts'?bc:bc);P(X+3,21,3,2,a.bottom==='shorts'?sk:bc);P(X+10,21,3,2,a.bottom==='shorts'?sk:bc);P(X+2,23,4,1,'#5a3a26');P(X+10,23,4,1,'#5a3a26')}
+ else{
+  const lL=st?1:0,rL=st?0:1;
+  const legC=a.bottom==='shorts'?sk:(a.bottom==='wader'?bc:bc);
+  P(X+5,18,3,4-lL,a.bottom==='shorts'?bc:legC);P(X+8,18,3,4-rL,a.bottom==='shorts'?bc:legC);
+  if(a.bottom==='shorts'){P(X+5,20,3,2-lL,sk);P(X+8,20,3,2-rL,sk)}
+  P(X+4,22-lL,4,2,a.bottom==='wader'?bcD:'#5a3a26');P(X+8,22-rL,4,2,a.bottom==='wader'?bcD:'#5a3a26');
+ }
+ // 胴
+ const shirt=a.top==='vest'?'#f2f2f2':tc;
+ P(X+4,12,8,6,shirt);P(X+4,17,8,1,a.top==='vest'?'#d8d8d8':tcD);
+ if(a.top==='vest'){P(X+4,12,3,6,tc);P(X+9,12,3,6,tc);P(X+4,14,2,2,tcD);P(X+10,14,2,2,tcD);P(X+5,16,1,1,'#ffd447')}
+ if(a.top==='happi'){P(X+6,12,1,6,'#fff');P(X+9,12,1,6,'#fff');P(X+7,15,2,1,'#fff')}
+ if(a.top==='hoodie'){P(X+7,12,2,3,tcD);P(X+6,15,4,2,tcD)}
+ if(a.bottom==='wader'){P(X+4,15,8,3,bc);P(X+5,12,1,3,bc);P(X+10,12,1,3,bc)}
+ else P(X+4,17,8,1,bcD);
+ // 腕
+ const slv=a.top==='tee'||a.top==='vest'?2:4;const armC=a.top==='vest'?'#f2f2f2':tc;
+ P(X+3,12,1,slv,armC);P(X+12,12,1,slv,armC);P(X+3,12+slv,1,5-slv,sk);P(X+12,12+slv,1,5-slv,sk);
+ P(X+3,17,1,1,skD);P(X+12,17,1,1,skD);
+ // 頭
+ P(X+3,3,10,9,sk);P(X+3,11,10,1,skD);
+ // 髪（前）
+ if(a.hair!=='bozu'){
+  if(a.hair==='spiky'){P(X+3,2,10,3,hc);[4,6,8,10].forEach(i=>P(X+i,1,1,1,hc));P(X+3,5,1,2,hc);P(X+12,5,1,2,hc)}
+  else{P(X+3,2,10,3,hc);P(X+3,5,1,3,hc);P(X+12,5,1,3,hc);P(X+4,5,2,1,hc);P(X+9,5,3,1,hc)}
+  P(X+3,2,10,1,hcD);
+ }else P(X+3,3,10,1,avShade(sk,.7));
+ // 目
+ const ec='#1d2340';
+ if(a.eye==='dot'){P(X+5,7,1,2,ec);P(X+10,7,1,2,ec)}
+ if(a.eye==='smile'){P(X+4,8,1,1,ec);P(X+5,7,1,1,ec);P(X+6,8,1,1,ec);P(X+9,8,1,1,ec);P(X+10,7,1,1,ec);P(X+11,8,1,1,ec)}
+ if(a.eye==='round'){P(X+5,7,2,2,ec);P(X+9,7,2,2,ec);P(X+5,7,1,1,'#fff');P(X+9,7,1,1,'#fff')}
+ if(a.eye==='cool'){P(X+4,7,3,1,ec);P(X+9,7,3,1,ec);P(X+5,8,1,1,ec);P(X+10,8,1,1,ec)}
+ P(X+4,9,1,1,'#f5a3a3');P(X+11,9,1,1,'#f5a3a3');P(X+7,10,2,1,avShade(sk,.6));
+ // 帽子
+ const hD=avShade(hat,.75);
+ if(a.hat==='cap'){P(X+3,1,10,4,hat);P(X+3,1,10,1,hD);P(X+2,5,11,1,hD);P(X+7,2,2,1,'#fff')}
+ if(a.hat==='straw'){P(X+4,0,8,4,'#e8c870');P(X+0,4,16,1,'#d9b45a');P(X+0,5,16,1,'#c9a04a');P(X+4,3,8,1,hat)}
+ if(a.hat==='knit'){P(X+3,1,10,5,hat);P(X+3,4,10,1,'#fff');P(X+3,5,10,1,hD);P(X+7,0,2,1,'#fff')}
+ if(a.hat==='bucket'){P(X+4,1,8,4,hat);P(X+2,5,12,1,hD);P(X+3,4,10,1,hD)}
+ if(a.hat==='hachi'){P(X+3,5,10,1,'#fff');P(X+7,5,2,1,'#e8493c');P(X+13,5,2,1,'#fff');P(X+14,6,1,1,'#fff')}
+ // 持ち物
+ if(!sit){
+  if(a.item==='rod'){for(let i=0;i<13;i++)P(X+13+Math.floor(i*.35),16-i,1,1,i<4?'#6b4423':'#c9a04a');P(X+13,15,2,2,'#888')}
+  if(a.item==='net'){for(let i=0;i<8;i++)P(X+13,17-i,1,1,'#8a6a4a');P(X+12,5,4,1,'#ccc');P(X+12,5,1,4,'#ccc');P(X+15,5,1,4,'#ccc');P(X+12,8,4,1,'#ccc');P(X+13,6,2,2,'rgba(200,200,200,.4)')}
+  if(a.item==='cooler'){P(X+13,18,6,5,'#3f8fd8');P(X+13,18,6,2,'#f2f2f2');P(X+15,17,2,1,'#888')}
+ }
+}
+
+// 無料のパーツ以外はショップで買う（色はいつでも自由）
+const AV_SHOP=[['hat','cap','キャップ',300],['hat','hachi','ハチマキ',500],['hat','bucket','バケハ',500],['hat','knit','ニット帽',800],['hat','straw','麦わら',1000],
+ ['top','hoodie','パーカー',1500],['top','vest','釣りベスト',2000],['top','happi','法被',3000],['bottom','shorts','短パン',300],['bottom','wader','胴長',2500],
+ ['item','net','たも網',1000],['item','cooler','クーラー',1500]];
+const AV_FREE={hat:['none'],top:['tee'],bottom:['pants'],item:['rod','none'],hair:'*',eye:'*'};
+const avDefault=()=>({skin:0,hair:'short',hc:1,eye:'dot',hat:'none',hatc:4,top:'tee',topc:4,bottom:'pants',botc:5,item:'rod'});
+const avHave=(part,v)=>AV_FREE[part]==='*'||(AV_FREE[part]||[]).includes(v)||!!S.avOwn[part+':'+v];
+function avNorm(){
+  const d=avDefault();if(!S.av||typeof S.av!=='object')S.av=d;else Object.keys(d).forEach(k=>{if(S.av[k]===undefined)S.av[k]=d[k]});
+  if(!S.avOwn||typeof S.avOwn!=='object')S.avOwn={};
+}
+// 顔のアイコン（ランキング・釣果画面）
+function avHead(a,size){const c=document.createElement('canvas');c.width=size*2;c.height=size*2;c.style.width=size+'px';c.style.height=size+'px';c.className='avhead';
+  const x=c.getContext('2d'),U=size*2/13;x.beginPath();x.rect(0,0,size*2,size*2);x.clip();drawAvatar(x,a||avDefault(),-2.5*U,-0.3*U,U,{});return c}
+
+// ---- 部屋 ----
+const RMW=360,RMH=400,RM_WALL=250;
+const RM_WALLS=[{id:'wood',name:'木の板',price:0},{id:'blue',name:'水色',price:2000},{id:'washi',name:'和室',price:3000},{id:'brick',name:'レンガ',price:5000}];
+const RM_FLOORS=[{id:'flooring',name:'フローリング',price:0},{id:'carpet',name:'カーペット',price:2000},{id:'tatami',name:'畳',price:3000}];
+const RM_FMAX=15,RM_GMAX=6;
+function rmRR(c,x,y,w,h,r){c.beginPath();c.moveTo(x+r,y);c.arcTo(x+w,y,x+w,y+h,r);c.arcTo(x+w,y+h,x,y+h,r);c.arcTo(x,y+h,x,y,r);c.arcTo(x,y,x+w,y,r);c.closePath()}
+const rmInk=(c,x,y,w,h,col)=>{c.fillStyle=col;c.beginPath();c.ellipse(x,y,w*.38,h*.3,0,0,7);c.fill();c.beginPath();c.moveTo(x+w*.3,y);c.lineTo(x+w*.48,y-h*.25);c.lineTo(x+w*.48,y+h*.25);c.fill()};
+const RM_TSZ=[[64,44],[88,58],[124,76],[176,96]];
+// 家具（wall:true は壁、それ以外は床。x,y は 壁＝上のまんなか／床＝足もと）
+const RM_F={
+ bed:{name:'ベッド',price:2000,box:[48,40],d:(c,x,y)=>{c.fillStyle='#8a5a2a';c.fillRect(x-48,y-34,8,34);c.fillRect(x-48,y-16,96,10);c.fillStyle='#f2f2f2';c.fillRect(x-40,y-24,86,10);c.fillStyle='#5bbf6a';c.fillRect(x-20,y-26,66,12);c.fillStyle='#fff';c.fillRect(x-38,y-30,18,8)}},
+ plant:{name:'植物',price:800,box:[14,50],d:(c,x,y)=>{c.fillStyle='#c0703a';c.fillRect(x-10,y-16,20,16);c.fillStyle='#4a9a4a';for(let i=0;i<6;i++){c.beginPath();c.ellipse(x+Math.sin(i*1.1)*8,y-24-i*3,5,10,Math.sin(i)*.6,0,7);c.fill()}}},
+ cooler:{name:'クーラーボックス',price:800,box:[18,26],d:(c,x,y)=>{c.fillStyle='#3f8fd8';c.fillRect(x-16,y-18,32,18);c.fillStyle='#f2f2f2';c.fillRect(x-16,y-22,32,6);c.fillStyle='#888';c.fillRect(x-6,y-25,12,3)}},
+ rug:{name:'ラグ',price:1000,flat:1,box:[56,14],d:(c,x,y)=>{c.fillStyle='rgba(232,73,60,.85)';c.beginPath();c.ellipse(x,y-10,56,14,0,0,7);c.fill();c.strokeStyle='#ffd447';c.lineWidth=2;c.beginPath();c.ellipse(x,y-10,46,10,0,0,7);c.stroke()}},
+ lamp:{name:'ランプ',price:1200,box:[12,74],d:(c,x,y)=>{c.fillStyle='#555';c.fillRect(x-1,y-60,3,60);c.fillRect(x-8,y-2,16,3);c.fillStyle='#ffe9a8';c.beginPath();c.moveTo(x-10,y-58);c.lineTo(x+10,y-58);c.lineTo(x+6,y-72);c.lineTo(x-6,y-72);c.fill();c.fillStyle=S.tod==='night'?'rgba(255,240,180,.3)':'rgba(255,240,180,.15)';c.beginPath();c.arc(x,y-60,S.tod==='night'?40:26,0,7);c.fill()}},
+ rodstand:{name:'竿立て',price:1500,box:[18,98],d:(c,x,y)=>{c.fillStyle='#6b4423';c.fillRect(x-16,y-6,32,6);for(let i=0;i<3;i++){c.strokeStyle=['#c9a04a','#3a3a3a','#e8493c'][i];c.lineWidth=2;c.beginPath();c.moveTo(x-10+i*10,y-4);c.lineTo(x-14+i*12,y-96);c.stroke()}c.fillStyle='#888';c.fillRect(x-12,y-26,6,5)}},
+ lantern:{name:'提灯',price:2000,wall:1,box:[14,44],d:(c,x,y)=>{c.fillStyle='#333';c.fillRect(x-1,y,2,6);c.fillRect(x-9,y+6,18,3);c.fillStyle='#e8493c';c.beginPath();c.ellipse(x,y+24,13,16,0,0,7);c.fill();c.strokeStyle='rgba(0,0,0,.25)';for(let i=-1;i<=1;i++){c.beginPath();c.ellipse(x,y+24,13-Math.abs(i)*4,16,0,0,7);c.stroke()}c.fillStyle='#fff';c.font='bold 10px sans-serif';c.textAlign='center';c.fillText('釣',x,y+28);c.fillStyle='#333';c.fillRect(x-9,y+39,18,3)}},
+ desk:{name:'机とイス',price:2500,box:[40,48],d:(c,x,y)=>{c.fillStyle='#8a5a2a';c.fillRect(x-36,y-40,56,6);c.fillRect(x-34,y-34,4,34);c.fillRect(x+14,y-34,4,34);c.fillStyle='#6b4423';c.fillRect(x+22,y-26,16,4);c.fillRect(x+34,y-46,4,46);c.fillRect(x+22,y-22,3,22);c.fillStyle='#f2f2f2';c.fillRect(x-28,y-46,16,6);c.fillStyle='#3f8fd8';c.fillRect(x-6,y-48,10,8)}},
+ shelf:{name:'本棚',price:3000,box:[28,72],d:(c,x,y)=>{c.fillStyle='#7a5230';c.fillRect(x-28,y-70,56,70);c.fillStyle='#5a3a1e';[y-48,y-26].forEach(yy=>c.fillRect(x-28,yy,56,3));
+  const cs=['#e8493c','#3f8fd8','#f2c84b','#5bbf6a','#8a5ad8'];for(let i=0;i<5;i++){c.fillStyle=cs[i];c.fillRect(x-24+i*9,y-68,7,19)}c.fillStyle='#3f8fd8';c.fillRect(x-20,y-44,36,16);c.fillStyle='#ffd447';c.fillRect(x-14,y-40,6,4);c.fillStyle='#fff';c.font='6px sans-serif';c.textAlign='center';c.fillText('図鑑',x,y-6)}},
+ hk:{name:'はく製',price:10000,wall:1,box:[34,36],d:(c,x,y,it)=>{const f=FISH.find(q=>q.id===it.f);c.fillStyle='#8a5a2a';rmRR(c,x-34,y,68,34,6);c.fill();c.fillStyle='#a86e34';rmRR(c,x-30,y+3,60,28,5);c.fill();if(f)drawFish(c,x,y+17,54,f,false,false);c.fillStyle='#ffd447';c.fillRect(x-10,y+30,20,3)}},
+ tank:{name:'水槽',virtual:1,box:[0,0],d:(c,x,y,it,t,dt)=>rmTank(c,x,y,dt)},
+ trophy:{name:'釣り王のトロフィー',virtual:1,wall:1,box:[26,46],d:(c,x,y,it,t)=>{const yy=y+30;c.fillStyle='#8a6a4a';c.fillRect(x-24,yy,48,6);c.fillStyle='#ffd447';c.beginPath();c.moveTo(x-10,yy-26);c.lineTo(x+10,yy-26);c.lineTo(x+6,yy-12);c.lineTo(x-6,yy-12);c.fill();c.fillRect(x-2,yy-12,4,6);c.fillRect(x-7,yy-6,14,4);
+   c.strokeStyle='#ffd447';c.lineWidth=2;c.beginPath();c.arc(x-11,yy-21,4,Math.PI/2,Math.PI*1.5);c.stroke();c.beginPath();c.arc(x+11,yy-21,4,-Math.PI/2,Math.PI/2);c.stroke();
+   c.fillStyle='#fff';c.font='bold 7px sans-serif';c.textAlign='center';c.fillText('釣り王'+((S.kingN|0)>1?'×'+S.kingN:''),x,yy+15);if(Math.sin(t*3)>.6){c.fillStyle='#fff';c.fillRect(x+6,yy-24,2,2)}}},
+ gyo:{name:'魚拓',virtual:1,wall:1,box:[34,48],d:(c,x,y,it)=>{const g=S.gyo.find(q=>q.u===it.u);if(!g)return;const f0=FISH.find(q=>q.id===g.id),gold=(g.st&&ST[g.st]&&ST[g.st].ticket)||(f0&&f0.area==='特別');
+   const w=64,h=42;c.fillStyle=gold?'#d4a017':'#6b4a2a';c.fillRect(x-w/2-4,y-4,w+8,h+8);if(gold){c.strokeStyle='#fff3b0';c.lineWidth=1;c.strokeRect(x-w/2-2,y-2,w+4,h+4)}
+   const im=rmGyoImg(g);if(im)c.drawImage(im,x-w/2,y,w,h)}}
+};
+const RM_BUY=['bed','plant','cooler','rug','lamp','rodstand','lantern','desk','shelf'];
+const rmGyoCache={};
+function rmGyoImg(g){const k=g.u+':'+g.id;if(!rmGyoCache[k]){const cv=document.createElement('canvas');drawGyo(cv,g);rmGyoCache[k]=cv}return rmGyoCache[k]}
+function rmNorm(){
+  avNorm();let r=S.room;if(!r||typeof r!=='object')r={};
+  if(!r.wall)r.wall='wood';if(!r.floor)r.floor='flooring';if(!r.win)r.win='teibo';
+  if(!r.wOwn||typeof r.wOwn!=='object')r.wOwn={wood:1};if(!r.fOwn||typeof r.fOwn!=='object')r.fOwn={flooring:1};
+  if(!r.furn||typeof r.furn!=='object')r.furn={bed:1};
+  if(!Array.isArray(r.items))r.items=[{k:'bed',x:70,y:340},{k:'tank',x:200,y:318}];
+  r.items=r.items.filter(it=>RM_F[it.k]&&(it.k!=='gyo'||S.gyo.some(g=>g.u===it.u)));
+  S.room=r;
+}
+// 持っている数・置いている数
+const rmKey=it=>it.k==='hk'?'hk:'+it.f:it.k;
+const rmPlaced=key=>S.room.items.filter(it=>rmKey(it)===key).length;
+const rmFurnCount=()=>S.room.items.filter(it=>!['gyo','trophy','tank'].includes(it.k)).length;
+function rmOwnList(){ // [{key,k,f,name,own,placed}]
+  const L=[];Object.entries(S.room.furn).forEach(([key,n])=>{if(!n)return;const [k,f]=key.split(':');const F=RM_F[k];if(!F)return;
+    L.push({key,k,f,name:k==='hk'?'はく製（'+((FISH.find(q=>q.id===f)||{}).name||'')+'）':F.name,own:n,placed:rmPlaced(key)})});
+  L.push({key:'tank',k:'tank',name:'水槽',own:1,placed:rmPlaced('tank')});
+  if((S.kingN|0)>0)L.push({key:'trophy',k:'trophy',name:'釣り王のトロフィー',own:1,placed:rmPlaced('trophy')});
+  return L;
+}
+// ---- 描く ----
+function rmWallDraw(c,t){
+  const W2=RMW,WL=RM_WALL;
+  if(S.room.wall==='wood'){c.fillStyle='#c79a63';c.fillRect(0,0,W2,WL);c.strokeStyle='rgba(90,55,25,.35)';c.lineWidth=1;for(let x=0;x<W2;x+=24){c.beginPath();c.moveTo(x,0);c.lineTo(x,WL);c.stroke()}}
+  if(S.room.wall==='washi'){c.fillStyle='#efe6cf';c.fillRect(0,0,W2,WL);c.fillStyle='#8a6a4a';c.fillRect(0,60,W2,5);c.fillRect(0,WL-12,W2,4);for(let x=0;x<W2;x+=90)c.fillRect(x,0,5,WL)}
+  if(S.room.wall==='blue'){c.fillStyle='#bfe2f2';c.fillRect(0,0,W2,WL);c.fillStyle='rgba(255,255,255,.4)';for(let y=10;y<WL;y+=20)for(let x=(y/20%2)*10;x<W2;x+=20){c.beginPath();c.arc(x,y,2,0,7);c.fill()}}
+  if(S.room.wall==='brick'){c.fillStyle='#b8644a';c.fillRect(0,0,W2,WL);c.strokeStyle='rgba(255,230,210,.35)';c.lineWidth=1;for(let y=0;y<WL;y+=14){c.beginPath();c.moveTo(0,y);c.lineTo(W2,y);c.stroke();for(let x=(y/14%2)*16;x<W2;x+=32){c.beginPath();c.moveTo(x,y);c.lineTo(x,y+14);c.stroke()}}}
+  c.fillStyle='rgba(0,0,0,.15)';c.fillRect(0,WL-6,W2,6);
+  // 窓（行ったことのある釣り場の景色・空は時間帯）
+  const wx=40,wy=70,ww=86,wh=76;c.fillStyle='#f4efe6';rmRR(c,wx-6,wy-6,ww+12,wh+12,6);c.fill();
+  c.save();rmRR(c,wx,wy,ww,wh,3);c.clip();
+  const sky={morning:['#9fd6ff','#ffe9c8'],day:['#7cc6ff','#d8f0ff'],dusk:['#f08a5d','#ffd29a'],night:['#0b1640','#2a2a6e']}[S.tod]||['#7cc6ff','#d8f0ff'];
+  const st=ST[S.room.win]||ST.teibo,grp=st.id==='tenku'?'sky':st.id==='kodai'?'old':st.group==='川'?'river':st.group==='湖'?'lake':'sea';
+  const g=c.createLinearGradient(0,wy,0,wy+wh);g.addColorStop(0,grp==='sky'?'#b9a8ff':sky[0]);g.addColorStop(1,grp==='sky'?'#ffd9f0':sky[1]);c.fillStyle=g;c.fillRect(wx,wy,ww,wh);
+  if(grp==='sea'){c.fillStyle='#2e86c1';c.fillRect(wx,wy+46,ww,30);c.fillStyle='#ddd';c.fillRect(wx+56,wy+22,6,26);c.fillStyle='#e74c3c';c.fillRect(wx+56,wy+20,6,5)}
+  if(grp==='river'){c.fillStyle='#6cbf6a';c.fillRect(wx,wy+42,ww,34);c.fillStyle='#5fb0e0';c.beginPath();c.moveTo(wx+32,wy+76);c.quadraticCurveTo(wx+42,wy+56,wx+64,wy+42);c.lineTo(wx+76,wy+42);c.quadraticCurveTo(wx+56,wy+58,wx+54,wy+76);c.fill()}
+  if(grp==='lake'){c.fillStyle='#7a9a8a';c.beginPath();c.moveTo(wx,wy+44);c.lineTo(wx+28,wy+22);c.lineTo(wx+56,wy+44);c.fill();c.fillStyle='#4f9fd0';c.fillRect(wx,wy+44,ww,32)}
+  if(grp==='sky'){c.fillStyle='rgba(255,255,255,.9)';[[wx+22,wy+44],[wx+58,wy+26],[wx+64,wy+60]].forEach(([x,y])=>{c.beginPath();c.arc(x,y,9,0,7);c.arc(x+9,y-3,10,0,7);c.arc(x+18,y,8,0,7);c.fill()})}
+  if(grp==='old'){c.fillStyle='#6a6050';c.fillRect(wx+10,wy+30,14,46);c.fillRect(wx+56,wy+36,12,40);c.fillRect(wx+6,wy+26,22,6);c.fillStyle='#2a5a7a';c.fillRect(wx,wy+62,ww,14)}
+  if(S.tod==='night'){c.fillStyle='#fffbe6';c.beginPath();c.arc(wx+64,wy+16,7,0,7);c.fill();for(let i=0;i<12;i++){c.globalAlpha=.4+.6*Math.abs(Math.sin(t*2+i));c.fillRect(wx+(i*29)%ww,wy+(i*17)%36,1.5,1.5)}c.globalAlpha=1}
+  c.restore();c.strokeStyle='#f4efe6';c.lineWidth=4;c.beginPath();c.moveTo(wx+ww/2,wy);c.lineTo(wx+ww/2,wy+wh);c.moveTo(wx,wy+wh/2);c.lineTo(wx+ww,wy+wh/2);c.stroke();
+  c.fillStyle='rgba(232,73,60,.75)';c.fillRect(wx-12,wy-8,10,wh+18);c.fillRect(wx+ww+2,wy-8,10,wh+18);
+}
+function rmFloorDraw(c){
+  const W2=RMW,WL=RM_WALL,H2=RMH;
+  if(S.room.floor==='flooring'){c.fillStyle='#b07a45';c.fillRect(0,WL,W2,H2-WL);c.strokeStyle='rgba(70,40,15,.3)';c.lineWidth=1;for(let y=WL;y<H2;y+=16){c.beginPath();c.moveTo(0,y);c.lineTo(W2,y);c.stroke();for(let x=(y/16%2)*40;x<W2;x+=80){c.beginPath();c.moveTo(x,y);c.lineTo(x,y+16);c.stroke()}}}
+  if(S.room.floor==='tatami'){c.fillStyle='#cdd28a';c.fillRect(0,WL,W2,H2-WL);c.strokeStyle='#4a6a3a';c.lineWidth=3;[[0,WL,180,75],[180,WL,180,75],[0,WL+75,120,75],[120,WL+75,120,75],[240,WL+75,120,75]].forEach(r=>c.strokeRect(...r));c.lineWidth=1;c.strokeStyle='rgba(90,110,40,.25)';for(let y=WL;y<H2;y+=4){c.beginPath();c.moveTo(0,y);c.lineTo(W2,y);c.stroke()}}
+  if(S.room.floor==='carpet'){c.fillStyle='#7a9fc9';c.fillRect(0,WL,W2,H2-WL);c.fillStyle='rgba(255,255,255,.12)';for(let y=WL;y<H2;y+=6)for(let x=(y%12)?0:3;x<W2;x+=6)c.fillRect(x,y,2,2)}
+  c.fillStyle='rgba(0,0,0,.18)';c.fillRect(0,WL,W2,4);
+}
+// 部屋の水槽：本物の水槽の絵をそのまま小さく映す（大きさは今の水槽に合わせる）
+function rmTank(c,x,y,dt){
+  const[w,h]=RM_TSZ[aqT().size|0]||RM_TSZ[0];
+  c.fillStyle='#6b4423';c.fillRect(x-w/2-4,y-10,w+8,10);c.fillRect(x-w/2,y-2,4,2);c.fillRect(x+w/2-4,y-2,4,2);
+  const ty=y-10-h;try{aqRender(dt);const sh=Math.min(AQH,AQW*h/w);c.save();c.imageSmoothingEnabled=false;c.drawImage(AQ.cv,0,AQH-sh,AQW,sh,x-w/2,ty,w,h);c.restore()}catch(e){c.fillStyle='#3f8fd8';c.fillRect(x-w/2,ty,w,h)}
+  c.strokeStyle='rgba(255,255,255,.7)';c.lineWidth=2;c.strokeRect(x-w/2,ty,w,h);c.fillStyle='#333';c.fillRect(x-w/2-2,ty-3,w+4,4);
+}
+function rmBox(it){const F=RM_F[it.k];if(it.k==='tank'){const[w,h]=RM_TSZ[aqT().size|0]||RM_TSZ[0];return[it.x-w/2-4,it.y-h-14,it.x+w/2+4,it.y]}
+  const[bw,bh]=F.box;return F.wall?[it.x-bw,it.y-4,it.x+bw,it.y+bh]:[it.x-bw,it.y-bh,it.x+bw,it.y+2]}
+// アバターの動き
+const RMA={x:250,dir:-1,state:'idle',t:1,tx:250,say:0};
+function rmStepAv(dt){
+  RMA.t-=dt;if(RMA.t<=0){const r=Math.random();RMA.state=r<.5?'walk':r<.75?'sit':'care';RMA.t=2+Math.random()*3;RMA.tx=40+Math.random()*280}
+  if(RMA.state==='walk'){const d=RMA.tx-RMA.x;if(Math.abs(d)<2)RMA.state='idle';else{RMA.dir=Math.sign(d);RMA.x+=RMA.dir*30*dt}}
+  if(RMA.say>0)RMA.say-=dt;
+}
+function rmDrawAv(c,t,y){
+  const U=3,w=20*U,h=24*U,step=RMA.state==='walk'?Math.floor(t*6)%2:0;
+  c.fillStyle='rgba(0,0,0,.18)';c.beginPath();c.ellipse(RMA.x,y,22,5,0,0,7);c.fill();
+  c.save();c.translate(RMA.x,0);if(RMA.dir<0)c.scale(-1,1);const a=Object.assign({},S.av);if(RMA.state==='care')a.item='rod';
+  drawAvatar(c,a,-w/2,y-h,U,{step,sit:RMA.state==='sit'});c.restore();
+  c.fillStyle='#fff';c.font='bold 11px sans-serif';c.textAlign='center';c.lineWidth=3;c.strokeStyle='#12303c';
+  const say=RMA.say>0?(S.pname?S.pname+'の部屋へようこそ！':'ようこそ！'):RMA.state==='care'&&Math.sin(t*4)>.5?'キュッキュッ':RMA.state==='sit'?'♪':'';
+  if(say){c.strokeText(say,RMA.x,y-h-6);c.fillText(say,RMA.x,y-h-6)}
+}
+let rmMode=false,rmEdit=false,rmSel=-1,rmDragO=null;
+const RM_AVY=384;
+function rmDraw(dt){
+  const c=cx,t=clock;c.save();rmWallDraw(c,t);rmFloorDraw(c);rmStepAv(dt);
+  const items=S.room.items.map((it,i)=>[it,i]);
+  const wall=items.filter(([it])=>RM_F[it.k].wall),flat=items.filter(([it])=>RM_F[it.k].flat),floor=items.filter(([it])=>!RM_F[it.k].wall&&!RM_F[it.k].flat).sort((a,b)=>a[0].y-b[0].y);
+  wall.forEach(([it])=>RM_F[it.k].d(c,it.x,it.y,it,t,dt));flat.forEach(([it])=>RM_F[it.k].d(c,it.x,it.y,it,t,dt));
+  let drawn=false;floor.forEach(([it])=>{if(!drawn&&it.y>RM_AVY){rmDrawAv(c,t,RM_AVY);drawn=true}RM_F[it.k].d(c,it.x,it.y,it,t,dt)});if(!drawn)rmDrawAv(c,t,RM_AVY);
+  // 時間帯の色
+  const tod=TODS.find(x=>x.id===S.tod);if(tod&&tod.mul){c.globalCompositeOperation='multiply';c.fillStyle=tod.mul;c.fillRect(0,0,RMW,RMH);c.globalCompositeOperation='source-over'}
+  if(rmEdit&&S.room.items[rmSel]){const b=rmBox(S.room.items[rmSel]);c.strokeStyle=Math.sin(clock*8)>0?'#fff':'#ff8a3d';c.lineWidth=2;c.setLineDash([4,3]);c.strokeRect(b[0],b[1],b[2]-b[0],b[3]-b[1]);c.setLineDash([])}
+  if(rmEdit){c.fillStyle='rgba(255,138,61,.92)';c.fillRect(0,RMH-22,RMW,22);c.fillStyle='#fff';c.font='bold 12px sans-serif';c.textAlign='center';c.fillText('模様替え中：家具をドラッグで動かせます',RMW/2,RMH-7)}
+  c.restore();
+}
+function rmPos(e){const r=$('#cv').getBoundingClientRect();return[(e.clientX-r.left)/r.width*RMW,(e.clientY-r.top)/r.height*RMH]}
+function rmAt(x,y){for(let i=S.room.items.length-1;i>=0;i--){const b=rmBox(S.room.items[i]);if(x>=b[0]-3&&x<=b[2]+3&&y>=b[1]-3&&y<=b[3]+3)return i}return -1}
+function rmDown(e){
+  const[x,y]=rmPos(e);
+  if(rmEdit){rmSel=rmAt(x,y);if(rmSel>=0){const it=S.room.items[rmSel];rmDragO={dx:it.x-x,dy:it.y-y}}renderRm();return}
+  if(Math.abs(x-RMA.x)<26&&y>RM_AVY-75&&y<RM_AVY+4){RMA.say=2.2;RMA.state='idle';RMA.t=2.5;beep(880,.05,'triangle',.03);return}
+  const i=rmAt(x,y);if(i>=0&&S.room.items[i].k==='tank'){rmToggle();aqToggle();return}
+}
+function rmMove(e){
+  if(!rmDragO||rmSel<0)return;const[x,y]=rmPos(e),it=S.room.items[rmSel],F=RM_F[it.k];
+  it.x=clamp(Math.round(x+rmDragO.dx),20,RMW-20);
+  it.y=F.wall?clamp(Math.round(y+rmDragO.dy),46,RM_WALL-(F.box[1]+8)):clamp(Math.round(y+rmDragO.dy),RM_WALL+20,RMH-(rmEdit?24:4));
+}
+function rmUp(){if(rmDragO){rmDragO=null;save()}}
+function rmToggle(){
+  if(!rmMode&&busy()){msg('釣りの最中は部屋に戻れないよ',true,1.5);return}
+  if(!rmMode&&aqMode)aqToggle();
+  rmMode=!rmMode;rmEdit=false;rmSel=-1;if(audioOk)setTimeout(()=>bgmSet(bgmWant()));
+  $('#stage').classList.toggle('rmon',rmMode);$('#p-rm').hidden=!rmMode;
+  $('#act').textContent=rmMode?'👕 着替え':'キャスト';msg('',true);rmBtnLabel();
+  if(rmMode){RMA.say=2.2;$('#p-rm').scrollIntoView({behavior:'smooth',block:'nearest'})}
+  renderSide();renderRm();
+}
+function rmBtnLabel(){const b=$('#rmBtn'),a=$('#aqBtn');if(!b)return;b.textContent=rmMode?'🎣 釣り場へ':'🏠 部屋';b.hidden=aqMode;if(a)a.hidden=rmMode}
+// ---- 部屋のパネル ----
+function rmPlace(o){
+  if(o.k==='gyo'){if(S.room.items.filter(i=>i.k==='gyo').length>=RM_GMAX){msg('魚拓は'+RM_GMAX+'枚まで飾れるよ',true,1.6);return}S.room.items.push({k:'gyo',u:o.u,x:180+rnd(-60,60)|0,y:120});}
+  else{if(!['tank','trophy'].includes(o.k)&&rmFurnCount()>=RM_FMAX){msg('家具は'+RM_FMAX+'個まで置けるよ',true,1.6);return}
+    const F=RM_F[o.k],it={k:o.k,x:180+rnd(-50,50)|0,y:F.wall?110:330};if(o.k==='hk')it.f=o.f;S.room.items.push(it)}
+  rmSel=S.room.items.length-1;rmEdit=true;save();renderRm();
+}
+function rmRemove(){if(rmSel<0)return;S.room.items.splice(rmSel,1);rmSel=-1;save();renderRm()}
+function renderRm(){
+  if(!$('#p-rm'))return;rmNorm();
+  $('#rmEditBtn').textContent=rmEdit?'模様替えを終わる':'模様替え';$('#rmEditBox').hidden=!rmEdit;
+  if(rmEdit){
+    const sb=$('#rmSelBox');sb.replaceChildren();const it=S.room.items[rmSel];
+    if(it){const nm=it.k==='gyo'?'魚拓':it.k==='hk'?'はく製':RM_F[it.k].name;sb.append(el('span','small','選択中：'+nm+'　'));const b=el('button','chip','しまう');b.type='button';b.onclick=rmRemove;sb.append(b)}
+    else sb.append(el('span','small','部屋の家具をタップすると選べます'));
+    const ob=$('#rmOwn');ob.replaceChildren();$('#rmCount').textContent='（家具 '+rmFurnCount()+'/'+RM_FMAX+'）';
+    rmOwnList().forEach(o=>{const left=o.own-o.placed,b=el('button','chip',o.name+(o.own>1?' '+left+'/'+o.own:'')+(left>0?'　置く':'　置いてある'));b.type='button';b.disabled=left<=0;b.onclick=()=>rmPlace(o);ob.append(b)});
+    const gb=$('#rmGyo');gb.replaceChildren();$('#rmGyoCount').textContent='（'+S.room.items.filter(i=>i.k==='gyo').length+'/'+RM_GMAX+'枚）';
+    if(!S.gyo.length)gb.append(el('span','small','魚拓がまだありません'));
+    S.gyo.forEach(g=>{const f=FISH.find(q=>q.id===g.id),on=S.room.items.some(i=>i.k==='gyo'&&i.u===g.u),b=el('button','chip',(f?f.name:'')+' '+g.size+'cm'+(on?'　飾ってある':'　飾る'));b.type='button';b.disabled=on;b.onclick=()=>rmPlace({k:'gyo',u:g.u});gb.append(b)});
+    const look=(id,list,key,ownKey)=>{const box=$(id);box.replaceChildren();list.forEach(o=>{if(!S.room[ownKey][o.id])return;const b=el('button','chip',o.name);b.type='button';b.setAttribute('aria-pressed',String(S.room[key]===o.id));b.onclick=()=>{S.room[key]=o.id;save();renderRm()};box.append(b)})};
+    look('#rmWall',RM_WALLS,'wall','wOwn');look('#rmFloor',RM_FLOORS,'floor','fOwn');
+    const wb=$('#rmWin');wb.replaceChildren();STAGES.filter(s=>s.id==='teibo'||aqCaught(s.id)).forEach(s=>{const b=el('button','chip',s.name);b.type='button';b.setAttribute('aria-pressed',String(S.room.win===s.id));b.onclick=()=>{S.room.win=s.id;save();renderRm()};wb.append(b)});
+  }
+  renderAvEdit();
+}
+// ---- 着替え（持っているパーツだけ）----
+function renderAvEdit(){
+  const box=$('#rmAv');if(!box)return;box.replaceChildren();
+  const pv=document.createElement('canvas');pv.width=120;pv.height=144;pv.style.cssText='width:80px;height:96px;image-rendering:pixelated;display:block;margin:0 auto 4px';drawAvatar(pv.getContext('2d'),S.av,0,0,6,{});box.append(pv);
+  const set=(k,v)=>{S.av[k]=v;save();renderAvEdit();renderAll()};
+  const sw=(title,k,cols)=>{box.append(el('h3',null,title));const d=el('div','avsw');cols.forEach((c,i)=>{const b=el('button');b.type='button';b.style.background=c;b.setAttribute('aria-pressed',String(S.av[k]===i));b.onclick=()=>set(k,i);d.append(b)});box.append(d)};
+  const op=(title,k)=>{box.append(el('h3',null,title));const d=el('div','row');AV_PARTS[k].forEach(([v,n])=>{if(!avHave(k,v))return;const b=el('button','chip',n);b.type='button';b.setAttribute('aria-pressed',String(S.av[k]===v));b.onclick=()=>set(k,v);d.append(b)});box.append(d)};
+  sw('肌の色','skin',AV_SKIN);op('髪型','hair');sw('髪の色','hc',AV_HAIR);op('目','eye');op('帽子','hat');if(S.av.hat!=='none'&&S.av.hat!=='straw')sw('帽子の色','hatc',AV_CLOTH);
+  op('上の服','top');sw('上の服の色','topc',AV_CLOTH);op('下の服','bottom');sw('下の服の色','botc',AV_CLOTH);op('持ち物','item');
+  const more=AV_SHOP.filter(([p,v])=>!avHave(p,v)).length;if(more){const b=el('button','chip','🛒 服や帽子をもっと見る（'+more+'種類）');b.type='button';b.onclick=()=>{shopTab='cos';renderCos();tab('shop')};box.append(b)}
+}
+// ---- ショップ（部屋タブ・アバター）----
+let rmHkFish='';
+function renderRmShop(){
+  if(!$('#shopRoomWall'))return;rmNorm();
+  const row=(box,name,price,owned,prev,buy)=>{const d=el('div','btn'),l=el('span');l.append(name);if(owned)l.append(el('div','small',owned));const b=el('button','chip',yen(price)+'で買う');b.type='button';b.disabled=S.gold<price;
+    confirmTap(b,()=>{if(S.gold<price)return;S.gold-=price;buy();misEv('buy');save();renderAll();beep(988,.1,'triangle');msg('「'+name+'」を買いました（−'+yen(price)+'）',true,1.8)},'もう一度で購入');d.append(l,b);box.append(d)};
+  const wb=$('#shopRoomWall');wb.replaceChildren();RM_WALLS.filter(w=>!S.room.wOwn[w.id]).forEach(w=>row(wb,'壁紙「'+w.name+'」',w.price,'',null,()=>{S.room.wOwn[w.id]=1;S.room.wall=w.id}));if(!wb.children.length)wb.append(el('div','small','ぜんぶ持っています！'));
+  const fb=$('#shopRoomFloor');fb.replaceChildren();RM_FLOORS.filter(w=>!S.room.fOwn[w.id]).forEach(w=>row(fb,'床「'+w.name+'」',w.price,'',null,()=>{S.room.fOwn[w.id]=1;S.room.floor=w.id}));if(!fb.children.length)fb.append(el('div','small','ぜんぶ持っています！'));
+  const nb=$('#shopRoomFurn');nb.replaceChildren();RM_BUY.forEach(k=>{const F=RM_F[k],n=S.room.furn[k]|0;row(nb,F.name,F.price,n?'持っている：'+n+'個':'',null,()=>{S.room.furn[k]=n+1})});
+  const hb=$('#shopRoomHk');hb.replaceChildren();const mine=FISH.filter(f=>S.dex[f.id]&&f.shape!=='b');
+  if(!mine.length)hb.append(el('div','small','図鑑の魚がふえると作れます'));
+  else{if(!mine.some(f=>f.id===rmHkFish))rmHkFish=mine[0].id;const sl=document.createElement('select');sl.className='rk-sel';mine.forEach(f=>{const o=document.createElement('option');o.value=f.id;o.textContent='★'+f.rar+' '+f.name;if(f.id===rmHkFish)o.selected=true;sl.append(o)});sl.onchange=()=>{rmHkFish=sl.value;renderRmShop()};hb.append(sl);
+    const f=FISH.find(q=>q.id===rmHkFish),n=S.room.furn['hk:'+rmHkFish]|0;row(hb,'はく製（'+f.name+'）',RM_F.hk.price,n?'持っている：'+n+'個':'',null,()=>{S.room.furn['hk:'+rmHkFish]=n+1})}
+  const ab=$('#shopAv');if(ab){ab.replaceChildren();AV_SHOP.filter(([p,v])=>!avHave(p,v)).forEach(([p,v,n,price])=>{const pv=Object.assign({},S.av,{[p]:v});const cv=document.createElement('canvas');cv.width=40;cv.height=48;cv.style.cssText='width:40px;height:48px;image-rendering:pixelated';drawAvatar(cv.getContext('2d'),pv,0,0,2,{});
+    const d=el('div','btn'),l=el('span','row');l.style.cssText='align-items:center;gap:8px;flex-wrap:nowrap';l.append(cv,el('span',null,n));const b=el('button','chip',yen(price)+'で買う');b.type='button';b.disabled=S.gold<price;
+    confirmTap(b,()=>{if(S.gold<price)return;S.gold-=price;S.avOwn[p+':'+v]=1;S.av[p]=v;misEv('buy');save();renderAll();beep(988,.1,'triangle');msg('「'+n+'」を買って着ました（−'+yen(price)+'）',true,1.8)},'もう一度で購入');d.append(l,b);ab.append(d)});
+    if(!ab.children.length)ab.append(el('div','small','ぜんぶ持っています！'))}
+}
+
+rmNorm();rmBtnLabel();
 // 背景・魚の画像を先に読み込む
 STAGES.forEach(s=>img(s.bg));FISH.forEach(f=>img(f.img));
 let titleNews='';
