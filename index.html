@@ -537,9 +537,10 @@ const OKI_W=[50,30,13,5,2]; // 置き竿で★1〜5が出る割合（上限よ�
 const OKI_NEW=1;            // 未発見の魚のかかりやすさ（倍）。1=補正なし
 const OKI_XP=1/3;           // 経験値は通常の釣りの何倍か
 // お知らせ（アップデートのたびに上に足す。NEWS_VER を変えるとメニューに NEW が付く）
-const NEWS_VER='2026-11-15z';
+const NEWS_VER='2026-11-16c';
 const NEWS=[
- {d:'2026/11/15',t:['💎 新ステージ「宝石の洞窟」！ Lv20から。釣れるのは宝石箱だけの金策ステージ。入るには「洞窟の鍵」（釣った宝箱に入っていることがある・今日のお題1〜2位の報酬）','🏠 部屋の模様替えアイテムがいっぱい追加！ 壁紙5種・床4種・家具12種＋特殊ステージの記念品4種。置ける家具は20個まで。アバターにパジャマ・スウェット・ナイトキャップ','🎲 ログインボーナス「釣りすごろく」！ 1日1回サイコロを振って、エサや竿・ゴールドをもらおう。ゴールは10,000G','📷 シェア機能：釣れたとき・魚拓・水槽を、画像にしてXなどに投稿できるように','水槽の大きい魚を小さめに（最大で水槽の1/3くらい）。魚どうしが重ならないように、ばらけて泳ぐように','釣りの操作はキャストボタンだけに（池の絵をさわっても投げない）。持ち物・ショップ・メニューを開いている間はボタンに🔒（押すと釣り場にもどる）','🎯 今日のお題ランキング！ 毎日1匹えらばれる魚の大きさで競います（釣り場の上とランキングの「🎯お題」）。10位まで報酬あり（1位は洞窟の鍵×2）','🏆 ランキングは上位10名と「あなたは○位（○人中）」の表示に','アプリの中のブラウザでログインできないときの案内を追加','🧚 新ステージ「精霊の丘」！ Lv100から。妖精11種（★8）と、初の★9「精霊女王」。幻影と精霊の風に気をつけて。専用BGMつき','🎵 BGMの着せ替え！ 夜の海・和の調べ・南国リゾート・レトロゲーム・夕焼けローファイ（各20,000G・ショップの「着せ替え」で試聴できます）','🔓 限界突破：Lv79→80とLv99→100には条件があります（レベル表示の🔒をタップで確認）。突破すると称号「限界を超えし者」','🌌 新ステージ「宇宙」！ Lv80から。新しい魚12種、★7・★8がたくさん。流れ星に気をつけて。宇宙専用のBGMつき','水槽のライトを明るく。虹のライトは光の筋ごとに色が変わるように','フレンド機能！ コードで申請・承認。フレンドの水槽・部屋に遊びに行けて、1日1回エサやりも（メニュー →「フレンド」）','魚籠に「絞り込み」（★・釣った場所・ロック・今日釣った魚・名前）。全部選ぶ／最大以外を選ぶは表示中の魚だけ','図鑑に「絞り込み」と、釣り場ごとの開閉・達成率（小川 12/20 など）','釣り人の部屋とアバター！ 釣り場の「🏠 部屋」で着替え・模様替え。魚拓やはく製を飾ったり、水槽も置けます','アップデートがあると画面の上にお知らせが出るように','ランキング：釣った数・魚の大きさを通算／週間／日間で（メニュー →「ランキング」・ログインした人が参加）。週間の釣った数で10位までは報酬あり','アカウント：Googleでログインするとクラウドに自動セーブ（メニュー →「アカウント」）。プレイヤー名も決められます','ナイスアワセ：浮きが水中に消えた瞬間にアワセると、ゲージが多めの状態からスタート（くわしくは遊び方）','前アタリ：アタリの前に浮きがピクッと動くように','水槽の設備ボーナス：背景・砂・ライト・飾りで見物料アップ（最大+60%）','釣りゲージの着せ替え（9種類）。ショップの「着せ替え」で','釣り上げの進み具合をゲージのすぐ上に','水槽の見物料：水槽の魚がゴールドを稼ぐように（今日の人気者は2倍・エサやりで+50%）','ショップがタブ分けに（道具・券・着せ替え・水槽）。着せ替えと水槽の買い物はショップで','着せ替えには持っているものだけ表示','称号ページが「レベル称号・実績称号・イベント称号」のタブに','天空・古代で釣った魚の魚拓は金の額縁に','釣れたときの音と演出が★ごとに変わるように（★5以上はキラキラ・後光）','宝箱は「チャリーン！」',
+ {d:'2026/11/16',t:['🦈 イベント「レイドバトル」開催決定！ 11/17(火)12:00〜11/25(水)11:59　レイドチケットを集めて巨大ボスに挑もう！','☁ スマホとPCなど、別の端末で遊ぶと釣果が消えることがある不具合を修正。端末どうしで自動で最新に合わせ、ぶつかったときは図鑑・レベル・持ち物を「合体」して残すように','🛟 データが減ったときは、メニューの「アカウント」からバックアップに戻せるように']},
+ {d:'2026/11/15',t:['PCのスペースキーで釣れないことがあるのを修正（ほかのボタンを押したあと・キーボードの種類のちがいなど）','釣り画面の左上の装備表示を新しく（🎒をタップで開く・たたむ）','💎 新ステージ「宝石の洞窟」！ Lv20から。釣れるのは宝石箱だけの金策ステージ。入るには「洞窟の鍵」（釣った宝箱に入っていることがある・今日のお題1〜2位の報酬）','🏠 部屋の模様替えアイテムがいっぱい追加！ 壁紙5種・床4種・家具12種＋特殊ステージの記念品4種。置ける家具は20個まで。アバターにパジャマ・スウェット・ナイトキャップ','🎲 ログインボーナス「釣りすごろく」！ 1日1回サイコロを振って、エサや竿・ゴールドをもらおう。ゴールは10,000G','📷 シェア機能：釣れたとき・魚拓・水槽を、画像にしてXなどに投稿できるように','水槽の大きい魚を小さめに（最大で水槽の1/3くらい）。魚どうしが重ならないように、ばらけて泳ぐように','釣りの操作はキャストボタンだけに（池の絵をさわっても投げない）。持ち物・ショップ・メニューを開いている間はボタンに🔒（押すと釣り場にもどる）','🎯 今日のお題ランキング！ 毎日1匹えらばれる魚の大きさで競います（釣り場の上とランキングの「🎯お題」）。10位まで報酬あり（1位は洞窟の鍵×2）','🏆 ランキングは上位10名と「あなたは○位（○人中）」の表示に','アプリの中のブラウザでログインできないときの案内を追加','🧚 新ステージ「精霊の丘」！ Lv100から。妖精11種（★8）と、初の★9「精霊女王」。幻影と精霊の風に気をつけて。専用BGMつき','🎵 BGMの着せ替え！ 夜の海・和の調べ・南国リゾート・レトロゲーム・夕焼けローファイ（各20,000G・ショップの「着せ替え」で試聴できます）','🔓 限界突破：Lv79→80とLv99→100には条件があります（レベル表示の🔒をタップで確認）。突破すると称号「限界を超えし者」','🌌 新ステージ「宇宙」！ Lv80から。新しい魚12種、★7・★8がたくさん。流れ星に気をつけて。宇宙専用のBGMつき','水槽のライトを明るく。虹のライトは光の筋ごとに色が変わるように','フレンド機能！ コードで申請・承認。フレンドの水槽・部屋に遊びに行けて、1日1回エサやりも（メニュー →「フレンド」）','魚籠に「絞り込み」（★・釣った場所・ロック・今日釣った魚・名前）。全部選ぶ／最大以外を選ぶは表示中の魚だけ','図鑑に「絞り込み」と、釣り場ごとの開閉・達成率（小川 12/20 など）','釣り人の部屋とアバター！ 釣り場の「🏠 部屋」で着替え・模様替え。魚拓やはく製を飾ったり、水槽も置けます','アップデートがあると画面の上にお知らせが出るように','ランキング：釣った数・魚の大きさを通算／週間／日間で（メニュー →「ランキング」・ログインした人が参加）。週間の釣った数で10位までは報酬あり','アカウント：Googleでログインするとクラウドに自動セーブ（メニュー →「アカウント」）。プレイヤー名も決められます','ナイスアワセ：浮きが水中に消えた瞬間にアワセると、ゲージが多めの状態からスタート（くわしくは遊び方）','前アタリ：アタリの前に浮きがピクッと動くように','水槽の設備ボーナス：背景・砂・ライト・飾りで見物料アップ（最大+60%）','釣りゲージの着せ替え（9種類）。ショップの「着せ替え」で','釣り上げの進み具合をゲージのすぐ上に','水槽の見物料：水槽の魚がゴールドを稼ぐように（今日の人気者は2倍・エサやりで+50%）','ショップがタブ分けに（道具・券・着せ替え・水槽）。着せ替えと水槽の買い物はショップで','着せ替えには持っているものだけ表示','称号ページが「レベル称号・実績称号・イベント称号」のタブに','天空・古代で釣った魚の魚拓は金の額縁に','釣れたときの音と演出が★ごとに変わるように（★5以上はキラキラ・後光）','宝箱は「チャリーン！」',
   '天空・古代に専用のBGM（いつもの曲と釣り上げ中の曲）','★7・★8が暴れだすと、釣り上げ中の曲が少し速く・高くなるように']},
  {d:'2026/11/15',t:['新しい魚21種（シャチ・イッカク・マッコウクジラ・クロコダイル・オニイトマキエイなど）','メニューができました（置き竿・ミッション・図鑑・着せ替え・称号・魚拓・セーブコード・設定・お知らせ）','魚拓ギャラリー：釣った魚を魚拓にして飾れる（12枚まで）','デイリーミッション：毎日3つ・報酬はランダム・1日1回チェンジ','置き竿：4種類。時間がたつと魚がかかる（経験値は1/3）','キャストのメーターが「真ん中が奥」に','BGM・効果音の音量を調整できるように','買う・売るは2回タップで決定に','釣り画面の文字にふち取り']},
  {d:'2026/11/14',t:['レベル称号（Lv10ごと）と報酬のウキ・竿','釣り上げ中の演出：ウキが近づく・竿が揺れる・水しぶき','魚影はゲージ80%で正体が分かるように','左右の合図はゲージの下に','宝箱が全部の釣り場に・宝箱は抵抗しない','キャストのキャンセル・魚のロック','新しい魚17種（ハコフグ〜ザトウクジラ）']}
@@ -6604,8 +6605,14 @@ $('#stage').addEventListener('pointerdown',onDown);
 addEventListener('pointerup',onUp);addEventListener('pointercancel',onUp);
 // iPhone：長押しで虫眼鏡や選択が出ないように（釣りボタンと画面だけ）
 ['#act','#cv'].forEach(q=>{const n=$(q);if(!n)return;n.addEventListener('touchstart',e=>{if(e.touches.length===1)e.preventDefault()},{passive:false});n.addEventListener('contextmenu',e=>e.preventDefault())});
-addEventListener('keydown',e=>{if(e.code==='Space'&&!e.repeat){const a=document.activeElement;if(a&&(/^(INPUT|TEXTAREA|SELECT|BUTTON)$/.test(a.tagName)&&a.id!=='act'||a.isContentEditable))return;e.preventDefault();onDown(e)}});
-addEventListener('keyup',e=>{if(e.code==='Space')onUp()});
+// スペースキー＝キャストボタン。キーボードや日本語入力のちがいで取りこぼさないように、いろいろな形のスペースを受け付ける
+const isSpaceKey=e=>!!e&&(e.code==='Space'||e.key===' '||e.key==='Spacebar'||e.keyCode===32||(e.keyCode===229&&e.code==='Space'));
+const typingNow=()=>{const a=document.activeElement;return !!a&&(/^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName)&&!(a.tagName==='INPUT'&&a.type==='range')||a.isContentEditable)};
+addEventListener('keydown',e=>{if(!isSpaceKey(e)||typingNow())return;e.preventDefault();
+  const a=document.activeElement;if(a&&a!==document.body&&a.id!=='act'&&a.blur)a.blur(); // ほかのボタンに選択が残っていても、そのボタンは押さない
+  if(!e.repeat)onDown({code:'Space',key:' ',target:document.body,preventDefault(){}})},true);
+addEventListener('keyup',e=>{if(!isSpaceKey(e)||typingNow())return;e.preventDefault();onUp()},true);
+
 
 // ---------- 描画 ----------
 function drawBg(){
@@ -7712,39 +7719,105 @@ function clLoad(){
   const base='https://www.gstatic.com/firebasejs/'+FB_VER+'/';
   CL.loading=Promise.all([import(base+'firebase-app.js'),import(base+'firebase-auth.js'),import(base+'firebase-firestore.js')]).then(([a,au,fs])=>{
     const app=a.initializeApp(FB_CFG);CL.auth=au.getAuth(app);CL.db=fs.getFirestore(app);CL.mods={au,fs};
-    au.onAuthStateChanged(CL.auth,u=>{CL.user=u;if(u)clAfterLogin();else{CL.pending=null}renderAcct();renderMenu&&renderMenu()});
+    au.onAuthStateChanged(CL.auth,u=>{CL.user=u;if(u)clAfterLogin();else{CL.pending=null;if(CL.unsub){CL.unsub();CL.unsub=null}}renderAcct();renderMenu&&renderMenu()});
     renderAcct();return CL.mods;
   }).catch(e=>{CL.fail='この場所ではログインできません。ゲームのURL（GitHub版）をSafariやChromeで開いてね。';CL.loading=null;renderAcct();throw e});
   return CL.loading;
 }
 const clSum=d=>'Lv'+(d.lv|0)+'・'+yen(d.gold|0)+'・図鑑'+Object.keys(d.dex||{}).length+'種';
 const clTime=t=>{if(!t)return '';const d=new Date(t);return (d.getMonth()+1)+'/'+d.getDate()+' '+d.getHours()+':'+String(d.getMinutes()).padStart(2,'0')};
-// クラウドのデータを、この端末に読み込む
-function clAdopt(c,t){
-  if(busy()){setTimeout(()=>clAdopt(c,t),2000);return}
-  applyData(c);S.cloudUid=CL.user.uid;S.syncT=t;S.cloudOn=true;save0();CL.lastT=t;renderAll();msg('☁ クラウドのデータで遊びます',true,2);
+// ---- 端末どうしの同期 ----
+// クラウドの各版には w（書いた版のID）を付ける。自分が最後に合わせた版（S.syncW）と違えば、ほかの端末が書いたということ
+// ほかの端末が書いていたら、黙って上書きせず「合体」する：集めたもの（図鑑・Lv・持ち物の所有など）は両方を残し、ゴールドなどは新しいほう
+const BAK_KEY=KEY+'-bak'; // 上書き前のバックアップ（セーブ本体のKEYとは別）
+const clRid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,8);
+const clChanged=d=>d.w?d.w!==S.syncW:(d.t|0)>(S.syncT|0);
+function clBak(j,why){
+  try{const a=JSON.parse(localStorage.getItem(BAK_KEY)||'[]').filter(x=>x&&x.data),dj=JSON.stringify(j);if(a[0]&&a[0].data===dj)return;
+    a.unshift({t:Date.now(),why,lv:j.lv|0,gold:j.gold|0,dex:Object.keys(j.dex||{}).length,data:dj});
+    try{localStorage.setItem(BAK_KEY,JSON.stringify(a.slice(0,3)))}catch(e){localStorage.setItem(BAK_KEY,JSON.stringify(a.slice(0,1)))}
+  }catch(e){}
+}
+const clBaks=()=>{try{return JSON.parse(localStorage.getItem(BAK_KEY)||'[]').filter(x=>x&&x.data)}catch(e){return[]}};
+// base を土台に、other の「集めたもの」を足す（元のデータは変えない）
+function clMerge(base,other,goldMax){
+  const m=JSON.parse(JSON.stringify(base)),o=other||{};const obj=v=>v&&typeof v==='object'?v:null;
+  // 図鑑：匹数と最大サイズの大きいほう
+  m.dex=obj(m.dex)||{};Object.entries(obj(o.dex)||{}).forEach(([id,d])=>{const a=m.dex[id];if(!a)m.dex[id]=d;else if((d.n|0)>(a.n|0)||(d.best||0)>(a.best||0))m.dex[id]={n:Math.max(a.n|0,d.n|0),best:Math.max(a.best||0,d.best||0)}});
+  // レベル・経験値：進んでいるほう
+  if((o.lv|0)>(m.lv|0)||((o.lv|0)===(m.lv|0)&&(o.xp|0)>(m.xp|0))){m.lv=o.lv;m.xp=o.xp}
+  if(goldMax&&(o.gold|0)>(m.gold|0))m.gold=o.gold;
+  // 持っているもの（一度手に入れたら消えないもの）は両方
+  const un=(a,b)=>{if(!obj(b))return a;a=obj(a)||{};Object.entries(b).forEach(([k,v])=>{if(!(k in a)||(typeof v==='number'&&v>a[k]))a[k]=v});return a};
+  ['ukiOwn','skinOwn','todOwn','gaugeOwn','bgmOwn','avOwn'].forEach(k=>{m[k]=un(m[k],o[k])});
+  if(obj(o.room)){m.room=obj(m.room)||{};['wOwn','fOwn','furn'].forEach(k=>{m.room[k]=un(m.room[k],o.room[k])})}
+  if(obj(o.tank)){m.tank=obj(m.tank)||{};['bgOwn','sandOwn','lightOwn','decoOwn'].forEach(k=>{m.tank[k]=un(m.tank[k],o.tank[k])});if((o.tank.size|0)>(m.tank.size|0))m.tank.size=o.tank.size}
+  ['kingN'].forEach(k=>{if((o[k]|0)>(m[k]|0))m[k]=o[k]});
+  ['rkClaim','rkClaimO'].forEach(k=>{if(typeof o[k]==='string'&&o[k]>(m[k]||''))m[k]=o[k]}); // 受け取り済みの報酬は二重にもらえないように
+  // 魚拓：両方（上限まで）
+  if(Array.isArray(o.gyo)){m.gyo=Array.isArray(m.gyo)?m.gyo:[];const has=new Set(m.gyo.map(g=>g.id+'@'+g.t));o.gyo.forEach(g=>{if(m.gyo.length<GYO_MAX&&!has.has(g.id+'@'+g.t))m.gyo.push(g)})}
+  // ランキングの記録：同じ期間なら多いほう
+  if(obj(o.rk)){m.rk=obj(m.rk)||{};if((o.rk.n|0)>(m.rk.n|0))m.rk.n=o.rk.n;['w','wp','d','dp'].forEach(k=>{const a=obj(m.rk[k]),b=obj(o.rk[k]);if(b&&b.k&&(!a||a.k<b.k||(a.k===b.k&&(b.n|0)>(a.n|0))))m.rk[k]=b})}
+  // すごろく：進んでいるほう
+  if(obj(o.sg)){const sc=g=>g?(g.lap|0)*100+(g.pos|0):-1;if(sc(o.sg)>sc(obj(m.sg)))m.sg=o.sg}
+  return m;
+}
+// クラウドの版 d をこの端末に反映する
+function clSync(d,why){
+  if(!CL.user)return;
+  let c;try{c=JSON.parse(d.data)}catch(e){c=null}
+  if(!c){S.cloudUid=CL.user.uid;clPush();return}
+  if(!clChanged(d)){CL.lastT=d.t;if(S.cDirty)clPush();return}
+  if(busy()){clearTimeout(CL.waitT);CL.waitT=setTimeout(()=>clSync(CL.cur||d,why),2000);return} // 釣り中は終わってから
+  const fresh0=S.lv<=1&&!Object.keys(S.dex).length&&(S.gold|0)<500;
+  if(!fresh0)clBak(S,why);
+  const m=fresh0?c:clMerge(c,S),add=JSON.stringify(m)!==JSON.stringify(c);
+  applyData(m);S.cloudUid=CL.user.uid;S.syncT=d.t|0;S.syncW=d.w||'';S.cloudOn=true;S.cDirty=add?1:0;save0();CL.lastT=d.t;renderAll();
+  if(add){clPush();msg('☁ ほかの端末のデータと合わせました',true,2.2)}else if(!fresh0||why!=='first')msg('☁ 最新のデータを読み込みました',true,1.8);else msg('☁ クラウドのデータで遊びます',true,2);
+}
+// クラウドのデータを、この端末にそのまま読み込む（選ぶ画面から）
+function clAdopt(c,t,w){
+  if(busy()){setTimeout(()=>clAdopt(c,t,w),2000);return}
+  clBak(S,'adopt');applyData(c);S.cloudUid=CL.user.uid;S.syncT=t;S.syncW=w||'';S.cloudOn=true;S.cDirty=0;save0();CL.lastT=t;renderAll();msg('☁ クラウドのデータで遊びます',true,2);
+}
+// アプリに戻ったときなど：サーバーの最新を見てから
+async function clCheck(){
+  if(!CL.user||!CL.mods)return;const {fs}=CL.mods;
+  try{const s=await fs.getDocFromServer(fs.doc(CL.db,'saves',CL.user.uid));CL.stale=false;if(s.exists()){CL.cur=s.data();if(!CL.pending)clSync(CL.cur,'resume')}}
+  catch(e){clearTimeout(CL.chkT);CL.chkT=setTimeout(()=>{if(CL.stale)clCheck()},15000)}
 }
 async function clPush(){
-  if(!CL.user||CL.pending||S.cloudUid!==CL.user.uid)return;
-  const {fs}=CL.mods;S.syncT=Date.now();S.cloudOn=true;S.cDirty=0;save0();
-  try{await fs.setDoc(fs.doc(CL.db,'saves',CL.user.uid),{data:JSON.stringify(S),t:S.syncT,name:S.pname||'',lv:S.lv});
+  if(!CL.user||CL.pending||S.cloudUid!==CL.user.uid||CL.pushing)return;
+  if(CL.stale){await clCheck();if(CL.stale||!S.cDirty)return}
+  if(CL.cur&&clChanged(CL.cur)){clSync(CL.cur,'push');return} // ほかの端末が先に書いていたら、合体してから
+  const {fs}=CL.mods,w=clRid();S.syncT=Date.now();S.syncW=w;S.cloudOn=true;S.cDirty=0;save0();
+  const data=JSON.stringify(S);CL.pushing=1;
+  try{await fs.setDoc(fs.doc(CL.db,'saves',CL.user.uid),{data,t:S.syncT,w,name:S.pname||'',lv:S.lv});CL.cur={data,t:S.syncT,w};
     fs.setDoc(fs.doc(CL.db,'ranks',CL.user.uid),rkDoc()).catch(()=>{});
     fs.setDoc(fs.doc(CL.db,'pub',CL.user.uid),pubDoc()).catch(()=>{});CL.lastT=S.syncT;CL.err=''}
   catch(e){CL.err='クラウドに保存できませんでした（電波を確認してね）';S.cDirty=1;save0()}
+  CL.pushing=0;if(S.cDirty&&!CL.err)clQueue(); // 送っている間に増えた分
   if(!$('#p-acct').hidden)renderAcct();
 }
 function clQueue(){if(!CL.user||CL.pending)return;if(!S.cDirty){S.cDirty=1;save0()}clearTimeout(CL.timer);CL.timer=setTimeout(clPush,2500)}
-async function clAfterLogin(){
-  const {fs}=CL.mods,u=CL.user;let snap;
-  try{snap=await fs.getDoc(fs.doc(CL.db,'saves',u.uid))}catch(e){CL.err='クラウドが読めませんでした（電波を確認してね）';renderAcct();return}
-  if(!snap.exists()){S.cloudUid=u.uid;await clPush();msg('☁ クラウドセーブを始めました',true,2);if(!S.pname)nameNudge();return}
-  const d=snap.data();let c;try{c=JSON.parse(d.data)}catch(e){c=null}
-  if(!c){S.cloudUid=u.uid;clPush();return}
+function clAfterLogin(){
+  const {fs}=CL.mods,u=CL.user;let first=true;CL.stale=false;
+  if(CL.unsub)CL.unsub();
+  // クラウドを見張る：ほかの端末で遊ぶと、こっちも最新になる
+  CL.unsub=fs.onSnapshot(fs.doc(CL.db,'saves',u.uid),snap=>{
+    if(snap.metadata.hasPendingWrites||CL.user!==u)return;
+    const d=snap.exists()?snap.data():null;CL.cur=d;
+    if(first){first=false;clFirst(u,d);return}
+    if(d&&!CL.pending)clSync(d,'snap');
+  },e=>{CL.err='クラウドが読めませんでした（電波を確認してね）';renderAcct()});
+}
+function clFirst(u,d){
+  if(!d){S.cloudUid=u.uid;clPush();msg('☁ クラウドセーブを始めました',true,2);if(!S.pname)nameNudge();return}
+  let c;try{c=JSON.parse(d.data)}catch(e){c=null}
   const fresh0=S.lv<=1&&!Object.keys(S.dex).length&&(S.gold|0)<500;
-  if(S.cloudUid===u.uid){ // この端末でいつも使っているアカウント
-    if(S.cDirty||(S.syncT|0)>=(d.t|0)){CL.lastT=d.t;if(S.cDirty)clPush()}else if((d.t|0)>(S.syncT|0)+1500)clAdopt(c,d.t);else CL.lastT=d.t
-  }else if(fresh0)clAdopt(c,d.t);
-  else{CL.pending={c,t:d.t};tab('acct')} // どちらを使うか選んでもらう
+  if(!c){S.cloudUid=u.uid;clPush()}
+  else if(S.cloudUid===u.uid||fresh0)clSync(d,'first'); // いつものアカウント（または何もしていない端末）
+  else{CL.pending={c,t:d.t,w:d.w};tab('acct')} // 別のデータがあるとき：どうするか選んでもらう
   renderAcct();rkFetch().then(()=>menuBadges&&menuBadges()).catch(()=>{});frLoad(true);
 }
 function nameNudge(){tab('acct');setTimeout(()=>{const i=$('#acctName');if(i)i.focus()},300);msg('プレイヤー名を決めよう！',true,2)}
@@ -7763,12 +7836,15 @@ function renderAcct(){
   if(CL.fail){p(CL.fail,'acct-warn');return}
   if(!CL.mods){p('準備中…');return}
   if(CL.pending){
-    const {c,t}=CL.pending;p('このアカウントには、クラウドにデータがあります。どちらで遊ぶ？','acct-q');
+    const {c,t,w}=CL.pending;p('このアカウントには、クラウドにデータがあります。どうする？','acct-q');
+    const b0=el('button','sell','🤝 両方を合体する（おすすめ）');b0.type='button';b0.style.background='#22974c';
+    b0.onclick=()=>{const q=CL.pending;CL.pending=null;clBak(S,'merge');clBak(q.c,'cloud');applyData(clMerge(q.c,S,true));S.cloudUid=CL.user.uid;S.syncT=q.t;S.syncW=q.w||'';S.cDirty=1;save0();renderAll();clPush();msg('🤝 合体しました！',true,2)};
+    box.append(b0);p('図鑑・レベル・持っている道具や着せ替えは、多いほうを残します。');
     const b1=el('button','sell','☁ クラウドのデータ（'+clSum(c)+'・'+clTime(t)+'）');b1.type='button';
-    confirmTap(b1,()=>{const q=CL.pending;CL.pending=null;clAdopt(q.c,q.t)},'もう一度押すと、この端末のデータは消えます');
+    confirmTap(b1,()=>{const q=CL.pending;CL.pending=null;clAdopt(q.c,q.t,q.w)},'もう一度押すと、この端末のデータは消えます');
     const b2=el('button','sell','📱 この端末のデータ（'+clSum(S)+'）をクラウドへ');b2.type='button';
-    confirmTap(b2,()=>{CL.pending=null;S.cloudUid=CL.user.uid;clPush();msg('☁ この端末のデータをクラウドに保存しました',true,2)},'もう一度押すと、クラウドのデータは消えます');
-    box.append(b1,b2);p('迷ったら、セーブコードでバックアップしてから選ぶと安心です。');return;
+    confirmTap(b2,()=>{const q=CL.pending;CL.pending=null;clBak(q.c,'cloud');S.cloudUid=CL.user.uid;S.syncW=q.w||'';S.syncT=q.t|0;S.cDirty=1;clPush();msg('☁ この端末のデータをクラウドに保存しました',true,2)},'もう一度押すと、クラウドのデータは消えます');
+    box.append(b1,b2);p('どれを選んでも、消えるほうのデータはこの端末にバックアップされます（アカウント画面から戻せます）。');return;
   }
   if(CL.user){
     p('✅ Googleでログイン中。釣ったり買ったりすると、自動でクラウドに保存されます。','acct-ok');
@@ -7776,7 +7852,7 @@ function renderAcct(){
     if(CL.err)p(CL.err,'acct-warn');
     const b=el('button','chip','ログアウト');b.type='button';
     confirmTap(b,()=>{clPush().finally(()=>CL.mods.au.signOut(CL.auth));S.cloudOn=false;save0();msg('ログアウトしました（データはこの端末にも残っています）',true,2)},'もう一度でログアウト');
-    box.append(b);return;
+    box.append(b);clBakUi(box,p);return;
   }
   p('Googleでログインすると、データがクラウドに自動で保存されて、別のスマホでも続きから遊べます。ログインしなくても、今まで通り遊べます。');
   const b=el('button','sell','Googleでログイン');b.type='button';b.style.background='#4285f4';
@@ -7786,13 +7862,23 @@ function renderAcct(){
   box.append(b);
   p('💡 '+IAB_HELP+'（ブラウザが変わるとデータは別になるので、先に「セーブコード」をコピーしておくと安心）');
   if(CL.err)p(CL.err,'acct-warn');
+  clBakUi(box,p);
+}
+// バックアップから戻す：今のデータに合体（集めたもの・ゴールドは多いほう）
+function clBakUi(box,p){
+  const a=clBaks();if(!a.length)return;
+  p('🛟 上書き・合体の前のデータ（この端末に保存）。データが減ったときは、ここから戻せます。');
+  a.forEach((x,i)=>{const b=el('button','chip','🛟 '+clTime(x.t)+' の前：Lv'+x.lv+'・'+yen(x.gold)+'・図鑑'+x.dex+'種');b.type='button';
+    confirmTap(b,()=>{let j;try{j=JSON.parse(x.data)}catch(e){return}if(busy()){msg('釣りが終わってからもう一度押してね',true,1.8);return}
+      clBak(S,'restore');applyData(clMerge(S,j,true));S.cDirty=1;save0();renderAll();clQueue();msg('🛟 バックアップを合体して戻しました',true,2.2)},'もう一度押すと、今のデータに合体して戻します');box.append(b)});
 }
 function saveName(){
   const v=Array.from(($('#acctName').value||'').trim()).slice(0,10).join('');
   if(!v){msg('名前を入れてね',true,1.4);return}
   S.pname=v;save();renderAll();msg('「'+v+'」にしました',true,1.6);
 }
-document.addEventListener('visibilitychange',()=>{if(document.hidden&&CL.user&&CL.timer){clearTimeout(CL.timer);CL.timer=0;clPush()}});
+document.addEventListener('visibilitychange',()=>{if(!CL.user)return;if(document.hidden){if(CL.timer){clearTimeout(CL.timer);CL.timer=0;clPush()}}else{CL.stale=true;clCheck()}});
+window.addEventListener('online',()=>{if(CL.user){CL.stale=true;clCheck()}});
 if(S.cloudOn)setTimeout(()=>{clLoad().catch(()=>{})},1200);
 
 // ---------- ランキング（ログインした人どうし・Firestore の ranks/{uid}）----------
