@@ -6574,10 +6574,14 @@ function aqRender(dt){
   if(tod&&tod.mul){c.save();c.globalCompositeOperation='multiply';c.fillStyle=tod.mul;c.fillRect(0,0,AQW,AQH);c.restore()}
   // ライト（夜は強く光る）
   const L=AQ_LIGHT.find(x=>x.id===T.light);
-  if(L&&L.id!=='none'){const col=a=>L.c?`rgba(${L.c},${a})`:`hsla(${Math.round(clock*60)%360},90%,65%,${a})`;
-    const pw=S.tod==='night'?.32:S.tod==='dusk'?.26:.2;c.save();c.globalCompositeOperation='screen';
-    const g=c.createLinearGradient(0,0,0,AQH);g.addColorStop(0,col(pw));g.addColorStop(1,col(0));c.fillStyle=g;
-    [[30,26],[86,30],[140,24]].forEach(([x,w])=>{c.beginPath();c.moveTo(x,0);c.lineTo(x+w,0);c.lineTo(x+w+18,AQH);c.lineTo(x-18,AQH);c.fill()});c.restore()}
+  if(L&&L.id!=='none'){const col=(a,k=0)=>L.c?`rgba(${L.c},${a})`:`hsla(${Math.round(clock*60+k*120)%360},90%,65%,${a})`; // 虹は光の筋ごとに色をずらす
+    const pw=S.tod==='night'?.55:S.tod==='dusk'?.5:.46;c.save();c.globalCompositeOperation='screen';
+    // 水槽全体をほんのり照らす光
+    const g0=c.createLinearGradient(0,0,0,AQH);g0.addColorStop(0,col(pw*.55));g0.addColorStop(.7,col(pw*.18));g0.addColorStop(1,col(0));c.fillStyle=g0;c.fillRect(0,0,AQW,AQH);
+    // 光の筋（ゆっくりゆれる）
+    [[30,26],[86,30],[140,24]].forEach(([x,w],k)=>{const g=c.createLinearGradient(0,0,0,AQH);g.addColorStop(0,col(pw,k));g.addColorStop(1,col(pw*.1,k));c.fillStyle=g;const o=Math.sin(clock*.5+k*2)*5;c.beginPath();c.moveTo(x+o,0);c.lineTo(x+w+o,0);c.lineTo(x+w+18,AQH);c.lineTo(x-18,AQH);c.fill()});
+    // 上のライト本体
+    c.fillStyle=col(Math.min(1,pw*1.8));c.fillRect(0,0,AQW,2);c.restore()}
   // 枠
   R1(c,0,0,AQW,1,'rgba(255,255,255,.35)');
 }
