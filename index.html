@@ -106,7 +106,9 @@ details summary{font-weight:700;font-size:13px;cursor:pointer;color:var(--muted)
 .dc{border:1px solid var(--line);border-radius:10px;padding:4px;background:var(--chip);display:flex;flex-direction:column;align-items:center;font-size:11px;text-align:center}
 .dc canvas{width:100%;height:38px}
 .dc b{font-size:12px}
-.dh{grid-column:1/-1;font-weight:700;font-size:13px;margin-top:6px;color:var(--muted)}
+.dh{grid-column:1/-1;font-weight:700;font-size:13px;margin-top:6px;color:var(--muted);text-align:left;border:0;background:#eef4f8;border-radius:10px;padding:7px 10px;font-family:inherit}
+.flt{background:#f2f6f9;border-radius:12px;padding:8px;display:flex;flex-direction:column;gap:6px;margin-top:6px}.flt-row{gap:5px}.flt-row .chip{padding:5px 9px;font-size:12.5px}
+.flt-q{font:inherit;font-size:16px;padding:8px 10px;border-radius:10px;border:1.5px solid #c9d3dc}
 .tools{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
 .tools button{border:1px solid var(--line);background:var(--panel);border-radius:8px;padding:3px 9px;font-size:12px;color:var(--muted)}
 [hidden]{display:none!important}
@@ -483,9 +485,9 @@ const OKI_W=[50,30,13,5,2]; // 置き竿で★1〜5が出る割合（上限よ�
 const OKI_NEW=1;            // 未発見の魚のかかりやすさ（倍）。1=補正なし
 const OKI_XP=1/3;           // 経験値は通常の釣りの何倍か
 // お知らせ（アップデートのたびに上に足す。NEWS_VER を変えるとメニューに NEW が付く）
-const NEWS_VER='2026-11-15m';
+const NEWS_VER='2026-11-15n';
 const NEWS=[
- {d:'2026/11/15',t:['釣り人の部屋とアバター！ 釣り場の「🏠 部屋」で着替え・模様替え。魚拓やはく製を飾ったり、水槽も置けます','アップデートがあると画面の上にお知らせが出るように','ランキング：釣った数・魚の大きさを通算／週間／日間で（メニュー →「ランキング」・ログインした人が参加）。週間の釣った数で10位までは報酬あり','アカウント：Googleでログインするとクラウドに自動セーブ（メニュー →「アカウント」）。プレイヤー名も決められます','ナイスアワセ：浮きが水中に消えた瞬間にアワセると、ゲージが多めの状態からスタート（くわしくは遊び方）','前アタリ：アタリの前に浮きがピクッと動くように','水槽の設備ボーナス：背景・砂・ライト・飾りで見物料アップ（最大+60%）','釣りゲージの着せ替え（9種類）。ショップの「着せ替え」で','釣り上げの進み具合をゲージのすぐ上に','水槽の見物料：水槽の魚がゴールドを稼ぐように（今日の人気者は2倍・エサやりで+50%）','ショップがタブ分けに（道具・券・着せ替え・水槽）。着せ替えと水槽の買い物はショップで','着せ替えには持っているものだけ表示','称号ページが「レベル称号・実績称号・イベント称号」のタブに','天空・古代で釣った魚の魚拓は金の額縁に','釣れたときの音と演出が★ごとに変わるように（★5以上はキラキラ・後光）','宝箱は「チャリーン！」',
+ {d:'2026/11/15',t:['魚籠に「絞り込み」（★・釣った場所・ロック・今日釣った魚・名前）。全部選ぶ／最大以外を選ぶは表示中の魚だけ','図鑑に「絞り込み」と、釣り場ごとの開閉・達成率（小川 12/20 など）','釣り人の部屋とアバター！ 釣り場の「🏠 部屋」で着替え・模様替え。魚拓やはく製を飾ったり、水槽も置けます','アップデートがあると画面の上にお知らせが出るように','ランキング：釣った数・魚の大きさを通算／週間／日間で（メニュー →「ランキング」・ログインした人が参加）。週間の釣った数で10位までは報酬あり','アカウント：Googleでログインするとクラウドに自動セーブ（メニュー →「アカウント」）。プレイヤー名も決められます','ナイスアワセ：浮きが水中に消えた瞬間にアワセると、ゲージが多めの状態からスタート（くわしくは遊び方）','前アタリ：アタリの前に浮きがピクッと動くように','水槽の設備ボーナス：背景・砂・ライト・飾りで見物料アップ（最大+60%）','釣りゲージの着せ替え（9種類）。ショップの「着せ替え」で','釣り上げの進み具合をゲージのすぐ上に','水槽の見物料：水槽の魚がゴールドを稼ぐように（今日の人気者は2倍・エサやりで+50%）','ショップがタブ分けに（道具・券・着せ替え・水槽）。着せ替えと水槽の買い物はショップで','着せ替えには持っているものだけ表示','称号ページが「レベル称号・実績称号・イベント称号」のタブに','天空・古代で釣った魚の魚拓は金の額縁に','釣れたときの音と演出が★ごとに変わるように（★5以上はキラキラ・後光）','宝箱は「チャリーン！」',
   '天空・古代に専用のBGM（いつもの曲と釣り上げ中の曲）','★7・★8が暴れだすと、釣り上げ中の曲が少し速く・高くなるように']},
  {d:'2026/11/15',t:['新しい魚21種（シャチ・イッカク・マッコウクジラ・クロコダイル・オニイトマキエイなど）','メニューができました（置き竿・ミッション・図鑑・着せ替え・称号・魚拓・セーブコード・設定・お知らせ）','魚拓ギャラリー：釣った魚を魚拓にして飾れる（12枚まで）','デイリーミッション：毎日3つ・報酬はランダム・1日1回チェンジ','置き竿：4種類。時間がたつと魚がかかる（経験値は1/3）','キャストのメーターが「真ん中が奥」に','BGM・効果音の音量を調整できるように','買う・売るは2回タップで決定に','釣り画面の文字にふち取り']},
  {d:'2026/11/14',t:['レベル称号（Lv10ごと）と報酬のウキ・竿','釣り上げ中の演出：ウキが近づく・竿が揺れる・水しぶき','魚影はゲージ80%で正体が分かるように','左右の合図はゲージの下に','宝箱が全部の釣り場に・宝箱は抵抗しない','キャストのキャンセル・魚のロック','新しい魚17種（ハコフグ〜ザトウクジラ）']}
@@ -5250,12 +5252,14 @@ const PX={
       <div class="small" style="margin-bottom:6px" id="bkHint">売りたい魚をタップして選ぶ（👑＝その種類でいちばん大きい魚・🔒＝ロック中は売れない）</div>
       <div class="row" style="margin-bottom:8px"><button class="chip" id="selExMax" type="button">最大以外を選ぶ</button><button class="chip" id="selAll" type="button">全部選ぶ</button><button class="chip" id="selNone" type="button">選択を解除</button><button class="chip" id="lockMode" type="button" aria-pressed="false">🔒 ロック切替</button><button class="chip" id="gyoMode" type="button" aria-pressed="false">🖼 魚拓にする</button></div>
       <div class="row" style="margin-bottom:6px"><button class="chip" id="bkOpenAll" type="button">ぜんぶ開く</button><button class="chip" id="bkSort" type="button">並び：図鑑順</button></div>
+      <div id="bkFilter" style="margin-bottom:6px"></div>
       <div class="list" id="bucket"></div></div>
     <button class="sell" id="sellall" type="button">選んだ魚を売る</button>
     <button class="sell" id="aqIn" type="button" style="background:var(--water)">選んだ魚を水槽へ入れる</button>
   </section>
   <section class="panel" id="p-dex" hidden>
     <h3>図鑑 <span id="dexcount"></span></h3>
+    <div id="dexFilter" style="margin-bottom:6px"></div>
     <div class="dex" id="dex"></div>
   </section>
   <section class="panel" id="p-shop" hidden>
@@ -5304,7 +5308,7 @@ const PX={
       <div class="row"><span class="chip">白 ★1〜</span><span class="chip" style="color:#1f7ad6">青 ★2〜</span><span class="chip" style="color:#22974c">緑 ★3〜</span><span class="chip" style="color:#b58a00">黄 ★4〜</span><span class="chip" style="color:#e07400">橙 ★5〜</span><span class="chip" style="color:#e02a2a">赤 ★6〜</span><span class="chip">🌈 虹 ★7〜</span></div></div>
     <div><h3>お金・レベル・道具</h3>
       <ul>
-        <li>釣った魚は「持ち物」の魚籠へ。<b>選んで売る</b>ことができます（「最大以外を選ぶ」が便利）。</li>
+        <li>釣った魚は「持ち物」の魚籠へ。<b>選んで売る</b>ことができます（「最大以外を選ぶ」が便利）。「🔍 絞り込み」で★・釣った場所・ロック・今日釣った魚・名前で絞れて、「全部選ぶ」「最大以外を選ぶ」は表示中の魚だけが対象です。図鑑も絞り込みと、釣り場ごとの開閉ができます。</li>
         <li><b>🔒 ロック</b>：釣った直後の画面の「ロックする」か、魚籠の「🔒 ロック切替」を押してから魚をタップ。ロックした魚は売れません（「全部選ぶ」でも選ばれません）。水槽には入れられます。</li>
         <li>レベルが上がると新しい釣り場が開放されます。上の釣り場ほどレアな魚が多くなります。</li>
         <li><b>宝箱</b>：どの釣り場でもたまに釣れます（大きいほどレア）。抵抗しないので、バーを重ねるだけで釣り上げられます。売値が高い！</li>
@@ -6891,8 +6895,8 @@ function renderBag(){
   renderBucket();
 }
 // 魚籠: 種類ごとにまとめ、1匹ずつタップで選ぶ
-function bucketGroups(){
-  const g={};S.bucket.forEach(b=>{(g[b.id]=g[b.id]||[]).push(b)});
+function bucketGroups(all){
+  const g={};S.bucket.forEach(b=>{if(!all){const f=FISH.find(x=>x.id===b.id);if(f&&!bkPass(b,f))return}(g[b.id]=g[b.id]||[]).push(b)});
   const order=FISH.map(f=>f.id).filter(id=>g[id]);
   order.forEach(id=>g[id].sort((a,b)=>b.size-a.size||b.price-a.price));
   return order.map(id=>({f:FISH.find(x=>x.id===id),list:g[id]}));
@@ -6901,8 +6905,9 @@ function renderBucket(){
   const have=new Set(S.bucket.map(b=>b.u));[...sel].forEach(u=>{if(!have.has(u))sel.delete(u)});
   const box=$('#bucket');box.replaceChildren();
   const groups=bucketGroups();
-  if(!groups.length)box.append(el('div','small','まだ何も釣れていません'));
+  if(!groups.length)box.append(el('div','small',S.bucket.length?'絞り込みに合う魚がいません':'まだ何も釣れていません'));
   if(bkSort==='rar')groups.sort((a,b)=>b.f.rar-a.f.rar);else if(bkSort==='num')groups.sort((a,b)=>b.list.length-a.list.length);
+  const maxU={};bucketGroups(true).forEach(g=>{maxU[g.f.id]=g.list[0].u});
   groups.forEach(({f,list})=>{
     // 種類ごとに1行にたたむ（タップで開く）
     const d=el('div','bk'),open=bkOpen.has(f.id),ns=list.filter(b=>sel.has(b.u)).length,nl=list.filter(b=>b.lk).length;
@@ -6912,7 +6917,7 @@ function renderBucket(){
     if(!open){box.append(d);return}
     const r=el('div','row');
     list.forEach((b,i)=>{
-      const c=el('button','chip',(b.lk?'🔒':'')+(i===0?'👑':'')+b.size+'cm '+yen(b.price));c.type='button';
+      const c=el('button','chip',(b.lk?'🔒':'')+(b.u===maxU[f.id]?'👑':'')+b.size+'cm '+yen(b.price));c.type='button';
       c.setAttribute('aria-pressed',String(sel.has(b.u)));
       if(b.lk&&!sel.has(b.u)){c.style.borderColor='#e0a800';c.style.boxShadow='inset 0 0 0 1px #e0a800'}
       c.onclick=()=>{if(gyoMode){gyoMode=false;gyoAdd(b);renderBucket();return}if(lockMode){if(b.lk)delete b.lk;else{b.lk=1;misEv('lock')}save()}else sel.has(b.u)?sel.delete(b.u):sel.add(b.u);renderBucket()};
@@ -6921,7 +6926,7 @@ function renderBucket(){
   });
   const picked=S.bucket.filter(b=>sel.has(b.u)),sellable=picked.filter(b=>!b.lk),total=sellable.reduce((a,b)=>a+b.price,0),lkSel=picked.length-sellable.length;
   const nLk=S.bucket.filter(b=>b.lk).length;
-  $('#bucketinfo').textContent='（'+S.bucket.length+'匹'+(nLk?'・🔒'+nLk:'')+'）';
+  const shown=groups.reduce((a,g)=>a+g.list.length,0);$('#bucketinfo').textContent='（'+(bkActive()?'表示 '+shown+' / ':'')+S.bucket.length+'匹'+(nLk?'・🔒'+nLk:'')+'）';
   $('#lockMode').setAttribute('aria-pressed',String(lockMode));$('#lockMode').textContent=lockMode?'🔒 ロック切替中（終わる）':'🔒 ロック切替';
   $('#gyoMode').setAttribute('aria-pressed',String(gyoMode));$('#gyoMode').textContent=gyoMode?'🖼 魚拓にする魚をタップ（やめる）':'🖼 魚拓にする';
   $('#bkHint').textContent=gyoMode?'種類を開いて、魚拓にしたい魚をタップしてください（売っても魚拓は残ります）':lockMode?'種類を開いて、タップした魚のロックを切り替えます（🔒＝ロック中は売れない）':'種類をタップで開き、売りたい魚をタップして選ぶ（👑＝その種類でいちばん大きい魚・🔒＝ロック中は売れない）';
@@ -6997,8 +7002,13 @@ function renderDex(){
   const box=$('#dex');box.replaceChildren();let got=0;
   STAGES.forEach(s=>{
     const list=FISH.filter(f=>f.spots[0]===s.id).sort((a,b)=>a.rar-b.rar);if(!list.length)return;
-    box.append(el('div','dh',s.name));
-    list.forEach(f=>{const d=S.dex[f.id];if(d)got++;
+    const sg=list.filter(f=>S.dex[f.id]).length;got+=sg;
+    const vis=list.filter(f=>{const d=S.dex[f.id];if(DXF.got==='got'&&!d)return false;if(DXF.got==='not'&&d)return false;if(DXF.rar.size&&!DXF.rar.has(f.rar))return false;if(DXF.q&&!(d&&f.name.includes(DXF.q)))return false;return true});
+    if(dxActive()&&!vis.length)return;
+    const closed=dexClosed.has(s.id),h=el('button','dh');h.type='button';h.textContent=(closed?'▶ ':'▼ ')+s.name+'　'+sg+' / '+list.length+(sg===list.length?' 🎉':'');
+    h.onclick=()=>{closed?dexClosed.delete(s.id):dexClosed.add(s.id);dexDrawn='';renderDex();renderDexFilter()};box.append(h);
+    if(closed)return;
+    vis.forEach(f=>{const d=S.dex[f.id];
       const c=el('div','dc');const cvs=el('canvas');cvs.width=200;cvs.height=76;
       drawFish(cvs.getContext('2d'),100,38,d?130:110,f,false,!d);
       c.append(cvs,el('span','stars',starStr(f.rar)),el('b',null,d?f.name:'？？？'),el('span','small',d?'最大'+d.best+'cm／'+d.n+'匹':'未発見'));box.append(c)});
@@ -7087,8 +7097,8 @@ confirmTap($('#sellall'),()=>{
   const picked=S.bucket.filter(b=>sel.has(b.u)&&!b.lk);if(!picked.length)return;
   S.gold+=picked.reduce((a,b)=>a+b.price,0);S.bucket=S.bucket.filter(b=>!(sel.has(b.u)&&!b.lk));sel.clear();
   misEv('sell',{n:picked.length,gold:picked.reduce((a,b)=>a+b.price,0)});save();renderAll();beep(988,.12,'triangle');msg(picked.length+'匹を売った（＋'+yen(picked.reduce((a,b)=>a+b.price,0))+'）',true,1.6)},'もう一度押すと売る');
-$('#selExMax').onclick=()=>{sel.clear();bucketGroups().forEach(g=>g.list.slice(1).forEach(b=>{if(!b.lk)sel.add(b.u)}));renderBucket()};
-$('#selAll').onclick=()=>{S.bucket.forEach(b=>{if(!b.lk)sel.add(b.u)});renderBucket()};
+$('#selExMax').onclick=()=>{sel.clear();const maxU={};bucketGroups(true).forEach(g=>{maxU[g.f.id]=g.list[0].u});bucketGroups().forEach(g=>g.list.forEach(b=>{if(!b.lk&&b.u!==maxU[g.f.id])sel.add(b.u)}));renderBucket()}; // 表示中の魚だけ
+$('#selAll').onclick=()=>{bucketGroups().forEach(g=>g.list.forEach(b=>{if(!b.lk)sel.add(b.u)}));renderBucket()}; // 表示中の魚だけ
 $('#lockMode').onclick=()=>{lockMode=!lockMode;gyoMode=false;renderBucket()};
 $('#bkOpenAll').onclick=()=>{const ids=bucketGroups().map(g=>g.f.id);if(ids.every(i=>bkOpen.has(i)))bkOpen.clear();else ids.forEach(i=>bkOpen.add(i));renderBucket()};
 $('#bkSort').onclick=()=>{bkSort={dex:'rar',rar:'num',num:'dex'}[bkSort];renderBucket()};
@@ -7642,6 +7652,52 @@ function renderRmShop(){
 }
 
 rmNorm();rmBtnLabel();
+// ---------- 魚籠・図鑑の絞り込み（アプリを開き直すと「すべて」に戻る）----------
+const BKF={rar:new Set(),st:'',lk:'all',q:'',today:false,open:false};
+const DXF={got:'all',rar:new Set(),q:'',open:false};
+const dexClosed=new Set();
+const bkActive=()=>BKF.rar.size||BKF.st||BKF.lk!=='all'||BKF.q||BKF.today;
+const dxActive=()=>DXF.got!=='all'||DXF.rar.size||DXF.q;
+function bkPass(b,f){
+  if(BKF.rar.size&&!BKF.rar.has(f.rar))return false;
+  if(BKF.st&&b.st!==BKF.st)return false;
+  if(BKF.lk==='on'&&!b.lk)return false;if(BKF.lk==='off'&&b.lk)return false;
+  if(BKF.today&&!(b.t&&rkDay(b.t)===rkDay()))return false;
+  if(BKF.q&&!f.name.includes(BKF.q))return false;
+  return true;
+}
+function fltChips(box,items,isOn,onTap){const r=el('div','row flt-row');items.forEach(([v,n])=>{const b=el('button','chip',n);b.type='button';b.setAttribute('aria-pressed',String(isOn(v)));b.onclick=()=>onTap(v);r.append(b)});box.append(r)}
+function fltSearch(box,obj,after){const i=document.createElement('input');i.type='search';i.placeholder='名前で探す';i.value=obj.q;i.className='flt-q';i.oninput=()=>{obj.q=i.value.trim();after(false)};box.append(i)}
+function renderBkFilter(){
+  const box=$('#bkFilter');if(!box)return;box.replaceChildren();
+  const tg=el('button','chip',(BKF.open?'▼':'▶')+' 🔍 絞り込み'+(bkActive()?'（中）':''));tg.type='button';if(bkActive())tg.setAttribute('aria-pressed','true');
+  tg.onclick=()=>{BKF.open=!BKF.open;renderBkFilter()};const top=el('div','row');top.append(tg);
+  if(bkActive()){const c=el('button','chip','解除');c.type='button';c.onclick=()=>{BKF.rar.clear();BKF.st='';BKF.lk='all';BKF.q='';BKF.today=false;renderBkFilter();renderBucket()};top.append(c)}
+  box.append(top);if(!BKF.open)return;
+  const p=el('div','flt');const re=all=>{if(all!==false)renderBkFilter();renderBucket()};
+  fltChips(p,[1,2,3,4,5,6,7,8].map(n=>[n,'★'+n]),v=>BKF.rar.has(v),v=>{BKF.rar.has(v)?BKF.rar.delete(v):BKF.rar.add(v);re()});
+  const sts=STAGES.filter(s=>S.bucket.some(b=>b.st===s.id));if(sts.length){const sl=document.createElement('select');sl.className='rk-sel';const o0=document.createElement('option');o0.value='';o0.textContent='釣った場所：すべて';sl.append(o0);
+    sts.forEach(s=>{const o=document.createElement('option');o.value=s.id;o.textContent=s.name;if(BKF.st===s.id)o.selected=true;sl.append(o)});sl.onchange=()=>{BKF.st=sl.value;re()};p.append(sl)}
+  fltChips(p,[['all','ロック：すべて'],['on','🔒 ロック中'],['off','ロック以外']],v=>BKF.lk===v,v=>{BKF.lk=v;re()});
+  fltChips(p,[['today','今日釣った魚だけ']],()=>BKF.today,()=>{BKF.today=!BKF.today;re()});
+  fltSearch(p,BKF,re);box.append(p);
+}
+function renderDexFilter(){
+  const box=$('#dexFilter');if(!box)return;box.replaceChildren();
+  const tg=el('button','chip',(DXF.open?'▼':'▶')+' 🔍 絞り込み'+(dxActive()?'（中）':''));tg.type='button';if(dxActive())tg.setAttribute('aria-pressed','true');
+  tg.onclick=()=>{DXF.open=!DXF.open;renderDexFilter()};
+  const all=el('button','chip',STAGES.every(s=>!dexClosed.has(s.id))?'ぜんぶ閉じる':'ぜんぶ開く');all.type='button';
+  all.onclick=()=>{if(STAGES.every(s=>!dexClosed.has(s.id)))STAGES.forEach(s=>dexClosed.add(s.id));else dexClosed.clear();dexDrawn='';renderDexFilter();renderDex()};
+  const top=el('div','row');top.append(tg,all);
+  if(dxActive()){const c=el('button','chip','解除');c.type='button';c.onclick=()=>{DXF.got='all';DXF.rar.clear();DXF.q='';dexDrawn='';renderDexFilter();renderDex()};top.append(c)}
+  box.append(top);if(!DXF.open)return;
+  const p=el('div','flt');const re=all=>{dexDrawn='';if(all!==false)renderDexFilter();renderDex()};
+  fltChips(p,[['all','すべて'],['got','見つけた'],['not','まだ']],v=>DXF.got===v,v=>{DXF.got=v;re()});
+  fltChips(p,[1,2,3,4,5,6,7,8].map(n=>[n,'★'+n]),v=>DXF.rar.has(v),v=>{DXF.rar.has(v)?DXF.rar.delete(v):DXF.rar.add(v);re()});
+  fltSearch(p,DXF,re);box.append(p);
+}
+
+renderBkFilter();renderDexFilter();
 // 背景・魚の画像を先に読み込む
 STAGES.forEach(s=>img(s.bg));FISH.forEach(f=>img(f.img));
 let titleNews='';
