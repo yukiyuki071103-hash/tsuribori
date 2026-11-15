@@ -53,6 +53,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 .badge{background:var(--accent);color:var(--accent-ink);font-weight:700;font-size:12px;border-radius:99px;padding:1px 10px}
 .small{font-size:12.5px;color:var(--muted)}
 #act{width:100%;min-height:62px;border:0;border-radius:14px;background:var(--accent);color:var(--accent-ink);font-family:var(--f-d);font-size:22px;box-shadow:0 4px 0 rgba(0,0,0,.18);touch-action:none}
+#act.locked{background:#c9cfd6;color:#6a7280;box-shadow:0 4px 0 rgba(0,0,0,.1)}#act.locked::before{content:'🔒 '}
 #act.hold{transform:translateY(3px);box-shadow:0 1px 0 rgba(0,0,0,.18)}
 nav{display:grid;grid-template-columns:repeat(4,1fr);gap:4px}
 nav button{border:1px solid var(--line);background:var(--panel);border-radius:10px;padding:7px 0;font-weight:700;font-size:13.5px;white-space:nowrap;position:relative}
@@ -520,9 +521,9 @@ const OKI_W=[50,30,13,5,2]; // 置き竿で★1〜5が出る割合（上限よ�
 const OKI_NEW=1;            // 未発見の魚のかかりやすさ（倍）。1=補正なし
 const OKI_XP=1/3;           // 経験値は通常の釣りの何倍か
 // お知らせ（アップデートのたびに上に足す。NEWS_VER を変えるとメニューに NEW が付く）
-const NEWS_VER='2026-11-15u';
+const NEWS_VER='2026-11-15w';
 const NEWS=[
- {d:'2026/11/15',t:['🎯 今日のお題ランキング！ 毎日1匹えらばれる魚の大きさで競います（釣り場の上とランキングの「🎯お題」）。10位まで報酬あり（1位 3,000G〜）','🏆 ランキングは上位10名と「あなたは○位（○人中）」の表示に','アプリの中のブラウザでログインできないときの案内を追加','🧚 新ステージ「精霊の丘」！ Lv100から。妖精11種（★8）と、初の★9「精霊女王」。幻影と精霊の風に気をつけて。専用BGMつき','🎵 BGMの着せ替え！ 夜の海・和の調べ・南国リゾート・レトロゲーム・夕焼けローファイ（各20,000G・ショップの「着せ替え」で試聴できます）','🔓 限界突破：Lv79→80とLv99→100には条件があります（レベル表示の🔒をタップで確認）。突破すると称号「限界を超えし者」','🌌 新ステージ「宇宙」！ Lv80から。新しい魚12種、★7・★8がたくさん。流れ星に気をつけて。宇宙専用のBGMつき','水槽のライトを明るく。虹のライトは光の筋ごとに色が変わるように','フレンド機能！ コードで申請・承認。フレンドの水槽・部屋に遊びに行けて、1日1回エサやりも（メニュー →「フレンド」）','魚籠に「絞り込み」（★・釣った場所・ロック・今日釣った魚・名前）。全部選ぶ／最大以外を選ぶは表示中の魚だけ','図鑑に「絞り込み」と、釣り場ごとの開閉・達成率（小川 12/20 など）','釣り人の部屋とアバター！ 釣り場の「🏠 部屋」で着替え・模様替え。魚拓やはく製を飾ったり、水槽も置けます','アップデートがあると画面の上にお知らせが出るように','ランキング：釣った数・魚の大きさを通算／週間／日間で（メニュー →「ランキング」・ログインした人が参加）。週間の釣った数で10位までは報酬あり','アカウント：Googleでログインするとクラウドに自動セーブ（メニュー →「アカウント」）。プレイヤー名も決められます','ナイスアワセ：浮きが水中に消えた瞬間にアワセると、ゲージが多めの状態からスタート（くわしくは遊び方）','前アタリ：アタリの前に浮きがピクッと動くように','水槽の設備ボーナス：背景・砂・ライト・飾りで見物料アップ（最大+60%）','釣りゲージの着せ替え（9種類）。ショップの「着せ替え」で','釣り上げの進み具合をゲージのすぐ上に','水槽の見物料：水槽の魚がゴールドを稼ぐように（今日の人気者は2倍・エサやりで+50%）','ショップがタブ分けに（道具・券・着せ替え・水槽）。着せ替えと水槽の買い物はショップで','着せ替えには持っているものだけ表示','称号ページが「レベル称号・実績称号・イベント称号」のタブに','天空・古代で釣った魚の魚拓は金の額縁に','釣れたときの音と演出が★ごとに変わるように（★5以上はキラキラ・後光）','宝箱は「チャリーン！」',
+ {d:'2026/11/15',t:['水槽の大きい魚を小さめに（最大で水槽の1/3くらい）。魚どうしが重ならないように、ばらけて泳ぐように','釣りの操作はキャストボタンだけに（池の絵をさわっても投げない）。持ち物・ショップ・メニューを開いている間はボタンに🔒（押すと釣り場にもどる）','🎯 今日のお題ランキング！ 毎日1匹えらばれる魚の大きさで競います（釣り場の上とランキングの「🎯お題」）。10位まで報酬あり（1位 3,000G〜）','🏆 ランキングは上位10名と「あなたは○位（○人中）」の表示に','アプリの中のブラウザでログインできないときの案内を追加','🧚 新ステージ「精霊の丘」！ Lv100から。妖精11種（★8）と、初の★9「精霊女王」。幻影と精霊の風に気をつけて。専用BGMつき','🎵 BGMの着せ替え！ 夜の海・和の調べ・南国リゾート・レトロゲーム・夕焼けローファイ（各20,000G・ショップの「着せ替え」で試聴できます）','🔓 限界突破：Lv79→80とLv99→100には条件があります（レベル表示の🔒をタップで確認）。突破すると称号「限界を超えし者」','🌌 新ステージ「宇宙」！ Lv80から。新しい魚12種、★7・★8がたくさん。流れ星に気をつけて。宇宙専用のBGMつき','水槽のライトを明るく。虹のライトは光の筋ごとに色が変わるように','フレンド機能！ コードで申請・承認。フレンドの水槽・部屋に遊びに行けて、1日1回エサやりも（メニュー →「フレンド」）','魚籠に「絞り込み」（★・釣った場所・ロック・今日釣った魚・名前）。全部選ぶ／最大以外を選ぶは表示中の魚だけ','図鑑に「絞り込み」と、釣り場ごとの開閉・達成率（小川 12/20 など）','釣り人の部屋とアバター！ 釣り場の「🏠 部屋」で着替え・模様替え。魚拓やはく製を飾ったり、水槽も置けます','アップデートがあると画面の上にお知らせが出るように','ランキング：釣った数・魚の大きさを通算／週間／日間で（メニュー →「ランキング」・ログインした人が参加）。週間の釣った数で10位までは報酬あり','アカウント：Googleでログインするとクラウドに自動セーブ（メニュー →「アカウント」）。プレイヤー名も決められます','ナイスアワセ：浮きが水中に消えた瞬間にアワセると、ゲージが多めの状態からスタート（くわしくは遊び方）','前アタリ：アタリの前に浮きがピクッと動くように','水槽の設備ボーナス：背景・砂・ライト・飾りで見物料アップ（最大+60%）','釣りゲージの着せ替え（9種類）。ショップの「着せ替え」で','釣り上げの進み具合をゲージのすぐ上に','水槽の見物料：水槽の魚がゴールドを稼ぐように（今日の人気者は2倍・エサやりで+50%）','ショップがタブ分けに（道具・券・着せ替え・水槽）。着せ替えと水槽の買い物はショップで','着せ替えには持っているものだけ表示','称号ページが「レベル称号・実績称号・イベント称号」のタブに','天空・古代で釣った魚の魚拓は金の額縁に','釣れたときの音と演出が★ごとに変わるように（★5以上はキラキラ・後光）','宝箱は「チャリーン！」',
   '天空・古代に専用のBGM（いつもの曲と釣り上げ中の曲）','★7・★8が暴れだすと、釣り上げ中の曲が少し速く・高くなるように']},
  {d:'2026/11/15',t:['新しい魚21種（シャチ・イッカク・マッコウクジラ・クロコダイル・オニイトマキエイなど）','メニューができました（置き竿・ミッション・図鑑・着せ替え・称号・魚拓・セーブコード・設定・お知らせ）','魚拓ギャラリー：釣った魚を魚拓にして飾れる（12枚まで）','デイリーミッション：毎日3つ・報酬はランダム・1日1回チェンジ','置き竿：4種類。時間がたつと魚がかかる（経験値は1/3）','キャストのメーターが「真ん中が奥」に','BGM・効果音の音量を調整できるように','買う・売るは2回タップで決定に','釣り画面の文字にふち取り']},
  {d:'2026/11/14',t:['レベル称号（Lv10ごと）と報酬のウキ・竿','釣り上げ中の演出：ウキが近づく・竿が揺れる・水しぶき','魚影はゲージ80%で正体が分かるように','左右の合図はゲージの下に','宝箱が全部の釣り場に・宝箱は抵抗しない','キャストのキャンセル・魚のロック','新しい魚17種（ハコフグ〜ザトウクジラ）']}
@@ -5348,6 +5349,7 @@ const PX={
       <div class="small" style="margin-top:6px">iPhoneはマナーモードだと鳴らないことがあります。</div></div>
     <div><h3>データ</h3><button class="sell" id="reset" type="button" style="background:#c8402a">データを消す</button>
       <div class="small" style="margin-top:4px">消す前に「セーブコード」でバックアップしておくと安心です。</div></div>
+    <div class="small" id="verTxt" style="margin-top:10px;text-align:right;color:#8a90a8"></div>
   </section>
   <section class="panel" id="p-fr" hidden>
     <div><h3>👥 フレンド</h3><div id="frBox" class="rk"></div></div>
@@ -6335,7 +6337,7 @@ function drawDrops(dt){
 function msg(t,small,sec){const m=$('#msg');m.textContent=t||'';m.className=small?'s':'';msgT=sec||0}
 function showHit(on){const h=$('#hit');if(!on){h.className='';return}
   const c=ECOL[eLv-1];h.className='on'+(c==='rainbow'?' rb':'');h.firstChild.style.color=c==='rainbow'?'':c;}
-function setPhase(p){ph=p;pt=0;const b=$('#act');if(audioOk)bgmSet(bgmWant());
+function setPhase(p){ph=p;pt=0;const b=$('#act');setTimeout(actLock);if(audioOk)bgmSet(bgmWant());
   b.textContent={idle:'キャスト',meter:'止める',cast:'……',wait:'アタリを待つ…',bite:'アワセ！',fight:'おして浮かせる',result:'つぎへ'}[p];b.classList.remove('hold');
   $('#cancelBtn').hidden=aqMode||rmMode||visitMode||!(p==='meter'||p==='cast'||p==='wait')}
 const ripple=(x,y,s)=>ripples.push({x,y,r:2,a:.9,s:s||1});
@@ -6517,13 +6519,20 @@ function setLockBtn(){const b=S.bucket.find(x=>x.u===lastCatchU),on=!!(b&&b.lk),
 $('#rlock').addEventListener('click',()=>{const b=S.bucket.find(x=>x.u===lastCatchU);if(!b)return;b.lk=b.lk?0:1;if(!b.lk)delete b.lk;else{sel.delete(b.u);misEv('lock')}save();setLockBtn();renderBucket();beep(b.lk?880:520,.08,'triangle',.04)});
 
 // ---------- 入力 ----------
+// 釣りの操作はキャストボタン（とPCのスペースキー）だけ。下のパネルを開いている間は🔒
+let curTab='spot';
+const actLock=()=>{const L=curTab!=='spot'&&ph==='idle'&&!aqMode&&!rmMode&&!visitMode;const b=$('#act');if(b)b.classList.toggle('locked',L);return L};
 function onDown(e){
   if(e&&e.target&&e.target.closest&&e.target.closest('.side,.aqb,.cnb,.lkb'))return;
+  const isKey=!!(e&&e.code==='Space'),isAct=!!(e&&e.target&&e.target.closest&&e.target.closest('#act'));
+  if(isKey){const a=document.activeElement;if(a&&(/^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName)||a.isContentEditable))return}
   if(e&&e.preventDefault)e.preventDefault();
   if(AC&&AC.state==='suspended')AC.resume();
   if(visitMode){visDown(e);return}
   if(rmMode){if(e&&(e.code==='Space'||(e.target&&e.target.id==='act'))){const a=$('#rmAv');if(a)a.scrollIntoView({behavior:'smooth',block:'center'})}else rmDown(e);return}
   if(aqMode){if(e&&(e.code==='Space'||(e.target&&e.target.id==='act')))aqFeed();else aqDown(e);return}
+  if(!isAct&&!isKey)return; // 池の絵をさわっても釣りは動かない
+  if(actLock()){tab('spot');msg('釣り場にもどりました。もう一度押すとキャスト',true,1.6);return}
   if(ph==='idle')startMeter();
   else if(ph==='meter'){curRodAtCast=castRod();doCast()}
   else if(ph==='wait'){msg('まだだよ…浮きが沈んだらアワセ！',true,1.2)}
@@ -6539,7 +6548,7 @@ $('#stage').addEventListener('pointerdown',onDown);
 addEventListener('pointerup',onUp);addEventListener('pointercancel',onUp);
 // iPhone：長押しで虫眼鏡や選択が出ないように（釣りボタンと画面だけ）
 ['#act','#cv'].forEach(q=>{const n=$(q);if(!n)return;n.addEventListener('touchstart',e=>{if(e.touches.length===1)e.preventDefault()},{passive:false});n.addEventListener('contextmenu',e=>e.preventDefault())});
-addEventListener('keydown',e=>{if(e.code==='Space'&&!e.repeat){e.preventDefault();onDown(e)}});
+addEventListener('keydown',e=>{if(e.code==='Space'&&!e.repeat){const a=document.activeElement;if(a&&(/^(INPUT|TEXTAREA|SELECT|BUTTON)$/.test(a.tagName)&&a.id!=='act'||a.isContentEditable))return;e.preventDefault();onDown(e)}});
 addEventListener('keyup',e=>{if(e.code==='Space')onUp()});
 
 // ---------- 描画 ----------
@@ -6869,27 +6878,35 @@ function aqBtnLabel(){const b=$('#aqBtn');if(!b)return;if(aqMode){b.textContent=
 setInterval(()=>{try{aqBtnLabel();if(aqMode)aqMoneyUI()}catch(e){}},20000);
 const aqBg=()=>AQ_BG.find(b=>b.id===aqT().bg)||AQ_BG[0];
 const aqCaught=st=>Object.keys(S.dex).some(id=>{const f=FISH.find(x=>x.id===id);return f&&f.spots.includes(st)});
-const AQW=180,AQH=200,AQFLOOR=172;
+const AQW=180,AQH=200,AQFLOOR=172,AQS=4,AQ_MAXW=56; // 水槽の絵は4倍の細かさ・魚の横幅は最大56（水槽の約1/3）
 let aqMode=false,aqEdit=false,aqSel=-1,aqDrag=null;
 const AQ={cv:null,fish:{},food:[]};
 // 水槽の中の大きさ（水槽の絵は2倍の細かさで描くので、大きい魚も「1ドット＝1画素」でくっきり描ける）
-function aqSpriteSize(f){const s=pxSprite(pxKey(f.img));if(!s)return[24,10];
-  if(s.width<=170)return[s.width,s.height];if(s.width<=340)return[s.width/2,s.height/2];const k=170/s.width;return[170,s.height*k]}
+// 大きい魚は 1/2・1/3・1/4… と整数分の1に縮める（ドットの並びがくずれにくい）
+function aqSpriteSize(f){const s=pxSprite(pxKey(f.img));if(!s)return[24,10];const n=Math.max(1,Math.ceil(s.width/AQ_MAXW));return[s.width/n,s.height/n]}
 const aqBottom=f=>'chxb'.includes(f.shape);
 // 水槽の魚：ドット絵は元の大きさ（または整数倍）でくっきり描く。縦長の人魚などが小さくぼやけないように
 function aqSprite(c,a,x,y){
   const dk=!!RV&&!S.dex[a.f.id],pk=pxKey(a.f.img),im=pk&&pxSprite(pk,dk);
   if(!im){drawFish(c,x,y,24*a.k,a.f,a.flip,dk);return}
-  const k=a.w/im.width,w=a.w,h=im.height*k;c.save();c.translate(Math.round(x),Math.round(y));c.scale(a.flip?-1:1,1);c.imageSmoothingEnabled=k*2<1;
-  c.drawImage(im,Math.round(-w/2*2)/2,Math.round(-h/2*2)/2,w,h);c.restore();
+  const k=a.w/im.width,w=a.w,h=im.height*k;c.save();c.translate(Math.round(x*AQS)/AQS,Math.round(y*AQS)/AQS);c.scale(a.flip?-1:1,1);c.imageSmoothingEnabled=k*AQS<1;
+  c.drawImage(im,Math.round(-w/2*AQS)/AQS,Math.round(-h/2*AQS)/AQS,w,h);c.restore();
 }
 function aqActor(e){
   const Q=RV?RV.aq:AQ;let a=Q.fish[e.u];if(a)return a;
   const f=FISH.find(x=>x.id===e.id);if(!f)return null;
-  let [w,h]=aqSpriteSize(f);const bot=aqBottom(f),k=e.size>=300&&w*2<=170?2:1;w*=k;h*=k;
+  let [w,h]=aqSpriteSize(f);const bot=aqBottom(f),k=e.size>=300&&w*2<=AQ_MAXW?2:1;w*=k;h*=k;
   a=Q.fish[e.u]={f,w,h,k,bot,x:rnd(w/2,AQW-w/2),y:bot?AQFLOOR-h/2:rnd(24+h/2,AQFLOOR-h/2-4),tx:0,ty:0,t:0,flip:Math.random()<.5,sp:f.shape==='b'?0:bot?4+Math.random()*3:9+Math.random()*9}; // 宝箱・玉手箱は動かない
   if(!a.sp&&typeof e.px==='number')a.x=clamp(e.px,w/2,AQW-w/2); // 宝箱など：模様替えで置いた位置
   return a;
+}
+// 次に泳いでいく場所：候補をいくつか出して、ほかの魚からいちばん離れた所を選ぶ（＋魚ごとの得意な深さ）
+function aqPick(a,e,list,Q){
+  const top=22+a.h/2,bt=AQFLOOR-a.h/2-4,li=list.indexOf(e),lane=top+(bt-top)*((li*0.618+.2)%1);let best=null,bs=-1;
+  for(let k=0;k<6;k++){const x=rnd(a.w/2,AQW-a.w/2),y=a.bot?AQFLOOR-a.h/2:clamp(lane+rnd(-22,22),top,bt);let m=1e9;
+    list.forEach(o=>{if(o===e)return;const b=Q.fish[o.u];if(!b)return;const bx=b.sp?b.tx||b.x:b.x,by=b.sp?b.ty||b.y:b.y;m=Math.min(m,Math.hypot((x-bx)/((a.w+b.w)/2),(y-by)/((a.h+b.h)/2)))});
+    if(m>bs){bs=m;best=[x,y]}}
+  a.tx=best[0];a.ty=best[1];
 }
 function aqUpdate(dt){
   const Q=RV?RV.aq:AQ,list=aqT().fish;
@@ -6899,11 +6916,17 @@ function aqUpdate(dt){
     const mouth=(a.flip?-1:1)*a.w*.3;
     if(food){tx=food.x-mouth;ty=food.y+((e.u%3)-1)*4;sp=a.sp*2.2;a.fed=1;if(Math.hypot(food.x-a.x-mouth,food.y-a.y)<7)food.eat=1}
     else{if(a.fed){a.fed=0;a.t=0} // 食べ終わったら、それぞれ好きな場所へ散らばる
-      a.t-=dt;if(a.t<=0||Math.hypot(a.tx-a.x,a.ty-a.y)<3){a.t=rnd(2,5);a.tx=rnd(a.w/2,AQW-a.w/2);a.ty=a.bot?AQFLOOR-a.h/2:rnd(22+a.h/2,AQFLOOR-a.h/2-4)}tx=a.tx;ty=a.ty}
+      a.t-=dt;if(a.t<=0||Math.hypot(a.tx-a.x,a.ty-a.y)<3){a.t=rnd(3,6);aqPick(a,e,list,Q)}tx=a.tx;ty=a.ty}
     const dx=tx-a.x,dy=ty-a.y,d=Math.hypot(dx,dy)||1,m=Math.min(d,sp*dt);
     a.x+=dx/d*m;a.y+=dy/d*m*(a.bot?0:.7);if(Math.abs(dx)>1)a.flip=dx<0;
     a.x=clamp(a.x,a.w/2,AQW-a.w/2);a.y=clamp(a.y,18+a.h/2,AQFLOOR-a.h/2+(a.bot?0:-2));
   });
+  // 重なりすぎたら、おたがい少しずつ離れる（エサを食べている間はしない）
+  if(!Q.food.length){const A=list.map(e=>Q.fish[e.u]).filter(a=>a&&a.sp&&!a.bot);
+    for(let i=0;i<A.length;i++)for(let j=i+1;j<A.length;j++){const a=A[i],b=A[j],ox=(a.w+b.w)/2*.7-Math.abs(a.x-b.x),oy=(a.h+b.h)/2*.7-Math.abs(a.y-b.y);
+      if(ox>0&&oy>0){const sy=Math.sign(a.y-b.y)||(i%2?1:-1),sx=Math.sign(a.x-b.x)||1,m=Math.min(oy,ox)*Math.min(1,dt*4);
+        if(oy<ox){a.y+=sy*m/2;b.y-=sy*m/2}else{a.x+=sx*m/2;b.x-=sx*m/2}
+        [a,b].forEach(q=>{q.x=clamp(q.x,q.w/2,AQW-q.w/2);q.y=clamp(q.y,18+q.h/2,AQFLOOR-q.h/2-2)})}}}
   Q.food.forEach(p=>{if(p.y<AQFLOOR-2){p.y+=10*dt;p.x+=Math.sin(clock*2+p.s)*3*dt}else p.life-=dt});
   Q.food=Q.food.filter(p=>!p.eat&&p.life>0);
 }
@@ -6919,8 +6942,8 @@ function aqFeed(){
 }
 function aqDraw(dt){aqRender(dt);const Q=RV?RV.aq:AQ;cx.save();cx.imageSmoothingEnabled=false;cx.drawImage(Q.cv,0,0,W,H);cx.restore()}
 function aqRender(dt){
-  const Q=RV?RV.aq:AQ;if(!Q.cv){Q.cv=document.createElement('canvas');Q.cv.width=AQW*2;Q.cv.height=AQH*2}
-  const c=Q.cv.getContext('2d'),T=aqT(),bg=aqBg();c.setTransform(2,0,0,2,0,0);c.imageSmoothingEnabled=false;c.clearRect(0,0,AQW,AQH);
+  const Q=RV?RV.aq:AQ;if(!Q.cv){Q.cv=document.createElement('canvas');Q.cv.width=AQW*AQS;Q.cv.height=AQH*AQS}
+  const c=Q.cv.getContext('2d'),T=aqT(),bg=aqBg();c.setTransform(AQS,0,0,AQS,0,0);c.imageSmoothingEnabled=false;c.clearRect(0,0,AQW,AQH);
   // 背景（ドット絵らしく段々に）
   const cols=bg.cols,n=cols.length;
   for(let y=0;y<AQH;y+=5){const t=y/AQH*(n-1),i=Math.min(n-2,Math.floor(t)),f=t-i,a=cols[i],b=cols[i+1];const m=p=>Math.round(parseInt(a.substr(p,2),16)*(1-f)+parseInt(b.substr(p,2),16)*f);c.fillStyle=`rgb(${m(1)},${m(3)},${m(5)})`;c.fillRect(0,y,AQW,5)}
@@ -6989,7 +7012,7 @@ function aqToggle(){
   aqBtnLabel();rmBtnLabel();
   $('#act').textContent=aqMode?'エサやり':'キャスト';msg('',true);
   if(aqMode)$('#p-aq').scrollIntoView({behavior:'smooth',block:'nearest'});
-  renderSide();renderAq();
+  renderSide();renderAq();actLock();
 }
 // 魚籠 → 水槽
 function aqAddFromBucket(){
@@ -7452,10 +7475,11 @@ function renderShop(){
 }
 function renderShopOki(){const ob=$('#shopOki');ob.replaceChildren();
   OKIZAO.forEach(g=>ob.append(shopRow(g.name,g.min+'分で'+g.n+'匹・★1〜'+g.max+'（所持 '+(S.okiInv[g.id]|0)+'枚）',[buyBtn('買う',g.price,true,()=>{S.okiInv[g.id]=(S.okiInv[g.id]|0)+1})])))}
-function renderAll(){if(!curBait())S.bait='';renderSide();renderSpots();renderBag();renderDex();renderShop();renderShopOki();renderOki();renderMis();renderSpotStat();renderGyo();renderNews();renderSet();menuBadges();if(!$('#p-menu').hidden)renderMenu();renderCos();renderTitle();renderAq();if(typeof renderRm==='function'&&rmMode)renderRm();if(typeof refreshCode==='function')refreshCode()}
+function renderAll(){if(typeof actLock==='function')setTimeout(actLock);if(!curBait())S.bait='';renderSide();renderSpots();renderBag();renderDex();renderShop();renderShopOki();renderOki();renderMis();renderSpotStat();renderGyo();renderNews();renderSet();menuBadges();if(!$('#p-menu').hidden)renderMenu();renderCos();renderTitle();renderAq();if(typeof renderRm==='function'&&rmMode)renderRm();if(typeof refreshCode==='function')refreshCode()}
 // タブ：下の4つ（MAIN）と、メニューの中のページ（SUB）
 const MAIN=['spot','bag','shop','menu'],SUB=['oki','mis','dex','cos','title','gyo','code','set','news','help','acct','rank','fr'];
 function tab(k){
+  curTab=MAIN.includes(k)?k:'menu';setTimeout(actLock);
   if(k!=='shop'&&k!=='cos')bgmPrevStop();
   [...MAIN,...SUB].forEach(j=>{const p=$('#p-'+j);if(p)p.hidden=j!==k});
   const m=MAIN.includes(k)?k:'menu';MAIN.forEach(j=>$('#t-'+j).setAttribute('aria-selected',String(j===m)));
@@ -7485,7 +7509,7 @@ function renderMenu(){
    ['gyo','🖼','魚拓',S.gyo.length+' / '+GYO_MAX+'枚'],
    ['code','💾','セーブコード','バックアップ'],
    ['set','⚙','設定','音量・データ'],
-   ['news','📢','お知らせ',NEWS[0].d,newsNew()?'NEW':0],
+   ['news','📢','お知らせ','版 '+NEWS_VER,newsNew()?'NEW':0],
    ['help','❓','遊び方',''],
    ['fr','👥','フレンド',typeof CL!=='undefined'&&CL.user?(typeof FR!=='undefined'&&FR.inReq.length?'申請が来ています':(typeof FR!=='undefined'?FR.list.length:0)+'人'):'ログインで使える',typeof FR!=='undefined'&&FR.inReq.length>0],
    ['rank','🏆','ランキング',typeof CL!=='undefined'&&CL.user?(typeof RK!=='undefined'&&(RK.claim||RK.claimO)?'報酬あり！':'みんなと競う'):'ログインで参加',typeof RK!=='undefined'&&!!(RK.claim||RK.claimO)],
@@ -7843,6 +7867,7 @@ function updShow(v){
   bar.append(b,x);document.body.append(bar);
 }
 setTimeout(updCheck,4000);
+{const v=$('#verTxt');if(v)v.textContent='バージョン '+NEWS_VER+'（'+location.hostname+'）';}
 document.addEventListener('visibilitychange',()=>{if(!document.hidden)updCheck()});
 
 // ================= アバター・釣り人の部屋 =================
@@ -8033,7 +8058,7 @@ function rmFloorDraw(c){
 function rmTank(c,x,y,dt){
   const[w,h]=RM_TSZ[aqT().size|0]||RM_TSZ[0];
   c.fillStyle='#6b4423';c.fillRect(x-w/2-4,y-10,w+8,10);c.fillRect(x-w/2,y-2,4,2);c.fillRect(x+w/2-4,y-2,4,2);
-  const ty=y-10-h;try{aqRender(dt);const sh=Math.min(AQH,AQW*h/w);c.save();c.imageSmoothingEnabled=false;c.drawImage((RV?RV.aq:AQ).cv,0,(AQH-sh)*2,AQW*2,sh*2,x-w/2,ty,w,h);c.restore()}catch(e){c.fillStyle='#3f8fd8';c.fillRect(x-w/2,ty,w,h)}
+  const ty=y-10-h;try{aqRender(dt);const sh=Math.min(AQH,AQW*h/w);c.save();c.imageSmoothingEnabled=false;c.drawImage((RV?RV.aq:AQ).cv,0,(AQH-sh)*AQS,AQW*AQS,sh*AQS,x-w/2,ty,w,h);c.restore()}catch(e){c.fillStyle='#3f8fd8';c.fillRect(x-w/2,ty,w,h)}
   c.strokeStyle='rgba(255,255,255,.7)';c.lineWidth=2;c.strokeRect(x-w/2,ty,w,h);c.fillStyle='#333';c.fillRect(x-w/2-2,ty-3,w+4,4);
 }
 function rmBox(it){const F=RM_F[it.k];if(it.k==='tank'){const[w,h]=RM_TSZ[aqT().size|0]||RM_TSZ[0];return[it.x-w/2-4,it.y-h-14,it.x+w/2+4,it.y]}
@@ -8085,7 +8110,7 @@ function rmUp(){if(rmDragO){rmDragO=null;save()}}
 function rmToggle(){
   if(!rmMode&&busy()){msg('釣りの最中は部屋に戻れないよ',true,1.5);return}
   if(!rmMode&&aqMode)aqToggle();
-  rmMode=!rmMode;rmEdit=false;rmSel=-1;if(audioOk)setTimeout(()=>bgmSet(bgmWant()));
+  rmMode=!rmMode;setTimeout(actLock);rmEdit=false;rmSel=-1;if(audioOk)setTimeout(()=>bgmSet(bgmWant()));
   $('#stage').classList.toggle('rmon',rmMode);$('#p-rm').hidden=!rmMode;
   $('#act').textContent=rmMode?'👕 着替え':'キャスト';msg('',true);rmBtnLabel();
   if(rmMode){RMA.say=2.2;$('#p-rm').scrollIntoView({behavior:'smooth',block:'nearest'})}
