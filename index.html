@@ -501,9 +501,9 @@ const OKI_W=[50,30,13,5,2]; // 置き竿で★1〜5が出る割合（上限よ�
 const OKI_NEW=1;            // 未発見の魚のかかりやすさ（倍）。1=補正なし
 const OKI_XP=1/3;           // 経験値は通常の釣りの何倍か
 // お知らせ（アップデートのたびに上に足す。NEWS_VER を変えるとメニューに NEW が付く）
-const NEWS_VER='2026-11-15q';
+const NEWS_VER='2026-11-15r';
 const NEWS=[
- {d:'2026/11/15',t:['🌌 新ステージ「宇宙」！ Lv80から。新しい魚12種、★7・★8がたくさん。流れ星に気をつけて。宇宙専用のBGMつき','水槽のライトを明るく。虹のライトは光の筋ごとに色が変わるように','フレンド機能！ コードで申請・承認。フレンドの水槽・部屋に遊びに行けて、1日1回エサやりも（メニュー →「フレンド」）','魚籠に「絞り込み」（★・釣った場所・ロック・今日釣った魚・名前）。全部選ぶ／最大以外を選ぶは表示中の魚だけ','図鑑に「絞り込み」と、釣り場ごとの開閉・達成率（小川 12/20 など）','釣り人の部屋とアバター！ 釣り場の「🏠 部屋」で着替え・模様替え。魚拓やはく製を飾ったり、水槽も置けます','アップデートがあると画面の上にお知らせが出るように','ランキング：釣った数・魚の大きさを通算／週間／日間で（メニュー →「ランキング」・ログインした人が参加）。週間の釣った数で10位までは報酬あり','アカウント：Googleでログインするとクラウドに自動セーブ（メニュー →「アカウント」）。プレイヤー名も決められます','ナイスアワセ：浮きが水中に消えた瞬間にアワセると、ゲージが多めの状態からスタート（くわしくは遊び方）','前アタリ：アタリの前に浮きがピクッと動くように','水槽の設備ボーナス：背景・砂・ライト・飾りで見物料アップ（最大+60%）','釣りゲージの着せ替え（9種類）。ショップの「着せ替え」で','釣り上げの進み具合をゲージのすぐ上に','水槽の見物料：水槽の魚がゴールドを稼ぐように（今日の人気者は2倍・エサやりで+50%）','ショップがタブ分けに（道具・券・着せ替え・水槽）。着せ替えと水槽の買い物はショップで','着せ替えには持っているものだけ表示','称号ページが「レベル称号・実績称号・イベント称号」のタブに','天空・古代で釣った魚の魚拓は金の額縁に','釣れたときの音と演出が★ごとに変わるように（★5以上はキラキラ・後光）','宝箱は「チャリーン！」',
+ {d:'2026/11/15',t:['🎵 BGMの着せ替え！ 夜の海・和の調べ・南国リゾート・レトロゲーム・夕焼けローファイ（各20,000G・ショップの「着せ替え」で試聴できます）','🔓 限界突破：Lv79→80とLv99→100には条件があります（レベル表示の🔒をタップで確認）。突破すると称号「限界を超えし者」','🌌 新ステージ「宇宙」！ Lv80から。新しい魚12種、★7・★8がたくさん。流れ星に気をつけて。宇宙専用のBGMつき','水槽のライトを明るく。虹のライトは光の筋ごとに色が変わるように','フレンド機能！ コードで申請・承認。フレンドの水槽・部屋に遊びに行けて、1日1回エサやりも（メニュー →「フレンド」）','魚籠に「絞り込み」（★・釣った場所・ロック・今日釣った魚・名前）。全部選ぶ／最大以外を選ぶは表示中の魚だけ','図鑑に「絞り込み」と、釣り場ごとの開閉・達成率（小川 12/20 など）','釣り人の部屋とアバター！ 釣り場の「🏠 部屋」で着替え・模様替え。魚拓やはく製を飾ったり、水槽も置けます','アップデートがあると画面の上にお知らせが出るように','ランキング：釣った数・魚の大きさを通算／週間／日間で（メニュー →「ランキング」・ログインした人が参加）。週間の釣った数で10位までは報酬あり','アカウント：Googleでログインするとクラウドに自動セーブ（メニュー →「アカウント」）。プレイヤー名も決められます','ナイスアワセ：浮きが水中に消えた瞬間にアワセると、ゲージが多めの状態からスタート（くわしくは遊び方）','前アタリ：アタリの前に浮きがピクッと動くように','水槽の設備ボーナス：背景・砂・ライト・飾りで見物料アップ（最大+60%）','釣りゲージの着せ替え（9種類）。ショップの「着せ替え」で','釣り上げの進み具合をゲージのすぐ上に','水槽の見物料：水槽の魚がゴールドを稼ぐように（今日の人気者は2倍・エサやりで+50%）','ショップがタブ分けに（道具・券・着せ替え・水槽）。着せ替えと水槽の買い物はショップで','着せ替えには持っているものだけ表示','称号ページが「レベル称号・実績称号・イベント称号」のタブに','天空・古代で釣った魚の魚拓は金の額縁に','釣れたときの音と演出が★ごとに変わるように（★5以上はキラキラ・後光）','宝箱は「チャリーン！」',
   '天空・古代に専用のBGM（いつもの曲と釣り上げ中の曲）','★7・★8が暴れだすと、釣り上げ中の曲が少し速く・高くなるように']},
  {d:'2026/11/15',t:['新しい魚21種（シャチ・イッカク・マッコウクジラ・クロコダイル・オニイトマキエイなど）','メニューができました（置き竿・ミッション・図鑑・着せ替え・称号・魚拓・セーブコード・設定・お知らせ）','魚拓ギャラリー：釣った魚を魚拓にして飾れる（12枚まで）','デイリーミッション：毎日3つ・報酬はランダム・1日1回チェンジ','置き竿：4種類。時間がたつと魚がかかる（経験値は1/3）','キャストのメーターが「真ん中が奥」に','BGM・効果音の音量を調整できるように','買う・売るは2回タップで決定に','釣り画面の文字にふち取り']},
  {d:'2026/11/14',t:['レベル称号（Lv10ごと）と報酬のウキ・竿','釣り上げ中の演出：ウキが近づく・竿が揺れる・水しぶき','魚影はゲージ80%で正体が分かるように','左右の合図はゲージの下に','宝箱が全部の釣り場に・宝箱は抵抗しない','キャストのキャンセル・魚のロック','新しい魚17種（ハコフグ〜ザトウクジラ）']}
@@ -5335,6 +5335,7 @@ const PX={
     <div data-st="cos"><h3>ウキ</h3><div class="list" id="shopUki"></div></div>
     <div data-st="cos"><h3>竿の見た目</h3><div class="list" id="shopSkin"></div></div>
     <div data-st="cos"><h3>釣りゲージ</h3><div class="list" id="shopGauge"></div></div>
+    <div data-st="cos"><h3>BGM（通常の釣り場で流れる曲）</h3><div class="list" id="shopBgm"></div></div>
     <div data-st="aq"><div class="list" id="aqShop"></div></div>
     <div data-st="room"><h3>壁紙</h3><div class="list" id="shopRoomWall"></div></div>
     <div data-st="room"><h3>床</h3><div class="list" id="shopRoomFloor"></div></div>
@@ -5348,6 +5349,7 @@ const PX={
     <div><h3>ウキ</h3><div class="list" id="cosUki"></div></div>
     <div><h3>竿の見た目</h3><div class="list" id="cosRod"></div></div>
     <div><h3>釣りゲージ</h3><div class="list" id="cosGauge"></div></div>
+    <div><h3>BGM（通常の釣り場で流れる曲）</h3><div class="list" id="cosBgm"></div></div>
   </section>
   <section class="panel" id="p-title" hidden>
     <div><h3>称号</h3>
@@ -5392,6 +5394,8 @@ const PX={
         <li><b>セーブコードでバックアップ</b>しておくと安心です。</li>
         <li><b>釣り人の部屋</b>：釣り場の右上「🏠 部屋」で、自分の部屋へ。下のボタン「👕 着替え」でアバターを着替え、「模様替え」で家具・魚拓（6枚まで）・はく製を置けます。水槽は今の大きさで置かれ、タップすると水槽へ。壁紙・床・家具はショップの「部屋」、服や帽子はショップの「着せ替え」で。アバターはランキングと釣果画面にも出ます。</li>
         <li><b>宇宙ステージ</b>：Lv80から。チケット80,000G（10投）。★7がたくさん、★8もよく出る最難関。ときどき「☄ 流れ星！」でゲージの魚影が見えにくくなります。全種類釣ると称号「宇宙の覇者」。</li>
+        <li><b>限界突破</b>：Lv79とLv99で経験値が満タンになると止まります（🔒）。条件を満たすと次のレベルへ。Lv79→80は「天空と古代の図鑑をコンプリート」、Lv99→100は「宇宙の図鑑をコンプリート」。止まっている間の経験値も1レベル分まではためておけます。レベル表示の🔒をタップすると条件を確認できます。</li>
+        <li><b>BGMの着せ替え</b>：ショップの「着せ替え」で曲を買えます（▶で試聴）。選んだ曲は通常の釣り場・水槽・部屋で流れます。特殊ステージは専用の曲のままです。</li>
         <li><b>フレンド</b>：メニューの「フレンド」で、自分のフレンドコードを教えあって申請・承認するとフレンドに（ランキングの「＋」からも申請できます）。フレンドの水槽や部屋に遊びに行けて、水槽には1日1回エサやりができます（相手の見物料が1時間+20%、自分にはお礼の50G）。自分の図鑑にいない魚は影で見えます。</li>
         <li><b>ランキング</b>：ログインしている人どうしで「釣った数」と「魚の大きさ」（自分の図鑑にある魚だけ）を通算・週間・日間で競います。週間の釣った数で10位まで（その週に10匹以上）は、翌週にランキングのページで報酬を受け取れます。1位は称号「今週の釣り王」も。置き竿の分は数えません。</li>
         <li><b>アカウント</b>：メニューの「アカウント」で<b>Googleでログイン</b>すると、データがクラウドに自動で保存され、別のスマホでも同じデータで遊べます（ログインしなくても遊べます）。LINEの中のブラウザではログインできないので、SafariやChromeで開いてね。</li>
@@ -5481,10 +5485,19 @@ const depthOf=d=>{const f=castNear(d),z=zoneOf(d),a=z?CAST_CUT[z-1]:0,b=z<2?CAST
 const ECOL=['#ffffff','#3fa9ff','#3fcf6b','#ffd83a','#ff9a2c','#ff3d3d','rainbow','rainbow'];
 const need=l=>Math.round(20+4*l+.3*l*l);
 const MAXLV=100;
+// 限界突破：このLvで止まり、条件を満たすと次のLvへ（経験値は最大1レベル分までおあずけ）
+const LVGATE=[{lv:79,txt:'天空と古代の図鑑をコンプリート',ok:()=>dexAll('tenku')&&dexAll('kodai')},{lv:99,txt:'宇宙の図鑑をコンプリート',ok:()=>dexAll('uchu')}];
+const gateAt=l=>LVGATE.find(x=>x.lv===l);
+const gateBlock=()=>{const t=gateAt(S.lv);return t&&!t.ok()&&S.xp>=need(S.lv)?t:null};
+function addXp(v){let up=null;if(S.lv>=MAXLV){S.xp=0;return null}S.xp+=v;
+  for(;;){if(S.lv>=MAXLV){S.xp=0;break}const t=gateAt(S.lv);
+    if(t&&!t.ok()){S.xp=Math.min(S.xp,need(S.lv)+need(S.lv+1)-1);break}
+    if(S.xp<need(S.lv))break;S.xp-=need(S.lv);S.lv++;up=S.lv}
+  return up}
 
 // ---------- セーブ ----------
 const KEY='honobono-tsuribori-v3';
-const fresh=()=>({gold:0,xp:0,lv:1,stage:'ogawa',rod:'base',rodInv:{},bait:'',baitInv:{},tickets:{},tCasts:{},dex:{},bucket:[],snd:true,group:'川',uki:'base',ukiOwn:{base:1},skin:'none',skinOwn:{none:1},pname:'',av:null,avOwn:{},room:null,frOut:{},ffd:{},rk:null,rkClaim:'',kingN:0,cloudOn:false,cloudUid:'',syncT:0,gauge:'base',gaugeOwn:{base:1},tod:'day',todOwn:{morning:1,day:1},okiInv:{},oki:null,gyo:[],sfxVol:70,bgmVol:70,tank:freshTank()});
+const fresh=()=>({gold:0,xp:0,lv:1,stage:'ogawa',rod:'base',rodInv:{},bait:'',baitInv:{},tickets:{},tCasts:{},dex:{},bucket:[],snd:true,group:'川',uki:'base',ukiOwn:{base:1},skin:'none',skinOwn:{none:1},bgmSel:'base',bgmOwn:{base:1},pname:'',av:null,avOwn:{},room:null,frOut:{},ffd:{},rk:null,rkClaim:'',kingN:0,cloudOn:false,cloudUid:'',syncT:0,gauge:'base',gaugeOwn:{base:1},tod:'day',todOwn:{morning:1,day:1},okiInv:{},oki:null,gyo:[],sfxVol:70,bgmVol:70,tank:freshTank()});
 function freshTank(){return{size:0,bg:'river',bgOwn:{river:1},sand:'std',sandOwn:{std:1},light:'none',lightOwn:{none:1},deco:[],decoOwn:{},fish:[],bank:0,payT:Date.now(),feedT:0,pop:{d:'',id:''},fb:[]}}
 function aqNorm(){const t=Object.assign(freshTank(),S.tank&&typeof S.tank==='object'?S.tank:{});['bgOwn','sandOwn','lightOwn','decoOwn'].forEach(k=>{if(!t[k]||typeof t[k]!=='object')t[k]=freshTank()[k]});if(!Array.isArray(t.deco))t.deco=[];if(!Array.isArray(t.fish))t.fish=[];t.size=clamp(t.size|0,0,3);
   if(typeof t.bank!=='number'||!(t.bank>=0))t.bank=0;if(typeof t.payT!=='number')t.payT=Date.now();if(typeof t.feedT!=='number')t.feedT=0;if(!t.pop||typeof t.pop!=='object')t.pop={d:'',id:''};if(!Array.isArray(t.fb))t.fb=[];S.tank=t}
@@ -5498,7 +5511,7 @@ try{
 if(!ST[S.stage])S.stage='ogawa';
 if(typeof S.tickets!=='object')S.tickets={};
 // 魚籠の1匹ずつに番号を付ける（選んで売るため）
-['ukiOwn','skinOwn','todOwn','gaugeOwn'].forEach(k=>{if(!S[k]||typeof S[k]!=='object')S[k]=fresh()[k]});if(typeof S.gauge!=='string')S.gauge='base';
+['ukiOwn','skinOwn','todOwn','gaugeOwn','bgmOwn'].forEach(k=>{if(!S[k]||typeof S[k]!=='object')S[k]=fresh()[k]});if(typeof S.gauge!=='string')S.gauge='base';if(typeof S.bgmSel!=='string')S.bgmSel='base';S.bgmOwn.base=1;
 if(!S.okiInv||typeof S.okiInv!=='object')S.okiInv={};if(S.oki&&typeof S.oki!=='object')S.oki=null;
 if(!Array.isArray(S.gyo))S.gyo=[];if(typeof S.sfxVol!=='number')S.sfxVol=70;if(typeof S.bgmVol!=='number')S.bgmVol=70;
 if(!Array.isArray(S.bucket))S.bucket=[];
@@ -5559,6 +5572,17 @@ const B2=(()=>{
  const OLD_F=['E','E','F','E','E','E','G','F','A','A','G','F','E','E','F','E'];
  const SPACE_C=['C','C','D','D','Em','Em','C','D','Am','Bm','C','D','Em','D','C','C'];
  const SPACE_F=['Em','Em','C','D','Em','Em','C','B','Am','Bm','C','D','Em','C','D','B'];
+ const YORU_C=['F','Em','Dm','C','F','Em','Dm','G','Am','Em','F','C','Dm','Em','F','G'];
+ const YORU_F=['Am','Am','F','G','Am','Am','F','E','Dm','Em','F','G','Am','F','G','E'];
+ const WA_C=['Am','Am','F','Am','F','F','E','Am','F','F','Am','Am','F','E','Am','Am'];
+ const WA_F=['Am','Am','F','E','Am','Am','F','Am','E','Am','E','Am','F','Am','E','Am'];
+ const NAN_C=['C','C','F','G','C','Am','F','G','F','G','Em','Am','F','G','C','C'];
+ const NAN_F=['Am','Dm','G','C','F','Dm','E','E','Am','Dm','G','C','F','E','Am','Am'];
+ const RET_C=['C','Am','F','G','C','Am','Dm','G','F','G','Em','Am','F','G','C','C'];
+ const RET_F=['Am','Am','F','G','Am','Am','F','E','Dm','Dm','Am','Am','F','G','E','E'];
+ const YU_C=['F','F','Em','Am','Dm','Dm','G','G','F','F','Em','Am','Dm','G','C','C'];
+ const YU_F=['Am','Am','F','F','C','C','G','G','Am','Am','F','F','C','G','Am','Am'];
+ const KOTO={Am:'A3 E4 A4 B4 C5 - E4 -',F:'F3 C4 F4 A4 B4 - C4 -',E:'E3 B3 E4 F4 A4 - B3 -'};
  const SG={
  skyCalm:{bpm:72,rv:{len:3.2,dec:2.2,wet:.55},echo:{steps:3,fb:.35},
   tracks:[
@@ -5636,7 +5660,120 @@ const B2=(()=>{
    {pad:SPACE_F,oct:4,w:'triangle',v:.013,a:.1,sus:.8,rel:.3,rv:.5,dual:1},
    {n:gen(SPACE_F,1,[0,0,12,0,0,12,0,12]),w:'triangle',v:.13,a:.005,sus:.8,rel:.04,leg:.8}],
   drums:['w.hsk.hs','k.hsk.hs','k.hsk.hs','k.hskkhs','k.hsk.hs','k.hsk.hs','k.hsk.hs','k.s.sTsT',
-         'w.hsk.hs','k.hsk.hs','k.hsk.hs','k.hskkhs','k.hsk.hs','k.hsk.hs','khshkhsh','ssssTTTT']}
+         'w.hsk.hs','k.hsk.hs','k.hsk.hs','k.hskkhs','k.hsk.hs','k.hsk.hs','khshkhsh','ssssTTTT']},
+ yoruCalm:{bpm:76,rv:{len:3,dec:2.4,wet:.45},echo:{steps:3,fb:.3},
+  tracks:[
+   {n:P(['A4 - - C5 E5 - - -','D5 - - - B4 - G4 -','A4 - - - F4 - A4 C5','E5 - - - - - - -',
+         'A5 - - G5 E5 - C5 -','D5 - - - E5 - G5 -','F5 - - - E5 - D5 -','D5 - - - - - . .',
+         'C5 - - - E5 - A5 -','G5 - - - - - E5 -','F5 - E5 - C5 - A4 -','G4 - - - - - - -',
+         'A4 - - - D5 - F5 -','E5 - G5 - B5 - - -','A5 - - - G5 - E5 -','D5 - - - - - . .']),
+    w:'triangle',v:.07,a:.02,sus:.6,rel:.4,vib:1,echo:.3,rv:.4,leg:.9,dual:1},
+   {n:gen(YORU_C,4,['a0',null,'a2','a1',null,'a3',null,'a2']),w:'sine',v:.03,a:.004,sus:.3,rel:.4,echo:.25,rv:.4,leg:.8},
+   {pad:YORU_C,oct:3,w:'triangle',v:.016,a:.4,sus:.9,rel:.6,rv:.6,dual:1},
+   {n:gen(YORU_C,2,[0,'-','-',7,'-','-',12,'-']),w:'sine',v:.15,a:.03,sus:.8,rel:.2,leg:.85}],
+  drums:['q..h.qh.','q..h.qh.','q..h.qh.','q..hrqhh','q..h.qh.','q..h.qh.','q..h.qh.','q..hrqh.',
+         'q..h.qh.','q..h.qh.','q..h.qh.','q..hrqhh','q..h.qh.','q..h.qh.','q..h.qh.','q.r.r.rr']},
+ yoruFight:{bpm:140,rv:{len:2,dec:2.6,wet:.28},echo:{steps:3,fb:.2},
+  tracks:[
+   {n:P(['A4 - C5 - E5 - A5 G5','E5 - - - C5 - A4 -','F4 - A4 - C5 - F5 E5','D5 - - - B4 - G4 -',
+         'A4 - C5 - E5 - A5 B5','C6 - - - B5 - A5 -','A5 - G5 - F5 - C5 -','B4 - - - G#4 - E4 -',
+         'F5 - - - E5 - D5 -','E5 - - - G5 - B5 -','A5 - - - C6 - A5 -','G5 - - - D5 - B4 -',
+         'C5 - E5 - A5 - C6 -','A5 - - - F5 - C5 -','B4 - D5 - G5 - B5 -','G#5 - - - E5 - - -']),
+    w:'sawtooth',v:.03,a:.01,sus:.75,rel:.08,lp:2400,vib:1,echo:.15,rv:.25,leg:.9},
+   {pad:YORU_F,oct:4,w:'triangle',v:.014,a:.05,sus:.7,rel:.2,rv:.4,dual:1},
+   {n:gen(YORU_F,1,[0,12,7,12,0,12,7,10]),w:'triangle',v:.14,a:.005,sus:.8,rel:.04,leg:.8},
+   {n:gen(YORU_F,4,[null,'a2',null,'a1',null,'a2',null,'a3']),w:'sine',v:.025,a:.003,sus:.3,rel:.08,echo:.2,leg:.5}],
+  drums:['k.hsk.ho','k.hsk.hs','k.hsk.ho','k.hskkhs','k.hsk.ho','k.hsk.hs','k.hsk.ho','k.s.sss.',
+         'k.hsk.ho','k.hsk.hs','k.hsk.ho','k.hskkhs','k.hsk.ho','k.hsk.hs','kshskshs','ssssTTTT']},
+ waCalm:{bpm:70,rv:{len:3,dec:2.5,wet:.5},echo:{steps:4,fb:.35},
+  tracks:[
+   {n:P(['A4 - - - - - B4 C5','B4 - - - A4 - - -','E5 - - - F5 - E5 -','C5 - - - - - B4 -',
+         'A4 - - - C5 - E5 -','F5 - - - - - E5 -','C5 - B4 - A4 - - -','E4 - - - - - - -',
+         'A5 - - - - - F5 E5','F5 - - - E5 - C5 -','B4 - - - C5 - E5 -','A4 - - - - - - -',
+         'C5 - - - B4 - A4 -','F4 - - - E4 - - -','A4 - B4 - C5 - B4 -','A4 - - - - - . .']),
+    w:'sine',v:.08,a:.12,sus:.85,rel:.35,vib:1,echo:.35,rv:.5,leg:.95},
+   {n:P(WA_C.map(c=>KOTO[c.replace('m','')==='A'?'Am':c])),w:'triangle',v:.06,a:.002,sus:.05,rel:.6,echo:.3,rv:.4,leg:.95},
+   {n:gen(WA_C,1,[0,'-','-','-','-','-','-','-']),w:'sine',v:.12,a:.1,sus:.9,rel:.5,rv:.3}],
+  drums:['T.......','....r...','T.......','....r.r.','T.......','....r...','T.......','T.t.r...',
+         'T.......','....r...','T.......','....r.r.','T.......','....r...','T...T...','TtTtT...']},
+ waFight:{bpm:150,rv:{len:2,dec:2.6,wet:.3},echo:{steps:3,fb:.2},
+  tracks:[
+   {n:P(['A4 - C5 - B4 - A4 -','E5 - - - F5 - E5 -','C5 - B4 - A4 - B4 -','E4 - - - - - - -',
+         'A4 - C5 - E5 - F5 -','A5 - - - F5 - E5 -','F5 - E5 - C5 - B4 -','A4 - - - - - - -',
+         'E5 - - E5 F5 - E5 -','C5 - - - B4 - A4 -','E5 - - E5 F5 - A5 -','B5 - - - A5 - - -',
+         'A5 - F5 - E5 - C5 -','B4 - C5 - E5 - F5 -','E5 - C5 - B4 - E4 -','A4 - - - A5 - - -']),
+    w:'sine',v:.055,a:.02,sus:.8,rel:.08,vib:1,echo:.15,rv:.3,leg:.9,oct:12},
+   {n:gen(WA_F,2,[0,12,7,12,0,12,7,12]),w:'sawtooth',v:.03,a:.002,sus:.05,rel:.12,lp:1600,rv:.2,leg:.9},
+   {n:gen(WA_F,1,[0,'-',0,'-',7,'-',0,'-']),w:'triangle',v:.13,a:.005,sus:.8,rel:.05,leg:.8}],
+  drums:['T.tgT.t.','T.tgTTt.','T.tgT.t.','TTtgT.tg','T.tgT.t.','T.tgTTt.','T.tgT.t.','TtTtTTTT',
+         'T.tgT.t.','T.tgTTt.','T.tgT.t.','TTtgT.tg','T.tgT.t.','T.tgTTt.','TgTgTgTg','TTTTT.g.']},
+ nanCalm:{bpm:96,rv:{len:1.8,dec:2.4,wet:.35},echo:{steps:3,fb:.25},
+  tracks:[
+   {n:P(['E5 - G5 - C6 - G5 -','E5 - - - D5 - C5 -','A5 - - - C6 - A5 -','G5 - - - - - - -',
+         'E5 - G5 - C6 - E6 -','C6 - - - A5 - - -','A5 - G5 - F5 - A5 -','G5 - - - - - - -',
+         'A5 - - - C6 - A5 -','B5 - - - G5 - D5 -','E5 - G5 - B5 - G5 -','A5 - - - E5 - C5 -',
+         'F5 - A5 - C6 - A5 -','B5 - - - D6 - B5 -','C6 - - - G5 - E5 -','C5 - - - - - . .']),
+    w:'sine',v:.07,a:.003,sus:.25,rel:.35,echo:.25,rv:.35,leg:.9,dual:1},
+   {n:gen(NAN_C,4,[null,'a0',null,'a0',null,'a0',null,'a0']),w:'triangle',v:.03,a:.003,sus:.2,rel:.08,leg:.6},
+   {n:gen(NAN_C,4,[null,'a2',null,'a2',null,'a2',null,'a2']),w:'triangle',v:.025,a:.003,sus:.2,rel:.08,leg:.6},
+   {n:gen(NAN_C,2,[0,'-',null,7,0,'-',null,7]),w:'sine',v:.15,a:.01,sus:.8,rel:.08,leg:.8}],
+  drums:['B.hbB.hb','B.hbB.hb','B.hbB.hb','B.hbBbhb','B.hbB.hb','B.hbB.hb','B.hbB.hb','BbBbB.h.',
+         'B.hbB.hb','B.hbB.hb','B.hbB.hb','B.hbBbhb','B.hbB.hb','B.hbB.hb','B.hbB.hb','BbBbBBbb']},
+ nanFight:{bpm:156,rv:{len:1.6,dec:2.6,wet:.25},echo:{steps:3,fb:.15},
+  tracks:[
+   {n:P(['A5 - - E5 A5 - C6 -','D6 - - - C6 - A5 -','B5 - - G5 B5 - D6 -','C6 - - - - - G5 -',
+         'A5 - - F5 A5 - C6 -','D6 - - - F6 - D6 -','B5 - G#5 - E5 - G#5 -','B5 - - - - - - -',
+         'A5 - - E5 A5 - C6 -','D6 - - - C6 - A5 -','B5 - - G5 B5 - D6 -','E6 - - - - - C6 -',
+         'C6 - - - A5 - F5 -','G#5 - - - B5 - D6 -','C6 - B5 - A5 - E5 -','A5 - - - - - . .']),
+    w:'p25',v:.036,a:.005,sus:.7,rel:.06,vib:1,echo:.12,rv:.2,leg:.85},
+   {n:gen(NAN_F,4,[null,'a1','a2',null,'a1',null,'a2','a1']),w:'triangle',v:.025,a:.003,sus:.2,rel:.05,leg:.5},
+   {n:gen(NAN_F,1,[0,null,7,0,null,0,7,null]),w:'triangle',v:.15,a:.005,sus:.8,rel:.04,leg:.8}],
+  drums:['kbhBkbhB','kbhBkbhB','kbhBkbhB','kbhBkBbB','kbhBkbhB','kbhBkbhB','kbhBkbhB','BbBbBBTT',
+         'kbhBkbhB','kbhBkbhB','kbhBkbhB','kbhBkBbB','kbhBkbhB','kbhBkbhB','kbBbkbBb','BBbbBBTT']},
+ retroCalm:{bpm:112,rv:{len:1,dec:3,wet:.12},echo:{steps:3,fb:.15},
+  tracks:[
+   {n:P(['C5 - E5 - G5 - E5 -','A5 - - - E5 - C5 -','F5 - A5 - C6 - A5 -','G5 - - - D5 - B4 -',
+         'C5 - E5 - G5 - C6 -','A5 - G5 - E5 - C5 -','D5 - F5 - A5 - F5 -','G5 - - - - - - -',
+         'A5 - - - F5 - C5 -','B5 - - - G5 - D5 -','G5 - - - E5 - B4 -','C6 - - - A5 - E5 -',
+         'F5 - A5 - C6 - F6 -','D6 - B5 - G5 - D5 -','E5 - G5 - C6 - G5 -','C6 - - - - - . .']),
+    w:'p25',v:.03,a:.003,sus:.75,rel:.04,vib:1,echo:.12,leg:.85},
+   {n:gen(RET_C,4,['a0','a1','a2','a1','a0','a1','a2','a1']),w:'p12',v:.012,a:.002,sus:.5,rel:.03,leg:.6},
+   {n:gen(RET_C,2,[0,'-',12,'-',0,'-',12,'-']),w:'triangle',v:.15,a:.003,sus:.9,rel:.03,leg:.85}],
+  drums:['k.h.s.h.','k.h.s.h.','k.h.s.h.','k.h.s.hh','k.h.s.h.','k.h.s.h.','k.h.s.h.','k.h.sshs',
+         'k.h.s.h.','k.h.s.h.','k.h.s.h.','k.h.s.hh','k.h.s.h.','k.h.s.h.','k.h.s.h.','k.s.s.ss']},
+ retroFight:{bpm:168,rv:{len:1,dec:3,wet:.1},echo:{steps:3,fb:.1},
+  tracks:[
+   {n:P(['A4 A4 C5 A4 E5 A4 C5 A4','A5 - G5 - E5 - C5 -','F5 F5 A5 F5 C6 F5 A5 F5','G5 - - - B5 - D6 -',
+         'E6 - - - C6 - A5 -','E5 - - - A5 - C6 -','F6 - E6 - D6 - C6 -','B5 - G#5 - E5 - - -',
+         'D5 - F5 - A5 - D6 -','C6 - A5 - F5 - D5 -','E5 - A5 - C6 - E6 -','D6 - C6 - B5 - A5 -',
+         'F5 - A5 - C6 - F6 -','G6 - - - D6 - B5 -','G#5 - B5 - E6 - G#6 -','B6 - - - - - - -']),
+    w:'square',v:.022,a:.002,sus:.8,rel:.03,echo:.1,leg:.85},
+   {n:gen(RET_F,4,['a0','a2','a3','a2','a0','a2','a3','a2']),w:'p12',v:.011,a:.002,sus:.5,rel:.02,leg:.5},
+   {n:gen(RET_F,1,[0,12,0,12,0,12,0,12]),w:'triangle',v:.16,a:.002,sus:.9,rel:.02,leg:.8}],
+  drums:['k.hsk.hs','kkhsk.hs','k.hsk.hs','kkhskshs','k.hsk.hs','kkhsk.hs','k.hsk.hs','ssssssss',
+         'k.hsk.hs','kkhsk.hs','k.hsk.hs','kkhskshs','k.hsk.hs','kkhsk.hs','kskskssk','ssssssss']},
+ yuCalm:{bpm:80,rv:{len:2,dec:2.5,wet:.35,lp:2500},echo:{steps:3,fb:.3},
+  tracks:[
+   {n:P(['. . A4 - C5 - E5 -','- - - - D5 - C5 -','B4 - - - G4 - - -','E5 - - - - - C5 -',
+         'D5 - - - F5 - A5 -','- - - - G5 - F5 -','D5 - - - B4 - - -','G4 - - - - - . .',
+         '. . C5 - F5 - A5 -','C6 - - - A5 - G5 -','G5 - - - E5 - B4 -','C5 - - - E5 - A5 -',
+         'F5 - - - E5 - D5 -','B4 - - - D5 - G5 -','E5 - - - D5 - C5 -','C5 - - - - - . .']),
+    w:'sine',v:.075,a:.04,sus:.7,rel:.3,vib:1,echo:.35,rv:.35,leg:.9},
+   {pad:YU_C,oct:4,w:'triangle',v:.02,a:.02,sus:.45,rel:.6,rv:.4,dual:1,lp:1400},
+   {n:gen(YU_C,2,[0,'-','-',null,null,7,0,'-']),w:'sine',v:.15,a:.02,sus:.8,rel:.1,leg:.85}],
+  drums:['q..hr.h.','q.qhr.h.','q..hr.h.','q.qhr.hh','q..hr.h.','q.qhr.h.','q..hr.h.','q.qhr.rr',
+         'q..hr.h.','q.qhr.h.','q..hr.h.','q.qhr.hh','q..hr.h.','q.qhr.h.','q..hr.h.','q...r...']},
+ yuFight:{bpm:132,rv:{len:1.8,dec:2.5,wet:.28,lp:3000},echo:{steps:3,fb:.22},
+  tracks:[
+   {n:P(['E5 - - - A5 - G5 E5','C5 - - - - - D5 E5','F5 - - - A5 - C6 -','A5 - G5 - F5 - - -',
+         'E5 - - - G5 - C6 -','B5 - - - A5 - G5 -','D5 - - - G5 - B5 -','A5 - - - G5 - - -',
+         'E5 - - - A5 - C6 -','E6 - - - D6 - C6 -','A5 - - - F5 - C5 -','D5 - - - E5 - F5 -',
+         'G5 - - - E5 - C5 -','D5 - - - G5 - B5 -','C6 - - - B5 - A5 -','A5 - - - - - . .']),
+    w:'triangle',v:.065,a:.01,sus:.7,rel:.1,vib:1,echo:.2,rv:.25,leg:.9,dual:1},
+   {n:gen(YU_F,4,['a0',null,'a1','a2',null,'a1',null,'a2']),w:'sine',v:.03,a:.003,sus:.3,rel:.08,echo:.2,leg:.6},
+   {n:gen(YU_F,1,[0,'-',12,0,'-',7,12,'-']),w:'triangle',v:.15,a:.005,sus:.8,rel:.04,leg:.8}],
+  drums:['k.hsk.ho','k.hskkhs','k.hsk.ho','k.hskkhs','k.hsk.ho','k.hskkhs','k.hsk.ho','k.hss.ss',
+         'k.hsk.ho','k.hskkhs','k.hsk.ho','k.hskkhs','k.hsk.ho','k.hskkhs','kshskshs','k.s.T.T.']}
  };
  let NOISE=null,WAVES=null,IR={},bus=null,cur=null,step=0,next=0,timer=null,DRY,ECHO,ECHOD,RVIN;
  const rage=()=>ph==='fight'&&F&&F.stage2; // ★7〜8の暴れ中は少し速く・高く
@@ -5687,6 +5824,12 @@ const B2=(()=>{
    case 't':boom(t,180,90,.28,.4,.3);noise(t,.03,.08,'lowpass',1200);break;
    case 'T':boom(t,95,40,.6,.75,.35);noise(t,.04,.15,'lowpass',900);break;
    case 'w':{const s=AC.createBufferSource();s.buffer=NOISE;const f=AC.createBiquadFilter();f.type='bandpass';f.Q.value=6;f.frequency.setValueAtTime(7000,t);f.frequency.exponentialRampToValueAtTime(500,t+1.6);const g=AC.createGain();g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(.16,t+.15);g.gain.exponentialRampToValueAtTime(.0001,t+1.8);s.connect(f);f.connect(g);g.connect(DRY);const r=AC.createGain();r.gain.value=.6;g.connect(r);r.connect(RVIN);s.start(t);s.stop(t+1.85)}break;
+   case 'q':boom(t,120,50,.16,.32);break;
+   case 'b':boom(t,420,330,.1,.3,.15);break;
+   case 'B':boom(t,250,190,.16,.38,.15);break;
+   case 'r':noise(t,.03,.12,'bandpass',2600,6,.2);boom(t,900,850,.04,.08);break;
+   case 'o':noise(t,.22,.06,'highpass',6000);break;
+   case 'g':[1760,2640,3520].forEach((f,i)=>{const o=AC.createOscillator(),g=AC.createGain();o.type='square';o.frequency.value=f*(1+i*.01);g.gain.setValueAtTime(.025/(i+1),t);g.gain.exponentialRampToValueAtTime(.0001,t+.25);o.connect(g);g.connect(DRY);const r=AC.createGain();r.gain.value=.3;g.connect(r);r.connect(RVIN);o.start(t);o.stop(t+.27)});break;
    case 'G':boom(t,95,40,.6,.75,.35);[82.4,123.5,164.8,207,262].forEach((f,i)=>{const o=AC.createOscillator(),g=AC.createGain();o.frequency.value=f*(1+i*.013);g.gain.setValueAtTime(.06/(i+1),t);g.gain.exponentialRampToValueAtTime(.0001,t+3.5);o.connect(g);g.connect(DRY);const r=AC.createGain();r.gain.value=.6;g.connect(r);r.connect(RVIN);o.start(t);o.stop(t+3.6)});break;
   }
  }
@@ -5708,6 +5851,9 @@ const B2=(()=>{
  function start(name,dest){stop();if(!SG[name])return false;prep();cur=name;build(SG[name],dest);step=0;next=AC.currentTime+.08;timer=setInterval(tick,50);tick();return true}
  return {has:n=>!!SG[n],start,stop,get on(){return !!timer}};
 })();
+const BGM_SETS=[{id:'base',name:'いつもの',ic:'🎣',price:0},{id:'yoru',name:'夜の海',ic:'🌙',price:20000},{id:'wa',name:'和の調べ',ic:'🎋',price:20000},{id:'nan',name:'南国リゾート',ic:'🌺',price:20000},{id:'retro',name:'レトロゲーム',ic:'👾',price:20000},{id:'yu',name:'夕焼けローファイ',ic:'🌇',price:20000}];
+const bgmSetNow=()=>BGM_SETS.find(b=>b.id===S.bgmSel&&S.bgmOwn[b.id])||BGM_SETS[0];
+const bgmSongOf=(id,fight)=>id==='base'?(fight?'excite':'calm'):id+(fight?'Fight':'Calm');
 const BGM={song:null,step:0,next:0,timer:null,g:null,duck:null};
 // ジングル中だけBGMを小さくする
 function bgmBus(){if(!BGM.duck){BGM.duck=AC.createGain();BGM.duck.connect(AC.destination)}return BGM.duck}
@@ -5735,7 +5881,9 @@ function bgmSet(name){
   BGM.step=0;BGM.next=AC.currentTime+.08;BGM.timer=setInterval(bgmTick,60);bgmTick();
 }
 // 天空・古代は専用の曲（水槽はいつもの「のんびり」）
-const bgmWant=()=>{const sp=S.stage==='tenku'?'sky':S.stage==='uchu'?'space':S.stage==='kodai'?'old':'';if(aqMode||rmMode||visitMode)return 'calm';if(ph==='fight')return sp?sp+'Fight':'excite';return sp?sp+'Calm':'calm'};
+let bgmPrevId=null;
+const bgmWant=()=>{if(bgmPrevId)return bgmPrevId;const sp=S.stage==='tenku'?'sky':S.stage==='uchu'?'space':S.stage==='kodai'?'old':'',my=bgmSetNow().id;if(aqMode||rmMode||visitMode)return bgmSongOf(my,false);if(ph==='fight')return sp?sp+'Fight':bgmSongOf(my,true);return sp?sp+'Calm':bgmSongOf(my,false)};
+function bgmPrevStop(){if(!bgmPrevId)return;bgmPrevId=null;bgmSet(bgmWant());document.querySelectorAll('[data-bgmp]').forEach(b=>b.setAttribute('aria-pressed','false'))}
 let audioOk=false;
 addEventListener('pointerdown',()=>{if(!audioOk&&audioReady()){audioOk=true;bgmSet(bgmWant())}},true);
 document.addEventListener('visibilitychange',()=>{if(document.hidden){bgmSet(null);try{AC&&AC.suspend()}catch(e){}}else if(audioOk){try{AC&&AC.resume()}catch(e){}bgmSet(bgmWant())}});
@@ -6027,6 +6175,7 @@ const dexAll=st=>FISH.filter(f=>f.spots.includes(st)).every(f=>S.dex[f.id]);
 const ACH=[
  {id:'sky',name:'天空の覇者',desc:'天空の魚をすべて釣った',uki:'raiun',skin:'tennoniji',ok:()=>dexAll('tenku')},
  {id:'old',name:'古代の覇者',desc:'古代の魚をすべて釣った',uki:'kaseki',skin:'hone',ok:()=>dexAll('kodai')},
+ {id:'genkai',name:'限界を超えし者',desc:'Lv80の壁を越えた',ok:()=>S.lv>=80},
  {id:'space',name:'宇宙の覇者',desc:'宇宙の魚をすべて釣った',uki:'dosei',skin:'ginga',avName:'宇宙服・ヘルメット',ok:()=>dexAll('uchu')},
  {id:'phantom',name:'幻を釣りし者',desc:'★8を釣った',ok:()=>FISH.some(f=>f.rar>=8&&S.dex[f.id])}
 ];
@@ -6215,7 +6364,7 @@ function win(){
   S.dex[cur.id]={n:(d?d.n:0)+1,best:Math.max(d?d.best:0,size)};
   const gain=Math.round(XPR[cur.rar-1]*(1+stLv(ST[S.stage])/20)*(1+sizeT*.3));
   let up=null;const lv0=S.lv;
-  if(S.lv<MAXLV){S.xp+=gain;while(S.lv<MAXLV&&S.xp>=need(S.lv)){S.xp-=need(S.lv);S.lv++;up=S.lv}if(S.lv>=MAXLV)S.xp=0}
+  up=addXp(gain);
   if(F&&F.bx){flt.x=F.bx;flt.y=F.by;splash(F.bx,F.by,cur.rar,1,6+cur.rar*cur.rar*2)}
   hold=false;F=null;showHit(false);msg('',true);
   if(up){const g=TITLES.filter(t=>t.lv>lv0&&t.lv<=S.lv);if(g.length)S.title=g[g.length-1].lv}lvBefore=lv0;
@@ -6237,6 +6386,8 @@ function showResult(f,s,price,isNew,rec,gain,up){
     const opened=STAGES.filter(x=>!x.ticket&&x.lv===up).map(x=>'「'+x.name+'」');if(opened.length)sub+=' '+opened.join('')+'が開放';}
   const got=TITLES.filter(t=>t.lv>S.lv-(up?S.lv-lvBefore:0)&&t.lv<=S.lv&&up);
   if(got.length){const t=got[got.length-1];sub+=' ／ 🎖称号「'+t.name+'」ゲット！ 報酬：'+got.map(rewardName).join('・');}
+  if(up&&LVGATE.some(t=>t.lv>=lvBefore&&t.lv<up))sub+=' ／ 🔓 限界突破！';
+  {const gb=gateBlock();if(gb)sub+=' ／ 🔒 Lv上限！ 限界突破の条件：'+gb.txt;}
   achGot.forEach(a=>{sub+=' ／ 🎖称号「'+a.name+'」ゲット！'+(a.uki||a.skin?' 報酬：'+achReward(a):'')});achGot=[];
   $('#rsub').textContent=sub;
   const c=$('#rcv').getContext('2d');c.clearRect(0,0,400,180);
@@ -6423,6 +6574,7 @@ const SK=[
  const ids=['base','wood','wagara','sweets','yozora','neon','gold','tenku','kodai','uchu'],price=[0,2000,5000,8000,15000,25000,40000,50000,50000,50000],need=['','','','','','','','tenku','kodai','uchu'];
  return SK.map((g,i)=>Object.assign(g,{id:ids[i],price:price[i],need:need[i]}));
 })();
+$('#hLv').onclick=()=>{const t=gateBlock();if(t)msg('🔒 Lv上限！ 限界突破の条件：'+t.txt,true,3)};
 const gaugeNow=()=>GAUGES.find(g=>g.id===S.gauge&&S.gaugeOwn[g.id])||GAUGES[0];
 function gaugePrev(g){const[c,x]=cvs(110,40);const t=performance.now()/1000;x.save();x.scale(110/180,40/66);g.panel(x,2,2,176,62,t);g.prog(x,14,10,152,8,.65,t);g.track(x,14,24,152,18,t);g.bar(x,60,24,44,18,true,t);x.restore();return c}
 function drawGauge(){
@@ -6790,10 +6942,10 @@ function okiCollect(early){
     xp+=XPR[f.rar-1]*(1+stLv(ST[o.st])/20)*(1+t*.3)*OKI_XP;
     const d=S.dex[f.id];if(!d)news.push(f.name);S.dex[f.id]={n:(d?d.n:0)+1,best:Math.max(d?d.best:0,size)}}
   xp=Math.round(xp);
-  if(S.lv<MAXLV){S.xp+=xp;while(S.lv<MAXLV&&S.xp>=need(S.lv)){S.xp-=need(S.lv);S.lv++}if(S.lv>=MAXLV)S.xp=0}
+  addXp(xp);
   const gotT=TITLES.filter(t=>t.lv>lv0&&t.lv<=S.lv);if(gotT.length)S.title=gotT[gotT.length-1].lv;
   misEv('oki',{n});save();renderAll();sfx.win();
-  okiResult=g.name+'を上げた！ '+n+'匹（売値 合計'+yen(tot)+'・経験値+'+xp+'）'+(S.lv>lv0?'\n⬆ Lv'+S.lv+'にレベルアップ！':'')+(gotT.length?'\n🎖称号「'+gotT[gotT.length-1].name+'」ゲット！ 報酬：'+gotT.map(rewardName).join('・'):'')+(news.length?'\n🆕 図鑑に'+news.length+'種：'+news.join('・'):'\n新しい魚はいなかった');
+  okiResult=g.name+'を上げた！ '+n+'匹（売値 合計'+yen(tot)+'・経験値+'+xp+'）'+(S.lv>lv0?'\n⬆ Lv'+S.lv+'にレベルアップ！':'')+(gateBlock()?'\n🔒 Lv上限！ 限界突破の条件：'+gateBlock().txt:'')+(gotT.length?'\n🎖称号「'+gotT[gotT.length-1].name+'」ゲット！ 報酬：'+gotT.map(rewardName).join('・'):'')+(news.length?'\n🆕 図鑑に'+news.length+'種：'+news.join('・'):'\n新しい魚はいなかった');
   renderOki();msg('置き竿：'+n+'匹かかった！'+(news.length?' 新種'+news.length+'種！':''),true,3);
 }
 let okiResult='';
@@ -6989,7 +7141,7 @@ function el(tag,cls,txt){const e=document.createElement(tag);if(cls)e.className=
 function busy(){return ph!=='idle'&&ph!=='result'}
 function renderSide(){
   const st=ST[S.stage],rod=curRod(),b=curBait();
-  $('#hStage').textContent=visitMode&&VIS?VIS.name+'さんの'+(VIS.mode==='aq'?'水槽':'部屋'):aqMode?'わたしの水槽':rmMode?'わたしの部屋':st.name;$('#hLv').textContent='Lv'+S.lv;$('#hGold').textContent=yen(S.gold);$('#hTk').textContent='券 '+tkTotal();
+  $('#hStage').textContent=visitMode&&VIS?VIS.name+'さんの'+(VIS.mode==='aq'?'水槽':'部屋'):aqMode?'わたしの水槽':rmMode?'わたしの部屋':st.name;$('#hLv').textContent='Lv'+S.lv+(gateBlock()?'🔒':'');$('#hGold').textContent=yen(S.gold);$('#hTk').textContent='券 '+tkTotal();
   $('#xpbar').style.width=(S.lv>=MAXLV?100:Math.min(100,S.xp/need(S.lv)*100))+'%';
   $('#sRodN').textContent=st.ticket?SPECIAL_RODS[st.id].short:rod.id==='base'?'基本 ∞':'残'+(S.rodInv[rod.id]|0);
   $('#sBaitN').textContent=st.ticket?'固定':b?b.id+'×'+S.baitInv[b.id]:'なし';
@@ -7101,6 +7253,11 @@ const ukiPrev=u=>{const[c,x]=cvs(44,48);x.fillStyle='#2f86ad';x.beginPath();x.ro
 const skinPrev=k=>{const[c,x]=cvs(70,40);paintRod(x,[[8,38],[34,26],[62,6]],k.col?k:null,curRod().color,.55);return c};
 const cosTag=o=>o.lv?'（Lv'+o.lv+'報酬）':o.ach?'（実績の報酬）':'';
 let shopTab='tool';
+const bgmIcon=b=>{const s=el('span',null,b.ic);s.style.cssText='font-size:26px;width:44px;text-align:center;flex:none';return s};
+function bgmRow(b,r){const box=el('div','row');box.style.cssText='gap:6px;margin-top:4px';
+  [['通常',false],['釣り上げ',true]].forEach(([n,f])=>{const id=bgmSongOf(b.id,f),p=el('button','chip','▶ '+n);p.type='button';p.dataset.bgmp=id;p.style.cssText='font-size:11px;padding:3px 8px';p.setAttribute('aria-pressed',String(bgmPrevId===id));
+    p.onclick=e=>{e.stopPropagation();if(S.bgm===false){msg('BGMがOFFになっています（メニュー → 設定）',true,2);return}if(bgmPrevId===id){bgmPrevStop();return}audioReady();bgmPrevId=id;bgmSet(id);document.querySelectorAll('[data-bgmp]').forEach(x=>x.setAttribute('aria-pressed',String(x.dataset.bgmp===id)))};box.append(p)});
+  r.firstChild.lastChild.append(box);return r}
 function renderCos(){
   // 着せ替え：持っているものだけ
   const tb=$('#cosTod');tb.replaceChildren();
@@ -7111,6 +7268,8 @@ function renderCos(){
   SKINS.filter(skinHave).forEach(k=>rb.append(cosRow(skinPrev(k),k.name+cosTag(k),true,S.skin===k.id,0,()=>{},()=>{S.skin=k.id})));
   const gb=$('#cosGauge');gb.replaceChildren();
   GAUGES.filter(g=>S.gaugeOwn[g.id]).forEach(g=>gb.append(cosRow(gaugePrev(g),g.name,true,gaugeNow().id===g.id,0,()=>{},()=>{S.gauge=g.id})));
+  const bb=$('#cosBgm');bb.replaceChildren();
+  BGM_SETS.filter(b=>S.bgmOwn[b.id]).forEach(b=>bb.append(bgmRow(b,cosRow(bgmIcon(b),b.name,true,bgmSetNow().id===b.id,0,()=>{},()=>{S.bgmSel=b.id;bgmPrevStop();bgmSet(bgmWant())}))));
   // ショップ：まだ持っていない、お店で買えるものだけ
   const empty=b=>{if(!b.children.length)b.append(el('div','small','ぜんぶ持っています！'))};
   const st=$('#shopTod');st.replaceChildren();
@@ -7122,6 +7281,8 @@ function renderCos(){
   const sg=$('#shopGauge');sg.replaceChildren();
   GAUGES.filter(g=>!S.gaugeOwn[g.id]).forEach(g=>{const lock=g.need&&!aqCaught(g.need);const r=cosRow(gaugePrev(g),g.name,false,false,g.price,()=>{S.gaugeOwn[g.id]=1},()=>{S.gauge=g.id});
     if(lock){const b=r.querySelector('button');b.disabled=true;r.querySelector('span span').append(el('div','small',ST[g.need].name+'で1匹釣ると買える'))}sg.append(r)});empty(sg);
+  const sbg=$('#shopBgm');sbg.replaceChildren();
+  BGM_SETS.filter(b=>!S.bgmOwn[b.id]).forEach(b=>sbg.append(bgmRow(b,cosRow(bgmIcon(b),b.name,false,false,b.price,()=>{S.bgmOwn[b.id]=1},()=>{S.bgmSel=b.id;bgmPrevStop();bgmSet(bgmWant())}))));empty(sbg);
   // ショップのタブ
   const tt=$('#shopTabs');tt.replaceChildren();
   [['tool','道具'],['tk','券'],['cos','着せ替え'],['aq','水槽'],['room','部屋']].forEach(([k,n])=>{const b=el('button','chip',n);b.type='button';b.setAttribute('aria-pressed',String(shopTab===k));b.onclick=()=>{shopTab=k;renderCos()};tt.append(b)});
@@ -7169,6 +7330,7 @@ function renderAll(){if(!curBait())S.bait='';renderSide();renderSpots();renderBa
 // タブ：下の4つ（MAIN）と、メニューの中のページ（SUB）
 const MAIN=['spot','bag','shop','menu'],SUB=['oki','mis','dex','cos','title','gyo','code','set','news','help','acct','rank','fr'];
 function tab(k){
+  if(k!=='shop'&&k!=='cos')bgmPrevStop();
   [...MAIN,...SUB].forEach(j=>{const p=$('#p-'+j);if(p)p.hidden=j!==k});
   const m=MAIN.includes(k)?k:'menu';MAIN.forEach(j=>$('#t-'+j).setAttribute('aria-selected',String(j===m)));
   if(k==='code')refreshCode();if(k==='news'&&S.newsSeen!==NEWS_VER){S.newsSeen=NEWS_VER;save()}
@@ -7362,7 +7524,7 @@ function nameNudge(){tab('acct');setTimeout(()=>{const i=$('#acctName');if(i)i.f
 function applyData(j){
   S=Object.assign(fresh(),j);if(!ST[S.stage])S.stage='ogawa';aqNorm();if(!S.okiInv||typeof S.okiInv!=='object')S.okiInv={};if(!Array.isArray(S.gyo))S.gyo=[];
   if(typeof S.sfxVol!=='number')S.sfxVol=70;if(typeof S.bgmVol!=='number')S.bgmVol=70;AQ.fish={};if(!Array.isArray(S.bucket))S.bucket=[];
-  ['ukiOwn','skinOwn','todOwn','gaugeOwn'].forEach(k=>{if(!S[k]||typeof S[k]!=='object')S[k]=fresh()[k]});if(typeof S.gauge!=='string')S.gauge='base';
+  ['ukiOwn','skinOwn','todOwn','gaugeOwn','bgmOwn'].forEach(k=>{if(!S[k]||typeof S[k]!=='object')S[k]=fresh()[k]});if(typeof S.gauge!=='string')S.gauge='base';if(typeof S.bgmSel!=='string')S.bgmSel='base';S.bgmOwn.base=1;
   S.uid=S.uid|0;S.bucket.forEach(x=>{if(!x.u)x.u=++S.uid});sel.clear();dexDrawn='';setSnd();rkNorm();rmNorm();
 }
 function renderAcct(){
