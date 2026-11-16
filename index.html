@@ -164,6 +164,24 @@ details summary{font-weight:700;font-size:13px;cursor:pointer;color:var(--muted)
 .vol input{flex:1}
 .news li{font-size:13.5px}
 .news b{display:block;margin-top:6px}
+/* チュートリアル */
+.tu-hole{position:fixed;z-index:70;border-radius:14px;box-shadow:0 0 0 9999px rgba(4,14,24,.62);pointer-events:none;outline:3px solid #ffd447;outline-offset:2px;animation:tuP .8s ease-in-out infinite alternate;transition:left .2s,top .2s,width .2s,height .2s}
+.tu-hole.none{outline:0;animation:none}
+.tu-hole.nudge{outline-color:#ff6a3d;outline-width:5px}
+@keyframes tuP{from{outline-color:#ffd447;filter:none}to{outline-color:#fff6c2}}
+.tu-blk{position:fixed;z-index:71;background:transparent;touch-action:none}
+.tu-box{position:fixed;left:8px;right:8px;z-index:72;max-width:464px;margin:0 auto;background:#fffaf0;color:#12303c;border:3px solid #6b4a2a;border-radius:16px;padding:9px 10px;display:flex;gap:9px;align-items:flex-start;box-shadow:0 6px 20px rgba(0,0,0,.4);font-size:14px;line-height:1.55}
+.tu-face{width:56px;height:63px;image-rendering:pixelated;flex:none;background:#bfe6f5;border-radius:10px;border:2px solid #6b4a2a;animation:tuB 1.2s ease-in-out infinite}
+@keyframes tuB{0%,100%{transform:translateY(0)}50%{transform:translateY(-2px)}}
+.tu-body{flex:1;min-width:0;display:flex;flex-direction:column;gap:5px}
+.tu-nm{font-size:11px;font-weight:700;color:#8a5a2a}
+.tu-tx{font-weight:500}
+.tu-tx b{color:#c2551a}
+.tu-rw{background:#fff1c2;border-radius:10px;padding:6px 8px;font-weight:700;text-align:center}
+.tu-bt{display:flex;gap:6px;justify-content:flex-end;align-items:center;flex-wrap:wrap}
+.tu-bt button{font:inherit;font-weight:700;font-size:14px;border:0;border-radius:10px;padding:7px 14px;background:var(--accent);color:var(--accent-ink)}
+.tu-bt button.sub{background:transparent;color:#8a90a8;font-size:12px;padding:6px 4px;text-decoration:underline}
+.tu-bt button.gray{background:#e4e8ec;color:#33404a}
 </style>
 </head><body>
 <!-- ============================================================
@@ -551,9 +569,9 @@ const OKI_W=[50,30,13,5,2]; // 置き竿で★1〜5が出る割合（上限よ�
 const OKI_NEW=1;            // 未発見の魚のかかりやすさ（倍）。1=補正なし
 const OKI_XP=1/3;           // 経験値は通常の釣りの何倍か
 // お知らせ（アップデートのたびに上に足す。NEWS_VER を変えるとメニューに NEW が付く）
-const NEWS_VER='2026-11-16o';
+const NEWS_VER='2026-11-16p';
 const NEWS=[
- {d:'2026/11/17',t:['🤍 アルビノ登場！ 通常ステージの魚を10匹以上釣ると、まれに白い体・赤い目の「アルビノ」が釣れるように（売値5倍・経験値3倍・水槽の見物料3倍）。夜の時間帯は2倍、毎日変わる「🌕 アルビノの気配」の釣り場は3倍。図鑑の「🤍 アルビノ」でコレクション、釣り場ごとのコンプで称号も','👥 フレンドの水槽・部屋から「フレンド一覧」へ戻れるように','🎵 BGM着せ替えに新曲17種！ 雪の港・ジャズ喫茶・ケルトの港町・雨の日のピアノ・冒険の草原・深海・夏祭り・カントリー牧場・中華街・砂漠のオアシス・ネオン街・海賊船・桜並木・海辺のボサノバ・森の朝・サーフロック・遊園地（各20,000G。ショップの「着せ替え」から試聴できます）','🛒 ショップが図鑑のように見出しで開け閉めできるように（道具・券・着せ替え・水槽・部屋の全部。見出しをタップ・「ぜんぶ開く」も）','⚔️ イベント「レイドバトル」11/17(火)12:00〜11/25(水)11:59！ 魚がときどき持っている🎫レイドチケットを集めて、巨大ボス「ギガントホホジロザメ」に挑もう。削ったHPは次に引き継ぎ','🎁 討伐数でもらえるイベントミッション（サメのフード・着ぐるみ・王冠、竿「シャークファング」など）と、新しい「レイド称号」','🏆 討伐数・最大サイズのイベントランキング（ログインした人）','🎵 レイド専用のBGM 2曲']},
+ {d:'2026/11/17',t:['🔰 はじめての人向けのチュートリアル！ 釣り堀のおやじが、釣り方・売り方・エサの買い方を案内します（約3分）。スキップしても、ごほうびの3,000Gと称号「伝説の始まり」がもらえます。メニューの「遊び方」からいつでも見直せます','🤍 アルビノ登場！ 通常ステージの魚を10匹以上釣ると、まれに白い体・赤い目の「アルビノ」が釣れるように（売値5倍・経験値3倍・水槽の見物料3倍）。夜の時間帯は2倍、毎日変わる「🌕 アルビノの気配」の釣り場は3倍。図鑑の「🤍 アルビノ」でコレクション、釣り場ごとのコンプで称号も','👥 フレンドの水槽・部屋から「フレンド一覧」へ戻れるように','🎵 BGM着せ替えに新曲17種！ 雪の港・ジャズ喫茶・ケルトの港町・雨の日のピアノ・冒険の草原・深海・夏祭り・カントリー牧場・中華街・砂漠のオアシス・ネオン街・海賊船・桜並木・海辺のボサノバ・森の朝・サーフロック・遊園地（各20,000G。ショップの「着せ替え」から試聴できます）','🛒 ショップが図鑑のように見出しで開け閉めできるように（道具・券・着せ替え・水槽・部屋の全部。見出しをタップ・「ぜんぶ開く」も）','⚔️ イベント「レイドバトル」11/17(火)12:00〜11/25(水)11:59！ 魚がときどき持っている🎫レイドチケットを集めて、巨大ボス「ギガントホホジロザメ」に挑もう。削ったHPは次に引き継ぎ','🎁 討伐数でもらえるイベントミッション（サメのフード・着ぐるみ・王冠、竿「シャークファング」など）と、新しい「レイド称号」','🏆 討伐数・最大サイズのイベントランキング（ログインした人）','🎵 レイド専用のBGM 2曲']},
  {d:'2026/11/16',t:['🦈 イベント「レイドバトル」開催決定！ 11/17(火)12:00〜11/25(水)11:59　レイドチケットを集めて巨大ボスに挑もう！（キャストの下のバナーから詳しく見られます）','☁ スマホとPCなど、別の端末で遊ぶと釣果が消えることがある不具合を修正。端末どうしで自動で最新に合わせ、ぶつかったときは図鑑・レベル・持ち物を「合体」して残すように','🛟 データが減ったときは、メニューの「アカウント」からバックアップに戻せるように','☁ クラウドへの保存をまとめて行うように（サーバーが混み合いにくく。アプリを閉じるときはすぐ保存）']},
  {d:'2026/11/15',t:['PCのスペースキーで釣れないことがあるのを修正（ほかのボタンを押したあと・キーボードの種類のちがいなど）','釣り画面の左上の装備表示を新しく（🎒をタップで開く・たたむ）','💎 新ステージ「宝石の洞窟」！ Lv20から。釣れるのは宝石箱だけの金策ステージ。入るには「洞窟の鍵」（釣った宝箱に入っていることがある・今日のお題1〜2位の報酬）','🏠 部屋の模様替えアイテムがいっぱい追加！ 壁紙5種・床4種・家具12種＋特殊ステージの記念品4種。置ける家具は20個まで。アバターにパジャマ・スウェット・ナイトキャップ','🎲 ログインボーナス「釣りすごろく」！ 1日1回サイコロを振って、エサや竿・ゴールドをもらおう。ゴールは10,000G','📷 シェア機能：釣れたとき・魚拓・水槽を、画像にしてXなどに投稿できるように','水槽の大きい魚を小さめに（最大で水槽の1/3くらい）。魚どうしが重ならないように、ばらけて泳ぐように','釣りの操作はキャストボタンだけに（池の絵をさわっても投げない）。持ち物・ショップ・メニューを開いている間はボタンに🔒（押すと釣り場にもどる）','🎯 今日のお題ランキング！ 毎日1匹えらばれる魚の大きさで競います（釣り場の上とランキングの「🎯お題」）。10位まで報酬あり（1位は洞窟の鍵×2）','🏆 ランキングは上位10名と「あなたは○位（○人中）」の表示に','アプリの中のブラウザでログインできないときの案内を追加','🧚 新ステージ「精霊の丘」！ Lv100から。妖精11種（★8）と、初の★9「精霊女王」。幻影と精霊の風に気をつけて。専用BGMつき','🎵 BGMの着せ替え！ 夜の海・和の調べ・南国リゾート・レトロゲーム・夕焼けローファイ（各20,000G・ショップの「着せ替え」で試聴できます）','🔓 限界突破：Lv79→80とLv99→100には条件があります（レベル表示の🔒をタップで確認）。突破すると称号「限界を超えし者」','🌌 新ステージ「宇宙」！ Lv80から。新しい魚12種、★7・★8がたくさん。流れ星に気をつけて。宇宙専用のBGMつき','水槽のライトを明るく。虹のライトは光の筋ごとに色が変わるように','フレンド機能！ コードで申請・承認。フレンドの水槽・部屋に遊びに行けて、1日1回エサやりも（メニュー →「フレンド」）','魚籠に「絞り込み」（★・釣った場所・ロック・今日釣った魚・名前）。全部選ぶ／最大以外を選ぶは表示中の魚だけ','図鑑に「絞り込み」と、釣り場ごとの開閉・達成率（小川 12/20 など）','釣り人の部屋とアバター！ 釣り場の「🏠 部屋」で着替え・模様替え。魚拓やはく製を飾ったり、水槽も置けます','アップデートがあると画面の上にお知らせが出るように','ランキング：釣った数・魚の大きさを通算／週間／日間で（メニュー →「ランキング」・ログインした人が参加）。週間の釣った数で10位までは報酬あり','アカウント：Googleでログインするとクラウドに自動セーブ（メニュー →「アカウント」）。プレイヤー名も決められます','ナイスアワセ：浮きが水中に消えた瞬間にアワセると、ゲージが多めの状態からスタート（くわしくは遊び方）','前アタリ：アタリの前に浮きがピクッと動くように','水槽の設備ボーナス：背景・砂・ライト・飾りで見物料アップ（最大+60%）','釣りゲージの着せ替え（9種類）。ショップの「着せ替え」で','釣り上げの進み具合をゲージのすぐ上に','水槽の見物料：水槽の魚がゴールドを稼ぐように（今日の人気者は2倍・エサやりで+50%）','ショップがタブ分けに（道具・券・着せ替え・水槽）。着せ替えと水槽の買い物はショップで','着せ替えには持っているものだけ表示','称号ページが「レベル称号・実績称号・イベント称号」のタブに','天空・古代で釣った魚の魚拓は金の額縁に','釣れたときの音と演出が★ごとに変わるように（★5以上はキラキラ・後光）','宝箱は「チャリーン！」',
   '天空・古代に専用のBGM（いつもの曲と釣り上げ中の曲）','★7・★8が暴れだすと、釣り上げ中の曲が少し速く・高くなるように']},
@@ -5565,6 +5583,7 @@ const PX={
       </ol>
       <div class="small">※読み込むと、今のデータはコードの内容で上書きされます。こまめにコードを取り直そう。</div>
     </div>
+    <button class="sell" id="tutoAgain" type="button" style="background:#e8a33a">🔰 チュートリアルをもう一度</button>
     <button class="sell" id="helpClose" type="button" style="background:var(--water)">閉じる</button>
   </section>
   <section class="panel" id="p-code" hidden>
@@ -6860,6 +6879,7 @@ const TITLES=[
 // 実績の称号（条件はゲーム内では見せない）
 const dexAll=st=>FISH.filter(f=>f.spots.includes(st)).every(f=>S.dex[f.id]);
 const ACH=[
+ {id:'tuto',name:'伝説の始まり',desc:'チュートリアルを終えた',ok:()=>!!(S.tuto&&S.tuto.got)},
  {id:'sky',name:'天空の覇者',desc:'天空の魚をすべて釣った',uki:'raiun',skin:'tennoniji',ok:()=>dexAll('tenku')},
  {id:'old',name:'古代の覇者',desc:'古代の魚をすべて釣った',uki:'kaseki',skin:'hone',ok:()=>dexAll('kodai')},
  {id:'genkai',name:'限界を超えし者',desc:'Lv80の壁を越えた',ok:()=>S.lv>=80},
@@ -6959,6 +6979,7 @@ function alRoll(f){const st=ST[S.stage];if(!alOk(f)||!st||st.ticket||st.raid)ret
 function alAll(st){return FISH.filter(f=>f.spots[0]===st&&alOk(f)).every(f=>alB()[f.id])}
 function alTotal(){return FISH.filter(alOk).length}
 function pickFish(){
+  if(tutoEasy()){const L=FISH.filter(f=>f.spots[0]==='ogawa'&&f.rar===1&&f.shape!=='b');if(L.length)return L[Math.floor(Math.random()*L.length)]} // チュートリアルの1匹目は小川の★1
   if(S.stage==='raid')return raidFish();
   if(S.stage==='doukutsu'){const L=stageFish();let x=Math.random()*100,r=4;for(const k of [4,5,6,7,8,9]){x-=CAVE_W[k];if(x<=0){r=k;break}}const c=L.filter(f=>f.rar===r);return c[Math.floor(Math.random()*c.length)]||L[0]}
   const sp=isSpecial();
@@ -7019,6 +7040,7 @@ function startFight(){
   // 宝箱は抵抗しない：動かない・逃げない・引かない・暴れない。ゲージは★1並みの速さでたまる
   if(cur.shape==='b'){F.chest=1;F.rg=0;F.spd=0;F.dash=0;F.tug=0;F.two=false;F.gain=GAIN[0];F.loss=LOSS[0];F.tt=999}
   F.d0=depthOf(dist);F.dep=F.d0;F.ox=flt.x-floatAt(F.d0).x;F.lx=0;F.sag=0;F.bx=flt.x;F.by=flt.y;
+  if(tutoEasy()){F.loss*=.35;F.dash=0;F.gain*=1.15} // チュートリアル：ゲージが減りにくい
   if(hookNice){const bn=NICE_BONUS[cur.rar-1];F.prog+=bn;F.niceShow=1.8;F.niceB=bn;setTimeout(()=>{beep(1320,.07,'triangle',.05);setTimeout(()=>beep(1760,.12,'triangle',.05),80)},180)}hookNice=false;
   hitSound(eLv);showHit(true);msg('',true);setPhase('fight');misEv('hit',{e:eLv});
 }
@@ -7053,6 +7075,7 @@ function updateFight(dt){
   if(F.z<lo){F.z=lo;F.v*=-.25}if(F.z>hi){F.z=hi;F.v*=-.25}
   F.inz=Math.abs(F.fx-F.z)<=F.h/2+.012;
   F.prog+=(F.inz?F.gain:-F.loss*(F.stage2?3:1))*dt; // 暴れ中は外れると3倍減る
+  if(tutoEasy()&&F.prog<.1)F.prog=.1; // チュートリアルでは逃げない
   F.shake=Math.max(0,F.shake-dt*2);
   if(!F.reveal&&F.prog>=REVEAL_AT)F.reveal=clock; // 80%で魚影が見える（一度見えたらそのまま）
   if(F.tugShow>0)F.tugShow-=dt;if(F.rageShow>0)F.rageShow-=dt;if(F.niceShow>0)F.niceShow-=dt;
@@ -7150,6 +7173,7 @@ const actLock=()=>{const L=curTab!=='spot'&&ph==='idle'&&!aqMode&&!rmMode&&!visi
 function onDown(e){
   if(e&&e.target&&e.target.closest&&e.target.closest('.side,.aqb,.cnb,.lkb'))return;
   if(typeof SG!=='undefined'&&SG.open)return;
+  if(tutoBlock())return;
   const isKey=!!(e&&e.code==='Space'),isAct=!!(e&&e.target&&e.target.closest&&e.target.closest('#act'));
   if(isKey){const a=document.activeElement;if(a&&(/^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName)||a.isContentEditable))return}
   if(e&&e.preventDefault)e.preventDefault();
@@ -7436,7 +7460,7 @@ function loop(now){
   else if(ph==='wait'&&preDone<preT.length&&pt>=preT[preDone]){preDone++;ripple(flt.x,flt.y,.6);beep(520,.05,'sine',.025)}
   else if(ph==='wait'&&pt>=waitT){sfx.bite();msg('アタリ！',false,BITE[cur.rar-1]);setPhase('bite');preDone=0;biteRing=false}
   else if(ph==='bite'&&!biteRing&&pt>=BITE[cur.rar-1]*NICE_FROM){biteRing=true;ripple(flt.x,flt.y,1.6);ripple(flt.x,flt.y,1.1)}
-  else if(ph==='bite'&&pt>=BITE[cur.rar-1]){if(S.stage==='raid'){hookNice=false;startFight()}else lose('逃げられた…')} // レイドはアワセ失敗なし（チケットが無駄にならないように）
+  else if(ph==='bite'&&pt>=BITE[cur.rar-1]){if(S.stage==='raid'){hookNice=false;startFight()}else if(tutoEasy())pt=BITE[cur.rar-1]*NICE_FROM;else lose('逃げられた…')} // レイドはアワセ失敗なし（チケットが無駄にならないように）
   else if(ph==='fight'&&F){updateFight(dt);if(ph==='fight'&&pt>2)showHit(false)}
   render(dt);requestAnimationFrame(loop);
 }
@@ -8151,8 +8175,9 @@ function renderShop(){
     const l=el('span');const sw=el('i','sw');sw.style.background=r.color;l.append(sw,r.name);
     rb.append(shopRow(l,r.note+'／バー'+Math.round(r.zone*100)+'%・1本'+r.uses+'投（所持 残'+(S.rodInv[r.id]|0)+'）',[buyBtn('買う',r.price,true,()=>{S.rodInv[r.id]=(S.rodInv[r.id]|0)+r.uses;if(S.rod==='base'&&!busy())S.rod=r.id})]))});
   const bb=$('#shopBaits');bb.replaceChildren();
-  BAITS.forEach(t=>{const add=n=>()=>{S.baitInv[t.id]=(S.baitInv[t.id]|0)+n;if(!curBait())S.bait=t.id};
-    bb.append(shopRow(t.name,baitNote(t)+'（所持 '+(S.baitInv[t.id]|0)+'）',[buyBtn('×1',t.price,true,add(1)),buyBtn('×5',t.price*5,true,add(5))]))});
+  BAITS.forEach(t=>{const add=n=>()=>{S.baitInv[t.id]=(S.baitInv[t.id]|0)+n;if(!curBait())S.bait=t.id;if(TU)TU.bought=true};
+    const fr=t.id==='G'&&tuIs('bait'); // チュートリアル中は餌G×1がタダ
+    bb.append(shopRow(t.name,fr?'🎁 チュートリアル中はタダ！':baitNote(t)+'（所持 '+(S.baitInv[t.id]|0)+'）',[buyBtn(fr?'🎁×1':'×1',fr?0:t.price,true,add(1)),buyBtn('×5',t.price*5,true,add(5))]))});
   const tb=$('#shopTk');tb.replaceChildren();
   TICKETS.forEach(k=>{if(k.key)return;const lvOk=S.lv>=k.lv;
     tb.append(shopRow(k.name,k.casts+'投分'+(lvOk?'（所持 '+(S.tickets[k.stage]|0)+'枚）':'・Lv'+k.lv+'から買える'),[buyBtn('買う',k.price,lvOk,()=>{S.tickets[k.stage]=(S.tickets[k.stage]|0)+1})]))});
@@ -8234,7 +8259,7 @@ $('#aqIn').onclick=aqAddFromBucket;
 confirmTap($('#sellall'),()=>{
   const picked=S.bucket.filter(b=>sel.has(b.u)&&!b.lk);if(!picked.length)return;
   S.gold+=picked.reduce((a,b)=>a+b.price,0);S.bucket=S.bucket.filter(b=>!(sel.has(b.u)&&!b.lk));sel.clear();
-  misEv('sell',{n:picked.length,gold:picked.reduce((a,b)=>a+b.price,0)});save();renderAll();beep(988,.12,'triangle');msg(picked.length+'匹を売った（＋'+yen(picked.reduce((a,b)=>a+b.price,0))+'）',true,1.6)},'もう一度押すと売る');
+  misEv('sell',{n:picked.length,gold:picked.reduce((a,b)=>a+b.price,0)});if(TU)TU.sold=true;save();renderAll();beep(988,.12,'triangle');msg(picked.length+'匹を売った（＋'+yen(picked.reduce((a,b)=>a+b.price,0))+'）',true,1.6)},'もう一度押すと売る');
 $('#selExMax').onclick=()=>{sel.clear();const maxU={};bucketGroups(true).forEach(g=>{maxU[g.f.id]=g.list[0].u});bucketGroups().forEach(g=>g.list.forEach(b=>{if(!b.lk&&b.u!==maxU[g.f.id])sel.add(b.u)}));renderBucket()}; // 表示中の魚だけ
 $('#selAll').onclick=()=>{bucketGroups().forEach(g=>g.list.forEach(b=>{if(!b.lk)sel.add(b.u)}));renderBucket()}; // 表示中の魚だけ
 $('#lockMode').onclick=()=>{lockMode=!lockMode;gyoMode=false;renderBucket()};
@@ -8373,6 +8398,7 @@ function clMerge(base,other,goldMax){
   // レイド：同じイベントなら討伐数・最大サイズは多いほう、受け取り済みは両方。合計・称号も残す
   if(obj(o.raid)&&obj(m.raid)&&o.raid.k===m.raid.k){const a=m.raid,b=o.raid;if((b.n|0)>(a.n|0)){a.n=b.n;a.hp=b.hp;a.hpMax=b.hpMax}a.best=Math.max(a.best||0,b.best||0);a.got=un(a.got,b.got);if(b.rc&&!a.rc)a.rc=b.rc}else if(obj(o.raid)&&!obj(m.raid))m.raid=o.raid;
   if((o.raidAll|0)>(m.raidAll|0))m.raidAll=o.raidAll;m.evT=un(m.evT,o.evT);
+  if(obj(o.tuto)&&(!obj(m.tuto)||(o.tuto.got&&!m.tuto.got)))m.tuto=o.tuto; // チュートリアルのごほうびは1回だけ
   // すごろく：進んでいるほう
   if(obj(o.sg)){const sc=g=>g?(g.lap|0)*100+(g.pos|0):-1;if(sc(o.sg)>sc(obj(m.sg)))m.sg=o.sg}
   return m;
@@ -9594,6 +9620,130 @@ function shareAq(){
   shareCanvas(cv,shareText('わたしの水槽（'+T.fish.length+'匹）'),'tsuribori_aquarium.png');
 }
 
+// ================= チュートリアル（新しく始めた人だけ自動で出る・遊び方から見直せる） =================
+// S.tuto = {done:1, got:1}（got＝ごほうびを受け取った。ごほうびは1回だけ・スキップしてももらえる）
+var TUTO_G=3000;
+var TU={on:false,i:0,again:false,sold:false,bought:false,ask:false,key:'',els:null,blink:0};
+// 案内役：釣り堀のおやじ（16×18のドット絵）
+var TU_PAL={h:'#e8c46a',d:'#b8913c',H:'#b5452f',s:'#f2c49b',S:'#d99a6c',k:'#2a1a10',m:'#f4f4f0',c:'#f39a88',v:'#3f7a5a',V:'#2c5a42',w:'#f4f1e6',o:'#7a4a2a'};
+var TU_FACE=[
+ '....hhhhhhhh....',
+ '...hhhhhhhhhh...',
+ '...HHHHHHHHHH...',
+ '.hhhhhhhhhhhhhh.',
+ 'hhddddddddddddhh',
+ '...ssssssssss...',
+ '...smmssssmms...',
+ '...ssksssskss...',
+ '..ScsssssssscS..',
+ '...ssmmmmmmss...',
+ '...smmmmmmmms...',
+ '....ssmmmmss....',
+ '.....smmmms.....',
+ '...vvvwmmwvvv...',
+ '..vvvvwwwwvvvv..',
+ '.vvvVvwwwwvVvvv.',
+ '.vvvVvwooowVvvv.',
+ '.sVVVVVVVVVVVVs.'];
+function tuDrawFace(cv,blink){const c=cv.getContext('2d');c.clearRect(0,0,16,18);
+  TU_FACE.forEach((r,y)=>[...r].forEach((ch,x)=>{if(ch==='.')return;let col=TU_PAL[ch];if(blink&&ch==='k')col=TU_PAL.S;c.fillStyle=col;c.fillRect(x,y,1,1)}))}
+function tutoActive(){return !!(TU&&TU.on)}
+function tuIs(k){return !!(TU&&TU.on&&TU_STEPS[TU.i]&&TU_STEPS[TU.i].k===k)}
+function tutoEasy(){return !!(TU&&TU.on&&TU_STEPS[TU.i]&&TU_STEPS[TU.i].easy)}
+function tutoBlock(){return !!(TU&&TU.on&&TU_STEPS[TU.i]&&!TU_STEPS[TU.i].fish)} // 釣りの手順以外ではキャストを受け付けない
+function tutoNew(){return !S.tuto&&S.lv===1&&Object.keys(S.dex).length===0&&!S.bucket.length}
+var TU_FISHTG=()=>['#stage','#act'];
+var TU_STEPS=[
+ {k:'hello',next:'つぎへ',t:()=>TU.again?'おさらいじゃな。もう一度、釣りの基本を案内するぞ！':'やあ、いらっしゃい！ わしはこの釣り堀のおやじじゃ。まずは<b>釣りのやり方</b>を教えよう。3分くらいで終わるぞ'},
+ {k:'cast',fish:1,easy:1,tg:TU_FISHTG,t:()=>ph==='meter'?'バーが動いとるな。もう一度押すと、止めた場所へ投げるぞ。<b>真ん中ほど遠く（奥）</b>へ飛んで、めずらしい魚が出やすいんじゃ':'下の<b>「キャスト」</b>ボタンを押してみよう（PCはスペースキーでもOK）',ok:()=>['cast','wait','bite','fight','result'].includes(ph)},
+ {k:'bite',fish:1,easy:1,tg:TU_FISHTG,t:()=>ph==='bite'?'今じゃ！ 浮きが沈んだぞ。<b>「アワセ！」</b>を押せ！':'浮きをよく見ておれ…。ピクッと動くのは「前アタリ」。<b>浮きがグッと沈むまで</b>待つんじゃ',ok:()=>ph==='fight'||ph==='result',back:()=>ph==='idle'||ph==='meter'},
+ {k:'fight',fish:1,easy:1,tg:TU_FISHTG,t:()=>'かかった！ ボタンを<b>押している間は緑のバーが右へ</b>、離すと左へ動く。<b>魚にバーを重ねて</b>、上のゲージを満タンにするんじゃ',ok:()=>ph==='result',back:()=>ph==='idle'||ph==='meter'},
+ {k:'result',fish:1,tg:TU_FISHTG,t:()=>'見事じゃ！ 釣った魚は「持ち物」の<b>魚籠</b>に入るぞ。<b>「つぎへ」</b>を押して閉じよう',ok:()=>ph==='idle'},
+ {k:'bag',tg:()=>['#t-bag'],t:()=>'下の<b>「持ち物」</b>を開いてみよう',ok:()=>curTab==='bag'},
+ {k:'sell',in:()=>{if(curTab!=='bag')tab('bag');lockMode=false;gyoMode=false;const b=S.bucket.find(x=>x.u===lastCatchU&&!x.lk)||S.bucket.find(x=>!x.lk);if(b){sel.clear();sel.add(b.u);bkOpen.add(b.id)}renderBucket()},
+  tg:()=>['#bucket','#sellall'],t:()=>'さっきの魚を選んでおいたぞ。<b>「売る」ボタンを2回</b>押すと、ゴールドになるんじゃ',ok:()=>TU.sold||!S.bucket.some(x=>!x.lk)},
+ {k:'shop',tg:()=>['#t-shop'],t:()=>'ゴールドが手に入ったな。次は<b>「ショップ」</b>へ行こう',ok:()=>curTab==='shop'},
+ {k:'bait',in:()=>{if(curTab!=='shop')tab('shop');shopTab='tool';shopOpen.add('shopBaits');renderAll()},
+  tg:()=>{const r=document.querySelector('#shopBaits > .btn');return r?[r]:['#shopBaits']},t:()=>'<b>エサ</b>を付けると、★の多い魚が出やすくなる。今回だけ「餌G」1個をタダにしておいたぞ。<b>「🎁×1」を2回</b>押してみい',ok:()=>TU.bought},
+ {k:'back',tg:()=>['#t-spot'],t:()=>'買ったエサは自動で付くぞ（釣り場の左上「🎒 装備」で見られる）。<b>「釣り場」</b>にもどろう',ok:()=>curTab==='spot'},
+ {k:'aq',next:'つぎへ',tg:()=>['#aqBtn','#rmBtn'],t:()=>'右上の<b>「🐟 水槽」</b>では、釣った魚を飼える。見物料でゴールドも稼げるぞ。<b>「🏠 部屋」</b>では着替えや模様替えができるんじゃ'},
+ {k:'menu',next:'つぎへ',tg:()=>['#t-menu'],t:()=>'<b>「メニュー」</b>には図鑑・ミッション・置き竿・称号などがある。迷ったら<b>「遊び方」</b>を見るんじゃ。この案内も、そこからもう一度見られるぞ'},
+ {k:'end',t:()=>tuGot()?'おさらいはおしまいじゃ。いい釣りを！':'これで基本はバッチリじゃ！ ここからが、おぬしの<b>伝説の始まり</b>じゃな。ごほうびを受け取ってくれ',rw:1}
+];
+function tuGot(){return !!(S.tuto&&S.tuto.got)}
+function tuStepIdx(k){return TU_STEPS.findIndex(s=>s.k===k)}
+function tuEls(){const s=TU_STEPS[TU.i];if(!s||!s.tg)return [];return s.tg().map(q=>typeof q==='string'?document.querySelector(q):q).filter(e=>e&&!e.hidden&&e.getClientRects().length)}
+function tuUI(){
+  if(TU.els)return TU.els;
+  const hole=el('div','tu-hole'),bl=[0,1,2,3].map(()=>el('div','tu-blk')),box=el('div','tu-box');
+  const face=document.createElement('canvas');face.width=16;face.height=18;face.className='tu-face';tuDrawFace(face,false);
+  const body=el('div','tu-body'),tx=el('div','tu-tx'),bt=el('div','tu-bt');
+  body.append(el('div','tu-nm','🎣 釣り堀のおやじ'),tx,bt);box.append(face,body);
+  bl.forEach(b=>{b.addEventListener('pointerdown',e=>{e.preventDefault();e.stopPropagation();tuNudge()});b.addEventListener('click',e=>{e.preventDefault();e.stopPropagation()})});
+  document.body.append(hole,...bl,box);
+  return TU.els={hole,bl,box,face,tx,bt};
+}
+function tuNudge(){const h=TU.els&&TU.els.hole;if(!h)return;h.classList.add('nudge');clearTimeout(tuNudge.t);tuNudge.t=setTimeout(()=>h.classList.remove('nudge'),350)}
+function tutoStart(again){
+  if(TU.on)return;
+  if(typeof SG!=='undefined'&&SG.open)return;
+  if(aqMode)aqToggle();if(rmMode)rmToggle();if(visitMode&&typeof frLeave==='function')frLeave();
+  if(ph==='result')closeResult();
+  if(ph!=='idle'){msg('釣りが終わってから始めてね',true,2);return}
+  if(isSpecial()){S.stage='ogawa';S.group='川'} // 小川で練習
+  TU.on=true;TU.again=!!again;TU.sold=false;TU.bought=false;TU.ask=false;TU.key='';
+  tab('spot');renderAll();window.scrollTo({top:0,behavior:'smooth'});
+  tuUI();tuGo(0);requestAnimationFrame(tuLoop);
+}
+function tuGo(i){
+  TU.i=Math.min(i,TU_STEPS.length-1);TU.key='';const s=TU_STEPS[TU.i];
+  if(s.in)s.in();
+  setTimeout(()=>{const e=tuEls();if(e[0]&&!s.fish)e[0].scrollIntoView({behavior:'smooth',block:'center'});else if(s.fish)window.scrollTo({top:0,behavior:'smooth'})},60);
+}
+function tuLoop(){if(!TU.on)return;try{tuTick();tuPlace()}catch(e){console.error(e)}requestAnimationFrame(tuLoop)}
+function tuTick(){
+  const s=TU_STEPS[TU.i];
+  if(!TU.again&&(S.lv>3||Object.keys(S.dex).length>2)){if(!S.tuto)S.tuto={done:1};tuClose();save();return} // 別の端末のデータに合わさったとき（遊んでいた人）は閉じる
+  if(!TU.ask){if(s.back&&s.back()){tuGo(tuStepIdx('cast'));return}if(s.ok&&s.ok()){tuGo(TU.i+1);return}}
+  // 文字とボタン（変わったときだけ作り直す）
+  const t=TU.ask?'チュートリアルをスキップする？'+(tuGot()?'':'<br>ごほうび（<b>'+yen(TUTO_G)+'</b>と称号<b>「伝説の始まり」</b>）は、ちゃんと渡すぞ'):s.t();
+  const key=TU.i+'|'+TU.ask+'|'+t;
+  const E=TU.els,now=performance.now(),bl=(now%3200)<140;if(bl!==TU.blink){TU.blink=bl;tuDrawFace(E.face,bl)}
+  if(key===TU.key)return;TU.key=key;
+  E.tx.innerHTML=t;
+  if(s.rw&&!TU.ask&&!tuGot()){const r=el('div','tu-rw','💰 '+yen(TUTO_G)+'　🎖 称号「伝説の始まり」');E.tx.append(r)}
+  E.bt.replaceChildren();
+  const B=(txt,cls,fn)=>{const b=el('button',cls,txt);b.type='button';b.onclick=e=>{e.stopPropagation();fn()};E.bt.append(b);return b};
+  if(TU.ask){B('もどる','gray',()=>{TU.ask=false;TU.key=''});B('スキップする',null,()=>tutoFinish(true));return}
+  if(s.k!=='end')B('スキップ','sub',()=>{TU.ask=true;TU.key=''});
+  if(s.k==='end')B(tuGot()?'閉じる':'受け取る',null,()=>tutoFinish(false));
+  else if(s.next)B(s.next,null,()=>{beep(880,.05,'triangle',.03);tuGo(TU.i+1)});
+}
+function tuPlace(){
+  const E=TU.els,els=TU.ask?[]:tuEls(),vw=innerWidth,vh=innerHeight,P=6;
+  let r=null;els.forEach(e=>{const q=e.getBoundingClientRect();r=r?{l:Math.min(r.l,q.left),t:Math.min(r.t,q.top),r:Math.max(r.r,q.right),b:Math.max(r.b,q.bottom)}:{l:q.left,t:q.top,r:q.right,b:q.bottom}});
+  if(r)r={l:r.l-P,t:r.t-P,r:r.r+P,b:r.b+P};
+  const H=r||{l:vw/2,t:vh/2,r:vw/2,b:vh/2};E.hole.classList.toggle('none',!r);
+  Object.assign(E.hole.style,{left:H.l+'px',top:H.t+'px',width:(H.r-H.l)+'px',height:(H.b-H.t)+'px'});
+  const R=(b,l,t,w,h)=>Object.assign(b.style,{left:l+'px',top:t+'px',width:Math.max(0,w)+'px',height:Math.max(0,h)+'px'});
+  R(E.bl[0],0,0,vw,H.t);R(E.bl[1],0,H.b,vw,vh-H.b);R(E.bl[2],0,H.t,H.l,H.b-H.t);R(E.bl[3],H.r,H.t,vw-H.r,H.b-H.t);
+  const bh=E.box.offsetHeight,st=E.box.style;
+  if(!r){st.top=Math.max(10,(vh-bh)/2)+'px';st.bottom='auto';return}
+  const below=vh-r.b,above=r.t;
+  if(below>=bh+16||below>=above){st.top='auto';st.bottom='calc(10px + env(safe-area-inset-bottom))'}else{st.top='calc(10px + env(safe-area-inset-top))';st.bottom='auto'}
+}
+function tuClose(){TU.on=false;if(TU.els){const E=TU.els;[E.hole,...E.bl,E.box].forEach(n=>n.remove());TU.els=null}}
+function tutoFinish(skip){
+  const first=!tuGot();tuClose();
+  if(first){S.gold+=TUTO_G;S.tuto={done:1,got:1};S.title='a:tuto';
+    [523,659,784,1047].forEach((f,i)=>setTimeout(()=>beep(f,.14,'triangle',.05),i*110));
+    msg('🎖 称号「伝説の始まり」ゲット！ ＋'+yen(TUTO_G),true,3.2)}
+  else{S.tuto=Object.assign({},S.tuto,{done:1});if(skip)msg('チュートリアルを閉じた',true,1.6)}
+  save();renderAll();if(curTab!=='spot'&&ph==='idle')tab('spot');
+  if(firstRun){firstRun=false;setTimeout(sgAuto,1600);setTimeout(evAuto,3000)}
+}
+$('#tutoAgain').onclick=()=>{tab('spot');tutoStart(true)};
+
 let firstRun=!S.helpSeen;
 setTimeout(()=>{if(!firstRun)sgAuto()},1500);
 // ---------- イベントの告知（ポップアップ＋キャストの下の帯）----------
@@ -9627,7 +9777,8 @@ $('#evBand').onclick=()=>raidPhase()==='post'?tab('ev'):evPop();evBand();setInte
 setTimeout(evAuto,3000);
 document.addEventListener('visibilitychange',()=>{if(!document.hidden){evBand();setTimeout(evAuto,2500)}});
 document.addEventListener('visibilitychange',()=>{if(!document.hidden)setTimeout(sgAuto,800)});
-if(!S.helpSeen){S.helpSeen=1;S.newsSeen=NEWS_VER;save();tab('help');msg('はじめての方は、下の「遊び方」を見てね',true,4)}
+if(tutoNew()){S.helpSeen=1;S.newsSeen=NEWS_VER;save();setTimeout(()=>tutoStart(false),400)}
+else if(!S.helpSeen){S.helpSeen=1;S.newsSeen=NEWS_VER;save();tab('help');msg('はじめての方は、下の「遊び方」を見てね',true,4)}
 requestAnimationFrame(loop);
 </script>
 </body></html>
