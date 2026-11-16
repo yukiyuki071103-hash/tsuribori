@@ -74,6 +74,8 @@ nav button[aria-selected="true"]{background:var(--water);color:#fff;border-color
 .btn[aria-pressed="true"]{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
 .btn:disabled{opacity:.5}
 .btn .chip{white-space:nowrap;padding:5px 8px}
+.pet-card{display:flex;gap:8px;align-items:flex-start;background:#f6f1e8;border-radius:12px;padding:8px;margin-top:6px;border:2px solid transparent}.pet-card.on{border-color:#ffb020;background:#fff6e0}.pet-ic{width:48px;height:39px;image-rendering:pixelated;flex:none}.nw{white-space:nowrap}.pet-in{flex:1;min-width:0}.pet-in .chip{font-size:12px;padding:4px 7px}.pet-bar{height:6px;background:#e2d8c8;border-radius:3px;overflow:hidden;margin-top:3px}.pet-bar i{display:block;height:100%;background:#ff8fa0}
+.qbuy{display:flex;align-items:center;gap:5px;flex-wrap:wrap;justify-content:flex-end}.qsel{font-size:13px;padding:4px 2px;border:1px solid var(--line);border-radius:8px;background:#fff;max-width:96px}.qtot{font-size:12px;color:#555;white-space:nowrap}
 .btn .row{flex-wrap:nowrap}
 .btn em{font-style:normal;font-weight:700;white-space:nowrap}
 .sw{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px}
@@ -917,8 +919,9 @@ const OKI_W=[50,30,13,5,2]; // 置き竿で★1〜5が出る割合（上限よ�
 const OKI_NEW=1;            // 未発見の魚のかかりやすさ（倍）。1=補正なし
 const OKI_XP=1/3;           // 経験値は通常の釣りの何倍か
 // お知らせ（アップデートのたびに上に足す。NEWS_VER を変えるとメニューに NEW が付く）
-const NEWS_VER='2026-11-17s';
+const NEWS_VER='2026-11-17u';
 const NEWS=[
+ {d:'2026/11/17',t:['🐾 ペットが登場！ ショップの「ペット」タブでお迎えすると、部屋の中を歩き回ります（フレンドが遊びに来ても見えます）。ハリネズミ・犬・カモメ・猫・ハムスター・うさぎ・インコ・フクロウの8種','⭐ 部屋の「模様替え」で選んだ「おとも」の1匹だけ、売値・経験値・大物・アルビノなどの効果があります','💕 なでる（1日1回）・ごはん・おともで釣ると、なつき度が上がって効果も強くなります。なつき度Lv10でリボンがつきます🎀','🛒 ショップで買う個数を選べるように！ 竿・エサ・チケット・置き竿は「▼個数（1／5／10／20／50／買えるだけ）」を選んで、合計金額を見てから買えます']},
  {d:'2026/11/17',t:['🌌 新ステージ「創世の海」！ Lv130から。チケット300,000G（10投）。宇宙が生まれる前の、はじまりの海。1投ごとに「☀️光」と「🌑闇」が入れかわり、釣れる「始祖」の魚も変わります。光の魚は「✨光の道」「🌕満ち欠け」「🪞反射」、闇の魚は「🌘操作反転」「🌑闇の侵食」「🌀闇の引力」と、ここだけのギミックつき。光の始祖・闇の始祖（各6種・★8）をすべてそろえると、ごくまれに「🌗境界」がひらいて…？','⬆ レベルの上限が130に！ Lv129→130の限界突破は「精霊の丘の図鑑コンプリート」＋「アルビノ図鑑10種以上」','🎖 Lv110・120・130の称号と報酬（ウキ「太陽」・竿「暁」・竿「創世」）、創世の海の称号2つ、部屋の家具「創世の光」','🎵 創世の海の専用BGM（光・闇・釣り上げ中・そして特別な1曲）']},
  {d:'2026/11/17',t:['📖 図鑑で魚をタップすると「くわしいページ」が開くように！ 全308種に説明文がつきました。まだ釣っていない魚はヒントが見られます。「はじめて釣った日」は今回から記録（前から持っている魚は、次に釣った日が「○○より前」と出ます）','🐟 水族館級の水槽は「引き」で見せるように。魚が少し小さく見えて、30匹入れてもゆったり泳ぎます','🔰 はじめての人向けのチュートリアル！ 釣り堀のおやじが、釣り方・売り方・エサの買い方を案内します（約3分）。スキップしても、ごほうびの3,000Gと称号「伝説の始まり」がもらえます。メニューの「遊び方」からいつでも見直せます','🤍 アルビノ登場！ 通常ステージの魚を10匹以上釣ると、まれに白い体・赤い目の「アルビノ」が釣れるように（売値5倍・経験値3倍・水槽の見物料3倍）。夜の時間帯は2倍、毎日変わる「🌕 アルビノの気配」の釣り場は3倍。図鑑の「🤍 アルビノ」でコレクション、釣り場ごとのコンプで称号も','👥 フレンドの水槽・部屋から「フレンド一覧」へ戻れるように','🎵 BGM着せ替えに新曲17種！ 雪の港・ジャズ喫茶・ケルトの港町・雨の日のピアノ・冒険の草原・深海・夏祭り・カントリー牧場・中華街・砂漠のオアシス・ネオン街・海賊船・桜並木・海辺のボサノバ・森の朝・サーフロック・遊園地（各20,000G。ショップの「着せ替え」から試聴できます）','🛒 ショップが図鑑のように見出しで開け閉めできるように（道具・券・着せ替え・水槽・部屋の全部。見出しをタップ・「ぜんぶ開く」も）','⚔️ イベント「レイドバトル」11/17(火)12:00〜11/25(水)11:59！ 魚がときどき持っている🎫レイドチケットを集めて、巨大ボス「ギガントホホジロザメ」に挑もう。削ったHPは次に引き継ぎ','🎁 討伐数でもらえるイベントミッション（サメのフード・着ぐるみ・王冠、竿「シャークファング」など）と、新しい「レイド称号」','🏆 討伐数・最大サイズのイベントランキング（ログインした人）','🎵 レイド専用のBGM 2曲']},
  {d:'2026/11/16',t:['🦈 イベント「レイドバトル」開催決定！ 11/17(火)12:00〜11/25(水)11:59　レイドチケットを集めて巨大ボスに挑もう！（キャストの下のバナーから詳しく見られます）','☁ スマホとPCなど、別の端末で遊ぶと釣果が消えることがある不具合を修正。端末どうしで自動で最新に合わせ、ぶつかったときは図鑑・レベル・持ち物を「合体」して残すように','🛟 データが減ったときは、メニューの「アカウント」からバックアップに戻せるように','☁ クラウドへの保存をまとめて行うように（サーバーが混み合いにくく。アプリを閉じるときはすぐ保存）']},
@@ -5757,7 +5760,7 @@ const PX={
   </section>
   <section class="panel" id="p-rm" hidden>
     <div class="row" style="justify-content:space-between;align-items:center;flex-wrap:nowrap"><b style="font-size:13.5px">🏠 わたしの部屋</b><button class="chip" id="rmEditBtn" type="button" style="white-space:nowrap;flex:none">模様替え</button></div>
-    <div class="small">水槽をタップすると水槽へ、釣り人をタップするとあいさつします。</div>
+    <div class="small">水槽をタップすると水槽へ、釣り人をタップするとあいさつします。ペットをタップするとなでます。ペットは「模様替え」で。</div>
     <div id="rmEditBox" hidden>
       <div class="row" id="rmSelBox" style="align-items:center;margin:6px 0"></div>
       <h3>家具 <span id="rmCount"></span></h3><div class="row" id="rmOwn"></div>
@@ -5765,6 +5768,7 @@ const PX={
       <h3>壁紙</h3><div class="row" id="rmWall"></div>
       <h3>床</h3><div class="row" id="rmFloor"></div>
       <h3>窓の外（行ったことのある釣り場）</h3><div class="row" id="rmWin"></div>
+      <h3>🐾 ペット <span id="rmPetFood"></span></h3><div class="small">「おとも」の1匹だけ効果があります。なでる（1日1回）・ごはん・おともで釣ると、なつき度が上がって効果も強くなります。</div><div id="rmPet"></div>
     </div>
     <div><h3>👕 着替え</h3><div id="rmAv"></div></div>
     <button class="chip" id="rmToShop" type="button">🛒 部屋のお店へ（壁紙・床・家具・はく製）</button>
@@ -5862,6 +5866,9 @@ const PX={
     <div data-st="room"><h3>床</h3><div class="list" id="shopRoomFloor"></div></div>
     <div data-st="room"><h3>家具（模様替えで置く・家具は15個まで）</h3><div class="list" id="shopRoomFurn"></div></div>
     <div data-st="room"><h3>はく製（図鑑の魚から作る）</h3><div class="list" id="shopRoomHk"></div></div>
+    <div data-st="pet"><div class="small">お迎えしたペットは部屋で暮らします。「おとも」の1匹だけ効果があり、なつき度Lv10で最大に（リボンもつきます）。おともの変更は部屋の「模様替え」で。</div></div>
+    <div data-st="pet"><h3>ペット</h3><div class="list" id="shopPet"></div></div>
+    <div data-st="pet"><h3>ペットのごはん</h3><div class="list" id="shopPetFood"></div></div>
   </section>
   <section class="panel" id="p-cos" hidden>
     <div class="small">持っている着せ替えです（性能は変わりません）。<button class="chip" id="cosToShop" type="button" style="margin-left:6px">🛒 ショップで探す</button></div>
@@ -7435,7 +7442,7 @@ function alB(){if(!S.alb||typeof S.alb!=='object')S.alb={};return S.alb}
 function alSpots(){return STAGES.filter(s=>!s.ticket&&!s.raid&&!s.key)}
 function alSpot(){const k=dayKey();let h=7;for(const c of k)h=(h*31+c.charCodeAt(0))%100003;const L=alSpots();return L[h%L.length].id}
 function alMul(){return (S.tod==='night'?2:1)*(S.stage===alSpot()?3:1)}
-function alRoll(f){const st=ST[S.stage];if(!alOk(f)||!st||st.ticket||st.raid)return f;const d=S.dex[f.id];if(!d||(d.n|0)<AL.need)return f;return Math.random()<AL.rate*alMul()?alOf(f):f}
+function alRoll(f){const st=ST[S.stage];if(!alOk(f)||!st||st.ticket||st.raid)return f;const d=S.dex[f.id];if(!d||(d.n|0)<AL.need)return f;return Math.random()<AL.rate*alMul()*(1+petV('al'))?alOf(f):f}
 function alAll(st){return FISH.filter(f=>f.spots[0]===st&&alOk(f)).every(f=>alB()[f.id])}
 function alTotal(){return FISH.filter(alOk).length}
 // ================= 創世の海 =================
@@ -7507,7 +7514,7 @@ function pickFish(){
   for(let i=0;i<rs.length;i++){x-=w[i];if(x<=0){r=rs[i];break}}
   const c=list.filter(f=>f.rar===r);const f=c[Math.floor(Math.random()*c.length)];
   // 宝箱は出にくい（選ばれても75%で選び直し）
-  if(f.shape==='b'&&!pickFish.again&&Math.random()>CHEST_RATE){for(let i=0;i<6;i++){pickFish.again=true;const g=pickFish();pickFish.again=false;if(g.shape!=='b')return g}}
+  if(f.shape==='b'&&!pickFish.again&&Math.random()>CHEST_RATE*(1+petV('chest'))){for(let i=0;i<6;i++){pickFish.again=true;const g=pickFish();pickFish.again=false;if(g.shape!=='b')return g}}
   return f;
 }
 const CHEST_RATE=.25;
@@ -7538,7 +7545,7 @@ function doCast(){
   if(!isSpecial()){const b=curBait();if(b){S.baitInv[b.id]--;if(S.baitInv[b.id]<=0)S.bait=''}}
   if(!isSpecial()&&S.rod!=='base'){S.rodInv[S.rod]=(S.rodInv[S.rod]|0)-1;if(S.rodInv[S.rod]<=0){delete S.rodInv[S.rod];S.rod='base';cast.broke=true}}
   save();renderSide();misEv('cast',misEvCast);
-  sizeT=Math.random()**1.6;size=Math.round((cur.min+(cur.max-cur.min)*sizeT)*10)/10;
+  sizeT=Math.random()**1.6;if(!st.raid)sizeT=1-(1-sizeT)**(1+petV('big'));size=Math.round((cur.min+(cur.max-cur.min)*sizeT)*10)/10;
   eLv=expectLv(cur.rar,1);
   flt=floatAt(depthOf(dist));flt.x+=rnd(-12,12);
   waitT=st.raid?rnd(1.2,2.2):rnd(1.5,4.2);preT=[];{const n=1+Math.floor(Math.random()*3),a=Math.max(.4,waitT-1.6),b=waitT-.35;for(let i=0;i<n;i++)preT.push(a+(b-a)*(i+Math.random()*.6)/n)}
@@ -7557,6 +7564,7 @@ function startFight(){
   F.d0=depthOf(dist);F.dep=F.d0;F.ox=flt.x-floatAt(F.d0).x;F.lx=0;F.sag=0;F.bx=flt.x;F.by=flt.y;
   if(S.stage==='sougen')gnFight();
   if(tutoEasy()){F.loss*=.35;F.dash=0;F.gain*=1.15} // チュートリアル：ゲージが減りにくい
+  if(!F.chest){F.h*=1+petV('bar');const tv=petV('tug');if(tv){F.tugGap=(F.tugGap||1)/(1-tv);F.tugT/=(1-tv)}} // ペット：犬＝バー／うさぎ＝グイッがへる
   if(hookNice){const bn=NICE_BONUS[cur.rar-1];F.prog+=bn;F.niceShow=1.8;F.niceB=bn;setTimeout(()=>{beep(1320,.07,'triangle',.05);setTimeout(()=>beep(1760,.12,'triangle',.05),80)},180)}hookNice=false;
   hitSound(eLv);showHit(true);msg('',true);setPhase('fight');misEv('hit',{e:eLv});
 }
@@ -7621,15 +7629,16 @@ function updateFight(dt){
 function afterCatch(){if(cast.broke){cast.broke=false;msg('竿がこわれた…基本の竿にもどった',true,2.2)}}
 function lose(t){misEv('miss');sfx.lose();showHit(false);hold=false;F=null;setPhase('idle');msg(t,true,1.8);afterCatch();renderAll()}
 function win(){
-  const al=!!cur.al,price=Math.round(cur.pmin+(cur.pmax-cur.pmin)*sizeT)*(al?AL.price:1);
+  const al=!!cur.al,price=Math.round(Math.round(cur.pmin+(cur.pmax-cur.pmin)*sizeT)*(al?AL.price:1)*(1+petV('gold')));
   S.bucket.push(al?{id:cur.id,size,price,u:++S.uid,t:Date.now(),st:S.stage,al:1}:{id:cur.id,size,price,u:++S.uid,t:Date.now(),st:S.stage});lastCatchU=S.uid;
   alNew=false;if(al){const A=alB(),q=A[cur.id];alNew=!q;A[cur.id]={n:(q?q.n|0:0)+1,best:Math.max(q?q.best||0:0,size)}}
   const ach0=achIds(),d=S.dex[cur.id],isNew=!d,rec=!isNew&&size>d.best;
-  keyGot=0;{const kp={f172:.005,f187:.03,f197:.10}[cur.id];if(kp&&Math.random()<kp){S.tickets.doukutsu=(S.tickets.doukutsu|0)+1;keyGot=1}}
+  keyGot=0;{const kp={f172:.005,f187:.03,f197:.10}[cur.id];if(kp&&Math.random()<kp*(1+petV('chest'))){S.tickets.doukutsu=(S.tickets.doukutsu|0)+1;keyGot=1}}
   raidOnCatch(cur);
   S.dex[cur.id]=dexNext(d,size); // t＝はじめて釣った日
   let gain=Math.round(XPR[cur.rar-1]*(1+stLv(ST[S.stage])/20)*(1+sizeT*.3));
   if(al)gain*=AL.xp;
+  gain=Math.round(gain*(1+petV('xp')));petOnCatch();
   if(cur.id===RAID.fish)gain=Math.min(gain,Math.max(1,Math.round(need(S.lv)*.5))); // レイドボスは1匹でレベルの半分まで（上がりすぎないように）
   let up=null;const lv0=S.lv;
   up=addXp(gain);
@@ -8061,7 +8070,7 @@ const AQ_EQ={bg:{sea:5,lake:5,deep:10,sky:15,ancient:15,space:15,spirit:15},sand
  deco:{ishi:1,mizukusa:1,ryuboku:2,sango:3,iwaba:3,takara:4,diver:5,chinbotsu:7,oshiro:7,vent:10,ukishima:10,fossil:10},max:60};
 function aqEquip(){const T=aqT(),b=AQ_EQ.bg[T.bg]|0,sa=AQ_EQ.sand[T.sand]|0,l=AQ_EQ.light[T.light]|0,d=T.deco.reduce((a,x)=>a+(AQ_EQ.deco[x.k]|0),0);
   return{bg:b,sand:sa,light:l,deco:d,total:Math.min(AQ_EQ.max,b+sa+l+d)}}
-function aqHourly(){const p=aqPop();return Math.round(aqT().fish.reduce((a,f)=>a+(p&&f.id===p?2:1)*(f.al?AL.aq:1),0)*AQ_RATE*(1+aqEquip().total/100))}
+function aqHourly(){const p=aqPop();return Math.round(aqT().fish.reduce((a,f)=>a+(p&&f.id===p?2:1)*(f.al?AL.aq:1),0)*AQ_RATE*(1+aqEquip().total/100)*(1+petV('aq')))}
 function aqEarn(now){const T=aqT();let t0=T.payT;if(!(t0<=now))t0=now;const h=typeof T.rate==='number'?T.rate:aqHourly(),fs=T.feedT>now?0:T.feedT,
   ov=Math.max(0,Math.min(now,fs+AQ_FEED_LEN)-Math.max(t0,fs)),fov=(T.fb||[]).reduce((a,w)=>a+Math.max(0,Math.min(now,w.at+3600e3)-Math.max(t0,w.at)),0),g=h*((now-t0)+ov*.5+fov*.2)/3600e3;
   return Math.min(T.bank+g,Math.max(T.bank,h*AQ_CAPH))}
@@ -8300,9 +8309,9 @@ function okiCollect(early){
   if(early||!g){save();renderAll();msg('置き竿を回収した（何もかかっていなかった）',true,2);return}
   let n=0,news=[],tot=0,xp=0;const lv0=S.lv;
   for(let i=0;i<g.n;i++){const f=okiPickOne(o.st,g.max);if(!f)break;
-    const t=Math.random()**1.6,size=Math.round((f.min+(f.max-f.min)*t)*10)/10,price=Math.round(f.pmin+(f.pmax-f.pmin)*t);
+    const t=1-(1-Math.random()**1.6)**(1+petV('big')),size=Math.round((f.min+(f.max-f.min)*t)*10)/10,price=Math.round(Math.round(f.pmin+(f.pmax-f.pmin)*t)*(1+petV('gold')));
     S.bucket.push({id:f.id,size,price,u:++S.uid,t:Date.now(),st:o.st});tot+=price;n++;
-    xp+=XPR[f.rar-1]*(1+stLv(ST[o.st])/20)*(1+t*.3)*OKI_XP;
+    xp+=XPR[f.rar-1]*(1+stLv(ST[o.st])/20)*(1+t*.3)*OKI_XP*(1+petV('xp'));
     const d=S.dex[f.id];if(!d)news.push(f.name);S.dex[f.id]=dexNext(d,size)}
   xp=Math.round(xp);
   addXp(xp);
@@ -8684,9 +8693,10 @@ function renderCos(){
   bgmPaged(sbg,BGM_SETS.filter(b=>!S.bgmOwn[b.id]),'shop',b=>bgmRow(b,cosRow(bgmIcon(b),b.name,false,false,b.price,()=>{S.bgmOwn[b.id]=1},()=>{S.bgmSel=b.id;bgmPrevStop();bgmSet(bgmWant())})));empty(sbg);
   // ショップのタブ
   const tt=$('#shopTabs');tt.replaceChildren();
-  [['tool','道具'],['tk','券'],['cos','着せ替え'],['aq','水槽'],['room','部屋']].forEach(([k,n])=>{const b=el('button','chip',n);b.type='button';b.setAttribute('aria-pressed',String(shopTab===k));b.onclick=()=>{shopTab=k;renderCos()};tt.append(b)});
+  [['tool','道具'],['tk','券'],['cos','着せ替え'],['aq','水槽'],['room','部屋'],['pet','ペット']].forEach(([k,n])=>{const b=el('button','chip',n);b.type='button';b.setAttribute('aria-pressed',String(shopTab===k));b.onclick=()=>{shopTab=k;renderCos()};tt.append(b)});
   document.querySelectorAll('#p-shop [data-st]').forEach(d=>d.hidden=d.dataset.st!==shopTab);shopFold();
   if(typeof renderRmShop==='function')renderRmShop();
+  if(typeof renderPetShop==='function')renderPetShop();shopFold();
 }
 
 let dexDrawn='',lockMode=false,bkSort='dex';const bkOpen=new Set();
@@ -8756,22 +8766,34 @@ function dexOpen(f,alMode){
 
 function baitNote(t){return'高レアの出やすさ '+['','小','小','中','中','大','大','特大','特大','超特大'][BAITS.indexOf(t)+1]}
 function buyBtn(label,price,ok,fn){const b=el('button','chip',label+' '+yen(price));b.type='button';b.disabled=!ok||S.gold<price;confirmTap(b,()=>{if(S.gold<price)return;S.gold-=price;fn();misEv('buy');save();renderAll();beep(988,.1,'triangle');msg('購入しました（−'+yen(price)+'）',true,1.4)},'もう一度で購入');return b}
+// 個数を選んで買う（▼1/5/10/20/50/買えるだけ）
+var QSEL={},QOPT=[1,5,10,20,50,'max'];
+function qtyBuy(key,price,ok,fn,max){const w=el('span','qbuy');const sel=el('select','qsel');
+  const cap=()=>{let m=price>0?Math.floor(S.gold/price):999;if(max!=null)m=Math.min(m,max);return Math.max(0,Math.min(999,m))};
+  QOPT.forEach(o=>{const op=el('option',null,o==='max'?'買えるだけ':'×'+o);op.value=o;sel.append(op)});
+  sel.value=String(QSEL[key]||1);
+  const nOf=()=>sel.value==='max'?cap():+sel.value;
+  const tot=el('span','qtot');const b=el('button','chip','買う');b.type='button';
+  const upd=()=>{const n=nOf();tot.textContent=(sel.value==='max'?'×'+n+' ':'')+yen(price*n);b.disabled=!ok||n<1||S.gold<price*n;if(b.dataset.arm==='1'){b.dataset.arm='';b.classList.remove('arm');b.textContent='買う'}};
+  sel.onchange=()=>{QSEL[key]=sel.value==='max'?'max':+sel.value;upd()};
+  confirmTap(b,()=>{const n=nOf(),pr=price*n;if(n<1||S.gold<pr)return;S.gold-=pr;fn(n);misEv('buy');save();renderAll();beep(988,.1,'triangle');msg('購入しました ×'+n+'（−'+yen(pr)+'）',true,1.4)},'もう一度で購入');
+  upd();w.append(sel,tot,b);return w}
 function shopRow(title,sub,btns){const d=el('div','btn');const l=el('span');l.append(title);if(sub)l.append(el('div','small',sub));const r=el('span','row');r.style.justifyContent='flex-end';r.append(...btns);d.append(l,r);return d}
 function renderShop(){
   const rb=$('#shopRods');rb.replaceChildren();
   RODS.forEach(r=>{if(r.id==='base')return;
     const l=el('span');const sw=el('i','sw');sw.style.background=r.color;l.append(sw,r.name);
-    rb.append(shopRow(l,r.note+'／バー'+Math.round(r.zone*100)+'%・1本'+r.uses+'投（所持 残'+(S.rodInv[r.id]|0)+'）',[buyBtn('買う',r.price,true,()=>{S.rodInv[r.id]=(S.rodInv[r.id]|0)+r.uses;if(S.rod==='base'&&!busy())S.rod=r.id})]))});
+    rb.append(shopRow(l,r.note+'／バー'+Math.round(r.zone*100)+'%・1本'+r.uses+'投（所持 残'+(S.rodInv[r.id]|0)+'）',[qtyBuy('r'+r.id,r.price,true,n=>{S.rodInv[r.id]=(S.rodInv[r.id]|0)+r.uses*n;if(S.rod==='base'&&!busy())S.rod=r.id})]))});
   const bb=$('#shopBaits');bb.replaceChildren();
-  BAITS.forEach(t=>{const add=n=>()=>{S.baitInv[t.id]=(S.baitInv[t.id]|0)+n;if(!curBait())S.bait=t.id;if(TU)TU.bought=true};
+  BAITS.forEach(t=>{const add=n=>{S.baitInv[t.id]=(S.baitInv[t.id]|0)+n;if(!curBait())S.bait=t.id;if(TU)TU.bought=true};
     const fr=t.id==='G'&&tuIs('bait'); // チュートリアル中は餌G×1がタダ
-    bb.append(shopRow(t.name,fr?'🎁 チュートリアル中はタダ！':baitNote(t)+'（所持 '+(S.baitInv[t.id]|0)+'）',[buyBtn(fr?'🎁×1':'×1',fr?0:t.price,true,add(1)),buyBtn('×5',t.price*5,true,add(5))]))});
+    bb.append(shopRow(t.name,fr?'🎁 チュートリアル中はタダ！':baitNote(t)+'（所持 '+(S.baitInv[t.id]|0)+'）',[fr?buyBtn('🎁×1',0,true,()=>add(1)):qtyBuy('b'+t.id,t.price,true,add)]))});
   const tb=$('#shopTk');tb.replaceChildren();
   TICKETS.forEach(k=>{if(k.key)return;const lvOk=S.lv>=k.lv;
-    tb.append(shopRow(k.name,k.casts+'投分'+(lvOk?'（所持 '+(S.tickets[k.stage]|0)+'枚）':'・Lv'+k.lv+'から買える'),[buyBtn('買う',k.price,lvOk,()=>{S.tickets[k.stage]=(S.tickets[k.stage]|0)+1})]))});
+    tb.append(shopRow(k.name,k.casts+'投分'+(lvOk?'（所持 '+(S.tickets[k.stage]|0)+'枚）':'・Lv'+k.lv+'から買える'),[qtyBuy('t'+k.stage,k.price,lvOk,n=>{S.tickets[k.stage]=(S.tickets[k.stage]|0)+n})]))});
 }
 function renderShopOki(){const ob=$('#shopOki');ob.replaceChildren();
-  OKIZAO.forEach(g=>ob.append(shopRow(g.name,g.min+'分で'+g.n+'匹・★1〜'+g.max+'（所持 '+(S.okiInv[g.id]|0)+'枚）',[buyBtn('買う',g.price,true,()=>{S.okiInv[g.id]=(S.okiInv[g.id]|0)+1})])))}
+  OKIZAO.forEach(g=>ob.append(shopRow(g.name,g.min+'分で'+g.n+'匹・★1〜'+g.max+'（所持 '+(S.okiInv[g.id]|0)+'枚）',[qtyBuy('o'+g.id,g.price,true,n=>{S.okiInv[g.id]=(S.okiInv[g.id]|0)+n})])))}
 function renderAll(){if(typeof actLock==='function')setTimeout(actLock);if(!curBait())S.bait='';renderSide();renderSpots();renderBag();renderDex();renderShop();renderShopOki();renderOki();renderMis();renderSpotStat();renderRaidBar();renderGyo();renderNews();renderSet();menuBadges();if(!$('#p-menu').hidden)renderMenu();renderCos();renderTitle();renderAq();if(typeof renderRm==='function'&&rmMode)renderRm();if(typeof refreshCode==='function')refreshCode();shopFold()}
 // タブ：下の4つ（MAIN）と、メニューの中のページ（SUB）
 const MAIN=['spot','bag','shop','menu'],SUB=['oki','mis','dex','cos','title','gyo','code','set','news','help','acct','rank','fr','ev'];
@@ -8986,6 +9008,8 @@ function clMerge(base,other,goldMax){
   // レイド：同じイベントなら討伐数・最大サイズは多いほう、受け取り済みは両方。合計・称号も残す
   if(obj(o.raid)&&obj(m.raid)&&o.raid.k===m.raid.k){const a=m.raid,b=o.raid;if((b.n|0)>(a.n|0)){a.n=b.n;a.hp=b.hp;a.hpMax=b.hpMax}a.best=Math.max(a.best||0,b.best||0);a.got=un(a.got,b.got);if(b.rc&&!a.rc)a.rc=b.rc}else if(obj(o.raid)&&!obj(m.raid))m.raid=o.raid;
   if((o.raidAll|0)>(m.raidAll|0))m.raidAll=o.raidAll;m.evT=un(m.evT,o.evT);
+  // ペット：お迎えしたペットは両方、なつき度は多いほう
+  if(obj(o.pet)){m.pet=obj(m.pet)||{};m.pet.o=obj(m.pet.o)||{};Object.entries(obj(o.pet.o)||{}).forEach(([k,v])=>{const a=m.pet.o[k];if(!a)m.pet.o[k]=v;else{a.p=Math.max(a.p|0,v.p|0);if((v.d||'')>(a.d||''))a.d=v.d}});if(!m.pet.s&&o.pet.s)m.pet.s=o.pet.s}
   if(obj(o.tuto)&&(!obj(m.tuto)||(o.tuto.got&&!m.tuto.got)))m.tuto=o.tuto; // チュートリアルのごほうびは1回だけ
   // すごろく：進んでいるほう
   if(obj(o.sg)){const sc=g=>g?(g.lap|0)*100+(g.pos|0):-1;if(sc(o.sg)>sc(obj(m.sg)))m.sg=o.sg}
@@ -9436,7 +9460,7 @@ function rmNorm(){
   if(!S.frOut||typeof S.frOut!=='object')S.frOut={};if(!S.ffd||typeof S.ffd!=='object')S.ffd={};
   if(!Array.isArray(r.items))r.items=[{k:'bed',x:70,y:340},{k:'tank',x:200,y:318}];
   r.items=r.items.filter(it=>RM_F[it.k]&&(it.k!=='gyo'||S.gyo.some(g=>g.u===it.u)));
-  S.room=r;
+  S.room=r;petNorm();
 }
 // 持っている数・置いている数
 const rmKey=it=>it.k==='hk'?'hk:'+it.f:it.k;
@@ -9530,7 +9554,9 @@ function rmDraw(dt){
   const items=rvRoom().items.map((it,i)=>[it,i]);
   const wall=items.filter(([it])=>RM_F[it.k].wall),flat=items.filter(([it])=>RM_F[it.k].flat),floor=items.filter(([it])=>!RM_F[it.k].wall&&!RM_F[it.k].flat).sort((a,b)=>a[0].y-b[0].y);
   wall.forEach(([it])=>RM_F[it.k].d(c,it.x,it.y,it,t,dt));flat.forEach(([it])=>RM_F[it.k].d(c,it.x,it.y,it,t,dt));
-  let drawn=false;floor.forEach(([it])=>{if(!drawn&&it.y>RM_AVY){rmDrawAv(c,t,RM_AVY);drawn=true}RM_F[it.k].d(c,it.x,it.y,it,t,dt)});if(!drawn)rmDrawAv(c,t,RM_AVY);
+  const dl=floor.map(([it])=>({y:it.y,d:c=>RM_F[it.k].d(c,it.x,it.y,it,t,dt)}));dl.push({y:RM_AVY+.01,d:c=>rmDrawAv(c,t,RM_AVY)});
+  if(typeof petDrawables==='function')dl.push(...petDrawables(dt,t));
+  dl.sort((a,b)=>a.y-b.y).forEach(o=>o.d(c));
   // 時間帯の色
   const tod=TODS.find(x=>x.id===S.tod);if(tod&&tod.mul){c.globalCompositeOperation='multiply';c.fillStyle=tod.mul;c.fillRect(0,0,RMW,RMH);c.globalCompositeOperation='source-over'}
   if(rmEdit&&rvRoom().items[rmSel]){const b=rmBox(rvRoom().items[rmSel]);c.strokeStyle=Math.sin(clock*8)>0?'#fff':'#ff8a3d';c.lineWidth=2;c.setLineDash([4,3]);c.strokeRect(b[0],b[1],b[2]-b[0],b[3]-b[1]);c.setLineDash([])}
@@ -9542,6 +9568,7 @@ function rmAt(x,y){for(let i=S.room.items.length-1;i>=0;i--){const b=rmBox(S.roo
 function rmDown(e){
   const[x,y]=rmPos(e);
   if(rmEdit){rmSel=rmAt(x,y);if(rmSel>=0){const it=S.room.items[rmSel];rmDragO={dx:it.x-x,dy:it.y-y}}renderRm();return}
+  {const pk=petHit(x,y);if(pk){petPat(pk);return}}
   if(Math.abs(x-RMA.x)<26&&y>RM_AVY-75&&y<RM_AVY+4){RMA.say=2.2;RMA.state='idle';RMA.t=2.5;beep(880,.05,'triangle',.03);return}
   const i=rmAt(x,y);if(i>=0&&S.room.items[i].k==='tank'){rmToggle();aqToggle();return}
 }
@@ -9583,6 +9610,7 @@ function renderRm(){
     S.gyo.forEach(g=>{const f=FISH.find(q=>q.id===g.id),on=S.room.items.some(i=>i.k==='gyo'&&i.u===g.u),b=el('button','chip',(f?f.name:'')+' '+g.size+'cm'+(on?'　飾ってある':'　飾る'));b.type='button';b.disabled=on;b.onclick=()=>rmPlace({k:'gyo',u:g.u});gb.append(b)});
     const look=(id,list,key,ownKey)=>{const box=$(id);box.replaceChildren();list.forEach(o=>{if(!S.room[ownKey][o.id])return;const b=el('button','chip',o.name);b.type='button';b.setAttribute('aria-pressed',String(S.room[key]===o.id));b.onclick=()=>{S.room[key]=o.id;save();renderRm()};box.append(b)})};
     look('#rmWall',RM_WALLS,'wall','wOwn');look('#rmFloor',RM_FLOORS,'floor','fOwn');
+    renderRmPet();
     const wb=$('#rmWin');wb.replaceChildren();STAGES.filter(s=>s.id==='teibo'||aqCaught(s.id)).forEach(s=>{const b=el('button','chip',s.name);b.type='button';b.setAttribute('aria-pressed',String(S.room.win===s.id));b.onclick=()=>{S.room.win=s.id;save();renderRm()};wb.append(b)});
   }
   renderAvEdit();
@@ -9616,6 +9644,90 @@ function renderRmShop(){
     confirmTap(b,()=>{if(S.gold<price)return;S.gold-=price;S.avOwn[p+':'+v]=1;S.av[p]=v;misEv('buy');save();renderAll();beep(988,.1,'triangle');msg('「'+n+'」を買って着ました（−'+yen(price)+'）',true,1.8)},'もう一度で購入');d.append(l,b);ab.append(d)});
     if(!ab.children.length)ab.append(el('div','small','ぜんぶ持っています！'))}
 }
+
+
+// ================= ペット（部屋で飼う・おともの1匹だけ効果） =================
+// S.pet={o:{id:{p:なつき度ポイント,d:なでた日}},s:おとものid,fd:ごはんの数}  部屋に出しているのは S.room.pets（idの配列）
+var PET_SPR={"cat":{"pal":{"o":"#4a2e1c","b":"#f2a65a","s":"#d9823a","l":"#fff4e4","e":"#2a1a10","n":"#ff8fa0"},"a":["................","..o...o.........",".obo.obo........",".obbbbbbo.......",".obebbebo.......",".olllnlllo...oo.","..ollllo....obo.","..obbbbsbsbbbo..","..obbbbsbsbbbo..","..ollbbbbbbbbo..","..obbobbbbobbo..","..oo.oo..oo.oo.."],"b":["..obbobbbbobbo..","..o.oo..oo.oo..."],"rb":[6,1],"c":"#e8384f"},"dog":{"pal":{"o":"#3e2a1e","b":"#d8a46c","d":"#9a6638","l":"#fff6ea","e":"#22140c","n":"#2a1a12","t":"#ff7a8a"},"a":["................","...oooo.........","..obbbbo........",".oddbebo........",".oddbbbbo.......","onlllbbbo....o..",".ollllbo....obo.","..otobbbbbbbbo..","...obbbbbbbbbo..","...ollbbbbbbbo..","...obbobbbobbo..","...oo.oo..oo.oo."],"b":["...obbobbbobbo..","...o.oo..oo.oo.."],"rb":[5,1],"c":"#3a7be8"},"kamome":{"pal":{"o":"#4a5560","b":"#ffffff","g":"#b8c4ce","y":"#ffc23a","e":"#1a1a1a","k":"#5a6672"},"a":["................","...ooo..........","..obbbo.........",".obebbbo........","oyybbbbo........",".oobbbbbo.......","...obbgggggoo...","...obbbgggkkkoo.","...obbbbbgkkoo..","....obbbbbbo....",".....oo.oo......",".....yy.yy......"],"b":[".....oo..oo.....",".....yy..yy....."],"rb":[4,1],"c":"#ffb020"},"hamster":{"pal":{"o":"#5a3a24","b":"#f0c890","w":"#fffaf0","e":"#1a1008","n":"#ff8fa0","p":"#ffc0c8"},"a":["................","................","...oo...........","..opbooooo......","..obbbbbbbo.....",".obebbbbbbbo....","onwwbbbbbbbbo...",".owwwbbbbbbbo...","..owwwwbbbbbo...","...owwwwwbbo....","....oo..oo......","................"],"b":["....oo...oo.....","................"],"rb":[4,2],"c":"#ff6fb0"},"usagi":{"pal":{"o":"#6a5a5a","b":"#ffffff","g":"#e6dede","p":"#ffb6c4","e":"#d0304a","n":"#ff8fa0"},"a":["...oo.oo........","..opooppo.......","..opooppo.......","..opooppo.......","..obbbbbbo......",".obebbbbbo......","onbbbbbbbbo.....",".obbbbbbbbbooo..","..obbbbbbbbbbgo.","..obbbbbbbbbbo..","..ogbbobbbbbo...","..ooo.ooooo....."],"b":["..ogbbobbbbbo...","...oo..ooo......"],"rb":[6,4],"c":"#9b59ff"},"inko":{"pal":{"o":"#2a5a3a","b":"#7ad84a","y":"#ffe24a","h":"#5ab0ff","e":"#1a1a1a","k":"#e8a040","d":"#3a9a4a"},"a":["................","...ooo..........","..oyyyo.........",".oyeyyyo........","okkyyyyo........",".oohbbbbo.......","...obbbdddo.....","...obbbbdddo....","...obbbbbddhhoo.","....obbbbbo.ohho",".....oo.oo....oo",".....kk.kk......"],"b":[".....oo..oo.....",".....kk..kk....."],"rb":[4,1],"c":"#ff4a4a"},"fukurou":{"pal":{"o":"#3a2818","b":"#a8784a","d":"#7a5230","l":"#f2dcb4","w":"#ffffff","e":"#1a1008","y":"#ffc020","k":"#e8a040"},"a":["...o......o.....","...ooooooooo....","...obbbbbbbo....","..owwbbbbwwo....","..oweybbyewo....","..owwbkkbwwo....","..obbdkkdbbo....","..oblldllbdo....","..obllllllbdo...","..odlldlldddo...","...obllllbdo....","....okk.kko....."],"b":["...obllllbdo....","....okk.kko....."],"rb":[7,1],"c":"#1a2a6a"},"harinezumi":{"pal":{"o":"#3a2a20","b":"#8a6a52","s":"#5a4434","f":"#f2d4b0","e":"#1a1008","n":"#2a1a12","w":"#d8c0a8"},"a":["................","................","......osososo...",".....osbsbsbsbo.","....osbsbsbsbsbo","...offsbsbsbsbso","..offefsbsbsbsbo",".nfffffsbsbsbsbo","..offffsbsbsbso.","...offfffffffo..","....oo.oo.oo....","................"],"b":["....o.oo.oo.o...","................"],"rb":[8,2],"c":"#2ec07a"}};
+var PETS=[
+ {id:'harinezumi',name:'ハリネズミ',price:30000,lv:1,k:'aq',a:3,b:20,cat:'💰 G',txt:'水槽の見物料'},
+ {id:'dog',name:'犬',price:30000,lv:1,k:'bar',a:2,b:10,cat:'🎣 釣り能力',txt:'釣りバーの長さ'},
+ {id:'kamome',name:'カモメ',price:30000,lv:1,k:'big',a:10,b:60,cat:'🍀 確率',txt:'大きいサイズの出やすさ'},
+ {id:'cat',name:'猫',price:50000,lv:1,k:'gold',a:2,b:12,cat:'💰 G',txt:'釣った魚の売値'},
+ {id:'hamster',name:'ハムスター',price:50000,lv:1,k:'xp',a:3,b:20,cat:'⭐ 経験値',txt:'経験値'},
+ {id:'usagi',name:'うさぎ',price:80000,lv:30,k:'tug',a:5,b:50,cat:'🎣 釣り能力',txt:'グイッの回数',neg:1},
+ {id:'inko',name:'インコ',price:80000,lv:40,k:'chest',a:10,b:60,cat:'🍀 確率',txt:'宝箱・洞窟の鍵の出やすさ'},
+ {id:'fukurou',name:'フクロウ',price:150000,lv:80,k:'al',a:10,b:100,cat:'🍀 確率',txt:'アルビノの出やすさ（夜2倍）'}];
+var PET_FOOD={price:1500,pt:20},PET_PAT=10,PET_MAX=10;
+function petNorm(){let p=S.pet;if(!p||typeof p!=='object')p=S.pet={};if(!p.o||typeof p.o!=='object')p.o={};if(typeof p.s!=='string')p.s='';p.fd=p.fd|0;
+  if(p.s&&!p.o[p.s])p.s='';const r=S.room;if(r&&!Array.isArray(r.pets))r.pets=Object.keys(p.o);if(r)r.pets=r.pets.filter(k=>p.o[k]);return p}
+function petDef(id){return PETS?PETS.find(x=>x.id===id):null}
+function petLvP(pt){let l=1;while(l<PET_MAX&&pt>=10*l*(l+1))l++;return l} // Lv n→n+1 に 20×n ポイント（Lv10 は合計900）
+function petLv(id){const o=S.pet&&S.pet.o[id];return o?petLvP(o.p|0):0}
+function petNext(id){const pt=S.pet.o[id].p|0,l=petLvP(pt);if(l>=PET_MAX)return null;const a=10*l*(l-1),b=10*l*(l+1);return{cur:pt-a,need:b-a}}
+function petPct(d,lv){return d.a+(d.b-d.a)*(Math.max(1,lv)-1)/(PET_MAX-1)}
+function petEff(d,lv){const v=Math.round(petPct(d,lv));return d.neg?'−'+v+'%':'+'+v+'%'}
+// おともの効果（0〜1）。種類が違えば 0
+function petV(k){const p=S.pet;if(!p||!p.s)return 0;const d=petDef(p.s);if(!d||d.k!==k)return 0;let v=petPct(d,petLv(p.s))/100;if(k==='al'&&S.tod==='night')v*=2;return v}
+function petAddPt(id,n){const o=S.pet.o[id];if(!o)return false;const l0=petLvP(o.p|0);o.p=(o.p|0)+n;const l1=petLvP(o.p);if(l1<=l0)return false;{const d=petDef(id);setTimeout(()=>{beep(1320,.08,'square',.04);setTimeout(()=>beep(1760,.14,'square',.04),90)},200);msg('🐾 '+d.name+'のなつき度が Lv'+l1+' になった！'+(l1>=PET_MAX?' 🎀 リボンをつけたよ！':''),true,2.6)}return true}
+function petOnCatch(){const p=S.pet;if(p&&p.s&&S.stage!=='raid')petAddPt(p.s,1)}
+function petPat(id){const o=S.pet.o[id];if(!o)return;const a=PA_OWN[id];if(a){a.heart=1.4;a.st='idle';a.t=2}
+  if(o.d===dayKey()){beep(880,.05,'triangle',.03);msg('🐾 '+petDef(id).name+'は、きょうはもうなでたよ（また明日）',true,1.6);return}
+  o.d=dayKey();beep(1180,.06,'triangle',.04);if(!petAddPt(id,PET_PAT))msg('🐾 '+petDef(id).name+'をなでた！ なつき度+'+PET_PAT,true,1.6);save();renderRm()}
+function petFeed(id){if(S.pet.fd<1){msg('ペットのごはんがありません（ショップの「ペット」で買えます）',true,2);return}
+  if(petLv(id)>=PET_MAX){msg('なつき度はもう最大だよ',true,1.6);return}
+  S.pet.fd--;const a=PA_OWN[id];if(a){a.heart=1.4;a.st='idle';a.t=2}beep(1040,.06,'triangle',.04);if(!petAddPt(id,PET_FOOD.pt))msg('🍖 ごはんをあげた！ なつき度+'+PET_FOOD.pt,true,1.6);save();renderRm()}
+function petSel(id){if(typeof aqAccrue==='function')aqAccrue();S.pet.s=S.pet.s===id?'':id;if(typeof aqSync==='function')aqSync();save();renderAll();renderRm()}
+function petShow(id){const r=S.room.pets,i=r.indexOf(id);if(i>=0)r.splice(i,1);else{r.push(id);const a=PA_OWN[id];if(a)delete PA_OWN[id]}save();renderRm()}
+// ドット絵（16×12）を1度だけ作っておく
+var PET_CV={};
+function petCv(id,fr,lv){const key=id+fr+(lv>=PET_MAX?'r':'');if(PET_CV[key])return PET_CV[key];const s=PET_SPR[id];if(!s)return null;
+  const c=document.createElement('canvas');c.width=16;c.height=13;const x=c.getContext('2d');const rows=fr?s.a.slice(0,s.a.length-s.b.length).concat(s.b):s.a;
+  rows.forEach((r,y)=>{for(let i=0;i<r.length;i++){const ch=r[i];if(ch==='.')continue;x.fillStyle=s.pal[ch]||'#000';x.fillRect(i,y+1,1,1)}});
+  if(lv>=PET_MAX){const[bx,by]=s.rb;['rr.rr','rrkrr','rr.rr'].forEach((r,y)=>{for(let i=0;i<5;i++){const ch=r[i];if(ch==='.')continue;x.fillStyle=ch==='r'?s.c:'#3a1a1a';x.fillRect(bx-2+i,by+y,1,1)}})}
+  return PET_CV[key]=c}
+// 部屋の中のペットの動き
+var PA_OWN={},PET_U=2.5,PET_Y0=276,PET_Y1=394;
+function rvPets(){if(RV){const L=Array.isArray(RV.room.pets)?RV.room.pets:[];return L.filter(q=>q&&PET_SPR[q.k]).map(q=>({k:q.k,lv:q.lv|0}))}
+  if(!S.pet||!S.room||!Array.isArray(S.room.pets))return[];return S.room.pets.filter(k=>S.pet.o[k]).map(k=>({k,lv:petLv(k)}))}
+function petActs(){if(RV){if(!RV.pa)RV.pa={};return RV.pa}return PA_OWN}
+function petAct(q){const A=petActs();let a=A[q.k];if(!a){const i=Object.keys(A).length;a=A[q.k]={x:50+((i*97)%260),y:PET_Y0+20+((i*37)%(PET_Y1-PET_Y0-20)),dir:i%2?1:-1,st:'idle',t:.5+Math.random()*2,tx:0,ty:0,heart:0,ph:Math.random()*6}}return a}
+function petStep(a,dt,k){a.t-=dt;if(a.heart>0)a.heart-=dt;
+  if(a.t<=0){const r=Math.random();a.st=r<.55?'walk':r<.8?'idle':'sleep';a.t=a.st==='sleep'?4+Math.random()*4:1.5+Math.random()*3;a.tx=24+Math.random()*(RMW-48);a.ty=PET_Y0+Math.random()*(PET_Y1-PET_Y0)}
+  if(a.st==='walk'){const dx=a.tx-a.x,dy=a.ty-a.y,d=Math.hypot(dx,dy);if(d<2)a.st='idle';else{const sp=(k==='harinezumi'||k==='hamster'?16:k==='usagi'?30:24)*dt;a.x+=dx/d*sp;a.y+=dy/d*sp;if(Math.abs(dx)>1)a.dir=dx<0?-1:1}}}
+function petDraw(c,q,a,t){const fr=a.st==='walk'&&Math.floor(t*7+a.ph)%2?1:0,cv=petCv(q.k,fr,q.lv);if(!cv)return;
+  const w=16*PET_U,h=13*PET_U,bird=q.k==='kamome'||q.k==='inko',hop=a.st==='walk'&&(bird||q.k==='usagi')?Math.abs(Math.sin(t*9+a.ph))*3:0;
+  c.fillStyle='rgba(0,0,0,.16)';c.beginPath();c.ellipse(a.x,a.y,w*.32,4,0,0,7);c.fill();
+  c.save();c.imageSmoothingEnabled=false;c.translate(Math.round(a.x),Math.round(a.y-hop));if(a.dir>0)c.scale(-1,1);
+  if(a.st==='sleep')c.translate(0,1);c.drawImage(cv,-w/2,-h,w,h);c.restore();
+  c.textAlign='center';
+  if(a.st==='sleep'){c.fillStyle='#5a6a9a';c.font='bold 10px sans-serif';const z=(t*.8+a.ph)%1;c.globalAlpha=1-z;c.fillText('z',a.x+10+z*6,a.y-h-z*10);c.globalAlpha=1}
+  if(a.heart>0){c.globalAlpha=Math.min(1,a.heart);c.fillStyle='#ff5a7a';c.font='bold 16px sans-serif';c.fillText('♥',a.x,a.y-h-4-(1.4-a.heart)*14);c.globalAlpha=1}}
+// rmDraw から：床に置く絵（ペット）を y つきで返す
+function petDrawables(dt,t){return rvPets().map(q=>{const a=petAct(q);if(!rmEdit||RV)petStep(a,dt,q.k);return{y:a.y,d:c=>petDraw(c,q,a,t)}})}
+function petHit(x,y){const L=rvPets();for(let i=L.length-1;i>=0;i--){const a=petActs()[L[i].k];if(a&&Math.abs(x-a.x)<20&&y>a.y-34&&y<a.y+6)return L[i].k}return ''}
+// 部屋のパネル（模様替えの中）
+function renderRmPet(){const box=$('#rmPet');if(!box)return;box.replaceChildren();petNorm();
+  const ids=PETS.filter(d=>S.pet.o[d.id]);$('#rmPetFood').textContent='（🍖ごはん '+S.pet.fd+'個）';
+  if(!ids.length){const n=el('div','small','まだペットがいません。ショップの「ペット」タブでお迎えできます。');const b=el('button','chip','🛒 ペットのお店へ');b.type='button';b.onclick=()=>{shopTab='pet';renderCos();tab('shop')};box.append(n,b);return}
+  ids.forEach(d=>{const lv=petLv(d.id),on=S.pet.s===d.id,inR=S.room.pets.includes(d.id),nx=petNext(d.id),pat=S.pet.o[d.id].d===dayKey();
+    const card=el('div','pet-card'+(on?' on':''));const cv=document.createElement('canvas');cv.width=48;cv.height=39;cv.className='pet-ic';const g=cv.getContext('2d');g.imageSmoothingEnabled=false;g.drawImage(petCv(d.id,0,lv),0,0,48,39);
+    const info=el('div','pet-in');info.append(el('b',null,d.name+(on?'　⭐おとも中':'')),el('div','small','なつき Lv'+lv+(lv>=PET_MAX?'（最大🎀）':'')+'　'+d.txt+' '+petEff(d,lv)+(lv<PET_MAX?'（最大 '+petEff(d,PET_MAX)+'）':'')));
+    if(nx){const bar=el('div','pet-bar');const f=el('i');f.style.width=Math.round(nx.cur/nx.need*100)+'%';bar.append(f);info.append(bar)}
+    const bt=el('div','row');bt.style.cssText='gap:5px;margin-top:4px';
+    const mk=(t,fn,dis)=>{const b=el('button','chip',t);b.type='button';b.disabled=!!dis;b.onclick=fn;bt.append(b)};
+    mk(on?'おともをやめる':'⭐ おともにする',()=>petSel(d.id));mk(pat?'🤚 なでた':'🤚 なでる',()=>petPat(d.id),pat);mk('🍖 ごはん',()=>petFeed(d.id),S.pet.fd<1||lv>=PET_MAX);mk(inR?'しまう':'部屋に出す',()=>petShow(d.id));
+    info.append(bt);card.append(cv,info);box.append(card)})}
+// ショップの「ペット」タブ
+function renderPetShop(){const box=$('#shopPet');if(!box)return;box.replaceChildren();petNorm();
+  PETS.forEach(d=>{const own=!!S.pet.o[d.id],lock=S.lv<d.lv;const row=el('div','btn');const l=el('span','row');l.style.cssText='align-items:center;gap:8px;flex-wrap:nowrap';
+    const cv=document.createElement('canvas');cv.width=48;cv.height=39;cv.className='pet-ic';const g=cv.getContext('2d');g.imageSmoothingEnabled=false;g.drawImage(petCv(d.id,0,1),0,0,48,39);
+    const tx=el('span');tx.append(d.name);tx.append(el('div','small',d.cat+'｜'+d.txt+' '+petEff(d,1)+'〜'+petEff(d,PET_MAX)+(lock?'｜🔒Lv'+d.lv+'から':'')));l.append(cv,tx);
+    if(own){row.append(l,el('span','small nw','お迎えずみ'));box.append(row);return}
+    const b=el('button','chip',yen(d.price));b.type='button';b.disabled=lock||S.gold<d.price;
+    confirmTap(b,()=>{if(S.gold<d.price||S.pet.o[d.id])return;S.gold-=d.price;S.pet.o[d.id]={p:0,d:''};if(!S.room.pets.includes(d.id))S.room.pets.push(d.id);if(!S.pet.s)S.pet.s=d.id;misEv('buy');save();renderAll();beep(988,.1,'triangle');msg('🐾 '+d.name+'をお迎えした！ 部屋にいるよ（模様替えで「おとも」を選べます）',true,2.6)},'もう一度で購入');
+    row.append(l,b);box.append(row)});
+  const fb=$('#shopPetFood');if(fb){fb.replaceChildren();fb.append(shopRow('🍖 ペットのごはん','なつき度+'+PET_FOOD.pt+'（所持 '+S.pet.fd+'個）・部屋の模様替えであげる',[qtyBuy('petfood',PET_FOOD.price,true,n=>{S.pet.fd+=n})]))}}
 
 rmNorm();rmBtnLabel();
 // ---------- 魚籠・図鑑の絞り込み（アプリを開き直すと「すべて」に戻る）----------
@@ -9675,7 +9787,7 @@ function pubDoc(){
   const T=S.tank,ids=new Set(S.room.items.filter(i=>i.k==='gyo').map(i=>i.u));
   return{name:S.pname||'名無しの釣り人',av:S.av,lv:S.lv,code:frCode(CL.user.uid),last:Date.now(),kingN:S.kingN|0,
     tank:{size:T.size|0,bg:T.bg,sand:T.sand,light:T.light,deco:T.deco,fish:T.fish.map(e=>e.al?{id:e.id,size:e.size,u:e.u,px:e.px??null,al:1}:{id:e.id,size:e.size,u:e.u,px:e.px??null})},
-    room:{wall:S.room.wall,floor:S.room.floor,win:S.room.win,items:S.room.items},gyo:S.gyo.filter(g=>ids.has(g.u))};
+    room:{wall:S.room.wall,floor:S.room.floor,win:S.room.win,items:S.room.items,pets:rvPets().map(q=>({k:q.k,lv:q.lv}))},gyo:S.gyo.filter(g=>ids.has(g.u))};
 }
 async function frLoad(force){
   if(!CL.user||!CL.mods)return;if(!force&&Date.now()-FR.at<30e3)return;FR.at=Date.now();
@@ -9749,7 +9861,7 @@ function frVisit(uid,mode){
   const p=FR.pubs[uid];if(!p)return;if(busy()){msg('釣りの最中は遊びに行けないよ',true,1.6);return}
   if(aqMode)aqToggle();if(rmMode)rmToggle();
   const t=p.tank||{};const tank={size:t.size|0,bg:t.bg||'river',sand:t.sand||'std',light:t.light||'none',deco:Array.isArray(t.deco)?t.deco:[],fish:Array.isArray(t.fish)?t.fish.filter(e=>FISH.some(f=>f.id===e.id)):[]};
-  const r=p.room||{};const room={wall:r.wall||'wood',floor:r.floor||'flooring',win:r.win||'teibo',items:(Array.isArray(r.items)?r.items:[]).filter(it=>RM_F[it.k])};
+  const r=p.room||{};const room={wall:r.wall||'wood',floor:r.floor||'flooring',win:r.win||'teibo',items:(Array.isArray(r.items)?r.items:[]).filter(it=>RM_F[it.k]),pets:Array.isArray(r.pets)?r.pets.slice(0,PETS.length):[]};
   VIS={uid,name:p.name||'名無しの釣り人',lv:p.lv,tank,room,av:Object.assign(avDefault(),p.av||{}),gyo:Array.isArray(p.gyo)?p.gyo:[],kingN:p.kingN|0,aq:{cv:null,fish:{},food:[]},rma:Object.assign({},RMA0),mode};
   VIS.rma.say=2.2;visitMode=true;tab('spot');
   $('#stage').classList.add('vison');$('#p-vis').hidden=false;$('#visBtn').hidden=false;$('#aqBtn').hidden=true;$('#rmBtn').hidden=true;$('#cancelBtn').hidden=true;
@@ -9780,7 +9892,7 @@ function visDraw(dt){
 }
 function visDown(e){
   if(e&&(e.code==='Space'||(e.target&&e.target.id==='act'))){if(VIS.mode==='aq')frFeed();else{VIS.mode='aq';renderVis();renderSide()}return}
-  if(VIS.mode==='rm'){const[x,y]=rmPos(e);if(Math.abs(x-VIS.rma.x)<26&&y>RM_AVY-75&&y<RM_AVY+4){VIS.rma.say=2.2;VIS.rma.state='idle';VIS.rma.t=2.5;beep(880,.05,'triangle',.03)}}
+  if(VIS.mode==='rm'){const[x,y]=rmPos(e);{RV=VIS;const pk=petHit(x,y);RV=null;if(pk){const a=VIS.pa&&VIS.pa[pk];if(a){a.heart=1.4;a.st='idle';a.t=2}beep(1180,.06,'triangle',.04);return}}if(Math.abs(x-VIS.rma.x)<26&&y>RM_AVY-75&&y<RM_AVY+4){VIS.rma.say=2.2;VIS.rma.state='idle';VIS.rma.t=2.5;beep(880,.05,'triangle',.03)}}
 }
 
 // 背景・魚の画像を先に読み込む
