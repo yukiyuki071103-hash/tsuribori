@@ -136,6 +136,7 @@ details summary{font-weight:700;font-size:13px;cursor:pointer;color:var(--muted)
 .rk{display:flex;flex-direction:column;gap:8px}.rk .ttabs{margin:0}.rk-last{background:#fff8e1;border:1px solid #f2d27a;border-radius:12px;padding:8px 10px;font-size:13px;font-weight:700;display:flex;flex-direction:column;gap:6px}
 .rk-list{display:flex;flex-direction:column;gap:4px}.rk-row{display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:10px;background:#f2f6f9;font-size:14px}
 .rk-mine{margin:8px 0 4px;padding:8px 10px;border-radius:10px;background:#fff6d6;font-weight:bold;font-size:14px;text-align:center}
+.tow-bar{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:6px 0 0;font-size:13px;background:var(--panel);border:2px solid #b08a50;border-radius:12px;padding:8px}.tow-bar[hidden]{display:none}.tow-bar .chip{padding:4px 10px}
 .raid-bar{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:6px 0 0;font-size:13px}.raid-bar[hidden]{display:none}.raid-bar .chip{padding:4px 10px}
 .ev-boss{display:flex;gap:10px;align-items:center;background:linear-gradient(90deg,#0b2a55,#1f4f80);color:#fff;border-radius:12px;padding:8px 10px;margin:8px 0}.ev-boss .small{color:#dfe9f5}
 .ev-hp{height:8px;background:rgba(255,255,255,.2);border-radius:4px;overflow:hidden;margin:4px 0}.ev-hp i{display:block;height:100%}
@@ -865,6 +866,7 @@ const STAGES=[
  {id:'seirei',name:'精霊の丘',g:'特別',lv:100,ticket:true,bg:'',deco:'spirit',sky:['#2a1d5c','#f4b4d4'],water:['#4ac0b0','#0e2e44']},
  {id:'doukutsu',name:'宝石の洞窟',g:'特別',lv:20,ticket:true,key:true,bg:'',deco:'cave',sky:['#140e1c','#3a2c48'],water:['#1c4a5a','#061820']},
  {id:'sougen',name:'創世の海',g:'特別',lv:130,ticket:true,bg:'',deco:'genesis',sky:['#ffe9a8','#fff8e8'],water:['#ffd98a','#c89a3a']}, // 光と闇で空と水の色が変わる（sgSkyで差し替え）
+ {id:'tou',name:'🏯 釣王の塔',g:'特別',lv:150,ticket:true,tower:true,bg:'',deco:'tower',sky:['#7ec4f0','#e4f4ff'],water:['#3e7486','#0c2230']}, // 階をのぼる腕だめし（ごほうびは称号だけ）
  {id:'raid',name:'⚔️ レイド',g:'特別',lv:1,ticket:true,raid:true,bg:'',deco:'storm',sky:['#0b1220','#2c3b52'],water:['#1d3c55','#030a16']} // イベントの期間だけ出る
 ];
 const GROUPS=['川','海','湖','特別'];
@@ -919,8 +921,10 @@ const OKI_W=[50,30,13,5,2]; // 置き竿で★1〜5が出る割合（上限よ�
 const OKI_NEW=1;            // 未発見の魚のかかりやすさ（倍）。1=補正なし
 const OKI_XP=1/3;           // 経験値は通常の釣りの何倍か
 // お知らせ（アップデートのたびに上に足す。NEWS_VER を変えるとメニューに NEW が付く）
-const NEWS_VER='2026-11-17v';
+const NEWS_VER='2026-11-18b';
 const NEWS=[
+ {d:'2026/11/18',t:['🎨 釣り上げ中の魚影が、図鑑にのっている魚なら色付きで見えるように（まだ図鑑にない魚は今までどおり黒いシルエット）。宝箱・レイドのボスも同じです','🤍 アルビノは、アルビノ図鑑にのっていれば白い姿で、まだなら普通の色で出てきます。釣れたときに驚いてね','👻 精霊の丘の「幻影」と創世の海の「🪞反射」のニセ魚影は黒いまま。出ている間は本物も黒くなるので、見た目では見分けられません']},
+ {d:'2026/11/18',t:['🏯 新コンテンツ「釣王の塔」！ Lv150から。1階に1匹、全311階を1階ずつのぼる腕だめしの塔です。図鑑の魚が★の低い順に待ちかまえ、最上階には…？','⚔ 難易度は「易」「難」「怒」の3つ。アワセなし・逃げられたら負け。竿とエサは塔の専用で、ペット・装備の効果はなし（みんな同じ条件）。何回でも挑戦できます','🎖 ごほうびは称号だけ！ 各難易度で50・100・200・300・311階に称号（全15個）。メニューの「称号」→「塔の称号」','⬆ レベルの上限が150に！ Lv149→150の限界突破は「創世の海の図鑑コンプリート（★9の2種も）」＋「アルビノ図鑑50種以上」。Lv140・150に称号、Lv150で竿「天守」','🎵 塔の新曲3つ（塔のBGM・釣り上げの曲・最上階だけの特別な曲）']},
  {d:'2026/11/17',t:['🐾 ペットが登場！ ショップの「ペット」タブでお迎えすると、部屋の中を歩き回ります（フレンドが遊びに来ても見えます）。ハリネズミ・犬・カモメ・猫・ハムスター・うさぎ・インコ・フクロウの8種','⭐ 部屋の「模様替え」で選んだ「おとも」の1匹だけ、売値・経験値・大物・アルビノなどの効果があります','🖼 アイコンを選べるように！ メニューの「アカウント」で、アバターの顔・ペット・図鑑の魚（アルビノも）から選べます。ランキングやフレンド一覧に出ます','💕 なでる（1日1回）・ごはん・おともで釣ると、なつき度が上がって効果も強くなります。なつき度Lv10でリボンがつきます🎀','🛒 ショップで買う個数を選べるように！ 竿・エサ・チケット・置き竿は「▼個数（1／5／10／20／50／買えるだけ）」を選んで、合計金額を見てから買えます']},
  {d:'2026/11/17',t:['🌌 新ステージ「創世の海」！ Lv130から。チケット300,000G（10投）。宇宙が生まれる前の、はじまりの海。1投ごとに「☀️光」と「🌑闇」が入れかわり、釣れる「始祖」の魚も変わります。光の魚は「✨光の道」「🌕満ち欠け」「🪞反射」、闇の魚は「🌘操作反転」「🌑闇の侵食」「🌀闇の引力」と、ここだけのギミックつき。光の始祖・闇の始祖（各6種・★8）をすべてそろえると、ごくまれに「🌗境界」がひらいて…？','⬆ レベルの上限が130に！ Lv129→130の限界突破は「精霊の丘の図鑑コンプリート」＋「アルビノ図鑑10種以上」','🎖 Lv110・120・130の称号と報酬（ウキ「太陽」・竿「暁」・竿「創世」）、創世の海の称号2つ、部屋の家具「創世の光」','🎵 創世の海の専用BGM（光・闇・釣り上げ中・そして特別な1曲）']},
  {d:'2026/11/17',t:['📖 図鑑で魚をタップすると「くわしいページ」が開くように！ 全308種に説明文がつきました。まだ釣っていない魚はヒントが見られます。「はじめて釣った日」は今回から記録（前から持っている魚は、次に釣った日が「○○より前」と出ます）','🐟 水族館級の水槽は「引き」で見せるように。魚が少し小さく見えて、30匹入れてもゆったり泳ぎます','🔰 はじめての人向けのチュートリアル！ 釣り堀のおやじが、釣り方・売り方・エサの買い方を案内します（約3分）。スキップしても、ごほうびの3,000Gと称号「伝説の始まり」がもらえます。メニューの「遊び方」からいつでも見直せます','🤍 アルビノ登場！ 通常ステージの魚を10匹以上釣ると、まれに白い体・赤い目の「アルビノ」が釣れるように（売値5倍・経験値3倍・水槽の見物料3倍）。夜の時間帯は2倍、毎日変わる「🌕 アルビノの気配」の釣り場は3倍。図鑑の「🤍 アルビノ」でコレクション、釣り場ごとのコンプで称号も','👥 フレンドの水槽・部屋から「フレンド一覧」へ戻れるように','🎵 BGM着せ替えに新曲17種！ 雪の港・ジャズ喫茶・ケルトの港町・雨の日のピアノ・冒険の草原・深海・夏祭り・カントリー牧場・中華街・砂漠のオアシス・ネオン街・海賊船・桜並木・海辺のボサノバ・森の朝・サーフロック・遊園地（各20,000G。ショップの「着せ替え」から試聴できます）','🛒 ショップが図鑑のように見出しで開け閉めできるように（道具・券・着せ替え・水槽・部屋の全部。見出しをタップ・「ぜんぶ開く」も）','⚔️ イベント「レイドバトル」11/17(火)12:00〜11/25(水)11:59！ 魚がときどき持っている🎫レイドチケットを集めて、巨大ボス「ギガントホホジロザメ」に挑もう。削ったHPは次に引き継ぎ','🎁 討伐数でもらえるイベントミッション（サメのフード・着ぐるみ・王冠、竿「シャークファング」など）と、新しい「レイド称号」','🏆 討伐数・最大サイズのイベントランキング（ログインした人）','🎵 レイド専用のBGM 2曲']},
@@ -5753,6 +5757,7 @@ const PX={
   <button id="act" type="button">キャスト</button>
 <button class="ev-band" id="evBand" type="button" hidden></button>
 <div class="raid-bar" id="raidBar" hidden></div>
+<div class="tow-bar" id="towBar" hidden></div>
   <section class="panel" id="p-vis" hidden>
     <div class="row" style="justify-content:space-between;align-items:center;flex-wrap:nowrap"><b id="visHead" style="font-size:13.5px"></b><span class="row" style="flex:none;gap:6px;flex-wrap:nowrap"><button class="chip" id="visList" type="button" style="flex:none">👥 フレンド一覧</button><button class="chip" id="visBack" type="button" style="flex:none">← 釣り場</button></span></div>
     <div class="row" style="margin:6px 0"><button class="chip" id="visAq" type="button">🐟 水槽</button><button class="chip" id="visRm" type="button">🏠 部屋</button></div>
@@ -5924,12 +5929,13 @@ const PX={
         <li><b>釣り人の部屋</b>：釣り場の右上「🏠 部屋」で、自分の部屋へ。下のボタン「👕 着替え」でアバターを着替え、「模様替え」で家具・魚拓（6枚まで）・はく製を置けます。水槽は今の大きさで置かれ、タップすると水槽へ。壁紙・床・家具はショップの「部屋」、服や帽子はショップの「着せ替え」で。アバターはランキングと釣果画面にも出ます。</li>
         <li><b>宇宙ステージ</b>：Lv80から。チケット80,000G（10投）。★7がたくさん、★8もよく出る最難関。ときどき「☄ 流れ星！」でゲージの魚影が見えにくくなります。全種類釣ると称号「宇宙の覇者」。</li>
         <li><b>創世の海</b>：Lv130から。チケット300,000G（10投）。1投ごとに「☀️光の刻」「🌑闇の刻」が半分ずつで入れかわり（キャストの前に画面の上に出ます）、光の始祖・闇の始祖（各6種・★8）が釣れます。光の魚は「✨光の道」（中で捕まえるとゲージ2倍）「🌕満ち欠け」（バーが伸び縮み）「🪞反射」（光っているのが本物）、闇の魚は「🌘操作反転」（予告のあと、押すと逆に動く）「🌑闇の侵食」（両端がせまくなる）「🌀闇の引力」（渦に吸われる）。★9はゲージの左が光（速い）・右が闇（引きが強い）で、ギミックが全部まざります。12種すべてそろえると、ごくまれに「🌗境界」がひらき、★9が必ずかかります。精霊の丘よりさらに難しい最難関。</li>
+        <li><b>🏯 釣王の塔</b>：Lv150から（チケットなし・何回でも）。1階に1匹、全311階。図鑑の魚（宝箱・宝石箱をのぞく）が★の低い順に待ちかまえ、最上階は…？ キャストの下で難易度（易・難・怒）と階を選びます。アワセなしですぐ釣り上げ、逃げられたら負け（その階からやり直し）。竿とエサは塔の専用で、ペット・装備・設備の効果はなし。「易」はギミックなし、「難」「怒」はその魚のステージのギミック（流れ星・幻影・精霊の風・光と闇）つき。ごほうびは称号だけ（各難易度で50・100・200・300・311階）。ゴールド・経験値・魚籠・図鑑・ランキングは増えません。最高階は難易度ごとに記録されます。</li>
         <li><b>精霊の丘</b>：Lv100から。チケット150,000G（10投）。妖精はすべて★8、ごくまれに★9の「精霊女王」。ニセの魚影が出る「✨幻影」（光っているのが本物）と、バーが流される「🍃精霊の風」に注意。全種類釣ると称号「精霊の友」。</li>
         <li><b>釣りすごろく</b>：1日1回（毎日0時に回復）サイコロ（1〜3）を振って進み、止まったマスのエサ・竿・ゴールドがもらえます。20マス目のゴールは10,000G。休んでも続きからです（メニュー →「すごろく」）。</li>
         <li><b>シェア</b>：釣れたときの画面・魚拓・水槽の「📷 シェア」で、きれいな画像を作ってXなどに投稿できます。</li>
         <li><b>宝石の洞窟</b>：Lv20から。「洞窟の鍵」1本で5投。釣れるのは宝石箱だけ（抵抗しない）で、売るとたくさんのゴールドに。鍵はお店では買えず、釣った宝箱（小・中・大）に入っていることがあるほか、今日のお題の1〜2位でもらえます。</li>
         <li><b>今日のお題</b>：毎日0時に、通常の釣り場の★1〜5から1匹「お題の魚」が決まります。今日釣ったいちばん大きいサイズでランキング（ランキング →「🎯お題」）。10位まで報酬あり（1位は洞窟の鍵×2）。</li>
-        <li><b>限界突破</b>：Lv79・Lv99・Lv129で経験値が満タンになると止まります（🔒）。条件を満たすと次のレベルへ。Lv79→80は「天空と古代の図鑑をコンプリート」、Lv99→100は「宇宙の図鑑をコンプリート」、Lv129→130は「精霊の丘の図鑑をコンプリート＋アルビノ図鑑10種以上」。止まっている間の経験値も1レベル分まではためておけます。レベル表示の🔒をタップすると条件を確認できます。</li>
+        <li><b>限界突破</b>：Lv79・Lv99・Lv129・Lv149で経験値が満タンになると止まります（🔒）。条件を満たすと次のレベルへ。Lv79→80は「天空と古代の図鑑をコンプリート」、Lv99→100は「宇宙の図鑑をコンプリート」、Lv129→130は「精霊の丘の図鑑をコンプリート＋アルビノ図鑑10種以上」、Lv149→150は「創世の海の図鑑をコンプリート（★9の2種も）＋アルビノ図鑑50種以上」。止まっている間の経験値も1レベル分まではためておけます。レベル表示の🔒をタップすると条件を確認できます。</li>
         <li><b>BGMの着せ替え</b>：ショップの「着せ替え」で曲を買えます（▶で試聴）。選んだ曲は通常の釣り場・水槽・部屋で流れます。特殊ステージは専用の曲のままです。</li>
         <li><b>フレンド</b>：メニューの「フレンド」で、自分のフレンドコードを教えあって申請・承認するとフレンドに（ランキングの「＋」からも申請できます）。フレンドの水槽や部屋に遊びに行けて、水槽には1日1回エサやりができます（相手の見物料が1時間+20%、自分にはお礼の50G）。自分の図鑑にいない魚は影で見えます。</li>
         <li><b>ランキング</b>：ログインしている人どうしで「釣った数」と「魚の大きさ」（自分の図鑑にある魚だけ）を通算・週間・日間で競います。週間の釣った数で10位まで（その週に10匹以上）は、翌週にランキングのページで報酬を受け取れます。1位は称号「今週の釣り王」も。置き竿の分は数えません。</li>
@@ -6063,9 +6069,9 @@ const depthOf=d=>{const f=castNear(d),z=zoneOf(d),a=z?CAST_CUT[z-1]:0,b=z<2?CAST
 // 期待度の色（★○以上）
 const ECOL=['#ffffff','#3fa9ff','#3fcf6b','#ffd83a','#ff9a2c','#ff3d3d','rainbow','rainbow'];
 const need=l=>Math.round(20+4*l+.3*l*l);
-const MAXLV=130;
+const MAXLV=150;
 // 限界突破：このLvで止まり、条件を満たすと次のLvへ（経験値は最大1レベル分までおあずけ）
-const LVGATE=[{lv:79,txt:'天空と古代の図鑑をコンプリート',ok:()=>dexAll('tenku')&&dexAll('kodai')},{lv:99,txt:'宇宙の図鑑をコンプリート',ok:()=>dexAll('uchu')},{lv:129,txt:'精霊の丘の図鑑をコンプリート＋アルビノ図鑑10種以上',ok:()=>dexAll('seirei')&&Object.keys(alB()).length>=10}];
+const LVGATE=[{lv:79,txt:'天空と古代の図鑑をコンプリート',ok:()=>dexAll('tenku')&&dexAll('kodai')},{lv:99,txt:'宇宙の図鑑をコンプリート',ok:()=>dexAll('uchu')},{lv:129,txt:'精霊の丘の図鑑をコンプリート＋アルビノ図鑑10種以上',ok:()=>dexAll('seirei')&&Object.keys(alB()).length>=10},{lv:149,txt:'創世の海の図鑑をコンプリート（★8の12種＋★9の2種）＋アルビノ図鑑50種以上',ok:()=>dexAll('sougen')&&Object.keys(alB()).length>=50}];
 const gateAt=l=>LVGATE.find(x=>x.lv===l);
 const gateBlock=()=>{const t=gateAt(S.lv);return t&&!t.ok()&&S.xp>=need(S.lv)?t:null};
 function addXp(v){let up=null;if(S.lv>=MAXLV){S.xp=0;return null}S.xp+=v;
@@ -6913,6 +6919,46 @@ const B2=(()=>{
    {n:gen(GNG_C,1,[0,'-','-',0,7,'-',0,'-']),w:'sine',v:.17,a:.02,sus:.85,rel:.2}],
   drums:['G...t.c.','T...t.t.','T...t.c.','T..Tt.t.','T...t.c.','T...t.t.','T...t.c.','T.T.TTTT',
          'K...t.c.','T...t.t.','T...t.c.','T..Tt.t.','T...t.c.','T...t.t.','TcTcTcTc','TTTTc.G.']};
+ // ---- 釣王の塔：和の城の曲。ふだん＝尺八と琴の静かな曲／釣り上げ＝太鼓が鳴りひびく速い曲／最上階＝金管と太鼓の壮大な曲 ----
+ const TWC_C=['Am','Am','Dm','Am','Dm','Am','Dm','Am','F','Dm','Am','Bb','Dm','F','Bb','Am'];
+ const TWF_C=['Dm','Dm','Bb','C','Dm','Dm','Bb','A','Gm','Gm','Bb','C','Dm','Bb','C','A'];
+ const TWT_C=['D','D','G','A','Bm','G','A','D','G','A','F#m','Bm','G','A','D','D'];
+ SG.towCalm={bpm:78,rv:{len:4,dec:2.4,wet:.55},echo:{steps:3,fb:.32},
+  tracks:[
+   {n:P(['E5 - - - F5 - E5 -','D5 - - - - - Bb4 A4','A4 - - - D5 - E5 -','E5 - - - - - . .',
+         'F5 - - - E5 - D5 -','E5 - - - Bb4 - A4 -','D5 - - - E5 - F5 -','E5 - - - - - . .',
+         'A5 - - - - - F5 E5','F5 - - - E5 - D5 -','E5 - F5 - E5 - D5 -','Bb4 - - - A4 - - -',
+         'D5 - - - E5 - F5 -','A5 - - - F5 - E5 -','D5 - - - Bb4 - D5 -','E5 - - - - - . .']),
+    w:'sine',v:.07,a:.09,sus:.85,rel:.35,vib:1,echo:.3,rv:.6,leg:.95},
+   {n:gen(TWC_C,3,[0,null,7,12,null,12,7,null]),w:'triangle',v:.05,a:.002,sus:.05,rel:.6,echo:.25,rv:.5,leg:.9},
+   {n:gen(TWC_C,4,[null,null,null,null,null,null,null,'a0']),w:'triangle',v:.028,a:.002,sus:.05,rel:.8,echo:.5,rv:.7,leg:.5},
+   {pad:TWC_C,oct:3,w:'sine',v:.012,a:.8,sus:.9,rel:.9,rv:.8},
+   {n:gen(TWC_C,1,[0,'-','-','-','-','-','-','-']),w:'sine',v:.12,a:.3,sus:.9,rel:.6,rv:.3}],
+  drums:['T.......','........','b...b...','........','T.......','........','b...b.bb','........',
+         'T.......','....j...','b...b...','........','T.......','....j...','b.b.b...','T...T...']};
+ SG.towFight={bpm:152,rv:{len:2.4,dec:2.5,wet:.3},echo:{steps:3,fb:.2},
+  tracks:[
+   {n:P(['D5 - A4 - D5 - F5 -','E5 - D5 - C5 - A4 -','Bb4 - D5 - F5 - Bb5 -','A5 - G5 - E5 - C5 -',
+         'D5 - F5 - A5 - D6 -','C6 - A5 - F5 - D5 -','Bb4 - D5 - F5 - G5 -','A5 - - - C#6 - E6 -',
+         'G5 - Bb5 - D6 - - -','C6 - Bb5 - A5 - G5 -','F5 - G5 - A5 - Bb5 -','C6 - - - E5 - G5 -',
+         'F5 - A5 - D6 - F6 -','E6 - D6 - Bb5 - F5 -','G5 - A5 - C6 - E6 -','D6 - - - C#6 - A5 -']),
+    w:'sawtooth',v:.03,a:.02,sus:.85,rel:.12,lp:2400,vib:1,echo:.15,rv:.3,leg:.9,dual:1},
+   {n:gen(TWF_C,4,['a0','a2','a1','a2','a0','a2','a1','a3']),w:'triangle',v:.026,a:.002,sus:.1,rel:.2,echo:.2,rv:.35,leg:.8},
+   {n:gen(TWF_C,1,[0,0,12,0,0,12,7,12]),w:'triangle',v:.15,a:.005,sus:.8,rel:.04,leg:.8}],
+  drums:['T.tbT.tb','T.ttT.tb','T.tbT.tb','TtTtT.TT','T.tbT.tb','T.ttT.tb','T.tbT.tb','TTTTtttt',
+         'G.tbT.tb','T.ttT.tb','T.tbT.tb','TtTtT.TT','T.tbT.tb','T.ttT.tb','TtTtTtTt','TTTTTTTT']};
+ SG.towTop={bpm:128,rv:{len:4,dec:2.3,wet:.5},echo:{steps:3,fb:.28},
+  tracks:[
+   {n:P(['D5 - - - F#5 - A5 -','D6 - - - C#6 - A5 -','B5 - - - G5 - B5 -','C#6 - - - E6 - - -',
+         'F#6 - - - E6 - D6 -','D6 - - - B5 - G5 -','A5 - - - C#6 - E6 -','D6 - - - - - . .',
+         'B5 - - - D6 - G6 -','A5 - - - C#6 - E6 -','F#6 - - - E6 - C#6 -','D6 - - - B5 - F#5 -',
+         'G5 - - - B5 - D6 -','E6 - - - C#6 - A5 -','F#6 - - - A6 - F#6 -','D6 - - - - - . .']),
+    w:'sawtooth',v:.032,a:.05,sus:.88,rel:.3,lp:2200,vib:1,echo:.22,rv:.5,leg:.95,dual:1},
+   {n:gen(TWT_C,4,['a0','a1','a2','a3','a4','a5','a4','a3']),w:'triangle',v:.03,a:.002,sus:.06,rel:.6,echo:.25,rv:.55,leg:.95},
+   {pad:TWT_C,oct:3,pn:4,w:'sawtooth',v:.01,a:.5,sus:.95,rel:.8,rv:.8,dual:1,lp:1000},
+   {n:gen(TWT_C,1,[0,'-','-',0,7,'-',0,'-']),w:'sine',v:.17,a:.02,sus:.85,rel:.2}],
+  drums:['G...t.c.','T...t.t.','T...t.c.','T..Tt.t.','T...t.c.','T...t.t.','T...t.c.','T.T.TTTT',
+         'G...t.c.','T...t.t.','T...t.c.','T..Tt.t.','T...t.c.','T...t.t.','TcTcTcTc','TTTTc.G.']};
  let NOISE=null,WAVES=null,IR={},bus=null,cur=null,step=0,next=0,timer=null,DRY,ECHO,ECHOD,RVIN;
  const rage=()=>ph==='fight'&&F&&(F.stage2||F.angry); // ★7〜8の暴れ中は少し速く・高く
  function prep(){
@@ -7033,7 +7079,7 @@ function bgmSet(name){
 }
 // 天空・古代は専用の曲（水槽はいつもの「のんびり」）
 let bgmPrevId=null;
-const bgmWant=()=>{if(bgmPrevId)return bgmPrevId;if(S.stage==='sougen'&&!(aqMode||rmMode||visitMode)){const sd=gnNow();return sd==='K'||(ph==='fight'&&cur&&cur.rar>=9)?'gnGod':ph==='fight'?'gnFight':sd==='L'?'gnLight':'gnDark'}const sp=S.stage==='raid'?'raid':S.stage==='tenku'?'sky':S.stage==='uchu'?'space':S.stage==='seirei'?'spirit':S.stage==='kodai'||S.stage==='doukutsu'?'old':'',my=bgmSetNow().id;if(aqMode||rmMode||visitMode)return bgmSongOf(my,false);if(ph==='fight')return sp?sp+'Fight':bgmSongOf(my,true);return sp?sp+'Calm':bgmSongOf(my,false)};
+const bgmWant=()=>{if(bgmPrevId)return bgmPrevId;if(S.stage==='tou'&&!(aqMode||rmMode||visitMode))return towSel()>=TOW_N?'towTop':ph==='fight'?'towFight':'towCalm';if(S.stage==='sougen'&&!(aqMode||rmMode||visitMode)){const sd=gnNow();return sd==='K'||(ph==='fight'&&cur&&cur.rar>=9)?'gnGod':ph==='fight'?'gnFight':sd==='L'?'gnLight':'gnDark'}const sp=S.stage==='raid'?'raid':S.stage==='tenku'?'sky':S.stage==='uchu'?'space':S.stage==='seirei'?'spirit':S.stage==='kodai'||S.stage==='doukutsu'?'old':'',my=bgmSetNow().id;if(aqMode||rmMode||visitMode)return bgmSongOf(my,false);if(ph==='fight')return sp?sp+'Fight':bgmSongOf(my,true);return sp?sp+'Calm':bgmSongOf(my,false)};
 function bgmPrevStop(){if(!bgmPrevId)return;bgmPrevId=null;bgmSet(bgmWant());document.querySelectorAll('[data-bgmp]').forEach(b=>b.setAttribute('aria-pressed','false'))}
 let audioOk=false;
 addEventListener('pointerdown',()=>{if(!audioOk&&audioReady()){audioOk=true;bgmSet(bgmWant())}},true);
@@ -7301,10 +7347,12 @@ const SKINS=[
  {id:'nagare',name:'流れ星',lv:100,col:t=>'hsl(232 50% '+Math.round(16+10*t)+'%)',guide:'#ffd23a',glow:'#8ab4ff',fx:'stars'},
  {id:'akatsuki',name:'暁',lv:120,col:t=>'hsl('+Math.round((40-t*95+360)%360)+' 80% '+Math.round(64-t*24)+'%)',guide:'#fff0c0',glow:'#ffb070',fx:'gold'},
  {id:'sousei',name:'創世',lv:130,col:t=>{const k=Math.sin(t*10-clock*2);return t<.5?'hsl(45 92% '+Math.round(70+10*k)+'%)':'hsl(265 60% '+Math.round(30+8*k)+'%)'},guide:'#ffffff',glow:'#ffe6a0',fx:'stars'},
+ {id:'tenshu',name:'天守',lv:150,col:t=>{const k=(t*14)%1;return k<.12?'#e8b923':'hsl(350 30% '+Math.round(12+6*Math.sin(t*9))+'%)'},band:'#e8b923',guide:'#ffe27a',glow:'#ffcf6a',fx:'tenshu'},
  {id:'fang',name:'シャークファング',ev:1,col:t=>Math.floor(t*16)%2?'#6f8fa8':'#e8eef2',band:'#2e4252',guide:'#c0404a',fx:'fang'} // レイド（15匹）の報酬
 ];
 const bz=(P,t)=>[(1-t)*(1-t)*P[0][0]+2*(1-t)*t*P[1][0]+t*t*P[2][0],(1-t)*(1-t)*P[0][1]+2*(1-t)*t*P[1][1]+t*t*P[2][1]];
 const ROD_FX={
+ tenshu:(c,P,k)=>{const[a,b]=bz(P,1);c.fillStyle='#e8b923';c.beginPath();c.moveTo(a-7*k,b+2*k);c.lineTo(a,b-7*k);c.lineTo(a+7*k,b+2*k);c.closePath();c.fill();c.fillStyle='#3a1f14';c.fillRect(a-4*k,b+2*k,8*k,4*k);[.3,.6].forEach((t,i)=>{const[x,y]=bz(P,t);STAR4(c,x+(i?8:-8)*k,y-4*k,(2+1.2*Math.sin(clock*4+i*2))*k,'#fff6c0')})},
  fang:(c,P,k)=>[.35,.5,.65,.8,.93].forEach((t,i)=>{const[a,b]=bz(P,t);c.fillStyle='#fff';c.strokeStyle='#2e4252';c.lineWidth=.8*k;const d=i%2?1:-1;c.beginPath();c.moveTo(a-3*k,b);c.lineTo(a+3*k,b);c.lineTo(a,b+d*7*k);c.closePath();c.fill();c.stroke()}),
  sakura:(c,P,k)=>[[.45,8,-6],[.65,-8,4],[.9,6,-8]].forEach(([t,dx,dy])=>{const[a,b]=bz(P,t);for(let i=0;i<5;i++){const g=-Math.PI/2+i*Math.PI*2/5;c.fillStyle='#ff8fb5';c.beginPath();c.ellipse(a+(dx+Math.cos(g)*4)*k,b+(dy+Math.sin(g)*4)*k,3*k,2*k,g,0,7);c.fill()}c.fillStyle='#ffe066';c.beginPath();c.arc(a+dx*k,b+dy*k,1.5*k,0,7);c.fill()}),
  ice:(c,P,k)=>[[.5,-9,-4],[.78,8,2]].forEach(([t,dx,dy])=>{const[a,b]=bz(P,t);c.strokeStyle='#fff';c.lineWidth=1.5*k;for(let i=0;i<3;i++){const g=i*Math.PI/3;c.beginPath();c.moveTo(a+(dx-Math.cos(g)*5)*k,b+(dy-Math.sin(g)*5)*k);c.lineTo(a+(dx+Math.cos(g)*5)*k,b+(dy+Math.sin(g)*5)*k);c.stroke()}}),
@@ -7340,7 +7388,7 @@ const TITLES=[
  {lv:40,name:'腕利きの釣り人',skin:'toudai'},{lv:50,name:'ベテラン釣り師',uki:'ankou'},{lv:60,name:'釣り名人',skin:'yuyake'},
  {lv:70,name:'釣りの達人',uki:'mikazuki'},{lv:80,name:'釣り仙人',skin:'tairyo'},{lv:90,name:'伝説の釣り師',uki:'crown'},
  {lv:100,name:'釣りを極めし者',skin:'nagare'},{lv:110,name:'天地を釣る者',uki:'taiyo'},{lv:120,name:'神話の釣り師',skin:'akatsuki'},
- {lv:130,name:'始まりを知る者',skin:'sousei'}
+ {lv:130,name:'始まりを知る者',skin:'sousei'},{lv:140,name:'真・伝説の釣り師'},{lv:150,name:'塔に挑む者',skin:'tenshu'}
 ];
 // 実績の称号（条件はゲーム内では見せない）
 const dexAll=st=>FISH.filter(f=>f.spots.includes(st)).every(f=>S.dex[f.id]);
@@ -7371,8 +7419,8 @@ const achHave=id=>{const a=ACH.find(x=>x.id===id);return !!(a&&a.ok())};
 const achIds=()=>ACH.filter(a=>a.ok()).map(a=>a.id);
 const achReward=a=>[a.uki?'ウキ「'+UKIS.find(u=>u.id===a.uki).name+'」':'',a.skin?'竿「'+SKINS.find(k=>k.id===a.skin).name+'」':'',a.avName?'アバター「'+a.avName+'」':''].filter(Boolean).join('・');
 let achGot=[];
-const titleNow=()=>{if(typeof S.title==='string'){const a=ACH.find(x=>'a:'+x.id===S.title)||EVENT_TITLES.find(x=>'e:'+x.id===S.title)||raidTitleObj(S.title);return a&&a.ok()?a:null}const t=TITLES.find(x=>x.lv===S.title);return t&&S.lv>=t.lv?t:null};
-const rewardName=t=>t.uki?'ウキ「'+UKIS.find(u=>u.id===t.uki).name+'」':'竿「'+SKINS.find(k=>k.id===t.skin).name+'」';
+const titleNow=()=>{if(typeof S.title==='string'){const a=ACH.find(x=>'a:'+x.id===S.title)||EVENT_TITLES.find(x=>'e:'+x.id===S.title)||raidTitleObj(S.title)||towTitleObj(S.title);return a&&a.ok()?a:null}const t=TITLES.find(x=>x.lv===S.title);return t&&S.lv>=t.lv?t:null};
+const rewardName=t=>t.uki?'ウキ「'+UKIS.find(u=>u.id===t.uki).name+'」':t.skin?'竿「'+SKINS.find(k=>k.id===t.skin).name+'」':'';
 const ukiHave=u=>!!S.ukiOwn[u.id]||(u.lv&&S.lv>=u.lv)||(!!u.ach&&achHave(u.ach));
 const skinHave=k=>!!S.skinOwn[k.id]||(k.lv&&S.lv>=k.lv)||(!!k.ach&&achHave(k.ach));
 const ukiNow=()=>UKIS.find(u=>u.id===S.uki)||UKIS[0];
@@ -7492,6 +7540,10 @@ function gnGauge(x,y,w,h){const g=F.gm,sd=gnCast;
   if(g.k==='erode'&&g.e>0){const ew=g.e*w;[x,x+w-ew].forEach((ex,i)=>{const gr=cx.createLinearGradient(ex,0,ex+ew,0);gr.addColorStop(i?1:0,'rgba(14,4,30,.95)');gr.addColorStop(i?0:1,'rgba(60,20,110,.55)');cx.fillStyle=gr;cx.fillRect(ex,y-2,ew,h+4)})}
   if(g.k==='pull'){const px=x+g.px*w,py=y+h/2;cx.save();cx.translate(px,py);cx.rotate(-clock*4);for(let i=0;i<3;i++){cx.strokeStyle='rgba(170,110,255,'+(.7-i*.2)+')';cx.lineWidth=2;cx.beginPath();cx.arc(0,0,5+i*5,i*2,i*2+4);cx.stroke()}cx.fillStyle='#08020f';cx.beginPath();cx.arc(0,0,4,0,7);cx.fill();cx.restore()}
   if(g.k==='rev'&&on){cx.strokeStyle='rgba(200,120,255,'+(.5+.4*Math.sin(clock*12))+')';cx.lineWidth=3;cx.strokeRect(x-2,y-2,w+4,h+4)}}
+// 釣り上げ中の魚影：図鑑にある魚は色付き（アルビノはアルビノ図鑑にあれば白、なければ普通の色）。ない魚は黒いシルエット
+function gaugeLook(f){if(!f||!S.dex[f.id])return {f,dark:true};if(f.al&&!alB()[f.id])f=FISH.find(x=>x.id===f.id)||f;return {f,dark:false}}
+// 幻影（精霊の丘）・鏡写し（創世の海）が出ている間は、本物も黒いシルエットにして見分けられないように（0〜1）
+function fakeA(){let a=0;if(F.phOn>0)a=Math.min(1,(2.4-F.phOn)/.3,F.phOn/.3);const g=F.gm;if(F.gs==='sougen'&&g&&g.k==='mirror')a=Math.max(a,Math.min(1,(g.t0-g.t)/.3,g.t/.3));return clamp(a,0,1)}
 function gnMirror(x,y,w,h,ra,fl){const g=F.gm;if(!g||g.k!=='mirror')return;const fa=Math.min(1,(g.t0-g.t)/.3,g.t/.3),qx=x+g.mx*w;cx.globalAlpha=fa;
   if(ra<1)drawFish(cx,qx,y+h/2,24,MYSTERY,!fl,true);if(ra>0){cx.globalAlpha=fa*ra;drawFish(cx,qx,y+h/2,26,cur,!fl,true)}cx.globalAlpha=fa;cx.fillStyle='#ff6b8a';cx.beginPath();cx.arc(qx,y+h/2,3,0,7);cx.fill();cx.globalAlpha=1;
   if(Math.sin(clock*9)>-.2){cx.fillStyle='#fffbe0';const sx=x+F.fx*w+9,sy=y+2;cx.beginPath();cx.moveTo(sx,sy-5);cx.lineTo(sx+1.5,sy-1.5);cx.lineTo(sx+5,sy);cx.lineTo(sx+1.5,sy+1.5);cx.lineTo(sx,sy+5);cx.lineTo(sx-1.5,sy+1.5);cx.lineTo(sx-5,sy);cx.lineTo(sx-1.5,sy-1.5);cx.fill()}}
@@ -7503,6 +7555,7 @@ function pickFish(){
   if(tutoEasy()){const L=FISH.filter(f=>f.spots[0]==='ogawa'&&f.rar===1&&f.shape!=='b');if(L.length)return L[Math.floor(Math.random()*L.length)]} // チュートリアルの1匹目は小川の★1
   if(S.stage==='raid')return raidFish();
   if(S.stage==='sougen')return gnPick();
+  if(S.stage==='tou')return towFish(towSel());
   if(S.stage==='doukutsu'){const L=stageFish();let x=Math.random()*100,r=4;for(const k of [4,5,6,7,8,9]){x-=CAVE_W[k];if(x<=0){r=k;break}}const c=L.filter(f=>f.rar===r);return c[Math.floor(Math.random()*c.length)]||L[0]}
   const sp=isSpecial();
   let list=stageFish();if(sp)list=list.filter(f=>f.rar>=6);if(!list.length)list=stageFish();
@@ -7527,29 +7580,31 @@ function expectLv(r,floor){
 function startMeter(){
   const st=ST[S.stage];
   // チケットは「あるか」だけ確認。実際に使うのは投げたとき（メーター中にやめても減らない）
-  if(st.raid){const r=raidNorm();if(!raidOn()){msg('レイドは期間外です',true,2);return}if(r.tk<r.tier){msg('🎫 レイドチケットが足りません（'+r.tier+'枚必要・いま'+r.tk+'枚）。通常の釣り場で魚が持っていることがあります',true,3);return}}
+  if(st.tower){if(!towCanStart())return}
+  else if(st.raid){const r=raidNorm();if(!raidOn()){msg('レイドは期間外です',true,2);return}if(r.tk<r.tier){msg('🎫 レイドチケットが足りません（'+r.tier+'枚必要・いま'+r.tk+'枚）。通常の釣り場で魚が持っていることがあります',true,3);return}}
   else if(st.ticket&&(S.tCasts[st.id]|0)<=0&&(S.tickets[st.id]|0)<=0){msg(st.key?'洞窟の鍵がありません（釣った宝箱に入っていることがあります）':st.name+'のチケットがありません（ショップで買えます）',true,2.4);return}
   meter=Math.random();meterDir=1;msg('',true);setPhase('meter');
 }
 function doCast(){
   dist=meter;
   const st=ST[S.stage];
-  if(st.raid){const r=raidNorm();raidTierCast=r.tier;r.tk-=r.tier;msg('🎫 レイドチケットを'+r.tier+'枚使った',true,1.6)}
+  if(st.tower){}
+  else if(st.raid){const r=raidNorm();raidTierCast=r.tier;r.tk-=r.tier;msg('🎫 レイドチケットを'+r.tier+'枚使った',true,1.6)}
   else if(st.ticket){
     if((S.tCasts[st.id]|0)<=0){const tk=tkOf(st.id);S.tickets[st.id]--;S.tCasts[st.id]=tk.casts;msg((st.key?'🗝 洞窟の鍵を使った（':'チケットを1枚使った（')+tk.casts+'投）',true,1.6)}
     S.tCasts[st.id]--;
   }
   if(st.id==='sougen'){gnCast=gnSide();S.gnSide=gnRoll()} // この1投の光／闇を決めて、次の1投ぶんを引いておく
-  cur=alRoll(pickFish());
+  cur=alRoll(pickFish());if(st.tower)towCast(cur);
   // 消費（竿・エサ）
   misEvCast={rod:!isSpecial()&&S.rod!=='base',bait:!isSpecial()&&!!curBait()};
   if(!isSpecial()){const b=curBait();if(b){S.baitInv[b.id]--;if(S.baitInv[b.id]<=0)S.bait=''}}
   if(!isSpecial()&&S.rod!=='base'){S.rodInv[S.rod]=(S.rodInv[S.rod]|0)-1;if(S.rodInv[S.rod]<=0){delete S.rodInv[S.rod];S.rod='base';cast.broke=true}}
-  save();renderSide();misEv('cast',misEvCast);
-  sizeT=Math.random()**1.6;if(!st.raid)sizeT=1-(1-sizeT)**(1+petV('big'));size=Math.round((cur.min+(cur.max-cur.min)*sizeT)*10)/10;
+  save();renderSide();if(!st.tower)misEv('cast',misEvCast);
+  sizeT=Math.random()**1.6;if(!st.raid&&!st.tower)sizeT=1-(1-sizeT)**(1+petV('big'));size=Math.round((cur.min+(cur.max-cur.min)*sizeT)*10)/10;
   eLv=expectLv(cur.rar,1);
   flt=floatAt(depthOf(dist));flt.x+=rnd(-12,12);
-  waitT=st.raid?rnd(1.2,2.2):rnd(1.5,4.2);preT=[];{const n=1+Math.floor(Math.random()*3),a=Math.max(.4,waitT-1.6),b=waitT-.35;for(let i=0;i<n;i++)preT.push(a+(b-a)*(i+Math.random()*.6)/n)}
+  waitT=st.raid||st.tower?rnd(1.2,2.2):rnd(1.5,4.2);preT=[];{const n=1+Math.floor(Math.random()*3),a=Math.max(.4,waitT-1.6),b=waitT-.35;for(let i=0;i<n;i++)preT.push(a+(b-a)*(i+Math.random()*.6)/n)}
   preDone=0;sfx.cast();msg(['手前','中','奥'][zoneOf(dist)]+'へキャスト！',false,.9);setPhase('cast');
 }
 const cast={broke:false};let misEvCast={};
@@ -7558,28 +7613,29 @@ const MYSTERY={shape:'f',hue:0,rar:1,img:''}; // それまでの共通の魚マ�
 let lvBefore=1,keyGot=0,alNew=false;
 function startFight(){
   if(S.stage==='raid'){raidStartFight();return}
-  const r=cur.rar-1,rod=curRodAtCast;
-  F={rar:cur.rar,fx:.5,tx:.5,tt:.6,ts:1,z:.5,v:0,prog:.35,rg:RANGE[r],h:rod.zone*ZMUL[r],gain:GAIN[r],loss:LOSS[r],spd:SPD[r],dash:DASH[r],tug:TUG[r],tugT:rnd(2,3.5),tugOn:0,two:cur.rar>=7||(isSpecial()&&cur.rar>=6),stage2:false,warn:0,time:0,shake:0};
+  const r=cur.rar-1,rod=curRodAtCast,tw=S.stage==='tou',hs=tw?(cur.spots[0]||''):S.stage,hsp=tw?!!(ST[hs]&&ST[hs].ticket):isSpecial();
+  F={hs,hsp,gs:tw?(TOW_D[towNorm().d].gim?hs:''):S.stage,tw,rar:cur.rar,fx:.5,tx:.5,tt:.6,ts:1,z:.5,v:0,prog:.35,rg:RANGE[r],h:rod.zone*ZMUL[r],gain:GAIN[r],loss:LOSS[r],spd:SPD[r],dash:DASH[r],tug:TUG[r],tugT:rnd(2,3.5),tugOn:0,two:cur.rar>=7||(hsp&&cur.rar>=6),stage2:false,warn:0,time:0,shake:0};
   // 宝箱は抵抗しない：動かない・逃げない・引かない・暴れない。ゲージは★1並みの速さでたまる
   if(cur.shape==='b'){F.chest=1;F.rg=0;F.spd=0;F.dash=0;F.tug=0;F.two=false;F.gain=GAIN[0];F.loss=LOSS[0];F.tt=999}
   F.d0=depthOf(dist);F.dep=F.d0;F.ox=flt.x-floatAt(F.d0).x;F.lx=0;F.sag=0;F.bx=flt.x;F.by=flt.y;
-  if(S.stage==='sougen')gnFight();
+  if(tw)towFight();
+  if(F.hs==='sougen')gnFight();
   if(tutoEasy()){F.loss*=.35;F.dash=0;F.gain*=1.15} // チュートリアル：ゲージが減りにくい
-  if(!F.chest){F.h*=1+petV('bar');const tv=petV('tug');if(tv){F.tugGap=(F.tugGap||1)/(1-tv);F.tugT/=(1-tv)}} // ペット：犬＝バー／うさぎ＝グイッがへる
+  if(!F.chest&&!tw){F.h*=1+petV('bar');const tv=petV('tug');if(tv){F.tugGap=(F.tugGap||1)/(1-tv);F.tugT/=(1-tv)}} // ペット：犬＝バー／うさぎ＝グイッがへる
   if(hookNice){const bn=NICE_BONUS[cur.rar-1];F.prog+=bn;F.niceShow=1.8;F.niceB=bn;setTimeout(()=>{beep(1320,.07,'triangle',.05);setTimeout(()=>beep(1760,.12,'triangle',.05),80)},180)}hookNice=false;
-  hitSound(eLv);showHit(true);msg('',true);setPhase('fight');misEv('hit',{e:eLv});
+  hitSound(eLv);showHit(true);msg('',true);setPhase('fight');if(!tw)misEv('hit',{e:eLv});
 }
 let curRodAtCast=RODS[0];
 function updateFight(dt){
   if(F.raid){raidUpdate(dt);return}
-  if(S.stage==='seirei'){ // 精霊の丘：幻影（ニセの魚影）と精霊の風（バーが流される）が交互に
+  if(F.gs==='seirei'){ // 精霊の丘：幻影（ニセの魚影）と精霊の風（バーが流される）が交互に
     if(F.gmT===undefined)F.gmT=rnd(3,4.5);if(!(F.phOn>0)&&!(F.wdOn>0))F.gmT-=dt;
     if(F.gmT<=0){if(Math.random()<.5){F.phOn=2.4;F.ph=[0,1].map(()=>({x:rnd(.1,.9),tx:rnd(.1,.9),t:0}))}else{F.wdOn=1.7;F.wdDir=Math.random()<.5?-1:1}F.gmT=rnd(3.5,6)}
     if(F.phOn>0){F.phOn-=dt;F.ph.forEach(q=>{q.t-=dt;if(q.t<=0){q.tx=rnd(.06,.94);q.t=rnd(.5,1.2)}const d=q.tx-q.x;q.x+=Math.sign(d)*Math.min(Math.abs(d),F.spd*.45*dt)})}
     if(F.wdOn>0){F.wdOn-=dt;F.v+=F.wdDir*(F.rar>=9?1.8:1.5)*dt}
   }
-  if(S.stage==='sougen')gnGim(dt);
-  if(S.stage==='uchu'){if(F.metT===undefined)F.metT=rnd(3,5);F.metT-=dt;if(F.metT<=0){F.metOn=.9;F.metT=rnd(4,7)}if(F.metOn>0)F.metOn-=dt} // 宇宙の流星群：ときどき魚影が見えにくくなる
+  if(F.gs==='sougen')gnGim(dt);
+  if(F.gs==='uchu'){if(F.metT===undefined)F.metT=rnd(3,5);F.metT-=dt;if(F.metT<=0){F.metOn=.9;F.metT=rnd(4,7)}if(F.metOn>0)F.metOn-=dt} // 宇宙の流星群：ときどき魚影が見えにくくなる
   F.time+=dt;F.tt-=dt;
   if(F.warn>0){F.warn-=dt;if(F.warn<=0){F.tx=F.warnTx;F.ts=F.rar>=5?2.8:2.2;F.tt=rnd(1,2)/Math.max(.5,F.spd)}}
   else if(F.tt<=0){
@@ -7623,13 +7679,14 @@ function updateFight(dt){
   if(F.tugOn>0&&Math.random()<dt*6)ripple(F.bx,F.by);
   if(F.stage2){F.rage-=dt;F.shake=Math.max(F.shake,.45)}
   if(F.prog>=1||(F.stage2&&F.rage<=0)){
-    if(F.two&&!F.stage2){F.stage2=true;F.rage=F.rageMax=S.stage==='sougen'?(F.rar>=9?14:12):S.stage==='seirei'?(F.rar>=9?14:12):S.stage==='uchu'?(F.rar>=8?12:F.rar>=7?10:5):isSpecial()?(F.rar>=8?10:F.rar>=7?8:4):(F.rar>=8?8:6);F.prog=.45;F.spd*=1.3;F.tugT=Math.min(F.tugT,.6);F.dash=Math.min(.6,F.dash+.1);F.shake=1;sfx.tug();F.rageShow=1.4}
+    if(F.two&&!F.stage2){F.stage2=true;F.rage=F.rageMax=F.hs==='sougen'?(F.rar>=9?14:12):F.hs==='seirei'?(F.rar>=9?14:12):F.hs==='uchu'?(F.rar>=8?12:F.rar>=7?10:5):F.hsp?(F.rar>=8?10:F.rar>=7?8:4):(F.rar>=8?8:6);F.prog=.45;F.spd*=1.3;F.tugT=Math.min(F.tugT,.6);F.dash=Math.min(.6,F.dash+.1);F.shake=1;sfx.tug();F.rageShow=1.4}
     else win();
   }else if(F.prog<=0)lose('逃げられた…');
 }
 function afterCatch(){if(cast.broke){cast.broke=false;msg('竿がこわれた…基本の竿にもどった',true,2.2)}}
-function lose(t){misEv('miss');sfx.lose();showHit(false);hold=false;F=null;setPhase('idle');msg(t,true,1.8);afterCatch();renderAll()}
+function lose(t){if(S.stage==='tou')t=towSel()+'階で逃げられた… もう一度挑戦！';else misEv('miss');sfx.lose();showHit(false);hold=false;F=null;setPhase('idle');msg(t,true,1.8);afterCatch();renderAll()}
 function win(){
+  if(S.stage==='tou'){towWin();return}
   const al=!!cur.al,price=Math.round(Math.round(cur.pmin+(cur.pmax-cur.pmin)*sizeT)*(al?AL.price:1)*(1+petV('gold')));
   S.bucket.push(al?{id:cur.id,size,price,u:++S.uid,t:Date.now(),st:S.stage,al:1}:{id:cur.id,size,price,u:++S.uid,t:Date.now(),st:S.stage});lastCatchU=S.uid;
   alNew=false;if(al){const A=alB(),q=A[cur.id];alNew=!q;A[cur.id]={n:(q?q.n|0:0)+1,best:Math.max(q?q.best||0:0,size)}}
@@ -7663,7 +7720,7 @@ function showResult(f,s,price,isNew,rec,gain,up){
   if(up){sub+=' ／ Lv'+up+' にレベルアップ！';const ns=STAGES.filter(x=>!x.ticket&&x.lv>S.lv-(S.lv-up)-1&&x.lv<=up&&x.lv>1).map(x=>x.name);
     const opened=STAGES.filter(x=>!x.ticket&&x.lv===up).map(x=>'「'+x.name+'」');if(opened.length)sub+=' '+opened.join('')+'が開放';}
   const got=TITLES.filter(t=>t.lv>S.lv-(up?S.lv-lvBefore:0)&&t.lv<=S.lv&&up);
-  if(got.length){const t=got[got.length-1];sub+=' ／ 🎖称号「'+t.name+'」ゲット！ 報酬：'+got.map(rewardName).join('・');}
+  if(got.length){const t=got[got.length-1];{const rw=got.map(rewardName).filter(Boolean).join('・');sub+=' ／ 🎖称号「'+t.name+'」ゲット！'+(rw?' 報酬：'+rw:'')}}
   if(up&&LVGATE.some(t=>t.lv>=lvBefore&&t.lv<up))sub+=' ／ 🔓 限界突破！';
   {const gb=gateBlock();if(gb)sub+=' ／ 🔒 Lv上限！ 限界突破の条件：'+gb.txt;}
   if(f.id===odaiNow().id)sub+=' ／ 🎯 今日のお題の魚！'+(S.rk&&S.rk.d&&S.rk.d.best[f.id]===s?'（今日の自己ベスト）':'');
@@ -7674,9 +7731,9 @@ function showResult(f,s,price,isNew,rec,gain,up){
   const c=$('#rcv').getContext('2d');c.clearRect(0,0,400,180);
   drawFish(c,200,90,Math.min(330,140+sizeT*170),f,false,false);
   const tn=titleNow();$('#rtitle').hidden=false;$('#rtitle').replaceChildren(avHead(S.av,22),el('span',null,(S.pname||'あなた')+(tn?'〔'+tn.name+'〕':'')+'の釣果'));
-  setLockBtn();setGyoBtn();$('#result').classList.add('on');
+  setLockBtn();setGyoBtn();$('#rshare').hidden=false;$('#result').classList.add('on');
 }
-function closeResult(){CF.stop();$('#result').classList.remove('on');setPhase('idle');afterCatch();if(misToast){msg(misToast,true,2.6);misToast=''}}
+function closeResult(){CF.stop();towAfterResult();$('#result').classList.remove('on');setPhase('idle');afterCatch();if(misToast){msg(misToast,true,2.6);misToast=''}}
 // ---------- キャストのキャンセル ----------
 // バーが動いている間（meter）は何も減らない。投げたあと（cast/wait）は、その1投は使った扱い
 function cancelCast(){
@@ -7739,7 +7796,7 @@ function drawBg(){
   const st=ST[S.stage],im=img(st.bg);
   if(im){const r=Math.max(W/im.naturalWidth,H/im.naturalHeight),w=im.naturalWidth*r,h=im.naturalHeight*r;cx.drawImage(im,(W-w)/2,(H-h)/2,w,h);return}
   let g=cx.createLinearGradient(0,0,0,HOR);g.addColorStop(0,st.sky[0]);g.addColorStop(1,st.sky[1]);cx.fillStyle=g;cx.fillRect(0,0,W,HOR);
-  if(st.deco!=='space'&&st.deco!=='spirit'&&st.deco!=='genesis'&&st.deco!=='cave'&&st.deco!=='storm'){cx.fillStyle=st.id==='funeoki'||st.id==='kakou'?'#ffb366':'#fff7c9';cx.beginPath();cx.arc(st.id==='funeoki'?250:290,st.id==='funeoki'?HOR-26:72,st.id==='funeoki'?30:20,0,7);cx.fill()}
+  if(st.deco!=='space'&&st.deco!=='spirit'&&st.deco!=='genesis'&&st.deco!=='tower'&&st.deco!=='cave'&&st.deco!=='storm'){cx.fillStyle=st.id==='funeoki'||st.id==='kakou'?'#ffb366':'#fff7c9';cx.beginPath();cx.arc(st.id==='funeoki'?250:290,st.id==='funeoki'?HOR-26:72,st.id==='funeoki'?30:20,0,7);cx.fill()}
   const hills=(col,amp,base,ph)=>{cx.fillStyle=col;cx.beginPath();cx.moveTo(0,HOR);for(let x=0;x<=W;x+=8)cx.lineTo(x,HOR-base-amp*Math.sin(x*.018+ph)-amp*.5*Math.sin(x*.047+ph*2));cx.lineTo(W,HOR);cx.fill()};
   const tree=(x,y,s)=>{cx.fillStyle='#3f7a52';cx.beginPath();cx.moveTo(x,y-28*s);cx.lineTo(x+9*s,y);cx.lineTo(x-9*s,y);cx.fill()};
   switch(st.deco){
@@ -7790,6 +7847,7 @@ function drawBg(){
     case'storm':{for(let i=0;i<7;i++){const cx0=((i*71+clock*8)%(W+120))-60,cy0=22+(i*19)%60;cx.fillStyle=i%2?'rgba(40,52,72,.9)':'rgba(58,70,92,.85)';[[0,0,34],[26,6,26],[-26,8,24],[10,-10,22]].forEach(([dx,dy,r])=>{cx.beginPath();cx.arc(cx0+dx,cy0+dy,r,0,7);cx.fill()})}
       const lt=(clock%9);if(lt<.18||(lt>.3&&lt<.38)){cx.strokeStyle='#eef4ff';cx.lineWidth=2.5;cx.beginPath();let lx=230,ly=10;cx.moveTo(lx,ly);for(let k=0;k<6;k++){lx+=(k%2?14:-10);ly+=22;cx.lineTo(lx,ly)}cx.stroke()}
       cx.fillStyle='rgba(20,30,45,.9)';cx.beginPath();cx.moveTo(0,HOR);for(let x=0;x<=W;x+=10)cx.lineTo(x,HOR-4-6*Math.abs(Math.sin(x*.05+clock*1.5)));cx.lineTo(W,HOR);cx.fill();break}
+    case'tower':towBg();break;
     case'sky':cx.fillStyle='rgba(255,255,255,.85)';[[60,60,22],[90,52,18],[250,90,26],[285,82,20],[170,120,30]].forEach(c=>{cx.beginPath();cx.arc(c[0],c[1],c[2],0,7);cx.fill()});break;
     case'ancient':cx.fillStyle='#7a5a4a';cx.beginPath();cx.moveTo(200,HOR);cx.lineTo(250,HOR-60);cx.lineTo(270,HOR-60);cx.lineTo(320,HOR);cx.fill();cx.fillStyle='rgba(255,120,60,.7)';cx.beginPath();cx.arc(260,HOR-66,8+Math.sin(clock*2)*2,0,7);cx.fill();hills('#5f7f4a',8,6,4);break;
   }
@@ -7926,16 +7984,18 @@ function drawGauge(){
   if(F.stage2){cx.fillStyle='rgba(255,255,255,.25)';cx.fillRect(x,y+27,w,4);cx.fillStyle=F.rage/F.rageMax<.3?'#7dff9a':'#ff5a5a';cx.fillRect(x,y+27,w*clamp(F.rage/F.rageMax,0,1),4)}
   G.track(cx,x,y,w,h,clock);
   const zw=F.h*w,zx=x+F.z*w-zw/2;
-  if(S.stage==='sougen')gnGauge(x,y,w,h);
+  if(F.gs==='sougen')gnGauge(x,y,w,h);
   G.bar(cx,zx,y,zw,h,F.inz,clock);
   if(G.glow){cx.save();cx.shadowColor=G.glow;cx.shadowBlur=8}
   // 魚影：最初は共通マーク、ゲージ80%で本当の姿が浮かび上がる
   const fl=F.tx<F.fx,ra=F.reveal?clamp((clock-F.reveal)/.5,0,1):0,fxp=x+F.fx*w;
   const mk=F.metOn>0?.12:F.diveOn>0?.05:F.dkOn>0?.03:F.flOn>0?.18:1;
   if(ra<1){cx.globalAlpha=(1-ra)*mk;drawFish(cx,fxp,y+h/2,24,MYSTERY,fl,true);cx.globalAlpha=1}
-  if(ra>0){cx.globalAlpha=ra*mk;drawFish(cx,fxp,y+h/2,26,cur,fl,true);cx.globalAlpha=1;
+  if(ra>0){const lk=gaugeLook(cur),fk=lk.dark?1:fakeA();
+    if(fk<1){cx.globalAlpha=ra*mk*(1-fk);drawFish(cx,fxp,y+h/2,26,lk.f,fl,false)}
+    if(fk>0){cx.globalAlpha=ra*mk*fk;drawFish(cx,fxp,y+h/2,26,cur,fl,true)}cx.globalAlpha=1;
     if(ra<1){const g=cx.createRadialGradient(fxp,y+h/2,2,fxp,y+h/2,34);g.addColorStop(0,'rgba(255,255,255,'+(.8*(1-ra))+')');g.addColorStop(1,'rgba(255,255,255,0)');cx.fillStyle=g;cx.beginPath();cx.arc(fxp,y+h/2,34,0,7);cx.fill()}}
-  if(S.stage==='sougen')gnMirror(x,y,w,h,ra,fl);
+  if(F.gs==='sougen')gnMirror(x,y,w,h,ra,fl);
   if(F.phOn>0){const fa=Math.min(1,(2.4-F.phOn)/.3,F.phOn/.3);F.ph.forEach(q=>{const qx=x+q.x*w;cx.globalAlpha=fa;if(ra<1)drawFish(cx,qx,y+h/2,24,MYSTERY,q.tx<q.x,true);if(ra>0){cx.globalAlpha=fa*ra;drawFish(cx,qx,y+h/2,26,cur,q.tx<q.x,true)}cx.globalAlpha=fa;cx.fillStyle='#ff6b8a';cx.beginPath();cx.arc(qx,y+h/2,3,0,7);cx.fill()});cx.globalAlpha=1;
     if(Math.sin(clock*9)>-.2){cx.fillStyle='#fffbe0';const sx=fxp+9,sy=y+2;cx.beginPath();cx.moveTo(sx,sy-5);cx.lineTo(sx+1.5,sy-1.5);cx.lineTo(sx+5,sy);cx.lineTo(sx+1.5,sy+1.5);cx.lineTo(sx,sy+5);cx.lineTo(sx-1.5,sy+1.5);cx.lineTo(sx-5,sy);cx.lineTo(sx-1.5,sy-1.5);cx.fill()}}
   if(F.wdOn>0){cx.save();cx.beginPath();cx.rect(x,y-30,w,h+34);cx.clip();cx.strokeStyle='rgba(200,255,230,.7)';cx.lineWidth=2;for(let i=0;i<7;i++){const ph=((clock*1.6+i*.143)%1),lx=F.wdDir>0?x-40+ph*(w+80):x+w+40-ph*(w+80),ly=y-18+(i*13)%(h+20);cx.beginPath();cx.moveTo(lx,ly);cx.lineTo(lx-F.wdDir*26,ly+2);cx.stroke();cx.fillStyle='#7ad890';cx.beginPath();cx.ellipse(lx,ly,3,1.6,F.wdDir*.5,0,7);cx.fill()}cx.restore()}
@@ -7947,12 +8007,12 @@ function drawGauge(){
   // 合図はすべてゲージの下に出す（大物中でも目線を動かさなくていいように）
   const bl=Math.sin(clock*16)>0;cx.textAlign='center';
   if(F.raid){raidGaugeText(x,y,w,h,bl);return}
-  if(S.stage==='sougen'&&F.gm&&F.gm.k==='rev'&&gnText(y,bl)){} // 操作反転は「左！右！」より先に知らせる
+  if(F.gs==='sougen'&&F.gm&&F.gm.k==='rev'&&gnText(y,bl)){} // 操作反転は「左！右！」より先に知らせる
   else if(F.warn>0){
     const L=F.wdir<0;cx.fillStyle=bl?'#ff4d4d':'#ffffff';cx.font='bold 17px sans-serif';oText(L?'◀◀ 左！':'右！ ▶▶',W/2,y+45);
     // ゲージの端で矢印が点滅
     if(bl){cx.fillStyle='rgba(255,77,77,.9)';const ax=L?x+4:x+w-4,d=L?-1:1;for(let k=0;k<2;k++){const o=k*11*d;cx.beginPath();cx.moveTo(ax+o+d*8,y+h/2);cx.lineTo(ax+o-d*4,y+2);cx.lineTo(ax+o-d*4,y+h-2);cx.fill()}}
-  }else if(S.stage==='sougen'&&gnText(y,bl)){}
+  }else if(F.gs==='sougen'&&gnText(y,bl)){}
   else if(F.flOn>0){cx.fillStyle='#fff3b0';cx.font='bold 17px sans-serif';oText('☀️ 閃光！ まぶしい…',W/2,y+45)}
   else if(F.dkOn>0){cx.fillStyle='#d8c0ff';cx.font='bold 17px sans-serif';oText('🌑 闇にまぎれた…',W/2,y+45)}
   else if(F.metOn>0){cx.fillStyle='#bfe6ff';cx.font='bold 17px sans-serif';oText('☄ 流れ星！',W/2,y+45)}
@@ -7969,7 +8029,7 @@ function render(dt){
   if(aqMode){aqDraw(dt);return}
   cx.save();
   if(F&&F.shake>0){const a=F.stage2?4:2;cx.translate(rnd(-a,a)*F.shake,rnd(-a,a)*F.shake)}
-  drawBg();todFx();
+  drawBg();if(S.stage!=='tou')todFx();
   let tip={x:TIP.x,y:TIP.y},bx=flt.x,by=flt.y,showF=ph!=='idle'&&ph!=='meter',sink=0;
   let s=scaleAt(flt.y);
   if(ph==='meter'){tip={x:TIP.x+4,y:TIP.y+6}}
@@ -8004,6 +8064,7 @@ function render(dt){
   if(ph==='meter')drawMeter();
   if(ph==='fight'&&F)drawGauge();
   if(S.stage==='raid')raidHud();
+  if(S.stage==='tou')towHud();
 }
 function loop(now){
   const dt=Math.min(.05,(now-(loop.l||now))/1000);loop.l=now;clock+=dt;pt+=dt;
@@ -8012,6 +8073,7 @@ function loop(now){
   if(ph==='meter'){meter+=meterDir*dt*CAST_SPD;if(meter>=1){meter=1;meterDir=-1}if(meter<=0){meter=0;meterDir=1}}
   else if(ph==='cast'&&pt>=.6){ripple(flt.x,flt.y);ripple(flt.x,flt.y);setPhase('wait')}
   else if(ph==='wait'&&preDone<preT.length&&pt>=preT[preDone]){preDone++;ripple(flt.x,flt.y,.6);beep(520,.05,'sine',.025)}
+  else if(ph==='wait'&&pt>=waitT&&S.stage==='tou'){sfx.bite();hookNice=false;hold=false;startFight()} // 釣王の塔：アワセなし（すぐ釣り上げ）
   else if(ph==='wait'&&pt>=waitT){sfx.bite();msg('アタリ！',false,BITE[cur.rar-1]);setPhase('bite');preDone=0;biteRing=false}
   else if(ph==='bite'&&!biteRing&&pt>=BITE[cur.rar-1]*NICE_FROM){biteRing=true;ripple(flt.x,flt.y,1.6);ripple(flt.x,flt.y,1.1)}
   else if(ph==='bite'&&pt>=BITE[cur.rar-1]){if(S.stage==='raid'){hookNice=false;startFight()}else if(tutoEasy())pt=BITE[cur.rar-1]*NICE_FROM;else lose('逃げられた…')} // レイドはアワセ失敗なし（チケットが無駄にならないように）
@@ -8524,7 +8586,8 @@ function renderSide(){
   $('#sRodN').textContent=(sr?'専用・':rod.id==='base'?'∞・':'残'+(S.rodInv[rod.id]|0)+'投・')+'バー'+Math.round((sr?sr.zone:rod.zone)*100)+'%';
   $('#sBaitName').textContent=st.ticket?'専用（固定）':b?b.name+' ×'+S.baitInv[b.id]:'基本のエサ';
   $('#sBaitN').textContent=st.ticket?'えらべません':b?'レア魚+'+Math.round((b.boost-1)*100)+'%':'∞・ふつう';
-  if(st.raid){const r=raidNorm();$('#sTkName').textContent='🎫 '+r.tk+'枚';$('#sTkN').textContent='1回 '+r.tier+'枚（リール×'+(raidTier().dmg)+'）'}
+  if(st.tower){const T=towNorm();$('#sRodN').textContent='専用・バー'+Math.round(sr.zone*TOW_D[T.d].bar*100)+'%（'+TOW_D[T.d].name+'）';$('#sTkName').textContent='🏯 '+T.sel+'階';$('#sTkN').textContent=TOW_D[T.d].name+'の最高 '+(T.b[T.d]|0)+'階'}
+  else if(st.raid){const r=raidNorm();$('#sTkName').textContent='🎫 '+r.tk+'枚';$('#sTkN').textContent='1回 '+r.tier+'枚（リール×'+(raidTier().dmg)+'）'}
   else if(st.ticket){$('#sTkName').textContent=(st.key?'🗝鍵 ':'')+(S.tickets[st.id]|0)+(st.key?'本':'枚');$('#sTkN').textContent='いまの残り '+(S.tCasts[st.id]|0)+'投'}
   else{$('#sTkName').textContent=tkTotal()+'枚';$('#sTkN').textContent='特別ステージ用'}
 }
@@ -8537,9 +8600,9 @@ function renderSpots(){
   STAGES.filter(s=>s.g===S.group&&(!s.raid||raidOn())).forEach(s=>{
     const ok=S.lv>=s.lv;
     const b=el('button','btn');b.type='button';b.setAttribute('aria-pressed',String(S.stage===s.id));
-    const sub=s.raid?'🎫'+raidNorm().tk+'枚・1回'+raidNorm().tier+'枚':s.ticket?(ok?(s.key?'🗝鍵'+(S.tickets[s.id]|0)+'本':'券'+(S.tickets[s.id]|0)+'枚')+'・残'+(S.tCasts[s.id]|0)+'投':'Lv'+s.lv+'から'):(ok?stageFish0(s.id)+'種':'Lv'+s.lv+'で開放');
+    const sub=s.tower?(ok?'易'+(towNorm().b[0]|0)+'・難'+(towNorm().b[1]|0)+'・怒'+(towNorm().b[2]|0)+'階':'Lv'+s.lv+'から'):s.raid?'🎫'+raidNorm().tk+'枚・1回'+raidNorm().tier+'枚':s.ticket?(ok?(s.key?'🗝鍵'+(S.tickets[s.id]|0)+'本':'券'+(S.tickets[s.id]|0)+'枚')+'・残'+(S.tCasts[s.id]|0)+'投':'Lv'+s.lv+'から'):(ok?stageFish0(s.id)+'種':'Lv'+s.lv+'で開放');
     b.append(el('span',null,s.name+(s.id===alSpot()?' 🌕':'')),el('em',null,S.stage===s.id?'ここで釣り中':sub));
-    b.disabled=!ok;
+    b.disabled=!ok&&!(s.tower&&TOW_TEST);
     b.onclick=()=>{if(busy()){msg('釣りの最中は移動できないよ',true,1.5);return}S.stage=s.id;save();renderAll();if(audioOk)bgmSet(bgmWant())};
     box.append(b);
   });
@@ -8622,11 +8685,12 @@ function renderTitle(){
   const tl=$('#cosTitle');tl.replaceChildren();
   const none=el('div','btn');none.setAttribute('aria-pressed',String(!titleNow()));none.append(el('span',null,'付けない（称号なし）'));const nb=el('button','chip',!titleNow()?'使用中':'使う');nb.type='button';nb.disabled=!titleNow();nb.onclick=()=>{S.title=0;save();renderAll()};none.append(nb);tl.append(none);
   const tabs=el('div','row ttabs');
-  [['lv','レベル称号'],['ach','実績称号'],['ev','イベント称号'],['raid','レイド称号']].forEach(([k,n])=>{const b=el('button','chip',n);b.type='button';b.setAttribute('aria-pressed',String(titleTab===k));b.onclick=()=>{titleTab=k;renderTitle()};tabs.append(b)});
+  [['lv','レベル称号'],['ach','実績称号'],['ev','イベント称号'],['raid','レイド称号'],['tow','塔の称号']].forEach(([k,n])=>{const b=el('button','chip',n);b.type='button';b.setAttribute('aria-pressed',String(titleTab===k));b.onclick=()=>{titleTab=k;renderTitle()};tabs.append(b)});
   tl.append(tabs);
   const row=(own,on,name,sub,set)=>{const d=el('div','btn');d.setAttribute('aria-pressed',String(on));const l=el('span');l.append(own?'「'+name+'」':'？？？');l.append(el('div','small',own?sub:'？？？'));
     const b=el('button','chip',!own?'未入手':on?'使用中':'付ける');b.type='button';b.disabled=!own||on;b.onclick=()=>{set();save();renderAll()};d.append(l,b);tl.append(d)};
-  if(titleTab==='lv')TITLES.forEach(t=>{const own=S.lv>=t.lv;row(own,own&&S.title===t.lv,t.name,'Lv'+t.lv+'・報酬：'+rewardName(t),()=>{S.title=t.lv})});
+  if(titleTab==='lv')TITLES.forEach(t=>{const own=S.lv>=t.lv,rw=rewardName(t);row(own,own&&S.title===t.lv,t.name,'Lv'+t.lv+(rw?'・報酬：'+rw:''),()=>{S.title=t.lv})});
+  else if(titleTab==='tow')towTitleRows(row);
   else if(titleTab==='ach')ACH.forEach(a=>{const own=a.ok();row(own,own&&S.title==='a:'+a.id,a.name,a.desc+(a.uki||a.skin?'・報酬：'+achReward(a):''),()=>{S.title='a:'+a.id})});
   else if(titleTab==='raid')RAID_TITLES.forEach(([n,name])=>{const own=(S.raidAll|0)>=n;row(own,own&&S.title==='r:'+n,name,'レイドボスを合計'+n+'匹討伐（いま'+(S.raidAll|0)+'匹）',()=>{S.title='r:'+n})});
   else if(EVENT_TITLES.length)EVENT_TITLES.forEach(a=>{const own=a.ok();row(own,own&&S.title==='e:'+a.id,a.name,a.desc,()=>{S.title='e:'+a.id})});
@@ -8795,7 +8859,7 @@ function renderShop(){
 }
 function renderShopOki(){const ob=$('#shopOki');ob.replaceChildren();
   OKIZAO.forEach(g=>ob.append(shopRow(g.name,g.min+'分で'+g.n+'匹・★1〜'+g.max+'（所持 '+(S.okiInv[g.id]|0)+'枚）',[qtyBuy('o'+g.id,g.price,true,n=>{S.okiInv[g.id]=(S.okiInv[g.id]|0)+n})])))}
-function renderAll(){if(typeof actLock==='function')setTimeout(actLock);if(!curBait())S.bait='';renderSide();renderSpots();renderBag();renderDex();renderShop();renderShopOki();renderOki();renderMis();renderSpotStat();renderRaidBar();renderGyo();renderNews();renderSet();menuBadges();if(!$('#p-menu').hidden)renderMenu();renderCos();renderTitle();renderAq();if(typeof renderRm==='function'&&rmMode)renderRm();if(typeof refreshCode==='function')refreshCode();shopFold()}
+function renderAll(){if(typeof actLock==='function')setTimeout(actLock);if(!curBait())S.bait='';renderSide();renderSpots();renderBag();renderDex();renderShop();renderShopOki();renderOki();renderMis();renderSpotStat();renderRaidBar();renderTowBar();renderGyo();renderNews();renderSet();menuBadges();if(!$('#p-menu').hidden)renderMenu();renderCos();renderTitle();renderAq();if(typeof renderRm==='function'&&rmMode)renderRm();if(typeof refreshCode==='function')refreshCode();shopFold()}
 // タブ：下の4つ（MAIN）と、メニューの中のページ（SUB）
 const MAIN=['spot','bag','shop','menu'],SUB=['oki','mis','dex','cos','title','gyo','code','set','news','help','acct','rank','fr','ev'];
 function tab(k){
@@ -9008,7 +9072,8 @@ function clMerge(base,other,goldMax){
   if(obj(o.rk)){m.rk=obj(m.rk)||{};if((o.rk.n|0)>(m.rk.n|0))m.rk.n=o.rk.n;['w','wp','d','dp'].forEach(k=>{const a=obj(m.rk[k]),b=obj(o.rk[k]);if(b&&b.k&&(!a||a.k<b.k||(a.k===b.k&&(b.n|0)>(a.n|0))))m.rk[k]=b})}
   // レイド：同じイベントなら討伐数・最大サイズは多いほう、受け取り済みは両方。合計・称号も残す
   if(obj(o.raid)&&obj(m.raid)&&o.raid.k===m.raid.k){const a=m.raid,b=o.raid;if((b.n|0)>(a.n|0)){a.n=b.n;a.hp=b.hp;a.hpMax=b.hpMax}a.best=Math.max(a.best||0,b.best||0);a.got=un(a.got,b.got);if(b.rc&&!a.rc)a.rc=b.rc}else if(obj(o.raid)&&!obj(m.raid))m.raid=o.raid;
-  if((o.raidAll|0)>(m.raidAll|0))m.raidAll=o.raidAll;m.evT=un(m.evT,o.evT);
+  if((o.raidAll|0)>(m.raidAll|0))m.raidAll=o.raidAll;
+  if(obj(o.tower)){m.tower=obj(m.tower)||{};const a=Array.isArray(m.tower.b)?m.tower.b:[0,0,0],b=Array.isArray(o.tower.b)?o.tower.b:[0,0,0];m.tower.b=[0,1,2].map(i=>Math.max(a[i]|0,b[i]|0))} // 釣王の塔：最高階は多いほうm.evT=un(m.evT,o.evT);
   // ペット：お迎えしたペットは両方、なつき度は多いほう
   if(obj(o.pet)){m.pet=obj(m.pet)||{};m.pet.o=obj(m.pet.o)||{};Object.entries(obj(o.pet.o)||{}).forEach(([k,v])=>{const a=m.pet.o[k];if(!a)m.pet.o[k]=v;else{a.p=Math.max(a.p|0,v.p|0);if((v.d||'')>(a.d||''))a.d=v.d}});if(!m.pet.s&&o.pet.s)m.pet.s=o.pet.s}
   if(obj(o.tuto)&&(!obj(m.tuto)||(o.tuto.got&&!m.tuto.got)))m.tuto=o.tuto; // チュートリアルのごほうびは1回だけ
@@ -10221,6 +10286,143 @@ function raidTestUi(box){
 }
 raidNorm();
 
+// ================= 釣王の塔（Lv150〜・1階＝1匹・全311階。ごほうびは称号だけ） =================
+// 図鑑の魚から宝箱・宝石箱を除き、★の低い順。同じ★なら通常ステージ→特別ステージ（天空・古代・宇宙・精霊・創世・レイドの順）、その中は最小サイズの小さい順。最上階はメダカ（始祖）
+var TOW_EX=['f172','f187','f197','s058','s059','s060','s061','s062','s063','s064','s065'],TOWL=null,TOW_TEST=false;
+function towList(){if(!TOWL){const g=f=>{const s=ST[f.spots[0]];return s&&s.ticket?1+STAGES.indexOf(s):0};TOWL=FISH.filter(f=>!TOW_EX.includes(f.id)).sort((a,b)=>(a.id==='s080')-(b.id==='s080')||a.rar-b.rar||g(a)-g(b)||a.min-b.min)}return TOWL}
+var TOW_N=0;
+// 難易度：塔の竿の強さ（bar＝バーの長さ・tug＝引き・spd＝魚の速さ・gim＝ギミックあり）
+var TOW_D=[{name:'易',bar:1.25,tug:.8,spd:1,gim:0,col:'#3a9a4a',note:'バー長め・引き弱め・ギミックなし'},{name:'難',bar:1,tug:1,spd:1,gim:1,col:'#d88a10',note:'いつもどおり＋その魚のギミック'},{name:'怒',bar:.9,tug:1.15,spd:1.05,gim:1,col:'#d0302a',note:'バー短め・引き強め・速い＋ギミック'}];
+var TOW_TH=[50,100,200,300,311];
+var TOW_T=[['塔の旅人','塔の常連','塔の熟練者','塔の覇者','釣王・易'],['試練の釣り師','不屈の釣り師','歴戦の釣り師','天を仰ぐ者','釣王・難'],['怒涛の釣り師','修羅の釣り師','鬼神','天下無双','真・釣王']];
+SPECIAL_RODS.tou={id:'tower',name:'塔の竿',short:'塔',zone:.3,color:'#7a6a5a'};
+var towFx=null,towPend=null,towNext=0;
+function towNorm(){TOW_N=towList().length;let T=S.tower;if(!T||typeof T!=='object')T={};if(!Array.isArray(T.b))T.b=[0,0,0];T.b=[0,1,2].map(i=>clamp(T.b[i]|0,0,TOW_N));T.d=clamp(T.d|0,0,2);if(!(T.sel>=1))T.sel=1;T.sel=clamp(T.sel|0,1,Math.min(TOW_N,(T.b[T.d]|0)+1));S.tower=T;return T}
+if(S.tower===undefined)S.tower={d:0,sel:1,b:[0,0,0]};
+function towSel(){return towNorm().sel}
+function towFish(n){const L=towList();return L[clamp(n,1,L.length)-1]}
+function towCanStart(){if(S.lv<150){msg('🏯 釣王の塔はLv150から',true,2);return false}towNorm();return true}
+// この1投：創世の海の魚なら光／闇／境界を合わせる（ギミック用）
+function towCast(f){gnCast=GN_L.includes(f.id)?'L':GN_D.includes(f.id)?'D':GN_9.includes(f.id)?'K':''}
+// 難易度をかける（ギミックの前に）。宝箱の形（玉手箱）は抵抗しないまま
+var TOW_9={h:1.15,spd:.8,tug:.85,med:.78}; // ★9だけの手かげん（ボットで調整）
+function towFight(){const D=TOW_D[towNorm().d];F.h*=D.bar;if(F.chest)return;F.tug*=D.tug;F.spd*=D.spd;F.tw=1;if(F.rar>=9){F.h*=TOW_9.h;F.spd*=TOW_9.spd;F.tug*=TOW_9.tug;if(cur.id==='s080')F.spd*=TOW_9.med}}
+function towWin(){
+  const T=towNorm(),d=T.d,n=T.sel,first=n>(T.b[d]|0),D=TOW_D[d];
+  if(F&&F.bx){flt.x=F.bx;flt.y=F.by;splash(F.bx,F.by,cur.rar,1,6+cur.rar*cur.rar*2)}
+  hold=false;F=null;showHit(false);msg('',true);
+  let tt=null;if(first){T.b[d]=n;const i=TOW_TH.indexOf(n);if(i>=0){tt=TOW_T[d][i];S.title='w:'+d+':'+n}}
+  if(n<TOW_N)T.sel=n+1;
+  towPend=first&&(n%10===0||n===TOW_N)?{n,top:n===TOW_N,d}:null;
+  save();
+  $('#rnew').hidden=false;$('#rnew').textContent=n===TOW_N&&first?'🏯 完全制覇！':first?n+'階クリア！':'クリア済み';
+  $('#rstar').textContent=starStr(cur.rar);$('#rname').textContent=cur.name;
+  $('#rsize').textContent='🏯 '+D.name+'・'+n+'階 ／ '+size+' cm';
+  let sub=first?(n===TOW_N?'釣王の塔（'+D.name+'）をのぼりきった！':(n%10===0?'🏯 '+n+'階突破！ ':'')+'次は '+(n+1)+'階「'+towFish(n+1).name+'」'):'クリア済みの階でした（'+D.name+'の最高は'+(T.b[d]|0)+'階）。'+(n<TOW_N?'次は '+(n+1)+'階':'');
+  if(tt)sub+=' ／ 🎖称号「'+tt+'」ゲット！';
+  sub+=' ／ 塔ではゴールド・経験値・魚籠・図鑑は増えません';
+  $('#rsub').textContent=sub;
+  const c=$('#rcv').getContext('2d');c.clearRect(0,0,400,180);drawFish(c,200,90,Math.min(330,140+sizeT*170),cur,false,false);
+  const tn=titleNow();$('#rtitle').hidden=false;$('#rtitle').replaceChildren(avHead(S.av,22),el('span',null,(S.pname||'あなた')+(tn?'〔'+tn.name+'〕':'')+'の挑戦'));
+  lastCatchU=-1;setLockBtn();setGyoBtn();$('#rshare').hidden=true;$('#result').classList.add('on');
+  setPhase('result');resultLock=CF.start(cur,Math.min(330,140+sizeT*170),first);
+  for(let i=0;i<5;i++)ripple(flt.x+rnd(-14,14),flt.y);
+  renderAll();
+}
+// 結果を閉じたら「○階突破！」の演出
+function towAfterResult(){if(!towPend)return;towFx={n:towPend.n,top:towPend.top,d:towPend.d,t:0,len:towPend.top?7:3};towPend=null;
+  const N=towFx.top?[523,659,784,1047,784,1047,1319,1568]:[523,659,784,1047];N.forEach((f,i)=>setTimeout(()=>beep(f,i===N.length-1?.4:.12,'triangle',.06),i*130))}
+function towTitleObj(id){if(typeof id!=='string'||!id.startsWith('w:'))return null;const[,d,n]=id.split(':').map(Number),i=TOW_TH.indexOf(n);if(!(d>=0&&d<=2)||i<0)return null;
+  return {id:'w'+d+'_'+n,name:TOW_T[d][i],desc:'釣王の塔（'+TOW_D[d].name+'）の'+n+'階をクリア',ok:()=>(towNorm().b[d]|0)>=n}}
+function towTitleRows(row){const T=towNorm();[0,1,2].forEach(d=>TOW_TH.forEach((n,i)=>{const own=(T.b[d]|0)>=n,id='w:'+d+':'+n;row(own,own&&S.title===id,TOW_T[d][i],'釣王の塔（'+TOW_D[d].name+'）'+n+'階をクリア（いま'+(T.b[d]|0)+'階）',()=>{S.title=id})}))}
+// ---- 背景：塔の中（石の壁と窓）。上の階ほど空が高くなる ----
+function towMix(a,b,u){const A=gnHex(a),B=gnHex(b);return 'rgb('+A.map((v,i)=>Math.round(v+(B[i]-v)*u)).join(',')+')'}
+function towSkyAt(h){const K=[[0,'#6fb8ec','#d8f0ff'],[.35,'#4a90e0','#bfe2ff'],[.65,'#2a4fa8','#8ab8f0'],[.88,'#101a50','#3a4a9a'],[1,'#04051a','#1a1048']];
+  let i=0;while(i<K.length-2&&h>K[i+1][0])i++;const a=K[i],b=K[i+1],u=clamp((h-a[0])/(b[0]-a[0]),0,1);return[towMix(a[1],b[1],u),towMix(a[2],b[2],u)]}
+function towBg(){
+  const n=towSel(),h=(n-1)/Math.max(1,TOW_N-1),wx=96,ww=168,wt=40,wb=HOR-14,top=n>=TOW_N;
+  // 窓の中の空
+  cx.save();cx.beginPath();cx.moveTo(wx,wb);cx.lineTo(wx,wt+40);cx.quadraticCurveTo(wx,wt,wx+ww/2,wt-6);cx.quadraticCurveTo(wx+ww,wt,wx+ww,wt+40);cx.lineTo(wx+ww,wb);cx.closePath();cx.clip();
+  const sk=towSkyAt(h),g=cx.createLinearGradient(0,wt-6,0,wb);g.addColorStop(0,sk[0]);g.addColorStop(1,sk[1]);cx.fillStyle=g;cx.fillRect(wx,wt-6,ww,wb-wt+6);
+  const st=clamp((h-.55)/.3,0,1);if(st>0)for(let i=0;i<26;i++){cx.fillStyle=`rgba(255,250,230,${st*(.35+.6*Math.abs(Math.sin(clock*1.3+i)))})`;cx.fillRect(wx+(i*37)%ww,wt+(i*23)%(wb-wt-10),i%6?1.2:2,i%6?1.2:2)}
+  if(h<.95&&!top){cx.fillStyle=h<.5?'#fff8d8':'#fffbe8';cx.beginPath();cx.arc(wx+ww-34,wt+26+h*10,h>.8?8:11,0,7);cx.fill()}
+  else{cx.fillStyle='#d8e4ff';cx.beginPath();cx.arc(wx+ww-36,wt+28,10,0,7);cx.fill();cx.fillStyle=sk[0];cx.beginPath();cx.arc(wx+ww-31,wt+25,9,0,7);cx.fill()}
+  // 地面（下の階ほど近い）→ 雲の海 → 星空
+  const gy=wb-26+h*260;if(gy<wb+30){cx.fillStyle='#7aa86a';cx.beginPath();cx.moveTo(wx,wb);for(let x=wx;x<=wx+ww;x+=6)cx.lineTo(x,gy-6*Math.sin(x*.05)-4*Math.sin(x*.13));cx.lineTo(wx+ww,wb);cx.fill();
+    cx.fillStyle='#4f8a5a';for(let i=0;i<7;i++){const tx=wx+12+i*24,ty=gy+2;cx.beginPath();cx.moveTo(tx,ty-12);cx.lineTo(tx+5,ty);cx.lineTo(tx-5,ty);cx.fill()}
+    cx.fillStyle='rgba(90,150,200,.7)';cx.fillRect(wx,gy+8,ww,wb-gy)}
+  const cy0=wb-6+Math.max(0,h-.15)*28-(h<.15?(.15-h)*120:0);cx.fillStyle=`rgba(255,255,255,${h<.7?.92:.92-(h-.7)*2})`;
+  if(h>.08)for(let i=0;i<9;i++){const x=wx+((i*31+clock*4)%(ww+40))-20,y=cy0+(i%3)*4;cx.beginPath();cx.arc(x,y,10+(i%3)*4,0,7);cx.fill()}
+  if(top){for(let j=0;j<5;j++){cx.strokeStyle=`hsla(${(j*60+clock*50)%360},90%,75%,.35)`;cx.lineWidth=3;cx.beginPath();cx.arc(wx+ww/2,wb+60,60+j*7,Math.PI,0);cx.stroke()}}
+  cx.restore();
+  // 石の壁（窓のまわり）
+  cx.save();cx.beginPath();cx.rect(0,0,W,HOR);cx.moveTo(wx,wb);cx.lineTo(wx+ww,wb);cx.lineTo(wx+ww,wt+40);cx.quadraticCurveTo(wx+ww,wt,wx+ww/2,wt-6);cx.quadraticCurveTo(wx,wt,wx,wt+40);cx.closePath();cx.clip('evenodd');
+  const wg=cx.createLinearGradient(0,0,0,HOR);wg.addColorStop(0,'#5a544c');wg.addColorStop(1,'#7a7266');cx.fillStyle=wg;cx.fillRect(0,0,W,HOR);
+  for(let r=0;r*16<HOR;r++){const y=r*16,o=r%2?18:0;cx.fillStyle='rgba(30,25,20,.45)';cx.fillRect(0,y,W,1.5);for(let x=-o;x<W;x+=36){cx.fillRect(x,y,1.5,16);cx.fillStyle=`rgba(255,255,255,${.03+((x*7+r*13)%5)*.012})`;cx.fillRect(x+2,y+2,32,12);cx.fillStyle='rgba(30,25,20,.45)'}}
+  cx.restore();
+  // 窓わく（木の格子）
+  cx.strokeStyle='#3a2414';cx.lineWidth=5;cx.beginPath();cx.moveTo(wx,wb);cx.lineTo(wx,wt+40);cx.quadraticCurveTo(wx,wt,wx+ww/2,wt-6);cx.quadraticCurveTo(wx+ww,wt,wx+ww,wt+40);cx.lineTo(wx+ww,wb);cx.stroke();
+  cx.lineWidth=2.5;cx.beginPath();cx.moveTo(wx+ww/2,wt-6);cx.lineTo(wx+ww/2,wb);cx.moveTo(wx,wt+50);cx.lineTo(wx+ww,wt+50);cx.stroke();
+  cx.fillStyle='#4a3020';cx.fillRect(wx-10,wb,ww+20,7);
+  // 行灯（左右）
+  [[62,96],[W-62,96]].forEach(([x,y],i)=>{const k=.8+.2*Math.sin(clock*7+i*2)+.05*Math.sin(clock*23+i);const lg=cx.createRadialGradient(x,y,2,x,y,46);lg.addColorStop(0,`rgba(255,200,110,${.5*k})`);lg.addColorStop(1,'rgba(255,200,110,0)');cx.fillStyle=lg;cx.fillRect(x-46,y-46,92,92);
+    cx.fillStyle='#2a1a10';cx.fillRect(x-1,y-30,2,14);cx.fillRect(x-9,y-17,18,3);cx.fillStyle=`rgba(255,226,160,${.85*k})`;cx.fillRect(x-7,y-14,14,22);cx.strokeStyle='#2a1a10';cx.lineWidth=1.5;cx.strokeRect(x-7,y-14,14,22);cx.beginPath();cx.moveTo(x-7,y-3);cx.lineTo(x+7,y-3);cx.stroke();cx.fillStyle='#2a1a10';cx.fillRect(x-9,y+8,18,3)});
+  // 石のふち（池の手前）
+  cx.fillStyle='#6a6258';cx.fillRect(0,HOR-6,W,8);cx.fillStyle='rgba(0,0,0,.25)';for(let x=0;x<W;x+=30)cx.fillRect(x,HOR-6,1.5,8);
+}
+// ---- 右上の「○階／311」と突破の演出 ----
+function towHud(){
+  const n=towSel(),T=towNorm(),D=TOW_D[T.d],tx=W-8,ty=112;
+  cx.save();cx.font='bold 13px sans-serif';const s='🏯 '+n+'階／'+TOW_N,tw=cx.measureText(s).width+18;
+  cx.fillStyle='rgba(40,24,12,.82)';roundRect(tx-tw,ty,tw,24,8);cx.fill();cx.strokeStyle='#d8b060';cx.lineWidth=1.5;roundRect(tx-tw,ty,tw,24,8);cx.stroke();
+  cx.fillStyle='#ffe8b0';cx.textAlign='right';cx.fillText(s,tx-9,ty+17);
+  cx.font='bold 11px sans-serif';const dw=cx.measureText(D.name).width+12;cx.fillStyle=D.col;roundRect(tx-tw-dw-4,ty+3,dw,18,6);cx.fill();cx.fillStyle='#fff';cx.textAlign='center';cx.fillText(D.name,tx-tw-dw/2-4,ty+16);
+  if((ph==='idle'||ph==='meter')&&!towFx){const f=towFish(n);cx.font='bold 12px sans-serif';cx.textAlign='center';const t2='この階の相手：'+f.name+'（★'+f.rar+'）',w2=cx.measureText(t2).width+20;
+    cx.fillStyle='rgba(20,14,8,.72)';roundRect(W/2-w2/2,HOR+8,w2,22,10);cx.fill();cx.fillStyle='#fff3d0';cx.fillText(t2,W/2,HOR+23)}
+  cx.restore();
+  if(towFx){towFx.t+=1/60;const t=towFx.t,L=towFx.len;if(t>L){towFx=null;return}
+    const a=Math.min(1,t/.3,(L-t)/.5);cx.save();cx.globalAlpha=a;
+    if(towFx.top){cx.fillStyle='rgba(10,6,30,.55)';cx.fillRect(0,0,W,H);
+      for(let i=0;i<8;i++){const bt=(t*.9+i*.29)%1.6,bx=40+((i*97+Math.floor(t*.9+i*.29)*61)%280),by=50+((i*53)%150);if(bt<1){for(let k=0;k<20;k++){const an=k/20*Math.PI*2,r=bt*64;cx.fillStyle=`hsla(${(i*70+k*12)%360},95%,70%,${1-bt})`;cx.beginPath();cx.arc(bx+Math.cos(an)*r,by+Math.sin(an)*r+bt*bt*12,3,0,7);cx.fill()}}}}
+    const y=150+Math.sin(Math.min(1,t/.4)*Math.PI/2)*20-20;cx.fillStyle='rgba(40,20,8,.9)';roundRect(30,y,W-60,towFx.top?96:66,14);cx.fill();
+    cx.strokeStyle=towFx.top?`hsl(${clock*120%360} 90% 70%)`:'#ffd860';cx.lineWidth=3;roundRect(30,y,W-60,towFx.top?96:66,14);cx.stroke();
+    cx.textAlign='center';cx.fillStyle='#ffe27a';cx.font='bold 28px sans-serif';
+    if(towFx.top){oText('🏯 完全制覇！',W/2,y+40,4);cx.font='bold 14px sans-serif';cx.fillStyle='#fff';oText('釣王の塔（'+TOW_D[towFx.d].name+'）全'+TOW_N+'階をのぼりきった！',W/2,y+66,3);cx.fillText('あなたこそ真の釣王',W/2,y+86)}
+    else{oText(towFx.n+'階突破！',W/2,y+40,4);cx.font='bold 12px sans-serif';cx.fillStyle='#fff';cx.fillText('（'+TOW_D[towFx.d].name+'）さらに上へ…',W/2,y+58)}
+    for(let i=0;i<14;i++){const p=(t*.6+i*.071)%1;cx.fillStyle=`rgba(255,${210+(i%3)*15},120,${Math.sin(p*Math.PI)})`;cx.beginPath();cx.arc(40+(i*23)%(W-80),y+80-p*120,i%3?1.6:2.6,0,7);cx.fill()}
+    cx.restore()}
+}
+// ---- キャストボタンの下：難易度と階をえらぶ ----
+function renderTowBar(){
+  const b=$('#towBar');if(!b)return;const on=S.stage==='tou'&&!aqMode&&!rmMode&&!visitMode;b.hidden=!on;if(!on)return;
+  const T=towNorm(),bz=busy();b.replaceChildren();
+  const r1=el('div','row');r1.style.cssText='align-items:center;gap:6px;width:100%';r1.append(el('b',null,'難易度'));
+  TOW_D.forEach((D,i)=>{const c=el('button','chip',D.name+' '+(T.b[i]|0)+'階');c.type='button';c.setAttribute('aria-pressed',String(T.d===i));c.disabled=bz;if(T.d===i){c.style.background=D.col;c.style.color='#fff';c.style.borderColor=D.col}
+    c.onclick=()=>{if(busy())return;T.d=i;T.sel=Math.min(TOW_N,(T.b[i]|0)+1);save();renderSide();renderTowBar();if(audioOk)bgmSet(bgmWant())};r1.append(c)});
+  const r2=el('div','small');r2.textContent=TOW_D[T.d].note;r2.style.width='100%';
+  const r3=el('div','row');r3.style.cssText='align-items:center;gap:6px;width:100%;flex-wrap:nowrap';
+  const mx=Math.min(TOW_N,(T.b[T.d]|0)+1),go=n=>{if(busy())return;T.sel=clamp(n,1,mx);save();renderSide();renderTowBar();if(audioOk)bgmSet(bgmWant())};
+  const pv=el('button','chip','◀');pv.type='button';pv.disabled=bz||T.sel<=1;pv.onclick=()=>go(T.sel-1);
+  const sl=document.createElement('select');sl.className='rk-sel';sl.style.cssText='flex:1;min-width:0';sl.disabled=bz;
+  for(let n=mx;n>=1;n--){const o=document.createElement('option'),f=towFish(n);o.value=n;o.textContent=n+'階 ★'+f.rar+' '+f.name+(n===mx&&n>(T.b[T.d]|0)?'（挑戦中）':' ✓');if(n===T.sel)o.selected=true;sl.append(o)}
+  sl.onchange=()=>go(+sl.value);
+  const nx=el('button','chip','▶');nx.type='button';nx.disabled=bz||T.sel>=mx;nx.onclick=()=>go(T.sel+1);
+  const hi=el('button','chip','最高階');hi.type='button';hi.disabled=bz||T.sel===mx;hi.onclick=()=>go(mx);
+  r3.append(pv,sl,nx,hi);
+  const f=towFish(T.sel),r4=el('div','row');r4.style.cssText='align-items:center;gap:8px;width:100%;flex-wrap:nowrap';
+  const[cv,x]=cvs(96,40);x.fillStyle='rgba(60,40,20,.12)';x.fillRect(0,0,96,40);try{drawFish(x,48,20,Math.min(84,40+f.rar*6),f,false,false)}catch(e){}
+  const st=ST[f.spots[0]],gm=TOW_D[T.d].gim?({uchu:'☄ 流れ星',seirei:'✨ 幻影・🍃 精霊の風',sougen:'☀️🌑 光と闇'}[f.spots[0]]||''):'';
+  const inf=el('div','small');inf.style.lineHeight='1.4';inf.append(el('b',null,T.sel+'階の相手：'+f.name),el('br'),starStr(f.rar).slice(0,Math.max(7,f.rar))+'　'+(st?st.name:'')+(gm?'　ギミック：'+gm:''));
+  r4.append(cv,inf);
+  b.append(r1,r2,r3,r4);
+  b.append(el('div','small','アワセなし・逃げられたら負け。竿とエサは塔の専用、ペット・装備・設備の効果はなし。ごほうびは称号だけ（50・100・200・300・311階）'));
+  if(TOW_TEST){const t=el('div','ev-test');t.style.width='100%';t.append(el('b',null,'🧪 テスト用（公開版には出ません）'));const rr=el('div','row');
+    const b1=el('button','chip','Lv150にする');b1.type='button';b1.onclick=()=>{S.lv=150;S.xp=0;save();renderAll()};
+    const ni=document.createElement('input');ni.type='number';ni.min=1;ni.max=TOW_N;ni.value=T.sel;ni.style.width='70px';
+    const b2=el('button','chip','この階へ移動');b2.type='button';b2.onclick=()=>{if(busy())return;const n=clamp(+ni.value|0,1,TOW_N);T.b[T.d]=Math.max(0,n-1);T.sel=n;save();renderAll();if(audioOk)bgmSet(bgmWant())};
+    const b3=el('button','chip','記録リセット');b3.type='button';b3.onclick=()=>{if(busy())return;T.b=[0,0,0];T.sel=1;save();renderAll()};
+    rr.append(b1,ni,b2,b3);t.append(rr);b.append(t)}
+}
 setSnd();renderAll();setPhase('idle');msg(titleNews||'「キャスト」で釣り開始！',true,titleNews?5:3);
 {}
 // ================= 釣りすごろく（ログインボーナス） =================
