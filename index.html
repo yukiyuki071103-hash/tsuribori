@@ -1067,8 +1067,10 @@ const OKI_W=[50,30,13,5,2]; // 置き竿で★1〜5が出る割合（上限よ�
 const OKI_NEW=1;            // 未発見の魚のかかりやすさ（倍）。1=補正なし
 const OKI_XP=1/3;           // 経験値は通常の釣りの何倍か
 // お知らせ（アップデートのたびに上に足す。NEWS_VER を変えるとメニューに NEW が付く）
-const NEWS_VER='2026-11-19d';
+const NEWS_VER='2026-11-19g';
 const NEWS=[
+ {d:'2026/11/19',t:['🌗 創世の海の着せ替えセットが登場！ 光と闇の釣りゲージ「創世の海」（50,000G）、水槽の背景「創世の海」（100,000G）、水槽の飾り「光と闇の結晶」（50,000G・背景を持っていると買える）。創世の海で1匹釣ると買えます','🐠 水槽の背景が8つ増えました！ ペンギンの楽園・シャークシー・ホエールウォッチング・宝石の洞窟（各100,000G・その釣り場で、そこにしかいない魚を1匹釣ると買える）と、サンゴ礁・夕焼けの海・月夜の海・桜の川（各30,000G・誰でも買える）','🐋 水族館級の次の水槽「大水族館」（50匹まで・1,000,000G）。もっと引きで見せるので、50匹でもゆったり泳ぎます']},
+ {d:'2026/11/19',t:['🎨 釣りゲージの着せ替えに「ペンギン」「シャーク」「ホエール」が登場！ 雪がふる氷山・背びれが横切る夜の海・潮吹きと尾びれの海。バーもペンギン柄・サメ肌・クジラ模様です','🛒 ショップの「着せ替え」で各50,000G。ペンギンの楽園・シャークシー・ホエールウォッチングで、そこにしかいない魚を1匹釣ると買えるようになります']},
  {d:'2026/11/19',t:['👓 魚マニア：ウオミさんの交換品に「古代の化石」5種が加わりました！ モササウルス・レヴィアタンメルビレイ・メガロドン・リオプレオロドン・アノマリカリスを10匹で、頭骨・顎・巨牙・全身骨格・化石板のオブジェに','🌈 50匹の上位版は、虹色にきらめく「オパール化石」です（2個目からは必要な数が倍）','🌌 宇宙の「星の宝物」5種も登場！ 彗星竜・銀河クジラ・ブラックホールアンコウ・迷子の宇宙飛行士・隕石ガニを10匹で、彗星のかけら・銀河のスノードーム・ブラックホールの提灯・宇宙飛行士のヘルメット・隕石の標本に。50匹の上位版は、星雲の色がうずまく特別版です']},
  {d:'2026/11/19',t:['🐋 新しい釣り場「ホエールウォッチング」が登場！（Lv100から・海）。観光船の甲板から、潮吹きや尾びれが見える海で、イルカとクジラだけが釣れる釣り場です','🐋 新しいイルカ・クジラは20種。スナメリ・ベルーガ・コククジラ・セミクジラ…そして地球でいちばん大きいシロナガスクジラも！ バンドウイルカ・ザトウクジラ・シャチ・イッカク・マッコウクジラもここで釣れます（全25種・★3〜6）','🌕 ホエールウォッチングも「アルビノの気配」と「今日のお題」の対象外です。新しいイルカ・クジラは釣王の塔には出ません','🎖 称号「ホエールウォッチングの白い影」を追加']},
  {d:'2026/11/19',t:['🦈 新しい釣り場「シャークシー」が登場！（Lv80から・海）。サメの背びれが行き交う外洋で、サメだけが釣れる釣り場です','🦈 新しいサメは20種。ネコザメ・カスザメ・ミツクリザメ・ラブカ・メガマウス・ウバザメ…。アオザメ・シロワニ・シュモクザメ・ホホジロザメ・ジンベエザメなど前からいるサメ7種もここで釣れます（全27種・★3〜6）','🌕 シャークシーもペンギンの楽園と同じく「アルビノの気配」と「今日のお題」の対象外。新しいサメは釣王の塔には出ません','🐧 ペンギンの楽園：キガシラペンギンとコウテイペンギンのヒナを★7→★6に（売値も★6に）。現実にいる生き物は★6までにそろえました']},
@@ -6552,7 +6554,7 @@ function addXp(v){let up=null;if(S.lv>=MAXLV){S.xp=0;return null}S.xp+=v;
 const KEY='honobono-tsuribori-v3';
 const fresh=()=>({gold:0,xp:0,lv:1,stage:'ogawa',rod:'base',rodInv:{},bait:'',baitInv:{},tickets:{},tCasts:{},dex:{},bucket:[],snd:true,group:'川',uki:'base',ukiOwn:{base:1},skin:'none',skinOwn:{none:1},bgmSel:'base',bgmOwn:{base:1},pname:'',av:null,avOwn:{},room:null,frOut:{},ffd:{},rk:null,rkClaim:'',kingN:0,cloudOn:false,cloudUid:'',syncT:0,gauge:'base',gaugeOwn:{base:1},tod:'day',todOwn:{morning:1,day:1},okiInv:{},oki:null,gyo:[],mania:{},sfxVol:70,bgmVol:70,tank:freshTank()});
 function freshTank(){return{size:0,bg:'river',bgOwn:{river:1},sand:'std',sandOwn:{std:1},light:'none',lightOwn:{none:1},deco:[],decoOwn:{},fish:[],bank:0,payT:Date.now(),feedT:0,pop:{d:'',id:''},fb:[]}}
-function aqNorm(){const t=Object.assign(freshTank(),S.tank&&typeof S.tank==='object'?S.tank:{});['bgOwn','sandOwn','lightOwn','decoOwn'].forEach(k=>{if(!t[k]||typeof t[k]!=='object')t[k]=freshTank()[k]});if(!Array.isArray(t.deco))t.deco=[];if(!Array.isArray(t.fish))t.fish=[];t.size=clamp(t.size|0,0,3);
+function aqNorm(){const t=Object.assign(freshTank(),S.tank&&typeof S.tank==='object'?S.tank:{});['bgOwn','sandOwn','lightOwn','decoOwn'].forEach(k=>{if(!t[k]||typeof t[k]!=='object')t[k]=freshTank()[k]});if(!Array.isArray(t.deco))t.deco=[];if(!Array.isArray(t.fish))t.fish=[];t.size=clamp(t.size|0,0,4); // TANKS より前に呼ばれるので数字で（水槽を増やしたらここも）
   if(typeof t.bank!=='number'||!(t.bank>=0))t.bank=0;if(typeof t.payT!=='number')t.payT=Date.now();if(typeof t.feedT!=='number')t.feedT=0;if(!t.pop||typeof t.pop!=='object')t.pop={d:'',id:''};if(!Array.isArray(t.fb))t.fb=[];S.tank=t}
 let S=fresh();
 try{
@@ -8530,8 +8532,59 @@ const SK=[
    for(let i=0;i<14;i++){const ph=(t*.15+i*.071)%1,ox=x+((i*53)%w),oy=y+h-ph*h,a=Math.sin(ph*Math.PI);c.fillStyle=`hsla(${(150+i*25)%360},90%,78%,${a})`;c.beginPath();c.arc(ox,oy,i%3?1.4:2.2,0,7);c.fill()}c.restore()},
   track:(c,x,y,w,h)=>{c.fillStyle='rgba(160,255,220,.16)';rr(c,x,y,w,h,6);c.fill()},
   bar:(c,x,y,w,h,inz)=>{c.save();c.shadowColor='#9affd0';c.shadowBlur=inz?14:6;const g=c.createLinearGradient(x,0,x+w,0);g.addColorStop(0,inz?'#9affd0':'#6ac8a8');g.addColorStop(1,inz?'#ffc8ec':'#d090c0');c.fillStyle=g;rr(c,x,y,w,h,6);c.fill();c.restore()},
-  prog:(c,x,y,w,h,p)=>{c.fillStyle='rgba(255,255,255,.25)';rr(c,x,y,w,h,6);c.fill();const g=c.createLinearGradient(x,0,x+w,0);g.addColorStop(0,'#ff9ad8');g.addColorStop(.5,'#9affd0');g.addColorStop(1,'#fff0a0');c.fillStyle=g;rr(c,x,y,w*p,h,6);c.fill()}});
- const ids=['base','wood','wagara','sweets','yozora','neon','gold','tenku','kodai','uchu','seirei'],price=[0,2000,5000,8000,15000,25000,40000,50000,50000,50000,50000],need=['','','','','','','','tenku','kodai','uchu','seirei'];
+  prog:(c,x,y,w,h,p)=>{c.fillStyle='rgba(255,255,255,.25)';rr(c,x,y,w,h,6);c.fill();const g=c.createLinearGradient(x,0,x+w,0);g.addColorStop(0,'#ff9ad8');g.addColorStop(.5,'#9affd0');g.addColorStop(1,'#fff0a0');c.fillStyle=g;rr(c,x,y,w*p,h,6);c.fill()}},
+{name:'ペンギン',price:'特別',note:'雪がふる氷の土台に、ペンギン柄のバー',
+ panel:(c,x,y,w,h,t)=>{const g=c.createLinearGradient(0,y,0,y+h);g.addColorStop(0,'#6fb8e8');g.addColorStop(1,'#bfe6fb');c.fillStyle=g;rr(c,x,y,w,h,12);c.fill();c.save();rr(c,x,y,w,h,12);c.clip();
+  c.fillStyle='rgba(255,255,255,.5)';[[.12,.3],[.55,.22],[.86,.35]].forEach(([a,b])=>{const bx=x+w*a;c.beginPath();c.moveTo(bx-16,y+h);c.lineTo(bx-6,y+h*b+20);c.lineTo(bx+4,y+h*b+26);c.lineTo(bx+14,y+h);c.fill()});
+  c.fillStyle='#fff';for(let i=0;i<9;i++){const bx=x+i*w/8;c.beginPath();c.ellipse(bx,y+h+1,24,6+(i%3)*1.5,0,0,7);c.fill()}
+  for(let i=0;i<22;i++){const ph=(t*.18+i*.0457)%1,sx=x+((i*67)%w)+Math.sin(t*1.5+i)*4,sy=y+ph*h;c.globalAlpha=.55+.45*Math.sin(ph*Math.PI);c.beginPath();c.arc(sx,sy,i%4?1.2:2,0,7);c.fill()}c.globalAlpha=1;c.restore()},
+ track:(c,x,y,w,h)=>{c.fillStyle='rgba(255,255,255,.5)';rr(c,x,y,w,h,8);c.fill();c.strokeStyle='rgba(60,130,190,.55)';c.lineWidth=1.5;rr(c,x,y,w,h,8);c.stroke()},
+ bar:(c,x,y,w,h,inz)=>{c.save();if(inz){c.shadowColor='#ffe24a';c.shadowBlur=12}c.fillStyle='#1e2a3c';rr(c,x,y,w,h,9);c.fill();c.restore();
+  c.fillStyle='#fff';rr(c,x+5,y+h*.4,Math.max(2,w-10),h*.48,6);c.fill();
+  c.fillStyle=inz?'#ffd83a':'#e0a83a';[x+7,x+w-7].forEach(cx0=>{c.beginPath();c.arc(cx0,y+h*.27,inz?3:2.4,0,7);c.fill()});
+  if(inz){c.strokeStyle='#ffe24a';c.lineWidth=2;rr(c,x,y,w,h,9);c.stroke()}},
+ prog:(c,x,y,w,h,p,t)=>{c.fillStyle='rgba(255,255,255,.6)';rr(c,x,y,w,h,6);c.fill();const g=c.createLinearGradient(x,0,x+w,0);g.addColorStop(0,'#bfefff');g.addColorStop(1,'#4fb0ee');c.fillStyle=g;rr(c,x,y,w*p,h,6);c.fill();
+  const px=x+w*p,py=y+h/2-1;c.save();c.translate(px,py);c.rotate(Math.sin((t||0)*9)*.18);
+  c.fillStyle='#ff9a2a';c.fillRect(-4,6,3,2);c.fillRect(1,6,3,2);c.fillStyle='#1e2a3c';c.beginPath();c.ellipse(0,0,5,7.5,0,0,7);c.fill();c.fillStyle='#fff';c.beginPath();c.ellipse(.8,1.5,3.3,5,0,0,7);c.fill();c.fillStyle='#ffd23a';c.beginPath();c.arc(2.4,-3.6,1.1,0,7);c.fill();c.fillStyle='#ff9a2a';c.beginPath();c.moveTo(4,-3);c.lineTo(7,-2.2);c.lineTo(4,-1.6);c.fill();c.restore()}},
+
+{name:'シャーク',price:'特別',note:'背びれが横切る夜の海に、歯がギザギザのサメ肌バー',
+ panel:(c,x,y,w,h,t)=>{const g=c.createLinearGradient(0,y,0,y+h);g.addColorStop(0,'#0e3358');g.addColorStop(1,'#041427');c.fillStyle=g;rr(c,x,y,w,h,12);c.fill();c.save();rr(c,x,y,w,h,12);c.clip();
+  c.lineWidth=1.4;for(let k=0;k<3;k++){c.strokeStyle=`rgba(110,180,240,${.16+k*.05})`;c.beginPath();for(let i=0;i<=w;i+=6){const yy=y+h-22+k*7+Math.sin(i*.06+t*1.4+k*2)*2.2;i?c.lineTo(x+i,yy):c.moveTo(x+i,yy)}c.stroke()}
+  const fx=x-30+((t*22)%(w+60)),fy=y+h-12;c.fillStyle='#4f6c88';c.beginPath();c.moveTo(fx-9,fy);c.quadraticCurveTo(fx-2,fy-8,fx+5,fy-15);c.quadraticCurveTo(fx+3,fy-6,fx+9,fy);c.fill();
+  c.strokeStyle='rgba(190,230,255,.55)';c.lineWidth=1.2;c.beginPath();c.moveTo(fx-16,fy+1);c.lineTo(fx+14,fy+1);c.stroke();
+  for(let i=0;i<7;i++){const ph=(t*.25+i*.143)%1;c.fillStyle=`rgba(170,220,255,${.4*Math.sin(ph*Math.PI)})`;c.beginPath();c.arc(x+((i*83)%w)+Math.sin(t*2+i)*3,y+h-ph*h,i%2?1.3:2,0,7);c.fill()}c.restore()},
+ track:(c,x,y,w,h)=>{c.fillStyle='rgba(140,190,240,.16)';rr(c,x,y,w,h,6);c.fill();c.strokeStyle='rgba(140,190,240,.4)';c.lineWidth=1.5;rr(c,x,y,w,h,6);c.stroke()},
+ bar:(c,x,y,w,h,inz)=>{c.save();if(inz){c.shadowColor='#ff3a3a';c.shadowBlur=14}const g=c.createLinearGradient(0,y,0,y+h);g.addColorStop(0,inz?'#a8b6c4':'#8a9bab');g.addColorStop(.55,inz?'#6f8296':'#58697c');g.addColorStop(.56,'#dfe6ee');g.addColorStop(1,'#c4ced8');c.fillStyle=g;rr(c,x,y,w,h,6);c.fill();c.restore();
+  c.save();rr(c,x,y,w,h,6);c.clip();c.fillStyle='#fff';const n=Math.max(2,Math.round(w/8)),s=w/n;for(let i=0;i<n;i++){c.beginPath();c.moveTo(x+i*s,y);c.lineTo(x+i*s+s,y);c.lineTo(x+i*s+s/2,y+6);c.fill()}c.restore();
+  c.strokeStyle=inz?'#ff4a4a':'#2c3a4a';c.lineWidth=inz?2.2:1.5;rr(c,x,y,w,h,6);c.stroke()},
+ prog:(c,x,y,w,h,p)=>{c.fillStyle='rgba(255,255,255,.2)';rr(c,x,y,w,h,6);c.fill();const g=c.createLinearGradient(x,0,x+w,0);g.addColorStop(0,'#c0202a');g.addColorStop(1,'#ff8a3a');c.fillStyle=g;rr(c,x,y,w*p,h,6);c.fill();
+  const px=x+w*p;c.fillStyle='#4f6c88';c.strokeStyle='#cfe6ff';c.lineWidth=1;c.beginPath();c.moveTo(px-7,y+2);c.quadraticCurveTo(px-1,y-4,px+3,y-9);c.quadraticCurveTo(px+2,y-2,px+6,y+2);c.closePath();c.fill();c.stroke()}},
+
+{name:'ホエール',price:'特別',note:'潮吹きと尾びれの海に、ザトウクジラ模様のバー',
+ panel:(c,x,y,w,h,t)=>{const g=c.createLinearGradient(0,y,0,y+h);g.addColorStop(0,'#3a86c8');g.addColorStop(1,'#16467a');c.fillStyle=g;rr(c,x,y,w,h,14);c.fill();c.save();rr(c,x,y,w,h,14);c.clip();
+  c.strokeStyle='rgba(255,255,255,.18)';c.lineWidth=1.3;for(let k=0;k<2;k++){c.beginPath();for(let i=0;i<=w;i+=6){const yy=y+h-14+k*8+Math.sin(i*.05+t*1.1+k)*2;i?c.lineTo(x+i,yy):c.moveTo(x+i,yy)}c.stroke()}
+  [[.18,0],[.62,2.3],[.9,4.6]].forEach(([a,o])=>{const ph=((t+o)%7)/1.6;if(ph>1)return;const sx=x+w*a,sy=y+h-12;for(let i=0;i<9;i++){const ang=-Math.PI/2+(i-4)*.17,r=ph*30;c.fillStyle=`rgba(235,248,255,${.85*(1-ph)})`;c.beginPath();c.arc(sx+Math.cos(ang)*r*.55,sy+Math.sin(ang)*r+ph*ph*14,1.8,0,7);c.fill()}});
+  const tp=(t%9)/9,up=Math.sin(Math.min(1,tp*2.2)*Math.PI),tx=x+w*.4,ty=y+h-6-up*16;if(up>.02){c.fillStyle='#22344e';c.beginPath();c.moveTo(tx-3,y+h);c.lineTo(tx-2,ty+4);c.quadraticCurveTo(tx-16,ty-2,tx-20,ty-8);c.quadraticCurveTo(tx-8,ty-5,tx,ty+1);c.quadraticCurveTo(tx+8,ty-5,tx+20,ty-8);c.quadraticCurveTo(tx+16,ty-2,tx+2,ty+4);c.lineTo(tx+3,y+h);c.fill()}
+  c.restore()},
+ track:(c,x,y,w,h)=>{c.fillStyle='rgba(200,230,255,.2)';rr(c,x,y,w,h,10);c.fill();c.strokeStyle='rgba(220,240,255,.45)';c.lineWidth=1.5;rr(c,x,y,w,h,10);c.stroke()},
+ bar:(c,x,y,w,h,inz)=>{c.save();if(inz){c.shadowColor='#9ae8ff';c.shadowBlur=12}c.fillStyle=inz?'#3c5478':'#2c3e5c';rr(c,x,y,w,h,10);c.fill();c.restore();
+  c.save();rr(c,x,y,w,h,10);c.clip();c.fillStyle=inz?'#e6f6ff':'#c9dcea';c.fillRect(x,y+h*.55,w,h*.45);c.strokeStyle='#7c93ad';c.lineWidth=1;for(let k=1;k<4;k++){const yy=y+h*.55+k*h*.11;c.beginPath();c.moveTo(x,yy);c.lineTo(x+w,yy);c.stroke()}
+  c.fillStyle='rgba(255,255,255,.55)';for(let i=0;i<Math.max(1,w/14);i++){c.beginPath();c.arc(x+6+i*14,y+h*.25+(i%2)*3,1.4,0,7);c.fill()}c.restore();
+  if(inz){c.strokeStyle='#9ae8ff';c.lineWidth=2;rr(c,x,y,w,h,10);c.stroke()}},
+ prog:(c,x,y,w,h,p,t)=>{c.fillStyle='rgba(255,255,255,.25)';rr(c,x,y,w,h,6);c.fill();const g=c.createLinearGradient(x,0,x+w,0);g.addColorStop(0,'#2f9ae0');g.addColorStop(1,'#a8ecff');c.fillStyle=g;rr(c,x,y,w*p,h,6);c.fill();
+  const px=x+w*p,ph=((t||0)*1.3)%1;for(let i=0;i<5;i++){const ang=-Math.PI/2+(i-2)*.3,r=3+ph*8;c.fillStyle=`rgba(255,255,255,${.95*(1-ph)})`;c.beginPath();c.arc(px+Math.cos(ang)*r*.7,y+1+Math.sin(ang)*r+ph*ph*5,1.4,0,7);c.fill()}
+  c.fillStyle='#2c3e5c';c.beginPath();c.arc(px,y+h/2,4,0,7);c.fill();c.fillStyle='#c9dcea';c.beginPath();c.arc(px,y+h/2+1.5,2.4,0,Math.PI);c.fill()}},
+{name:'創世の海',price:'特別',note:'左が光・右が闇の海に、金と紫のツートンのバー',
+ panel:(c,x,y,w,h,t)=>{c.save();rr(c,x,y,w,h,14);c.clip();let g=c.createLinearGradient(0,y,0,y+h);g.addColorStop(0,'#fff0b0');g.addColorStop(1,'#d8a040');c.fillStyle=g;c.fillRect(x,y,w/2,h);g=c.createLinearGradient(0,y,0,y+h);g.addColorStop(0,'#3a1a6a');g.addColorStop(1,'#0e0420');c.fillStyle=g;c.fillRect(x+w/2,y,w/2,h);
+  for(let i=0;i<12;i++){const ph=(t*.2+i*.083)%1,a=Math.sin(ph*Math.PI);c.fillStyle=`rgba(255,255,225,${a})`;star4(c,x+((i*37)%(w/2-10))+5,y+ph*h,i%3?1.6:2.6);c.fillStyle=`rgba(190,130,255,${a})`;c.beginPath();c.arc(x+w/2+5+((i*41)%(w/2-10)),y+h-ph*h,i%3?1.2:2,0,7);c.fill()}
+  const rg=c.createLinearGradient(0,y,0,y+h);for(let i=0;i<6;i++)rg.addColorStop(i/5,`hsl(${(t*80+i*60)%360} 90% 70%)`);c.fillStyle=rg;c.fillRect(x+w/2-1.5,y,3,h);c.restore()},
+ track:(c,x,y,w,h)=>{c.fillStyle='rgba(255,240,190,.3)';rr(c,x,y,w/2,h,6);c.fill();c.fillStyle='rgba(150,90,230,.25)';rr(c,x+w/2,y,w/2,h,6);c.fill();c.strokeStyle='rgba(255,255,255,.45)';c.lineWidth=1.5;rr(c,x,y,w,h,6);c.stroke()},
+ bar:(c,x,y,w,h,inz)=>{c.save();if(inz){c.shadowColor='#fff';c.shadowBlur=14}c.save();rr(c,x,y,w,h,8);c.clip();let g=c.createLinearGradient(0,y,0,y+h);g.addColorStop(0,inz?'#fff6c0':'#ffe48a');g.addColorStop(1,inz?'#f0b840':'#c8902a');c.fillStyle=g;c.fillRect(x,y,w/2,h);g=c.createLinearGradient(0,y,0,y+h);g.addColorStop(0,inz?'#c8a0ff':'#9a70e0');g.addColorStop(1,inz?'#6a30c0':'#4a2090');c.fillStyle=g;c.fillRect(x+w/2,y,w/2,h);c.restore();c.restore();
+  c.strokeStyle=inz?'#ffffff':'rgba(255,255,255,.6)';c.lineWidth=inz?2.2:1.5;rr(c,x,y,w,h,8);c.stroke()},
+ prog:(c,x,y,w,h,p,t)=>{c.fillStyle='rgba(255,255,255,.3)';rr(c,x,y,w,h,6);c.fill();const g=c.createLinearGradient(x,0,x+w,0);g.addColorStop(0,'#ffe27a');g.addColorStop(.5,'#ffffff');g.addColorStop(1,'#a070f0');c.fillStyle=g;rr(c,x,y,w*p,h,6);c.fill();
+  const px=x+w*p,py=y+h/2;c.save();c.translate(px,py);c.rotate((t||0)*2);c.fillStyle='#ffe27a';c.beginPath();c.arc(0,0,6,Math.PI/2,Math.PI*1.5);c.fill();c.fillStyle='#5a2aa8';c.beginPath();c.arc(0,0,6,-Math.PI/2,Math.PI/2);c.fill();c.strokeStyle='#fff';c.lineWidth=1.2;c.beginPath();c.arc(0,0,6,0,7);c.stroke();c.restore()}}
+);
+ const ids=['base','wood','wagara','sweets','yozora','neon','gold','tenku','kodai','uchu','seirei','penguin','shark','whale','sougen'],price=[0,2000,5000,8000,15000,25000,40000,50000,50000,50000,50000,50000,50000,50000,50000],need=['','','','','','','','tenku','kodai','uchu','seirei','penguin','shark','whale','sougen'];
  return SK.map((g,i)=>Object.assign(g,{id:ids[i],price:price[i],need:need[i]}));
 })();
 $('#hLv').onclick=()=>{const t=gateBlock();if(t)msg('🔒 Lv上限！ 限界突破の条件：'+t.txt,true,3)};
@@ -8651,7 +8704,8 @@ const TANKS=[
  {name:'小',cap:5,max:50,price:0},
  {name:'中',cap:10,max:150,price:20000},
  {name:'大',cap:20,max:500,price:80000},
- {name:'水族館級',cap:30,max:Infinity,price:300000}
+ {name:'水族館級',cap:30,max:Infinity,price:300000},
+ {name:'大水族館',cap:50,max:Infinity,price:1000000}
 ];
 // 背景: need=そのステージで1匹釣ると買える
 const AQ_BG=[
@@ -8662,7 +8716,40 @@ const AQ_BG=[
  {id:'sky',name:'天空',price:100000,need:'tenku',cols:['#c9b6ff','#e8d8ff','#fff0fb'],sand:['#ffffff','#f4eeff','#e0d6f4'],stars:1,cloud:1},
  {id:'ancient',name:'古代',price:100000,need:'kodai',cols:['#e8b07c','#5a9a84','#14403a'],sand:['#c8a46a','#dcbc84','#a4844e'],ray:'rgba(255,220,160,.08)'},
  {id:'space',name:'宇宙',price:100000,need:'uchu',cols:['#05030f','#1c1250','#2a1a5a'],sand:['#4a4458','#5e5870','#2e2a3a'],stars:1,glow:1},
- {id:'spirit',name:'精霊の丘',price:100000,need:'seirei',cols:['#3a2a6a','#2a6a7a','#0e2a3a'],sand:['#8ad0a0','#a8e8b8','#5aa880'],stars:1,glow:1}
+ {id:'spirit',name:'精霊の丘',price:100000,need:'seirei',cols:['#3a2a6a','#2a6a7a','#0e2a3a'],sand:['#8ad0a0','#a8e8b8','#5aa880'],stars:1,glow:1},
+ {id:'genesis',name:'創世の海',price:100000,need:'sougen',cols:['#fff2b8','#c8a0e8','#5a2aa8','#14062e'],sand:['#3a2a5a','#d8b860','#24163a'],
+  fx:(c,t)=>{for(let i=0;i<18;i++){const ph=(t*.05+i*.0556)%1,x=(i*53)%AQW+Math.sin(t+i)*3,y=ph*90;c.globalAlpha=Math.sin(ph*Math.PI);R1(c,x,y,1,1,'#fffbe0');R1(c,x-1,y,3,1,'rgba(255,240,170,.5)');c.globalAlpha=1}
+   for(let i=0;i<18;i++){const ph=(t*.05+i*.0556)%1,x=(i*61+20)%AQW+Math.sin(t*.8+i)*3,y=AQFLOOR-ph*80;c.globalAlpha=Math.sin(ph*Math.PI)*.9;R1(c,x,y,2,2,'#b080ff');c.globalAlpha=1}
+   for(let x=0;x<AQW;x+=2)R1(c,x,96+Math.round(Math.sin(x*.08+t)*2),2,1,`hsla(${(x*2+t*60)%360},90%,75%,.5)`)}},
+ {id:'ice',name:'ペンギンの楽園',price:100000,need:'penguin',cols:['#d8f2fc','#6abce6','#1a5a90'],sand:['#e8f4fa','#ffffff','#b8d0e0'],ray:'rgba(255,255,255,.08)',
+  fx:(c,t)=>{[[10,40,36],[120,56,44]].forEach(([x,w,h])=>{c.fillStyle='rgba(235,250,255,.28)';for(let i=0;i<h;i++){const k=Math.round(w/2*(.5+.5*i/h));c.fillRect(x+w/2-k,30+i,k*2,1)}});
+   for(let x=0;x<AQW;x+=1){const b=(x%60)<38;if(b){R1(c,x,0,1,7,'#ffffff');R1(c,x,7,1,1,'#bfe6f8')}}
+   [[12,6],[26,4],[44,7],[150,5],[166,8]].forEach(([x,l])=>{for(let i=0;i<l;i++)R1(c,x-Math.floor((l-i)/3),8+i,Math.max(1,Math.floor((l-i)/1.5)),1,'rgba(240,252,255,.9)')});
+   for(let i=0;i<10;i++){const ph=(t*.12+i*.1)%1;c.globalAlpha=.6*Math.sin(ph*Math.PI);R1(c,(i*37)%AQW+Math.sin(t*2+i)*2,AQFLOOR-ph*150,2,2,'#ffffff');c.globalAlpha=1}}},
+ {id:'oceanshark',name:'シャークシー',price:100000,need:'shark',cols:['#3a8ac8','#144a80','#061a38'],sand:['#5a6a78','#74848e','#3e4a56'],ray:'rgba(200,230,255,.07)',
+  fx:(c,t)=>{[[0,60,.06,1],[1,110,-.045,.7]].forEach(([k,y,v,s])=>{const L=Math.round(46*s),x=((t*v*AQW+k*90)%(AQW+L*2)+AQW+L*2)%(AQW+L*2)-L,d=v>0?1:-1;c.fillStyle='rgba(10,30,60,.35)';
+    for(let i=0;i<L;i++){const q=i/L,hh=Math.round((q<.7?q/.7:(1-q)/.3*.6+.4)*5*s);const xx=d>0?x+i:x+L-i;c.fillRect(xx,y-hh,1,hh*2)}
+    const fx0=d>0?x+L*.45:x+L*.55;for(let i=0;i<Math.round(8*s);i++)c.fillRect(fx0+(d>0?i*.6:-i*.6),y-5*s-i,Math.max(1,(8*s-i)*.5),1);const tx=d>0?x-2:x+L+2;for(let i=0;i<Math.round(8*s);i++){c.fillRect(tx-d*i*.3,y-i,1,1);c.fillRect(tx-d*i*.3,y+i*.6,1,1)}})}},
+ {id:'bigblue',name:'ホエールウォッチング',price:100000,need:'whale',cols:['#6ad0f4','#2a80c8','#0e3a78'],sand:['#d8c8a0','#ece0bc','#b4a47c'],ray:'rgba(255,255,255,.08)',
+  fx:(c,t)=>{const L=120,x=((t*3+150)%(AQW+L+40))-L,y=70;c.fillStyle='rgba(10,40,80,.3)';for(let i=0;i<L;i++){const q=i/L,hh=Math.round(Math.pow(Math.sin(Math.min(1,q*1.15)*Math.PI*.95),.7)*13);c.fillRect(x+i,y-hh+(q>.8?(q-.8)*10:0),1,hh*2)}
+   for(let i=0;i<10;i++){c.fillRect(x-i,y-1-i*1.2,1,3);c.fillRect(x-i,y+i*1.2-1,1,3)}c.fillRect(x+L*.3,y+12,16,3);
+   for(let i=0;i<8;i++){const ph=(t*.15+i*.125)%1;c.globalAlpha=.5*Math.sin(ph*Math.PI);R1(c,30+(i*19)%120,AQFLOOR-ph*150,1,1,'#fff');c.globalAlpha=1}}},
+ {id:'cave',name:'宝石の洞窟',price:100000,need:'doukutsu',cols:['#3a3058','#1e1836','#0a0814'],sand:['#4a4458','#5e5870','#2e2a3a'],
+  fx:(c,t)=>{c.fillStyle='#2a2440';[[0,14,16],[18,10,10],[34,18,22],[58,12,12],[80,16,18],[104,10,8],[120,20,24],[150,12,14],[168,16,18]].forEach(([x,w,h])=>{for(let i=0;i<h;i++){const k=Math.round(w/2*(1-i/h));c.fillRect(x+w/2-k,0+i,Math.max(1,k*2),1)}});
+   [[20,60,'#ff5a8a'],[160,48,'#5ad8ff'],[8,120,'#7aff9a'],[172,110,'#ffd84a'],[150,150,'#c07aff'],[30,150,'#5ad8ff'],[90,30,'#ff9a4a']].forEach(([x,y,col],i)=>{const a=.5+.5*Math.abs(Math.sin(t*1.5+i));c.globalAlpha=a;R1(c,x,y-2,2,6,col);R1(c,x-2,y,6,2,col);R1(c,x+1,y-3,1,1,'#fff');c.globalAlpha=a*.25;c.fillStyle=col;c.fillRect(x-4,y-4,10,10);c.globalAlpha=1})}},
+ {id:'coral',name:'サンゴ礁',price:30000,cols:['#8ef0f4','#30b8dc','#1278b0'],sand:['#f4e8c8','#fff6dc','#d8c8a0'],ray:'rgba(255,255,255,.1)',
+  fx:(c,t)=>{[[6,'#ff7a9a',22],[28,'#ffa84a',14],[52,'#c07aff',18],[96,'#ff7a9a',12],[128,'#ffd84a',20],[156,'#ff8a5a',16],[174,'#c07aff',14]].forEach(([x,col,h],k)=>{c.globalAlpha=.75;for(let b=-1;b<=1;b++){const bh=h-Math.abs(b)*5,sx=x+b*4+Math.round(Math.sin(t*.8+k+b)*.6);for(let i=0;i<bh;i+=2)R1(c,sx+Math.round(Math.sin(i*.4+b)*1),AQFLOOR-i,2,2,col);R1(c,sx-1,AQFLOOR-bh,4,3,col)}c.globalAlpha=1})}},
+ {id:'sunset',name:'夕焼けの海',price:30000,cols:['#ffc070','#f07a6a','#8a3a7a','#2a1a4a'],sand:['#c89a7a','#dcb494','#a07a5e'],
+  fx:(c,t)=>{c.fillStyle='rgba(255,240,170,.85)';for(let i=-9;i<=9;i++){const h=Math.round(Math.sqrt(81-i*i));c.fillRect(140+i,14-h,1,h*2)}
+   for(let i=0;i<8;i++){const w=14-i*1.4,y=26+i*9;c.fillStyle=`rgba(255,220,140,${.35-i*.035})`;c.fillRect(140-w/2+Math.round(Math.sin(t*2+i)*2),y,w,2)}
+   c.fillStyle='rgba(255,200,120,.07)';[[110,20],[150,14]].forEach(([x,w],k)=>{const o=Math.sin(t*.4+k)*3;c.beginPath();c.moveTo(x+o,0);c.lineTo(x+w+o,0);c.lineTo(x+w-40,AQH);c.lineTo(x-50,AQH);c.fill()})}},
+ {id:'moon',name:'月夜の海',price:30000,cols:['#2a3a7a','#121a48','#060a20'],sand:['#3a3e58','#4e5270','#262a3e'],
+  fx:(c,t)=>{c.fillStyle='rgba(255,250,215,.9)';for(let i=-7;i<=7;i++){const h=Math.round(Math.sqrt(49-i*i));c.fillRect(40+i,14-h,1,h*2)}c.fillStyle='rgba(18,26,72,.9)';for(let i=-6;i<=6;i++){const h=Math.round(Math.sqrt(36-i*i));c.fillRect(44+i,12-h,1,h*2)}
+   c.fillStyle='rgba(255,250,210,.08)';c.beginPath();c.moveTo(30,0);c.lineTo(52,0);c.lineTo(80,AQH);c.lineTo(20,AQH);c.fill();
+   for(let i=0;i<14;i++){const a=Math.max(0,Math.sin(t*1.7+i*1.3));c.globalAlpha=a;R1(c,(i*47)%AQW,20+(i*31)%130,1,1,'#fff8c0');c.globalAlpha=1}}},
+ {id:'sakura',name:'桜の川',price:30000,cols:['#c8ecdc','#7cc4b0','#3a8070'],sand:['#a89a7a','#c4b694','#8a7c5e'],ray:'rgba(255,240,250,.08)',
+  fx:(c,t)=>{for(let i=0;i<22;i++){const ph=(t*.06+i*.0455)%1,x=((i*43)+t*6+Math.sin(t+i)*6)%AQW,y=ph*AQFLOOR,col=i%3?'#ffb0cc':'#ffe0ec';R1(c,x,y,3,2,col);R1(c,x+(i%2),y+2,2,1,col)}
+   for(let i=0;i<12;i++){const x=((i*31)+t*4)%AQW;R1(c,x,3+Math.round(Math.sin(x*.12+t*2)*1.2),2,1,'#ffb0cc')}}}
 ];
 const AQ_SAND=[{id:'std',name:'背景に合わせる',price:0},{id:'white',name:'白い砂',price:2000,c:['#efe8da','#fbf6ec','#d4ccbc']},{id:'black',name:'黒い砂',price:2000,c:['#3a3634','#4c4844','#262422']}];
 const AQ_LIGHT=[{id:'none',name:'なし',price:0},{id:'blue',name:'青いライト',price:5000,c:'120,200,255'},{id:'pink',name:'ピンクのライト',price:5000,c:'255,140,210'},{id:'rainbow',name:'虹のライト',price:20000}];
@@ -8684,7 +8771,10 @@ const AQ_DECO=[
  {id:'oshiro',name:'お城',price:30000,w:38,h:42,d:(c,x,y)=>{const a='#c4c0b4',b='#a4a094',d='#7a766c';R1(c,x-14,y-22,28,22,a);R1(c,x-19,y-34,10,34,b);R1(c,x+9,y-34,10,34,b);R1(c,x-5,y-40,10,18,a);[[-19,-34],[9,-34],[-5,-40]].forEach(([ox,oy])=>{for(let i=0;i<5;i+=2)R1(c,x+ox+i*2,y+oy-3,2,3,d)});R1(c,x-3,y-9,6,9,'#3a3028');R1(c,x-16,y-27,3,4,'#3a3028');R1(c,x+13,y-27,3,4,'#3a3028');R1(c,x-1,y-34,2,4,'#3a3028');R1(c,x-1,y-50,1,10,d);R1(c,x,y-50,6,4,'#ff5a5a')}},
  {id:'vent',name:'熱水噴出孔',price:50000,need:'deep',w:16,h:44,d:(c,x,y)=>{for(let i=0;i<26;i++){const w=12-Math.round(i*.25);R1(c,x-w/2,y-i,w,1,i%4?'#2a2a32':'#3a3440')}const g=c.createRadialGradient(x,y-28,1,x,y-28,14);g.addColorStop(0,'rgba(255,140,60,.55)');g.addColorStop(1,'rgba(255,140,60,0)');c.fillStyle=g;c.fillRect(x-14,y-42,28,28);c.fillStyle='rgba(200,200,220,.35)';for(let i=0;i<6;i++){const yy=y-30-((i*5+clock*10)%30);c.fillRect(x-2+(i%3)-1,yy,3+(i%2),3)}}},
  {id:'ukishima',name:'浮島',price:50000,need:'sky',w:36,h:30,float:1,d:(c,x,y)=>{y+=Math.round(Math.sin(clock*1.2)*1.5);for(let i=0;i<10;i++){const w=34-i*3;R1(c,x-w/2,y-10+i,w,1,i<3?'#5aa84a':i%3?'#8a6a4a':'#6a4e36')}R1(c,x-14,y-11,28,2,'#7ac85a');R1(c,x+4,y-24,2,13,'#6a4e36');for(let i=-6;i<=6;i++)R1(c,x+5+i,y-26+Math.abs(i)/2,1,3,'#4a9a3a')}},
- {id:'fossil',name:'アンモナイトの化石',price:50000,need:'ancient',w:20,h:18,d:(c,x,y)=>{const cx_=x,cy=y-9;for(let a=0;a<Math.PI*5.5;a+=.12){const r=1+a*1.45;R1(c,cx_+Math.cos(a)*r*.95,cy+Math.sin(a)*r*.85,2,2,a%1.2<.6?'#c8a46a':'#9a7844')}}}
+ {id:'fossil',name:'アンモナイトの化石',price:50000,need:'ancient',w:20,h:18,d:(c,x,y)=>{const cx_=x,cy=y-9;for(let a=0;a<Math.PI*5.5;a+=.12){const r=1+a*1.45;R1(c,cx_+Math.cos(a)*r*.95,cy+Math.sin(a)*r*.85,2,2,a%1.2<.6?'#c8a46a':'#9a7844')}}},
+ {id:'kessho',name:'光と闇の結晶',price:50000,need:'genesis',w:22,h:32,d:(c,x,y,i)=>{const cr=(cx0,h,w,a,b,lt)=>{for(let k=0;k<h;k++){const ww=Math.max(1,Math.round(w*(k<h*.2?k/(h*.2):1)));R1(c,cx0-ww/2,y-h+k,ww,1,k%5?a:b)}R1(c,cx0-1,y-h+3,1,h*.5,lt)};
+   cr(x-5,28,6,'#ffd860','#f0b030','#fffbe0');cr(x+5,22,6,'#9a60e8','#6a30c0','#e0c8ff');cr(x-11,12,4,'#ffe890','#e8b040','#fff');cr(x+11,14,4,'#b080f0','#7a40d0','#f0e0ff');
+   const a=.35+.35*Math.sin(clock*2+i);c.globalAlpha=a;c.fillStyle='#fff8c0';c.fillRect(x-8,y-30,6,30);c.fillStyle='#d0a0ff';c.fillRect(x+2,y-24,6,24);c.globalAlpha=1}}
 ];
 let RV=null; // フレンドの水槽・部屋を描いている間だけ相手のデータ
 const aqT=()=>RV?RV.tank:S.tank;
@@ -8723,7 +8813,7 @@ function aqMoneyUI(){
 function aqBtnLabel(){const b=$('#aqBtn');if(!b)return;if(aqMode){b.textContent='🎣 釣り場へ';return}const h=aqHourly();b.textContent='🐟 水槽'+(h&&aqPending()>=Math.max(10,h)?' 💰':'')}
 setInterval(()=>{try{aqBtnLabel();if(aqMode)aqMoneyUI()}catch(e){}},20000);
 const aqBg=()=>AQ_BG.find(b=>b.id===aqT().bg)||AQ_BG[0];
-const aqCaught=st=>Object.keys(S.dex).some(id=>{const f=FISH.find(x=>x.id===id);return f&&f.spots.includes(st)});
+const aqCaught=st=>Object.keys(S.dex).some(id=>{const f=FISH.find(x=>x.id===id);return f&&f.spots[0]===st}); // その釣り場にしかいない魚（ほかの釣り場から足された魚は数えない）
 const AQW=180,AQH=200,AQFLOOR=172,AQS=4,AQ_MAXW=56,AQ_ZOOM=.67; // 水槽の絵は4倍の細かさ・魚の横幅は最大56（水槽の約1/3）
 let aqMode=false,aqEdit=false,aqSel=-1,aqDrag=null;
 const AQ={cv:null,fish:{},food:[]};
@@ -8739,7 +8829,8 @@ function aqSprite(c,a,x,y){
   c.drawImage(im,Math.round(-w/2*AQS)/AQS,Math.round(-h/2*AQS)/AQS,w,h);c.restore();
   if(a.f.al&&!dk){const t=performance.now()/1000+a.x*.1;for(let i=0;i<3;i++){const k=Math.abs(Math.sin(t*2.2+i*2.1));if(k<.3)continue;const px=x+Math.cos(t*.9+i*2.1)*w*.45,py=y+Math.sin(t*1.3+i)*h*.6;c.fillStyle=`rgba(255,255,255,${k})`;c.fillRect(px-.75*k,py-.25,1.5*k,.5);c.fillRect(px-.25,py-.75*k,.5,1.5*k)}}
 }
-function aqZoom(){const T=aqT();return T&&T.size>=3?AQ_ZOOM:1} // 水族館級は「引き」で見せる（魚が小さめ）
+function aqZoom(){const T=aqT();return T&&T.size>=4?AQ_ZOOM2:T&&T.size>=3?AQ_ZOOM:1}
+var AQ_ZOOM2=.55; // 大水族館はもっと引きで // 水族館級は「引き」で見せる（魚が小さめ）
 function aqActor(e){
   const Q=RV?RV.aq:AQ,zm=aqZoom();let a=Q.fish[e.u];if(a&&a.zm===zm)return a;
   const old=a,f=alFish(e);if(!f)return null;
@@ -8800,6 +8891,7 @@ function aqRender(dt){
   if(bg.stars)for(let i=0;i<16;i++){const x=(i*41)%AQW,y=(i*23)%80+6,col=i%2?'#fff':'#ffe27a';c.globalAlpha=.5+.5*Math.abs(Math.sin(clock+i));R1(c,x,y-2,1,5,col);R1(c,x-2,y,5,1,col);c.globalAlpha=1}
   if(bg.cloud){c.fillStyle='rgba(255,255,255,.8)';[[30,50],[150,32],[110,130]].forEach(([x,y],k)=>{x+=Math.sin(clock*.2+k)*6;[[0,0,10],[8,-4,8],[16,0,9],[-8,2,7]].forEach(([dx,dy,r])=>{for(let i=-r;i<=r;i++){const h=Math.round(Math.sqrt(r*r-i*i)*.6);c.fillRect(Math.round(x+dx+i),y+dy-h,1,h*2)}})})}
   if(bg.glow)for(let i=0;i<40;i++){const x=(i*67)%AQW,y=(i*37)%(AQFLOOR-30)+6;c.globalAlpha=.4+.6*Math.abs(Math.sin(clock*1.3+i));R1(c,x,y,1,1,'#9ff6ff');c.fillStyle='rgba(120,220,255,.2)';c.fillRect(x-1,y,3,1);c.fillRect(x,y-1,1,3);c.globalAlpha=1}
+  if(bg.fx)bg.fx(c,clock);
   // 水面
   for(let x=0;x<AQW;x+=4)R1(c,x,3+Math.round(Math.sin(x*.12+clock*2)*1.2),4,1,'rgba(255,255,255,.45)');
   // 砂
@@ -10058,7 +10150,7 @@ const RM_FLOORS=[{id:'flooring',name:'フローリング',price:0},{id:'carpet',
 const RM_FMAX=20,RM_GMAX=6;
 function rmRR(c,x,y,w,h,r){c.beginPath();c.moveTo(x+r,y);c.arcTo(x+w,y,x+w,y+h,r);c.arcTo(x+w,y+h,x,y+h,r);c.arcTo(x,y+h,x,y,r);c.arcTo(x,y,x+w,y,r);c.closePath()}
 const rmInk=(c,x,y,w,h,col)=>{c.fillStyle=col;c.beginPath();c.ellipse(x,y,w*.38,h*.3,0,0,7);c.fill();c.beginPath();c.moveTo(x+w*.3,y);c.lineTo(x+w*.48,y-h*.25);c.lineTo(x+w*.48,y+h*.25);c.fill()};
-const RM_TSZ=[[64,44],[88,58],[124,76],[176,96]];
+const RM_TSZ=[[64,44],[88,58],[124,76],[176,96],[208,108]];
 // 家具（wall:true は壁、それ以外は床。x,y は 壁＝上のまんなか／床＝足もと）
 const rvRoom=()=>RV?RV.room:S.room,rvAv=()=>RV?RV.av:S.av,rvGyo=()=>RV?RV.gyo:S.gyo,rvKing=()=>RV?RV.kingN:S.kingN,rvName=()=>RV?RV.name:S.pname;
 const RM_F={
