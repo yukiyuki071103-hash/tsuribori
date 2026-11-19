@@ -8073,10 +8073,11 @@ function pickFish(){
   for(let i=0;i<rs.length;i++){x-=w[i];if(x<=0){r=rs[i];break}}
   const c=list.filter(f=>f.rar===r);const f=c[Math.floor(Math.random()*c.length)];
   // 宝箱は出にくい（選ばれても75%で選び直し）
-  if(f.shape==='b'&&!pickFish.again&&Math.random()>CHEST_RATE*(1+petV('chest'))){for(let i=0;i<6;i++){pickFish.again=true;const g=pickFish();pickFish.again=false;if(g.shape!=='b')return g}}
+  if(f.shape==='b'&&!pickFish.again&&Math.random()>CHEST_RATE*(1+petV('chest'))*(ST[S.stage].noAl&&f.rar===7?CHEST_NEW7:1)){for(let i=0;i<6;i++){pickFish.again=true;const g=pickFish();pickFish.again=false;if(g.shape!=='b')return g}}
   return f;
 }
 const CHEST_RATE=.25;
+const CHEST_NEW7=1/3; // ペンギン・シャーク・ホエールは★7が宝箱(大)だけなので、大だけ出にくくする（ほかの海の釣り場と同じくらいに）
 function expectLv(r,floor){
   const k=Math.random();let e=k<.55?r:k<.85?r-1:r-2;
   return clamp(e,Math.max(1,floor),r);
