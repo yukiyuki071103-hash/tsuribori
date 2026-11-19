@@ -11418,7 +11418,7 @@ function sgOpen(){
   cancelAnimationFrame(SG.raf);sgLoop();
 }
 function sgClose(){const ov=$('#sg');if(ov)ov.hidden=true;SG.open=false;SG.an=null;cancelAnimationFrame(SG.raf);renderAll();menuBadges()}
-function sgAuto(){if(!SG.open&&sgAvail()&&ph==='idle'&&!$('#result').classList.contains('on')&&!aqMode&&!rmMode&&!visitMode)sgOpen()}
+function sgAuto(){if(!tutoActive()&&!tutoNew()&&!SG.open&&sgAvail()&&ph==='idle'&&!$('#result').classList.contains('on')&&!aqMode&&!rmMode&&!visitMode)sgOpen()}
 
 // ================= シェア画像 =================
 const GAME_URL=()=>/github\.io$/.test(location.hostname)?location.origin+location.pathname.replace(/index\.html$/,''):'';
@@ -11591,7 +11591,8 @@ function tutoFinish(skip){
     msg('🎖 称号「伝説の始まり」ゲット！ ＋'+yen(TUTO_G),true,3.2)}
   else{S.tuto=Object.assign({},S.tuto,{done:1});if(skip)msg('チュートリアルを閉じた',true,1.6)}
   save();renderAll();if(curTab!=='spot'&&ph==='idle')tab('spot');
-  if(firstRun){firstRun=false;setTimeout(sgAuto,1600);setTimeout(evAuto,3000)}
+  setTimeout(sgAuto,1600); // チュートリアル中はすごろくを出さないので、終わってから出す
+  if(firstRun){firstRun=false;setTimeout(evAuto,3000)}
 }
 $('#tutoAgain').onclick=()=>{tab('spot');tutoStart(true)};
 
@@ -11621,7 +11622,7 @@ function evPop(){
 // 1日1回、開いたときに出す（サイコロや釣りの途中なら、終わってから）
 function evAuto(){
   if(raidPhase()!=='pre'&&raidPhase()!=='on'||firstRun||S.evPop===EVT.id+rkDay())return;
-  if(SG.open||ph!=='idle'||aqMode||rmMode||visitMode||$('#result').classList.contains('on')){setTimeout(evAuto,1500);return}
+  if(tutoActive()||SG.open||ph!=='idle'||aqMode||rmMode||visitMode||$('#result').classList.contains('on')){setTimeout(evAuto,1500);return}
   S.evPop=EVT.id+rkDay();save0();evPop();
 }
 $('#evBand').onclick=()=>raidPhase()==='post'?tab('ev'):evPop();evBand();setInterval(evBand,60e3);
