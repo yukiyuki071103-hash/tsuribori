@@ -1067,11 +1067,12 @@ const OKI_W=[50,30,13,5,2]; // 置き竿で★1〜5が出る割合（上限よ�
 const OKI_NEW=1;            // 未発見の魚のかかりやすさ（倍）。1=補正なし
 const OKI_XP=1/3;           // 経験値は通常の釣りの何倍か
 // お知らせ（アップデートのたびに上に足す。NEWS_VER を変えるとメニューに NEW が付く）
-const NEWS_VER='2026-11-20b';
+const NEWS_VER='2026-11-20c';
 function newsVer(){return NEWS_VER+(typeof xmShow==='function'&&xmShow()?'x':'')} // 12/1にクリスマスのくわしいお知らせが出たら、もう一度 NEW が付く
 const NEWS=[
  {d:'2026/11/20',xm:2,t:['🎄 12/1（火）0:00から、クリスマスイベントを開催します！ なにが起こるかはお楽しみに…🎅']},
  {d:'2026/12/1',xm:1,t:['🎄 クリスマスイベント「クリスマス2026」を12/1 0:00〜12/25 23:59に開催！ 期間中は、通常の釣り場の魚がクリスマスの衣装でたまに釣れます','🎅 シャチ・バンドウイルカはサンタ帽、カワウソはマフラー、クリオネは天使の輪、ベルーガはトナカイの角、ハリセンボンはツリーの飾り、キンギョはキラキラのクリスマスカラーなど全14種。図鑑や魚籠では「キンギョ(クリスマス)」のように表示されます。衣装の魚は売値2倍','🎁 期間中は、どの釣り場でもごくまれに「クリスマスプレゼント」（★6）と「サンタ」（★7）が釣れることも…！','📖 図鑑の「🎄 イベント」で、イベント図鑑「クリスマス2026」が見られます。全16種そろえると称号「メリークリスマス2026」！']},
+ {d:'2026/11/20',t:['🛠 創世の海で「✨光の道」が出た瞬間に、画面が止まってしまう不具合を直しました。ご迷惑をおかけしました']},
  {d:'2026/11/20',t:['🛠 日付が変わるとき（0時ごろ）に、ゴールドや魚籠が前の状態に戻ってしまうことがある不具合を直しました。ご迷惑をおかけしました','🛟 戻ってしまった人には、この端末に残っている「戻る前のデータ」を見つけて「戻しますか？」と案内が出ます。「戻す」を押すと、図鑑などは今のまま、ゴールド・魚籠が戻る前の状態にもどります（戻ったあとに釣った魚も残ります）','☁ ほかの端末やタブを開きっぱなしにしていても、古いデータでクラウドを上書きしないようにしました']},
  {d:'2026/11/19',t:['🌗 創世の海の着せ替えセットが登場！ 光と闇の釣りゲージ「創世の海」（50,000G）、水槽の背景「創世の海」（100,000G）、水槽の飾り「光と闇の結晶」（50,000G・背景を持っていると買える）。創世の海で1匹釣ると買えます','🐠 水槽の背景が8つ増えました！ ペンギンの楽園・シャークシー・ホエールウォッチング・宝石の洞窟（各100,000G・その釣り場で、そこにしかいない魚を1匹釣ると買える）と、サンゴ礁・夕焼けの海・月夜の海・桜の川（各30,000G・誰でも買える）','🐋 水族館級の次の水槽「大水族館」（50匹まで・1,000,000G）。もっと引きで見せるので、50匹でもゆったり泳ぎます']},
  {d:'2026/11/19',t:['🎨 釣りゲージの着せ替えに「ペンギン」「シャーク」「ホエール」が登場！ 雪がふる氷山・背びれが横切る夜の海・潮吹きと尾びれの海。バーもペンギン柄・サメ肌・クジラ模様です','🛒 ショップの「着せ替え」で各50,000G。ペンギンの楽園・シャークシー・ホエールウォッチングで、そこにしかいない魚を1匹釣ると買えるようになります']},
@@ -8116,7 +8117,7 @@ var GN_GM={L:['road','moon','mirror'],D:['rev','erode','pull']},GN_LEN={road:3.6
 function gnGim(dt){const sd=gnCast||'L',g=F.gm;
   if(F.gnT===undefined)F.gnT=rnd(2.5,4);
   if(!g){F.gnT-=dt;if(F.gnT<=0){const L=sd==='K'?GN_GM.L.concat(GN_GM.D):GN_GM[sd];let k=L[Math.floor(Math.random()*L.length)];if(k===F.gmLast&&L.length>1)k=L[(L.indexOf(k)+1)%L.length];F.gmLast=k;
-    F.gm={k,t:GN_LEN[k],t0:GN_LEN[k],pre:k==='rev'?.8:0,a:rnd(0,1),px:rnd(.28,.72),dir:Math.random()<.5?-1:1}}}
+    const dir=Math.random()<.5?-1:1;F.gm={k,t:GN_LEN[k],t0:GN_LEN[k],pre:k==='rev'?.8:0,a:rnd(0,1),px:rnd(.28,.72),dir,x:dir>0?-.25:1.05,mx:1-F.fx,e:0}}}
   else{if(g.pre>0)g.pre-=dt;else g.t-=dt;const on=g.pre<=0,u=1-g.t/g.t0;
     if(g.k==='road'){g.x=g.dir>0?-.25+u*1.3:1.05-u*1.3;if(on&&F.inz&&F.fx>g.x&&F.fx<g.x+.24)F.prog+=F.gain*dt} // 光の道：中ならゲージがもう1倍ぶん
     if(g.k==='moon')F.h=F.h0*(1+.32*Math.sin(u*Math.PI*4));
@@ -8784,8 +8785,8 @@ function loop(now){
   else if(ph==='wait'&&pt>=waitT){sfx.bite();msg('アタリ！',false,BITE[cur.rar-1]);setPhase('bite');preDone=0;biteRing=false}
   else if(ph==='bite'&&!biteRing&&pt>=BITE[cur.rar-1]*NICE_FROM){biteRing=true;ripple(flt.x,flt.y,1.6);ripple(flt.x,flt.y,1.1)}
   else if(ph==='bite'&&pt>=BITE[cur.rar-1]){if(S.stage==='raid'){hookNice=false;startFight()}else if(tutoEasy())pt=BITE[cur.rar-1]*NICE_FROM;else lose('逃げられた…')} // レイドはアワセ失敗なし（チケットが無駄にならないように）
-  else if(ph==='fight'&&F){updateFight(dt);if(ph==='fight'&&pt>2)showHit(false)}
-  render(dt);requestAnimationFrame(loop);
+  else if(ph==='fight'&&F){try{updateFight(dt)}catch(e){console.error(e)}if(ph==='fight'&&pt>2)showHit(false)}
+  try{render(dt)}catch(e){console.error(e)}requestAnimationFrame(loop); // 描画でエラーが出ても画面が止まらないように
 }
 
 // ================= 水槽 =================
