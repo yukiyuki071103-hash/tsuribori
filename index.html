@@ -1067,8 +1067,9 @@ const OKI_W=[50,30,13,5,2]; // 置き竿で★1〜5が出る割合（上限よ�
 const OKI_NEW=1;            // 未発見の魚のかかりやすさ（倍）。1=補正なし
 const OKI_XP=1/3;           // 経験値は通常の釣りの何倍か
 // お知らせ（アップデートのたびに上に足す。NEWS_VER を変えるとメニューに NEW が付く）
-const NEWS_VER='2026-11-19g';
+const NEWS_VER='2026-11-20';
 const NEWS=[
+ {d:'2026/11/20',t:['🛠 日付が変わるとき（0時ごろ）に、ゴールドや魚籠が前の状態に戻ってしまうことがある不具合を直しました。ご迷惑をおかけしました','🛟 戻ってしまった人には、この端末に残っている「戻る前のデータ」を見つけて「戻しますか？」と案内が出ます。「戻す」を押すと、図鑑などは今のまま、ゴールド・魚籠が戻る前の状態にもどります（戻ったあとに釣った魚も残ります）','☁ ほかの端末やタブを開きっぱなしにしていても、古いデータでクラウドを上書きしないようにしました']},
  {d:'2026/11/19',t:['🌗 創世の海の着せ替えセットが登場！ 光と闇の釣りゲージ「創世の海」（50,000G）、水槽の背景「創世の海」（100,000G）、水槽の飾り「光と闇の結晶」（50,000G・背景を持っていると買える）。創世の海で1匹釣ると買えます','🐠 水槽の背景が8つ増えました！ ペンギンの楽園・シャークシー・ホエールウォッチング・宝石の洞窟（各100,000G・その釣り場で、そこにしかいない魚を1匹釣ると買える）と、サンゴ礁・夕焼けの海・月夜の海・桜の川（各30,000G・誰でも買える）','🐋 水族館級の次の水槽「大水族館」（50匹まで・1,000,000G）。もっと引きで見せるので、50匹でもゆったり泳ぎます']},
  {d:'2026/11/19',t:['🎨 釣りゲージの着せ替えに「ペンギン」「シャーク」「ホエール」が登場！ 雪がふる氷山・背びれが横切る夜の海・潮吹きと尾びれの海。バーもペンギン柄・サメ肌・クジラ模様です','🛒 ショップの「着せ替え」で各50,000G。ペンギンの楽園・シャークシー・ホエールウォッチングで、そこにしかいない魚を1匹釣ると買えるようになります']},
  {d:'2026/11/19',t:['👓 魚マニア：ウオミさんの交換品に「古代の化石」5種が加わりました！ モササウルス・レヴィアタンメルビレイ・メガロドン・リオプレオロドン・アノマリカリスを10匹で、頭骨・顎・巨牙・全身骨格・化石板のオブジェに','🌈 50匹の上位版は、虹色にきらめく「オパール化石」です（2個目からは必要な数が倍）','🌌 宇宙の「星の宝物」5種も登場！ 彗星竜・銀河クジラ・ブラックホールアンコウ・迷子の宇宙飛行士・隕石ガニを10匹で、彗星のかけら・銀河のスノードーム・ブラックホールの提灯・宇宙飛行士のヘルメット・隕石の標本に。50匹の上位版は、星雲の色がうずまく特別版です']},
@@ -6576,7 +6577,10 @@ setTimeout(()=>{try{rkNorm()}catch(e){}},0);
 const sel=new Set(); // 売るために選んだ魚の番号
 const tkOf=id=>TICKETS.find(x=>x.stage===id);const tkTotal=()=>Object.values(S.tickets).reduce((a,b)=>a+(b|0),0);
 const save0=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
-const save=()=>{save0();if(typeof clQueue==='function')clQueue()}; // ログイン中はクラウドにも（少しまとめて）保存
+// 遊んだ回数（S.act）：画面をさわったあとのセーブで+1。0時のミッション入れ替えなど自動のセーブでは増えない
+// 合体のとき、ゴールド・魚籠・エサの数などは、この回数が多いほう（＝よく遊んでいるほう）を使う
+var ACT_F=0;addEventListener('pointerdown',()=>{ACT_F=1},true);addEventListener('keydown',()=>{ACT_F=1},true);
+const save=()=>{if(ACT_F){ACT_F=0;S.act=(S.act|0)+1}save0();if(typeof clQueue==='function')clQueue()}; // ログイン中はクラウドにも（少しまとめて）保存
 const curRod=()=>RODS.find(r=>r.id===S.rod)||RODS[0];
 const curBait=()=>BAITS.find(b=>b.id===S.bait&&(S.baitInv[b.id]|0)>0)||null;
 
@@ -9167,7 +9171,7 @@ function renderMis(){
   if(all&&!bo.got){b.style.background='var(--accent)';b.style.color='var(--accent-ink)';b.style.fontWeight='700';b.onclick=misBonus}
   d.append(l,b);ls.append(d);box.append(ls);
 }
-setInterval(()=>{if(S.mis&&S.mis.day!==dayKey()&&!busy()){misEnsure();renderMis()}},30000);
+setInterval(()=>{if(S.mis&&S.mis.day!==dayKey()&&!busy()&&!document.hidden){misEnsure();renderMis()}},30000); // 隠れている端末では入れ替えない（戻ったときにする）
 
 // ================= 魚拓 =================
 // 和紙に墨で写したような絵を作る。ドット絵の明るさで墨の濃さを変える
@@ -9720,7 +9724,7 @@ function clMerge(base,other,goldMax){
   ['ukiOwn','skinOwn','todOwn','gaugeOwn','bgmOwn','avOwn'].forEach(k=>{m[k]=un(m[k],o[k])});
   if(obj(o.room)){m.room=obj(m.room)||{};['wOwn','fOwn','furn'].forEach(k=>{m.room[k]=un(m.room[k],o.room[k])})}
   if(obj(o.tank)){m.tank=obj(m.tank)||{};['bgOwn','sandOwn','lightOwn','decoOwn'].forEach(k=>{m.tank[k]=un(m.tank[k],o.tank[k])});if((o.tank.size|0)>(m.tank.size|0))m.tank.size=o.tank.size}
-  ['kingN','qBare'].forEach(k=>{if((o[k]|0)>(m[k]|0))m[k]=o[k]});
+  ['kingN','qBare','act','rbFix'].forEach(k=>{if((o[k]|0)>(m[k]|0))m[k]=o[k]});
   ['rkClaim','rkClaimO'].forEach(k=>{if(typeof o[k]==='string'&&o[k]>(m[k]||''))m[k]=o[k]}); // 受け取り済みの報酬は二重にもらえないように
   // 魚拓：両方（上限まで）
   if(Array.isArray(o.gyo)){m.gyo=Array.isArray(m.gyo)?m.gyo:[];const has=new Set(m.gyo.map(g=>g.id+'@'+g.t));o.gyo.forEach(g=>{if(m.gyo.length<GYO_MAX&&!has.has(g.id+'@'+g.t))m.gyo.push(g)})}
@@ -9748,8 +9752,9 @@ function clSync(d,why){
   if(busy()){clearTimeout(CL.waitT);CL.waitT=setTimeout(()=>clSync(CL.cur||d,why),2000);return} // 釣り中は終わってから
   const fresh0=S.lv<=1&&!Object.keys(S.dex).length&&(S.gold|0)<500;
   if(!fresh0)clBak(S,why);
-  const m=fresh0?c:clMerge(c,S),add=JSON.stringify(m)!==JSON.stringify(c);
+  const m=fresh0?c:(S.act|0)>(c.act|0)?clMerge(S,c):clMerge(c,S),add=JSON.stringify(m)!==JSON.stringify(c); // 遊んだ回数が多いほうを土台に
   applyData(m);S.cloudUid=CL.user.uid;S.syncT=d.t|0;S.syncW=d.w||'';S.cloudOn=true;S.cDirty=add?1:0;save0();CL.lastT=d.t;renderAll();
+  setTimeout(rbCheck,1500);
   if(add){clPush();msg('☁ ほかの端末のデータと合わせました',true,2.2)}else if(!fresh0||why!=='first')msg('☁ 最新のデータを読み込みました',true,1.8);else msg('☁ クラウドのデータで遊びます',true,2);
 }
 // クラウドのデータを、この端末にそのまま読み込む（選ぶ画面から）
@@ -9770,10 +9775,18 @@ async function clPush(flush){
   if(Date.now()<(CL.holdUntil||0))return; // サーバーの上限に当たったら、しばらく待つ
   if(CL.stale){await clCheck();if(CL.stale||!S.cDirty)return}
   if(CL.cur&&clChanged(CL.cur)){clSync(CL.cur,'push');return} // ほかの端末が先に書いていたら、合体してから
-  const {fs}=CL.mods,w=clRid();S.syncT=Date.now();S.syncW=w;S.cloudOn=true;S.cDirty=0;save0();
+  const {fs}=CL.mods,w=clRid(),baseW=S.syncW||'',baseT=S.syncT|0;S.syncT=Date.now();S.syncW=w;S.cloudOn=true;S.cDirty=0;save0();
   const data=JSON.stringify(S);CL.pushing=1;
   CL.lastPush=Date.now();
-  try{await fs.setDoc(fs.doc(CL.db,'saves',CL.user.uid),{data,t:S.syncT,w,name:S.pname||'',lv:S.lv});CL.cur={data,t:S.syncT,w};
+  try{
+    // 書く直前にサーバーの最新を確かめる：知らないうちにほかの端末が書いていたら、上書きしないで先に合体する（古い端末による巻き戻り防止）
+    const ref=fs.doc(CL.db,'saves',CL.user.uid);let clash=null;
+    await fs.runTransaction(CL.db,async tx=>{clash=null;const sn=await tx.get(ref),cur=sn.exists()?sn.data():null;
+      let ok=false;if(cur){try{ok=!!JSON.parse(cur.data)}catch(e){}}
+      if(ok&&(cur.w?cur.w!==baseW:(cur.t|0)>baseT)){clash=cur;return}
+      tx.set(ref,{data,t:S.syncT,w,name:S.pname||'',lv:S.lv})});
+    if(clash){S.syncW=baseW;S.syncT=baseT;S.cDirty=1;save0();CL.cur=clash;CL.pushing=0;clSync(clash,'push');return}
+    CL.cur={data,t:S.syncT,w};
     if(flush||Date.now()-(CL.rkT||0)>=CL_RKGAP){CL.rkT=Date.now();
       fs.setDoc(fs.doc(CL.db,'ranks',CL.user.uid),rkDoc()).catch(()=>{});
       fs.setDoc(fs.doc(CL.db,'pub',CL.user.uid),pubDoc()).catch(()=>{})}
@@ -9858,6 +9871,31 @@ function clBakUi(box,p){
     confirmTap(b,()=>{let j;try{j=JSON.parse(x.data)}catch(e){return}if(busy()){msg('釣りが終わってからもう一度押してね',true,1.8);return}
       clBak(S,'restore');applyData(clMerge(S,j,true));S.cDirty=1;save0();renderAll();clQueue();msg('🛟 バックアップを合体して戻しました',true,2.2)},'もう一度押すと、今のデータに合体して戻します');box.append(b)});
 }
+// ---- 11/20 0時ごろの巻き戻りを助ける ----
+// 夜中（23:30〜6:00）に取ったバックアップに、今よりゴールドか魚籠が多いものがあれば「戻しますか？」と出す
+const RB_FROM=Date.UTC(2026,10,19,14,30),RB_TO=Date.UTC(2026,10,22,21,0);
+function rbFind(){
+  if(S.rbFix)return null;let best=null;
+  clBaks().forEach(x=>{if(x.t<RB_FROM||x.t>RB_TO)return;const h=jst(x.t),hm=h.getUTCHours()*60+h.getUTCMinutes();if(hm<23*60+30&&hm>=6*60)return;
+    let j;try{j=JSON.parse(x.data)}catch(e){return}const nb=Array.isArray(j.bucket)?j.bucket.length:0;
+    if((j.gold|0)>(S.gold|0)||nb>S.bucket.length){if(!best||(j.gold|0)>(best.j.gold|0))best={x,j,nb}}});
+  return best;
+}
+function rbCheck(){
+  if(document.querySelector('.upd.rb'))return;const r=rbFind();if(!r)return;
+  const bar=el('div','upd rb');bar.append(el('span',null,'🛟 '+clTime(r.x.t)+'ごろに巻き戻ったデータが見つかりました（'+yen(r.j.gold|0)+'・魚籠'+r.nb+'匹）。戻しますか？'));
+  const b=el('button',null,'戻す');b.type='button';
+  b.onclick=()=>{if(busy()){msg('釣りが終わってから押してね',true,1.6);return}
+    clBak(S,'restore');const m=clMerge(r.j,S,true);
+    // 巻き戻ったあとに釣った魚も魚籠に残す
+    m.bucket=Array.isArray(m.bucket)?m.bucket:[];const has=new Set(m.bucket.map(f=>f.id+'@'+f.t));let u=Math.max(m.uid|0,S.uid|0,...m.bucket.map(f=>f.u|0));
+    S.bucket.forEach(f=>{if(f.t>r.x.t&&!has.has(f.id+'@'+f.t))m.bucket.push(Object.assign({},f,{u:++u}))});m.uid=u;
+    m.act=Math.max(m.act|0,S.act|0)+1;m.rbFix=1;
+    applyData(m);S.cDirty=1;save0();renderAll();clQueue();bar.remove();msg('🛟 巻き戻る前のデータに戻しました',true,2.4)};
+  const no=el('button','x','いらない');no.type='button';no.onclick=()=>{S.rbFix=1;save();bar.remove()};
+  bar.append(b,no);document.body.append(bar);
+}
+setTimeout(rbCheck,6000);
 function saveName(){
   const v=Array.from(($('#acctName').value||'').trim()).slice(0,10).join('');
   if(!v){msg('名前を入れてね',true,1.4);return}
