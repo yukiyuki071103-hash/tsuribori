@@ -1068,8 +1068,10 @@ const OKI_NEW=1;            // 未発見の魚のかかりやすさ（倍）。1
 const OKI_XP=1/3;           // 経験値は通常の釣りの何倍か
 // お知らせ（アップデートのたびに上に足す。NEWS_VER を変えるとメニューに NEW が付く）
 const NEWS_VER='2026-11-20b';
+function newsVer(){return NEWS_VER+(typeof xmShow==='function'&&xmShow()?'x':'')} // 12/1にクリスマスのくわしいお知らせが出たら、もう一度 NEW が付く
 const NEWS=[
- {d:'2026/11/20',t:['🎄 クリスマスイベント「クリスマス2026」を12/1 0:00〜12/25 23:59に開催！ 期間中は、通常の釣り場の魚がクリスマスの衣装でたまに釣れます','🎅 シャチ・バンドウイルカはサンタ帽、カワウソはマフラー、クリオネは天使の輪、ベルーガはトナカイの角、ハリセンボンはツリーの飾り、キンギョはキラキラのクリスマスカラーなど全14種。図鑑や魚籠では「キンギョ(クリスマス)」のように表示されます。衣装の魚は売値2倍','🎁 期間中は、どの釣り場でもごくまれに「クリスマスプレゼント」（★6）と「サンタ」（★7）が釣れることも…！','📖 図鑑の「🎄 イベント」で、イベント図鑑「クリスマス2026」が見られます。全16種そろえると称号「メリークリスマス2026」！']},
+ {d:'2026/11/20',xm:2,t:['🎄 12/1（火）0:00から、クリスマスイベントを開催します！ なにが起こるかはお楽しみに…🎅']},
+ {d:'2026/12/1',xm:1,t:['🎄 クリスマスイベント「クリスマス2026」を12/1 0:00〜12/25 23:59に開催！ 期間中は、通常の釣り場の魚がクリスマスの衣装でたまに釣れます','🎅 シャチ・バンドウイルカはサンタ帽、カワウソはマフラー、クリオネは天使の輪、ベルーガはトナカイの角、ハリセンボンはツリーの飾り、キンギョはキラキラのクリスマスカラーなど全14種。図鑑や魚籠では「キンギョ(クリスマス)」のように表示されます。衣装の魚は売値2倍','🎁 期間中は、どの釣り場でもごくまれに「クリスマスプレゼント」（★6）と「サンタ」（★7）が釣れることも…！','📖 図鑑の「🎄 イベント」で、イベント図鑑「クリスマス2026」が見られます。全16種そろえると称号「メリークリスマス2026」！']},
  {d:'2026/11/20',t:['🛠 日付が変わるとき（0時ごろ）に、ゴールドや魚籠が前の状態に戻ってしまうことがある不具合を直しました。ご迷惑をおかけしました','🛟 戻ってしまった人には、この端末に残っている「戻る前のデータ」を見つけて「戻しますか？」と案内が出ます。「戻す」を押すと、図鑑などは今のまま、ゴールド・魚籠が戻る前の状態にもどります（戻ったあとに釣った魚も残ります）','☁ ほかの端末やタブを開きっぱなしにしていても、古いデータでクラウドを上書きしないようにしました']},
  {d:'2026/11/19',t:['🌗 創世の海の着せ替えセットが登場！ 光と闇の釣りゲージ「創世の海」（50,000G）、水槽の背景「創世の海」（100,000G）、水槽の飾り「光と闇の結晶」（50,000G・背景を持っていると買える）。創世の海で1匹釣ると買えます','🐠 水槽の背景が8つ増えました！ ペンギンの楽園・シャークシー・ホエールウォッチング・宝石の洞窟（各100,000G・その釣り場で、そこにしかいない魚を1匹釣ると買える）と、サンゴ礁・夕焼けの海・月夜の海・桜の川（各30,000G・誰でも買える）','🐋 水族館級の次の水槽「大水族館」（50匹まで・1,000,000G）。もっと引きで見せるので、50匹でもゆったり泳ぎます']},
  {d:'2026/11/19',t:['🎨 釣りゲージの着せ替えに「ペンギン」「シャーク」「ホエール」が登場！ 雪がふる氷山・背びれが横切る夜の海・潮吹きと尾びれの海。バーもペンギン柄・サメ肌・クジラ模様です','🛒 ショップの「着せ替え」で各50,000G。ペンギンの楽園・シャークシー・ホエールウォッチングで、そこにしかいない魚を1匹釣ると買えるようになります']},
@@ -6406,7 +6408,7 @@ const PX={
         <li><b>ペンギンの楽園</b>：Lv50から（海・チケットなし）。ペンギンだけが釣れる釣り場で、★3〜6の全20種。「アルビノの気配」と「今日のお題」の対象外です。ここのペンギン（コウテイペンギンをのぞく）は釣王の塔には出ません。</li>
         <li><b>シャークシー</b>：Lv80から（海・チケットなし）。サメだけが釣れる釣り場で、★3〜6の全27種。ペンギンの楽園と同じく「アルビノの気配」と「今日のお題」の対象外です。前からいたサメ（アオザメ・ホホジロザメなど7種）もここで釣れます。新しいサメは釣王の塔には出ません。</li>
         <li><b>ホエールウォッチング</b>：Lv100から（海・チケットなし）。イルカとクジラだけが釣れる釣り場で、★3〜6の全25種。ペンギンの楽園・シャークシーと同じく「アルビノの気配」と「今日のお題」の対象外です。前からいたイルカ・クジラ（バンドウイルカ・ザトウクジラなど5種）もここで釣れます。新しいイルカ・クジラは釣王の塔には出ません。</li>
-        <li><b>🎄 クリスマス2026</b>：12/1 0:00〜12/25 23:59（端末の時計）。通常の釣り場（置き竿はのぞく）で、決まった14種の魚がクリスマスの衣装でたまに釣れます（★1〜2は1/15、★3〜4は1/8、★5〜6は1/4）。衣装の魚は売値2倍。どの釣り場でもごくまれに「クリスマスプレゼント」（★6）と「サンタ」（★7）も。図鑑の「🎄 イベント」で全16種をそろえると称号「メリークリスマス2026」。図鑑と称号はイベントのあとも残ります。</li>
+        <li id="helpXm" hidden><b>🎄 クリスマス2026</b>：12/1 0:00〜12/25 23:59（端末の時計）。通常の釣り場（置き竿はのぞく）で、決まった14種の魚がクリスマスの衣装でたまに釣れます（★1〜2は1/15、★3〜4は1/8、★5〜6は1/4）。衣装の魚は売値2倍。どの釣り場でもごくまれに「クリスマスプレゼント」（★6）と「サンタ」（★7）も。図鑑の「🎄 イベント」で全16種をそろえると称号「メリークリスマス2026」。図鑑と称号はイベントのあとも残ります。</li>
         <li><b>今日のお題</b>：毎日0時に、通常の釣り場の★1〜5から1匹「お題の魚」が決まります。今日釣ったいちばん大きいサイズでランキング（ランキング →「🎯お題」）。10位まで報酬あり（1位は洞窟の鍵×2）。</li>
         <li><b>限界突破</b>：Lv79・Lv99・Lv129・Lv149で経験値が満タンになると止まります（🔒）。条件を満たすと次のレベルへ。Lv79→80は「天空と古代の図鑑をコンプリート」、Lv99→100は「宇宙の図鑑をコンプリート」、Lv129→130は「精霊の丘の図鑑をコンプリート＋アルビノ図鑑10種以上」、Lv149→150は「創世の海の図鑑をコンプリート（★9の2種も）＋アルビノ図鑑50種以上」。止まっている間の経験値も1レベル分まではためておけます。レベル表示の🔒をタップすると条件を確認できます。</li>
         <li><b>BGMの着せ替え</b>：ショップの「着せ替え」で曲を買えます（▶で試聴）。選んだ曲は通常の釣り場・水槽・部屋で流れます。特殊ステージは専用の曲のままです。</li>
@@ -6456,6 +6458,7 @@ const ST=Object.fromEntries(STAGES.map(s=>[s.id,s]));
 // ================= 🎄 クリスマスイベント2026（12/1 0:00〜12/25 23:59・端末の時計） =================
 var XM_TEST=false; // true にすると期間外でも出る（テスト用）
 var XM_FROM=Date.parse('2026-12-01T00:00:00+09:00'),XM_TO=Date.parse('2026-12-26T00:00:00+09:00');
+function xmShow(){return XM_TEST||Date.now()>=XM_FROM} // 12/1までは図鑑・お知らせ・遊び方・称号を隠す
 function xmOn(){const n=Date.now();return XM_TEST||(n>=XM_FROM&&n<XM_TO)}
 var XM={price:2,present:.005,santa:.0015,rate:{1:1/15,2:1/15,3:1/8,4:1/8,5:1/4,6:1/4}};
 // イベント図鑑に並ぶ順（衣装の魚12種＋カラー2種＋プレゼント・サンタ）
@@ -7997,7 +8000,7 @@ const ACH=[
  ...[['ogawa','小川'],['teibo','堤防'],['sunahama','砂浜'],['keiryu','渓流'],['kogishi','湖の岸'],['tetora','テトラポッド'],['kakou','河口'],['funechika','船上（近場）'],['kooki','湖の沖'],['funeoki','船上（沖）'],['penguin','ペンギンの楽園'],['shark','シャークシー'],['whale','ホエールウォッチング']].map(([s,n])=>({id:'al_'+s,name:n+'の白い影',desc:n+'のアルビノをすべて釣った',ok:()=>alAll(s)})),
  {id:'qbare',name:'風に抗いし者',desc:'水槽の妖精の力を借りずに精霊女王を釣った',ok:qBare},
  {id:'alall',name:'白き幻を追う者',desc:'アルビノをすべて釣った',ok:()=>FISH.filter(alOk).every(f=>alB()[f.id])},
- {id:'xmas2026',name:'メリークリスマス2026',desc:'イベント図鑑「クリスマス2026」をコンプした',ok:xmAll}
+ {id:'xmas2026',name:'メリークリスマス2026',desc:'イベント図鑑「クリスマス2026」をコンプした',ok:xmAll,hide:()=>!xmShow()}
 ];
 const EVENT_TITLES=[ // イベントの称号はここに足す
  {id:'king',get name(){return '今週の釣り王'+((S.kingN|0)>1?'×'+S.kingN:'')},desc:'週間ランキング「釣った数」で1位',ok:()=>(S.kingN|0)>0},
@@ -9433,7 +9436,7 @@ function renderTitle(){
     const b=el('button','chip',!own?'未入手':on?'使用中':'付ける');b.type='button';b.disabled=!own||on;b.onclick=()=>{set();save();renderAll()};d.append(l,b);tl.append(d)};
   if(titleTab==='lv')TITLES.forEach(t=>{const own=S.lv>=t.lv,rw=rewardName(t);row(own,own&&S.title===t.lv,t.name,'Lv'+t.lv+(rw?'・報酬：'+rw:''),()=>{S.title=t.lv})});
   else if(titleTab==='tow')towTitleRows(row);
-  else if(titleTab==='ach')ACH.forEach(a=>{const own=a.ok();row(own,own&&S.title==='a:'+a.id,a.name,a.desc+(a.uki||a.skin?'・報酬：'+achReward(a):''),()=>{S.title='a:'+a.id})});
+  else if(titleTab==='ach')ACH.forEach(a=>{if(a.hide&&a.hide())return;const own=a.ok();row(own,own&&S.title==='a:'+a.id,a.name,a.desc+(a.uki||a.skin?'・報酬：'+achReward(a):''),()=>{S.title='a:'+a.id})});
   else if(titleTab==='raid')RAID_TITLES.forEach(([n,name])=>{const own=(S.raidAll|0)>=n;row(own,own&&S.title==='r:'+n,name,'レイドボスを合計'+n+'匹討伐（いま'+(S.raidAll|0)+'匹）',()=>{S.title='r:'+n})});
   else if(EVENT_TITLES.length)EVENT_TITLES.forEach(a=>{const own=a.ok();row(own,own&&S.title==='e:'+a.id,a.name,a.desc,()=>{S.title='e:'+a.id})});
   else tl.append(el('div','small','まだありません。イベントの時期にここに追加されます。'));
@@ -9508,7 +9511,7 @@ function renderCos(){
 
 let dexDrawn='',lockMode=false,bkSort='dex';const bkOpen=new Set();
 function renderDex(){
-  if(DXF.ev){renderXmDex();return}
+  if(DXF.ev&&xmShow()){renderXmDex();return}
   const AM=!!DXF.al,DX=AM?alB():S.dex;
   const key=JSON.stringify(S.dex)+(AM?'A'+JSON.stringify(DX):'');if(key===dexDrawn)return;dexDrawn=key;
   const box=$('#dex');box.replaceChildren();let got=0;
@@ -9622,7 +9625,7 @@ function tab(k){
   [...MAIN,...SUB].forEach(j=>{const p=$('#p-'+j);if(p)p.hidden=j!==k});
   const m=MAIN.includes(k)?k:'menu';MAIN.forEach(j=>$('#t-'+j).setAttribute('aria-selected',String(j===m)));
   if(k==='mania')mxOpen();
-  if(k==='code')refreshCode();if(k==='news'&&S.newsSeen!==NEWS_VER){S.newsSeen=NEWS_VER;save()}
+  if(k==='code')refreshCode();if(k==='news'&&S.newsSeen!==newsVer()){S.newsSeen=newsVer();save()}if(k==='help'){const h=$('#helpXm');if(h)h.hidden=!xmShow()}
   if(k==='acct'){renderAcct();renderIcon();if(!inLineApp())clLoad().catch(()=>{})}if(k==='fr'){renderFr();if(!inLineApp())clLoad().then(()=>frLoad(true)).catch(()=>{})}if(k==='rank'){renderRank();if(!inLineApp())clLoad().then(()=>renderRank()).catch(()=>{})}if(k==='oki')renderOki();if(k==='mis')renderMis();if(k==='ev'){renderEv();if(CL.user||S.cloudOn)clLoad().then(()=>renderEv()).catch(()=>{})}if(k==='gyo')renderGyo();if(k==='menu')renderMenu();menuBadges();
   if(SUB.includes(k))$('#p-'+k).scrollIntoView({behavior:'smooth',block:'nearest'});
 }
@@ -9635,7 +9638,7 @@ SUB.forEach(k=>{const p=$('#p-'+k),b=el('button','backb','← メニュー');b.t
 // ---- メニュー ----
 const misClaimable=()=>!!S.mis&&(S.mis.list.some(m=>m.done&&!m.got)||(S.mis.list.every(m=>m.got)&&!S.mis.bonus.got));
 const okiReady=()=>!!S.oki&&okiLeft()<=0;
-const newsNew=()=>S.newsSeen!==NEWS_VER;
+const newsNew=()=>S.newsSeen!==newsVer();
 function menuBadges(){const t=$('#t-menu'),n=(typeof sgAvail==='function'&&sgAvail())||okiReady()||misClaimable()||newsNew()||(typeof RK!=='undefined'&&!!(RK.claim||RK.claimO))||(typeof CL!=='undefined'&&!!CL.pending)||(typeof FR!=='undefined'&&FR.inReq.length>0)||(typeof raidClaimable==='function'&&raidClaimable());t.replaceChildren('メニュー');if(n)t.append(el('span','dot','!'))}
 function renderMenu(){
   const box=$('#tiles');if(!box)return;box.replaceChildren();misEnsure();
@@ -9672,7 +9675,7 @@ function renderSpotStat(){
 }
 setInterval(()=>{menuBadges();renderSpotStat();if(!$('#p-menu').hidden)renderMenu();if(S.oki&&!$('#p-oki').hidden)renderOki()},5000);
 // ---- お知らせ ----
-function renderNews(){const b=$('#newsList');if(!b)return;b.replaceChildren();NEWS.forEach(n=>{b.append(el('b',null,n.d));const ul=el('ul');n.t.forEach(t=>ul.append(el('li',null,t)));b.append(ul)})}
+function renderNews(){const b=$('#newsList');if(!b)return;b.replaceChildren();NEWS.forEach(n=>{if(n.xm===1&&!xmShow())return;if(n.xm===2&&xmShow())return;b.append(el('b',null,n.d));const ul=el('ul');n.t.forEach(t=>ul.append(el('li',null,t)));b.append(ul)})}
 // ---- 設定（音量） ----
 function renderSet(){$('#sfxVol').value=S.sfxVol;$('#bgmVol').value=S.bgmVol;$('#sfxVolN').textContent=S.sfxVol;$('#bgmVolN').textContent=S.bgmVol}
 $('#sfxVol').addEventListener('input',e=>{S.sfxVol=+e.target.value;$('#sfxVolN').textContent=S.sfxVol;save()});
@@ -11003,7 +11006,7 @@ function renderDexFilter(){
   all.onclick=()=>{if(STAGES.every(s=>!dexClosed.has(s.id)))STAGES.forEach(s=>dexClosed.add(s.id));else dexClosed.clear();dexDrawn='';renderDexFilter();renderDex()};
   const ab=el('button','chip','🤍 アルビノ');ab.type='button';ab.setAttribute('aria-pressed',String(!!DXF.al));ab.onclick=()=>{DXF.al=!DXF.al;DXF.ev=false;dexDrawn='';renderDexFilter();renderDex()};
   const eb=el('button','chip','🎄 イベント');eb.type='button';eb.setAttribute('aria-pressed',String(!!DXF.ev));eb.onclick=()=>{DXF.ev=!DXF.ev;DXF.al=false;dexDrawn='';renderDexFilter();renderDex()};
-  const top=el('div','row');top.append(tg,all,ab,eb);
+  if(!xmShow())DXF.ev=false;const top=el('div','row');top.append(tg,all,ab);if(xmShow())top.append(eb);
   if(dxActive()){const c=el('button','chip','解除');c.type='button';c.onclick=()=>{DXF.got='all';DXF.rar.clear();DXF.q='';dexDrawn='';renderDexFilter();renderDex()};top.append(c)}
   box.append(top);if(!DXF.open)return;
   const p=el('div','flt');const re=all=>{dexDrawn='';if(all!==false)renderDexFilter();renderDex()};
@@ -11857,8 +11860,8 @@ $('#evBand').onclick=()=>raidPhase()==='post'?tab('ev'):evPop();evBand();setInte
 setTimeout(evAuto,3000);
 document.addEventListener('visibilitychange',()=>{if(!document.hidden){evBand();setTimeout(evAuto,2500)}});
 document.addEventListener('visibilitychange',()=>{if(!document.hidden)setTimeout(sgAuto,800)});
-if(tutoNew()){S.helpSeen=1;S.newsSeen=NEWS_VER;save();setTimeout(()=>tutoStart(false),400)}
-else if(!S.helpSeen){S.helpSeen=1;S.newsSeen=NEWS_VER;save();tab('help');msg('はじめての方は、下の「遊び方」を見てね',true,4)}
+if(tutoNew()){S.helpSeen=1;S.newsSeen=newsVer();save();setTimeout(()=>tutoStart(false),400)}
+else if(!S.helpSeen){S.helpSeen=1;S.newsSeen=newsVer();save();tab('help');msg('はじめての方は、下の「遊び方」を見てね',true,4)}
 requestAnimationFrame(loop);
 </script>
 </body></html>
