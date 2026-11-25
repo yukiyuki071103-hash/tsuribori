@@ -1147,11 +1147,12 @@ const OKI_W=[50,30,13,5,2]; // 置き竿で★1〜5が出る割合（上限よ�
 const OKI_NEW=1;            // 未発見の魚のかかりやすさ（倍）。1=補正なし
 const OKI_XP=1/3;           // 経験値は通常の釣りの何倍か
 // お知らせ（アップデートのたびに上に足す。NEWS_VER を変えるとメニューに NEW が付く）
-const NEWS_VER='2026-11-21c';
+const NEWS_VER='2026-11-25';
 function newsVer(){return NEWS_VER+(typeof xmShow==='function'&&xmShow()?'x':'')} // 12/1にクリスマスのくわしいお知らせが出たら、もう一度 NEW が付く
 const NEWS=[
  {d:'2026/12/1',xm:1,t:['🎄 クリスマスイベント「クリスマス2026」を12/1 0:00〜12/25 23:59に開催！ 期間中は、通常の釣り場の魚がクリスマスの衣装でたまに釣れます','🎅 シャチ・バンドウイルカはサンタ帽、カワウソはマフラー、クリオネは天使の輪、ベルーガはトナカイの角、ハリセンボンはツリーの飾り、キンギョはキラキラのクリスマスカラーなど全14種。図鑑や魚籠では「キンギョ(クリスマス)」のように表示されます。衣装の魚は売値2倍','🎁 期間中は、どの釣り場でもごくまれに「クリスマスプレゼント」（★6）と「サンタ」（★7）が釣れることも…！','📖 図鑑の「🎄 イベント」で、イベント図鑑「クリスマス2026」が見られます。全16種そろえると称号「メリークリスマス2026」！']},
- {d:'2026/11/21',t:['🤍 アルビノの名前を「メダカ(アルビノ)」のように、うしろに付ける形に変えました（クリスマスの衣装の魚と同じ形）']},
+ {d:'2026/11/25',t:['🌙 夜の部屋と水槽を少し明るくしました（中の魚や家具が見やすく）','💡 水槽のお店に「明るいライト」（10,000G）、部屋の家具に「天井の照明」（3,000G・壁に飾る）を追加。夜でも部屋・水槽がもっと明るくなります','🌘 創世の海の「操作反転」中に、魚が逃げるときの「左！右！」と矢印が出なかったのを直しました（反転中は「左！（🌘反転中）」と出ます）','🦈 レイドで「グイッ！」がほかの合図にかくれて見えないことがあったのを直しました']},
+  {d:'2026/11/21',t:['🤍 アルビノの名前を「メダカ(アルビノ)」のように、うしろに付ける形に変えました（クリスマスの衣装の魚と同じ形）']},
   {d:'2026/11/21',t:['🌑 新しい釣り場「深海」が登場！（Lv115から・海）。潜水艇の丸い窓から、光るクラゲとマリンスノーの暗い海で、深海の生き物だけが釣れる釣り場です','🐟 新しい魚は20種。デメニギス・フクロウナギ・ジュウモンジダコ・コウモリダコ・センジュナマコ…そしてダイオウホウズキイカや、世界でいちばん深い海にすむシンカイクサウオ・ヨミノアシロも！ メンダコ・ダイオウグソクムシ・シーラカンス・リュウグウノツカイ・ダイオウイカなど、前からいた15種もここで釣れます（全35種・★3〜6）','🌕 深海も「アルビノの気配」と「今日のお題」の対象外です。新しい魚は釣王の塔には出ません','🎖 称号「深海の白い影」を追加']},
  {d:'2026/11/21',t:['🌴 新しい釣り場「アマゾンの大河」が登場！（Lv90から・川）。夕日のジャングルを流れる大河で、丸木舟から南米アマゾンの魚だけが釣れる釣り場です','🐟 新しい魚は19種。ディスカス・ピーコックバス・ポルカドットスティングレイ・レッドテールキャット・ドラド…そしてピンクのアマゾンカワイルカやオオカワウソ、クロカイマン、アマゾンマナティーも！ ピラニア・ネオンテトラ・ピラルク・アロワナ・デンキウナギ・アナコンダなど、前からいた11種もここで釣れます（全30種・★2〜6）','🌕 アマゾンの大河も「アルビノの気配」と「今日のお題」の対象外です。新しい魚は釣王の塔には出ません','🎖 称号「アマゾンの大河の白い影」を追加']},
  {d:'2026/11/20',xm:2,t:['🎄 12/1（火）0:00から、クリスマスイベントを開催します！ なにが起こるかはお楽しみに…🎅']},
@@ -6698,7 +6699,7 @@ Object.assign(PX.fish,{
         <li><b>魚拓</b>：釣った魚を魚拓にしてギャラリーに飾れます（12枚まで）。</li>
         <li><b>称号</b>：Lv10ごとや、ある条件を満たすと称号と、限定のウキや竿の見た目がもらえます。称号はメニューの「称号」、報酬の見た目はメニューの「着せ替え」で付け替えできます（新しい称号を取っても、いまの称号は自動では変わりません）。</li>
         <li><b>見物料</b>：水槽の魚は1匹1時間8Gの見物料を稼ぎます（★は関係なし・12時間分までたまる）。使っている背景・砂・ライトと置いている飾りで「設備ボーナス」（最大+60%）。「今日の人気者」（毎日、図鑑の魚から1種類）は2倍。エサやりで1時間+50%（4時間に1回）。水槽の画面の「集金」で受け取ります。</li>
-        <li><b>水槽</b>：画面右上の「🐟 水槽」で切り替え。魚籠の魚を「水槽へ入れる」と泳ぐ姿を眺められます。タップで情報、「エサやり」で集まってきます。「模様替え」で飾りをドラッグして置けます。大きさ・背景・飾りは「水槽のお店」で。</li>
+        <li><b>水槽</b>：画面右上の「🐟 水槽」で切り替え。魚籠の魚を「水槽へ入れる」と泳ぐ姿を眺められます。タップで情報、「エサやり」で集まってきます。「模様替え」で飾りをドラッグして置けます。夜は少し暗くなります。水槽の「明るいライト」や部屋の「天井の照明」を使うと、夜でも明るく見えます。大きさ・背景・飾りは「水槽のお店」で。</li>
       </ul></div>
     <div><h3>セーブについて（大事）</h3>
       <ul>
@@ -8277,6 +8278,9 @@ const TODS=[
  {id:'dusk',name:'夕',price:15000,mul:'#ffbe8c',sw:['#ff9a5c','#a0603f']},
  {id:'night',name:'夜',price:30000,mul:'#2f3f7e',sw:['#1e3675','#0b1a3a']}
 ];
+// 部屋・水槽の夜の暗さ：夜だけ白に近づけて弱める（k＝0〜1。明るいライト・天井の照明でさらに明るく・11/25）
+function todMulSoft(k){const t=TODS.find(x=>x.id===S.tod);if(!t||!t.mul)return null;if(S.tod!=='night')return t.mul;
+  const h=t.mul.slice(1),v=[0,2,4].map(i=>parseInt(h.substr(i,2),16)),m=v.map(x=>Math.round(x+(255-x)*k));return 'rgb('+m.join(',')+')'}
 // ---------- レベル称号（Lvで手に入る・報酬スキン付き） ----------
 const TITLES=[
  {lv:10,name:'駆け出し釣り人',uki:'medaka'},{lv:20,name:'釣り好き',skin:'wakaba'},{lv:30,name:'一人前の釣り人',uki:'hasu'},
@@ -9067,11 +9071,13 @@ function drawGauge(){
   // 合図はすべてゲージの下に出す（大物中でも目線を動かさなくていいように）
   const bl=Math.sin(clock*16)>0;cx.textAlign='center';
   if(F.raid){raidGaugeText(x,y,w,h,bl);return}
-  if(F.gs==='sougen'&&F.gm&&F.gm.k==='rev'&&gnText(y,bl)){} // 操作反転は「左！右！」より先に知らせる
+  // ゲージの端で矢印が点滅（ほかの合図が出ていても、逃げる向きの矢印はいつも出す）
+  if(F.warn>0&&bl){const L=F.wdir<0;cx.fillStyle='rgba(255,77,77,.9)';const ax=L?x+4:x+w-4,d=L?-1:1;for(let k=0;k<2;k++){const o=k*11*d;cx.beginPath();cx.moveTo(ax+o+d*8,y+h/2);cx.lineTo(ax+o-d*4,y+2);cx.lineTo(ax+o-d*4,y+h-2);cx.fill()}}
+  const gRev=F.gs==='sougen'&&F.gm&&F.gm.k==='rev';
+  if(gRev&&F.warn>0&&F.gm.pre<=0){const L=F.wdir<0;cx.fillStyle=bl?'#ff4d4d':'#e0b0ff';cx.font='bold 17px sans-serif';oText(L?'◀◀ 左！（🌘反転中）':'（🌘反転中）右！ ▶▶',W/2,y+45)} // 操作反転中の「左！右！」
+  else if(gRev&&gnText(y,bl)){} // 操作反転の予告は「左！右！」より先に知らせる（矢印は上で出している）
   else if(F.warn>0){
     const L=F.wdir<0;cx.fillStyle=bl?'#ff4d4d':'#ffffff';cx.font='bold 17px sans-serif';oText(L?'◀◀ 左！':'右！ ▶▶',W/2,y+45);
-    // ゲージの端で矢印が点滅
-    if(bl){cx.fillStyle='rgba(255,77,77,.9)';const ax=L?x+4:x+w-4,d=L?-1:1;for(let k=0;k<2;k++){const o=k*11*d;cx.beginPath();cx.moveTo(ax+o+d*8,y+h/2);cx.lineTo(ax+o-d*4,y+2);cx.lineTo(ax+o-d*4,y+h-2);cx.fill()}}
   }else if(F.gs==='sougen'&&gnText(y,bl)){}
   else if(F.flOn>0){cx.fillStyle='#fff3b0';cx.font='bold 17px sans-serif';oText('☀️ 閃光！ まぶしい…',W/2,y+45)}
   else if(F.dkOn>0){cx.fillStyle='#d8c0ff';cx.font='bold 17px sans-serif';oText('🌑 闇にまぎれた…',W/2,y+45)}
@@ -9196,7 +9202,7 @@ const AQ_BG=[
    for(let i=0;i<12;i++){const x=((i*31)+t*4)%AQW;R1(c,x,3+Math.round(Math.sin(x*.12+t*2)*1.2),2,1,'#ffb0cc')}}}
 ];
 const AQ_SAND=[{id:'std',name:'背景に合わせる',price:0},{id:'white',name:'白い砂',price:2000,c:['#efe8da','#fbf6ec','#d4ccbc']},{id:'black',name:'黒い砂',price:2000,c:['#3a3634','#4c4844','#262422']}];
-const AQ_LIGHT=[{id:'none',name:'なし',price:0},{id:'blue',name:'青いライト',price:5000,c:'120,200,255'},{id:'pink',name:'ピンクのライト',price:5000,c:'255,140,210'},{id:'rainbow',name:'虹のライト',price:20000}];
+const AQ_LIGHT=[{id:'none',name:'なし',price:0},{id:'blue',name:'青いライト',price:5000,c:'120,200,255'},{id:'pink',name:'ピンクのライト',price:5000,c:'255,140,210'},{id:'rainbow',name:'虹のライト',price:20000},{id:'bright',name:'明るいライト',price:10000,c:'255,248,225'}];
 const AQ_MAXDECO=10;
 // 飾り: w,h=大きさ（ドット）, d=描き方（x,y=下の真ん中）
 const R1=(c,x,y,w,h,col)=>{c.fillStyle=col;c.fillRect(Math.round(x),Math.round(y),Math.round(w),Math.round(h))};
@@ -9227,7 +9233,7 @@ const aqTank=()=>TANKS[aqT().size]||TANKS[0];
 const AQ_RATE=8,AQ_CAPH=12,AQ_FEED_CD=4*3600e3,AQ_FEED_LEN=3600e3;
 function aqPop(){const T=aqT(),k=dayKey();if(T.pop.d!==k||(!T.pop.id&&Object.keys(S.dex).length)||(T.pop.id&&!S.dex[T.pop.id])){const ids=Object.keys(S.dex).filter(id=>FISH.some(f=>f.id===id));T.pop={d:k,id:ids.length?ids[Math.floor(Math.random()*ids.length)]:''};save()}return T.pop.id}
 // 設備ボーナス：使っている背景・砂・ライトと、置いている飾り（合計は最大+60%）
-const AQ_EQ={bg:{sea:5,lake:5,deep:10,sky:15,ancient:15,space:15,spirit:15},sand:{white:3,black:3},light:{blue:5,pink:5,rainbow:10},
+const AQ_EQ={bg:{sea:5,lake:5,deep:10,sky:15,ancient:15,space:15,spirit:15},sand:{white:3,black:3},light:{blue:5,pink:5,rainbow:10,bright:5},
  deco:{ishi:1,mizukusa:1,ryuboku:2,sango:3,iwaba:3,takara:4,diver:5,chinbotsu:7,oshiro:7,vent:10,ukishima:10,fossil:10},max:60};
 function aqEquip(){const T=aqT(),b=AQ_EQ.bg[T.bg]|0,sa=AQ_EQ.sand[T.sand]|0,l=AQ_EQ.light[T.light]|0,d=T.deco.reduce((a,x)=>a+(AQ_EQ.deco[x.k]|0),0);
   return{bg:b,sand:sa,light:l,deco:d,total:Math.min(AQ_EQ.max,b+sa+l+d)}}
@@ -9353,8 +9359,8 @@ function aqRender(dt){
   aqUpdate(dt);
   T.fish.slice().sort((a,b)=>(Q.fish[a.u]?Q.fish[a.u].y:0)-(Q.fish[b.u]?Q.fish[b.u].y:0)).forEach(e=>{const a=Q.fish[e.u];if(!a)return;aqSprite(c,a,a.x,a.y+(a.bot?0:Math.sin(clock*2+e.u)*1))});
   // 時間帯
-  const tod=TODS.find(x=>x.id===S.tod);
-  if(tod&&tod.mul){c.save();c.globalCompositeOperation='multiply';c.fillStyle=tod.mul;c.fillRect(0,0,AQW,AQH);c.restore()}
+  const tmul=todMulSoft(T.light==='bright'?.75:.4);
+  if(tmul){c.save();c.globalCompositeOperation='multiply';c.fillStyle=tmul;c.fillRect(0,0,AQW,AQH);c.restore()}
   // ライト（夜は強く光る）
   const L=AQ_LIGHT.find(x=>x.id===T.light);
   if(L&&L.id!=='none'){const col=(a,k=0)=>L.c?`rgba(${L.c},${a})`:`hsla(${Math.round(clock*60+k*120)%360},90%,65%,${a})`; // 虹は光の筋ごとに色をずらす
@@ -9444,7 +9450,7 @@ function renderAq(){
     sh.append(row(b.name,lock?ST[b.need].name+'で1匹釣ると買える':'',own?(T.bg===b.id?'使用中':'使う'):yen(b.price)+'で買う',own?T.bg!==b.id:!lock&&S.gold>=b.price,()=>{if(own){T.bg=b.id;save();renderAq()}else aqBuy(b.price,()=>{T.bgOwn[b.id]=1;T.bg=b.id})}))});
   sh.append(hd('砂'));
   AQ_SAND.forEach(s=>{const own=T.sandOwn[s.id];sh.append(row(s.name,'',own?(T.sand===s.id?'使用中':'使う'):yen(s.price)+'で買う',own?T.sand!==s.id:S.gold>=s.price,()=>{if(own){T.sand=s.id;save();renderAq()}else aqBuy(s.price,()=>{T.sandOwn[s.id]=1;T.sand=s.id})}))});
-  sh.append(hd('ライト（夜にすると強く光る）'));
+  sh.append(hd('ライト（夜にすると強く光る・明るいライトは夜でも中が見やすい）'));
   AQ_LIGHT.forEach(s=>{const own=T.lightOwn[s.id];sh.append(row(s.name,'',own?(T.light===s.id?'使用中':'使う'):yen(s.price)+'で買う',own?T.light!==s.id:S.gold>=s.price,()=>{if(own){T.light=s.id;save();renderAq()}else aqBuy(s.price,()=>{T.lightOwn[s.id]=1;T.light=s.id})}))});
   sh.append(hd('飾り（買うたびに1個ふえる・置けるのは'+AQ_MAXDECO+'個まで）'));
   AQ_DECO.forEach(k=>{const lock=k.need&&!T.bgOwn[k.need];sh.append(row(k.name,(lock?(AQ_BG.find(b=>b.id===k.need).name)+'の背景を持っていると買える／':'')+'持っている数 '+(T.decoOwn[k.id]|0),yen(k.price)+'で買う',!lock&&S.gold>=k.price,()=>aqBuy(k.price,()=>{T.decoOwn[k.id]=(T.decoOwn[k.id]|0)+1})))});
@@ -10653,6 +10659,7 @@ const RM_F={
  lamp:{name:'ランプ',price:1200,box:[12,74],d:(c,x,y)=>{c.fillStyle='#555';c.fillRect(x-1,y-60,3,60);c.fillRect(x-8,y-2,16,3);c.fillStyle='#ffe9a8';c.beginPath();c.moveTo(x-10,y-58);c.lineTo(x+10,y-58);c.lineTo(x+6,y-72);c.lineTo(x-6,y-72);c.fill();c.fillStyle=S.tod==='night'?'rgba(255,240,180,.3)':'rgba(255,240,180,.15)';c.beginPath();c.arc(x,y-60,S.tod==='night'?40:26,0,7);c.fill()}},
  rodstand:{name:'竿立て',price:1500,box:[18,98],d:(c,x,y)=>{c.fillStyle='#6b4423';c.fillRect(x-16,y-6,32,6);for(let i=0;i<3;i++){c.strokeStyle=['#c9a04a','#3a3a3a','#e8493c'][i];c.lineWidth=2;c.beginPath();c.moveTo(x-10+i*10,y-4);c.lineTo(x-14+i*12,y-96);c.stroke()}c.fillStyle='#888';c.fillRect(x-12,y-26,6,5)}},
  lantern:{name:'提灯',price:2000,wall:1,box:[14,44],d:(c,x,y)=>{c.fillStyle='#333';c.fillRect(x-1,y,2,6);c.fillRect(x-9,y+6,18,3);c.fillStyle='#e8493c';c.beginPath();c.ellipse(x,y+24,13,16,0,0,7);c.fill();c.strokeStyle='rgba(0,0,0,.25)';for(let i=-1;i<=1;i++){c.beginPath();c.ellipse(x,y+24,13-Math.abs(i)*4,16,0,0,7);c.stroke()}c.fillStyle='#fff';c.font='bold 10px sans-serif';c.textAlign='center';c.fillText('釣',x,y+28);c.fillStyle='#333';c.fillRect(x-9,y+39,18,3)}},
+ ceillight:{name:'天井の照明',price:3000,wall:1,box:[40,30],d:(c,x,y)=>{c.fillStyle='#666';c.fillRect(x-1,y,2,8);c.fillStyle='#f4f1e8';c.beginPath();c.moveTo(x-18,y+22);c.lineTo(x+18,y+22);c.lineTo(x+11,y+8);c.lineTo(x-11,y+8);c.closePath();c.fill();c.fillStyle='#d8d2c0';c.fillRect(x-18,y+21,36,2);c.fillStyle='#fff6cf';c.beginPath();c.ellipse(x,y+23,8,3,0,0,7);c.fill();if(S.tod==='night'||S.tod==='dusk'){const g=c.createRadialGradient(x,y+24,4,x,y+24,120);g.addColorStop(0,'rgba(255,245,200,.35)');g.addColorStop(1,'rgba(255,245,200,0)');c.fillStyle=g;c.beginPath();c.arc(x,y+24,120,0,7);c.fill()}}},
  desk:{name:'机とイス',price:2500,box:[40,48],d:(c,x,y)=>{c.fillStyle='#8a5a2a';c.fillRect(x-36,y-40,56,6);c.fillRect(x-34,y-34,4,34);c.fillRect(x+14,y-34,4,34);c.fillStyle='#6b4423';c.fillRect(x+22,y-26,16,4);c.fillRect(x+34,y-46,4,46);c.fillRect(x+22,y-22,3,22);c.fillStyle='#f2f2f2';c.fillRect(x-28,y-46,16,6);c.fillStyle='#3f8fd8';c.fillRect(x-6,y-48,10,8)}},
  shelf:{name:'本棚',price:3000,box:[28,72],d:(c,x,y)=>{c.fillStyle='#7a5230';c.fillRect(x-28,y-70,56,70);c.fillStyle='#5a3a1e';[y-48,y-26].forEach(yy=>c.fillRect(x-28,yy,56,3));
   const cs=['#e8493c','#3f8fd8','#f2c84b','#5bbf6a','#8a5ad8'];for(let i=0;i<5;i++){c.fillStyle=cs[i];c.fillRect(x-24+i*9,y-68,7,19)}c.fillStyle='#3f8fd8';c.fillRect(x-20,y-44,36,16);c.fillStyle='#ffd447';c.fillRect(x-14,y-40,6,4);c.fillStyle='#fff';c.font='6px sans-serif';c.textAlign='center';c.fillText('図鑑',x,y-6)}},
@@ -10692,7 +10699,7 @@ const RM_F={
    if(RV&&!S.dex[g.id]){c.fillStyle='#f1e6cf';c.fillRect(x-w/2,y,w,h);c.fillStyle='#8a7a60';c.font='bold 18px sans-serif';c.textAlign='center';c.fillText('？',x,y+28);return} // 自分の図鑑にない魚は見せない
    const im=rmGyoImg(g);if(im)c.drawImage(im,x-w/2,y,w,h)}}
 };
-const RM_BUY=['bed','plant','cooler','rug','lamp','rodstand','lantern','desk','shelf','sofa','kotatsu','hammock','stove','ukiwa','zasshi','tackle','flag','kingyo','palm','clock','globe','kumo','kaseki','bouenkyo','hikaribana','sougen'];
+const RM_BUY=['bed','plant','cooler','rug','lamp','rodstand','lantern','ceillight','desk','shelf','sofa','kotatsu','hammock','stove','ukiwa','zasshi','tackle','flag','kingyo','palm','clock','globe','kumo','kaseki','bouenkyo','hikaribana','sougen'];
 // ===== 魚マニア（ウオミさんの交換所）=====
 // 釣った魚と、部屋の壁に飾るオブジェを物々交換する。ゴールドは使わず、能力も付かない
 // f=魚のid  k=通常版のキー  k2=上位版のキー。必要数は★に関係なく一律（MX_N / MX_N2）、2個目からは倍
@@ -11148,7 +11155,7 @@ function rmDraw(dt){
   if(typeof petDrawables==='function')dl.push(...petDrawables(dt,t));
   dl.sort((a,b)=>a.y-b.y).forEach(o=>o.d(c));
   // 時間帯の色
-  const tod=TODS.find(x=>x.id===S.tod);if(tod&&tod.mul){c.globalCompositeOperation='multiply';c.fillStyle=tod.mul;c.fillRect(0,0,RMW,RMH);c.globalCompositeOperation='source-over'}
+  const tmul=todMulSoft(rvRoom().items.some(it=>it.k==='ceillight')?.75:.4);if(tmul){c.globalCompositeOperation='multiply';c.fillStyle=tmul;c.fillRect(0,0,RMW,RMH);c.globalCompositeOperation='source-over'}
   if(rmEdit&&rvRoom().items[rmSel]){const b=rmBox(rvRoom().items[rmSel]);c.strokeStyle=Math.sin(clock*8)>0?'#fff':'#ff8a3d';c.lineWidth=2;c.setLineDash([4,3]);c.strokeRect(b[0],b[1],b[2]-b[0],b[3]-b[1]);c.setLineDash([])}
   if(rmEdit){c.fillStyle='rgba(255,138,61,.92)';c.fillRect(0,RMH-22,RMW,22);c.fillStyle='#fff';c.font='bold 12px sans-serif';c.textAlign='center';c.fillText('模様替え中：家具をドラッグで動かせます',RMW/2,RMH-7)}
   c.restore();
@@ -11657,10 +11664,10 @@ function raidGaugeText(x,y,w,h,bl){
   let t='',c='#fff';
   if(F.critShow>0){t='💥 会心の一撃！ −'+F.critN;c='#ffe23a'}
   else if(F.warn>0){t=(F.wdir<0?'◀◀ ':'')+'背びれ！ 逃げるぞ'+(F.wdir>0?' ▶▶':'');c=bl?'#ff4d4d':'#ffffff'}
+  else if(F.tugShow>0){t='グイッ！';c='#ffb04a'} // グイッは0.7秒だけなので、ほかの長い合図より先に出す
   else if(F.rageShow>0){t='💢 怒った！ 速くなるぞ';c=bl?'#ff5a5a':'#ffd447'}
   else if(F.biteShow>0){t='🦷 噛みつき！ バーが短くなった';c='#ff8a8a'}
   else if(F.diveShow>0){t='🌊 深く潜った！ 見失うな';c='#9fd8ff'}
-  else if(F.tugShow>0){t='グイッ！';c='#ffb04a'}
   if(t){cx.fillStyle=c;cx.font='bold 17px sans-serif';oText(t,W/2,y+45)}
   else{cx.fillStyle='#fff';cx.font='11px sans-serif';oText('重ねている間HPが減る・満タンで会心の一撃（'+F.tier.n+'枚リール）',W/2,y+43)}
 }
